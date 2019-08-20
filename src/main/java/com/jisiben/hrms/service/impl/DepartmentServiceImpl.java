@@ -6,6 +6,8 @@ import com.jisiben.hrms.domain.entity.Department;
 import com.jisiben.hrms.service.DepartmentService;
 import com.jisiben.hrms.service.common.impl.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,5 +19,10 @@ public class DepartmentServiceImpl extends AbstractService<Department> implement
     @Override
     public Dao<Department, Long> getDao() {
         return departmentDao;
+    }
+
+    @Override
+    public Page<Department> search(String depNumber, String depName, Pageable pageable) {
+        return departmentDao.findByNumberOrName(depNumber, depName, pageable);
     }
 }

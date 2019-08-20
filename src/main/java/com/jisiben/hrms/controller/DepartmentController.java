@@ -13,11 +13,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
+import static com.google.common.base.Predicates.not;
 
 @Controller
 public class DepartmentController {
@@ -29,10 +33,20 @@ public class DepartmentController {
     @ResponseBody
     @Produces("application/json")
     @RequestMapping(value = "/departments", method = RequestMethod.GET)
-    public PageableSearchResultDTO<DepartmentDTO> findAll(@RequestParam("currentPage") int currentPage,
-                                                          @RequestParam("pageSize") int pageSize) {
-        Page<Department> allDepartments = getDepartmentService()
-                .findAll(new PageRequest(currentPage-1, pageSize));
+    public PageableSearchResultDTO<DepartmentDTO> findAll(
+            @RequestParam("depNum") String depNumber,
+            @RequestParam("depName") String depName,
+            @RequestParam("currentPage") int currentPage,
+            @RequestParam("pageSize") int pageSize) {
+        PageRequest pageRequest = new PageRequest(currentPage-1, pageSize);
+        Page<Department> allDepartments = Arrays.asList(depNumber, depName)
+                .stream()
+                .filter(not(StringUtils::isEmpty))
+                .findAny()
+                .map((String s)->getDepartmentService()
+                        .search(depNumber, depName, pageRequest))
+                .orElse(getDepartmentService()
+                        .findAll(pageRequest));
         List<DepartmentDTO> ds = Streams.stream(allDepartments.iterator())
                 .map((Department dep)
                     -> new DepartmentDTO.Builder()
@@ -62,19 +76,18 @@ public class DepartmentController {
                         .number(dep.getNumber())
                         .manager(dep.getManager())
                         .telephone(dep.getTelephone())
-                        .build()).get();
+                        .build()).orElse(new DepartmentDTO());
     }
 
     @RequestMapping(value = "/department", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void addDepartment(@RequestBody DepartmentDTO dto) {
-        Department dp = new Department.Builder()
+        getDepartmentService().save(new Department.Builder()
                 .manager(dto.getManager())
                 .name(dto.getName())
                 .number(dto.getNumber())
                 .telephone(dto.getTelephone())
-                .build();
-        getDepartmentService().save(dp);
+                .build());
     }
 
     @RequestMapping(value = "/department", method = RequestMethod.POST)
@@ -94,7 +107,6 @@ public class DepartmentController {
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteDepartment(@RequestParam Long id, ModelMap model) {
         getDepartmentService().delete(id);
-        model.put("msg", "部门删除成功");
     }
 
     public DepartmentService getDepartmentService() {

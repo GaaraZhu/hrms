@@ -21,11 +21,8 @@
 		</div>
 		<script type="text/javascript">
 		 $("#alertSubmit").click(function(){
-			// alert("aaa");
-			 selectList();
 			 $("#alertQuit").click();
 		 });
-		
-		
+
 		</script>
 </body>

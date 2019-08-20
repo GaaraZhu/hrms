@@ -1,83 +1,27 @@
-    var localDepNum;
-    var localDepName;
     var pageSize = 8;
-    var dataUrl = "departments";
-    var addDepartmentUrl = "WEB-ROOT/html/addDepartments.jsp";
-    queryPage(1, pageSize, dataUrl, localDepNum, localDepName);
+    queryPage(1);
 
-	$("#resetting").click(
+	$("#reset").click(
         function() {
             $("#selectNumber").val("");
             $("#selectName").val("");
-            localDepNum  = null;
-            localDepName = null;
         }
 	);
 
-	$("#selectByVal").click(
+	$("#search").click(
         function() {
-            var LocDep = getFormData($("#selectDepVal"));
-            queryPage(1, pageSize, dataUrl, LocDep.number, LocDep.name);
+            queryPage(1);
 	    }
 	);
 
-    $("#addDep").click(
-        function(){
-             $("#addDepList").load(addDepartmentUrl, function(){
-                $("#addModel").modal({
-                    keyboard: true
-                });
-            });
-        }
-    );
-
-    $('#depForm').bootstrapValidator({
-        message : 'This value is not valid',
-        feedbackIcons : {
-            valid : 'glyphicon glyphicon-ok',
-            invalid : 'glyphicon glyphicon-remove',
-            validating : 'glyphicon glyphicon-refresh'
-        },
-        fields : {
-            number : {
-                message : '部门编号验证失败',
-                validators : {
-                    notEmpty : {
-                        message : '部门编号不能为空'
-                    },
-                    regexp : {
-                        regexp : /^[a-zA-Z0-9_]+$/,
-                        message : '员工编号只能包含大写、小写、数字和下划线'
-                    }
-                }
-            },
-            name : {
-                validators : {
-                    notEmpty : {
-                        message : '部门名称不能为空'
-                    },
-
-                }
-            },
-            manager : {
-                validators : {
-                    notEmpty : {
-                        message : '部门负责人不能为空'
-                    },
-                }
-            },
-        }
-    }).on(
-        'success.form.bv',
-        onCreateOrUpdate
-    );
-
-    function queryPage(cp, ps, url, depNum, depName) {
+    function queryPage(cp) {
+        depNum = $("#selectNumber").val();
+        depName = $("#selectName").val();
         $.ajax({
-            url : url,
+            url : "departments",
             type : "GET",
             async: true,
-            data : "currentPage=" + cp + "&pageSize=" + ps + "&depNum=" +depNum+ "&depName="+depName,
+            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&depNum=" +depNum+ "&depName="+depName,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 initTable(data, cp);
@@ -112,7 +56,7 @@
             count : data.totalElements,
             inputSearch : false,
             onPageChange : function(currentPage) {
-                queryPage(currentPage, pageSize, dataUrl, localDepNum, localDepName);
+                queryPage(currentPage);
             }
         });
     }
@@ -152,7 +96,7 @@
             function(response, status, xhr) {
                 $('#alert').html(response);
             });
-        $ajax({
+        $.ajax({
             type : "DELETE",
             url : "department?id="+id,
             async : true,
@@ -171,6 +115,57 @@
             }
         });
     }
+
+    $("#addDep").click(
+        function(){
+             $("#addDepList").load("WEB-ROOT/html/addDepartments.jsp", function(){
+                $("#addModel").modal({
+                    keyboard: true
+                });
+            });
+        }
+    );
+
+    $('#depForm').bootstrapValidator({
+        message : 'This value is not valid',
+        feedbackIcons : {
+            valid : 'glyphicon glyphicon-ok',
+            invalid : 'glyphicon glyphicon-remove',
+            validating : 'glyphicon glyphicon-refresh'
+        },
+        fields : {
+            number : {
+                message : '部门编号验证失败',
+                validators : {
+                    notEmpty : {
+                        message : '部门编号不能为空'
+                    },
+                    regexp : {
+                        regexp : /^[a-zA-Z0-9_]+$/,
+                        message : '员工编号只能包含大写、小写、数字和下划线'
+                    }
+                }
+            },
+            name : {
+                validators : {
+                    notEmpty : {
+                        message : '部门名称不能为空'
+                    },
+
+                }
+            },
+            manager : {
+                validators : {
+                    notEmpty : {
+                        message : '部门主管不能为空'
+                    },
+                }
+            },
+        }
+    }).on(
+        'success.form.bv',
+        onCreateOrUpdate
+    );
 
     function onCreateOrUpdate(e){
         e.preventDefault();

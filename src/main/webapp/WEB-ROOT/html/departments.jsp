@@ -25,12 +25,12 @@ HttpSession s = request.getSession();
 				
 					<div class="form-group inputselect col-lg-4">
 						<button type="button" class="btn btn-success btn-sm "
-							id="selectByVal">
+							id="search">
 							<span class="glyphicon glyphicon-user"></span> 搜索
 						</button>
 						
 						<button type="button" class="btn btn-success btn-sm "
-							id="resetting">
+							id="reset">
 							<span class="glyphicon glyphicon-user"></span> 重置
 						</button>
 					</div>

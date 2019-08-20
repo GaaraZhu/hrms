@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Demo of Responsive vertical navigation menu</title>
+        <title>528人力资源管理系统</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"
@@ -133,6 +133,7 @@
         <script>
              $( "#frame" ).load( "WEB-ROOT/html/departments.jsp", function( response, status, xhr ) {
                     $('#frame').html(response);
+                    $("#headTitle").text(" 首页/ 系统管理/ 部门管理");
              });
             htmlDispatcher=function(url, title){
                 $( "#frame" ).load(url, function(response, status, xhr) {
