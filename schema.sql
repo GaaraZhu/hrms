@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: hrms_db
 -- ------------------------------------------------------
--- Server version	5.6.24-enterprise-commercial-advanced
+-- Server version 5.6.24-enterprise-commercial-advanced
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,39 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `candidate`
+--
+
+DROP TABLE IF EXISTS `candidate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `candidate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `idNumber` varchar(30) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `jpaVersion` int(11) NOT NULL,
+  `createdBy` varchar(20) NOT NULL,
+  `createdTime` datetime NOT NULL,
+  `lastUpdatedBy` varchar(20) NOT NULL,
+  `lastUpdatedTime` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='候选人';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `candidate`
+--
+
+LOCK TABLES `candidate` WRITE;
+/*!40000 ALTER TABLE `candidate` DISABLE KEYS */;
+/*!40000 ALTER TABLE `candidate` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `department`
@@ -34,7 +67,7 @@ CREATE TABLE `department` (
   `lastUpdatedBy` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='公司部门表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='公司部门表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +76,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'财务','001','赵飞','15685638701',0,'admin','2019-08-19 22:17:41','admin','2019-08-19 22:17:41'),(2,'销售','002','刘春燕','14565638701',0,'admin','2019-08-19 22:17:41','admin','2019-08-19 22:17:41'),(3,'后勤','003','刘勇','16265732724',0,'admin','2019-08-19 22:17:42','admin','2019-08-19 22:17:42');
+INSERT INTO `department` VALUES (1,'财务','001','赵飞','15685638702',1,'admin','2019-08-19 22:17:41','admin','2019-08-19 22:17:41'),(2,'销售','002','刘春燕','14565638701',0,'admin','2019-08-19 22:17:41','admin','2019-08-19 22:17:41'),(3,'后勤','003','刘勇','16265732724',0,'admin','2019-08-19 22:17:42','admin','2019-08-19 22:17:42'),(5,'研发','004','张力','0273697573',1,'admin','2019-08-20 22:39:59','admin','2019-08-20 22:39:59');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,4 +120,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-19 22:21:57
+-- Dump completed on 2019-08-21 23:52:14
