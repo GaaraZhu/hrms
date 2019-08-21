@@ -13,15 +13,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-
-import static com.google.common.base.Predicates.not;
 
 @Controller
 public class DepartmentController {
@@ -41,21 +39,14 @@ public class DepartmentController {
         PageRequest pageRequest = new PageRequest(currentPage-1, pageSize);
         Page<Department> allDepartments = Arrays.asList(depNumber, depName)
                 .stream()
-                .filter(not(StringUtils::isEmpty))
+                .filter(Objects::nonNull)
                 .findAny()
                 .map((String s)->getDepartmentService()
                         .search(depNumber, depName, pageRequest))
                 .orElse(getDepartmentService()
                         .findAll(pageRequest));
         List<DepartmentDTO> ds = Streams.stream(allDepartments.iterator())
-                .map((Department dep)
-                    -> new DepartmentDTO.Builder()
-                        .id(dep.getId())
-                        .name(dep.getName())
-                        .number(dep.getNumber())
-                        .manager(dep.getManager())
-                        .telephone(dep.getTelephone())
-                        .build())
+                .map(DepartmentDTO::map)
                 .collect(Collectors.toList());
         return new PageableSearchResultDTO.Builder<DepartmentDTO>()
                 .totalElements(allDepartments.getTotalElements())
@@ -69,19 +60,12 @@ public class DepartmentController {
     public DepartmentDTO find(Long id) { //TODO: optional serialization
         return getDepartmentService()
                 .findById(id)
-                .map((Department dep)
-                        -> new DepartmentDTO.Builder()
-                        .id(dep.getId())
-                        .name(dep.getName())
-                        .number(dep.getNumber())
-                        .manager(dep.getManager())
-                        .telephone(dep.getTelephone())
-                        .build()).orElse(new DepartmentDTO());
+                .map(DepartmentDTO::map).orElse(new DepartmentDTO());
     }
 
     @RequestMapping(value = "/department", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addDepartment(@RequestBody DepartmentDTO dto) {
+    public void add(@RequestBody DepartmentDTO dto) {
         getDepartmentService().save(new Department.Builder()
                 .manager(dto.getManager())
                 .name(dto.getName())
@@ -92,7 +76,7 @@ public class DepartmentController {
 
     @RequestMapping(value = "/department", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void updateDepartment(Long id, @RequestBody DepartmentDTO dto) {
+    public void update(Long id, @RequestBody DepartmentDTO dto) {
         getDepartmentService().findById(id)
                 .ifPresent((Department dep)-> {
                     dep.setName(dto.getName());
@@ -105,7 +89,7 @@ public class DepartmentController {
 
     @RequestMapping(value = "/department", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
-    public void deleteDepartment(@RequestParam Long id, ModelMap model) {
+    public void delete(@RequestParam Long id, ModelMap model) {
         getDepartmentService().delete(id);
     }
 

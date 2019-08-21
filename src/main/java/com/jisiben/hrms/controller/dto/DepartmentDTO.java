@@ -1,5 +1,7 @@
 package com.jisiben.hrms.controller.dto;
 
+import com.jisiben.hrms.domain.entity.Department;
+
 public class DepartmentDTO {
     private Long id;
     private String name;
@@ -75,5 +77,15 @@ public class DepartmentDTO {
         public DepartmentDTO build() {
             return new DepartmentDTO(this);
         }
+    }
+
+    public static DepartmentDTO map(Department dep) {
+        return new DepartmentDTO.Builder()
+                .id(dep.getId())
+                .name(dep.getName())
+                .number(dep.getNumber())
+                .manager(dep.getManager())
+                .telephone(dep.getTelephone())
+                .build();
     }
 }

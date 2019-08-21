@@ -23,6 +23,6 @@ public class DepartmentServiceImpl extends AbstractService<Department> implement
 
     @Override
     public Page<Department> search(String depNumber, String depName, Pageable pageable) {
-        return departmentDao.findByNumberOrName(depNumber, depName, pageable);
+        return departmentDao.findByNumberAndName(depNumber, depName, pageable);
     }
 }
