@@ -4,7 +4,7 @@ import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.domain.entity.common.Gender;
 
 public class CandidateDTO {
-    private long id;
+    private Long id;
     private String name;
     private String gender;
     private String idNumber;
@@ -24,7 +24,7 @@ public class CandidateDTO {
         this.address = builder.address;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -53,7 +53,7 @@ public class CandidateDTO {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private String name;
         private String gender;
         private String idNumber;
@@ -61,7 +61,7 @@ public class CandidateDTO {
         private String city;
         private String address;
 
-        public Builder id(long id) {
+        public Builder id(Long id) {
             this.id = id;
             return this;
         }
