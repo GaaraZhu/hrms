@@ -54,8 +54,3 @@ HttpSession s = request.getSession();
 		</div>
 	</div>
 </body>
-
-
-
-
-

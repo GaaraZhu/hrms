@@ -4,9 +4,9 @@ import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.domain.entity.common.Gender;
 
 public class CandidateDTO {
-    private Long id;
+    private long id;
     private String name;
-    private Gender gender;
+    private String gender;
     private String idNumber;
     private String phone;
     private String city;
@@ -24,7 +24,7 @@ public class CandidateDTO {
         this.address = builder.address;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -32,7 +32,7 @@ public class CandidateDTO {
         return name;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -53,15 +53,15 @@ public class CandidateDTO {
     }
 
     public static class Builder {
-        private Long id;
+        private long id;
         private String name;
-        private Gender gender;
+        private String gender;
         private String idNumber;
         private String phone;
         private String city;
         private String address;
 
-        public Builder id(Long id) {
+        public Builder id(long id) {
             this.id = id;
             return this;
         }
@@ -71,7 +71,7 @@ public class CandidateDTO {
             return this;
         }
 
-        public Builder gender(Gender gender) {
+        public Builder gender(String gender) {
             this.gender = gender;
             return this;
         }
@@ -105,7 +105,7 @@ public class CandidateDTO {
         return new CandidateDTO.Builder()
                 .id(c.getId())
                 .name(c.getName())
-                .gender(c.getGender())
+                .gender(c.getGender().equals(Gender.MALE)?"男":"女")
                 .idNumber(c.getIdNumber())
                 .phone(c.getPhone())
                 .city(c.getCity())

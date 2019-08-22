@@ -4,6 +4,7 @@ import com.google.common.collect.Streams;
 import com.jisiben.hrms.controller.dto.CandidateDTO;
 import com.jisiben.hrms.controller.dto.PageableSearchResultDTO;
 import com.jisiben.hrms.domain.entity.Candidate;
+import com.jisiben.hrms.domain.entity.common.Gender;
 import com.jisiben.hrms.service.CandidateService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -71,7 +72,7 @@ public class CandidateController {
                 .name(dto.getName())
                 .phone(dto.getPhone())
                 .idNumber(dto.getIdNumber())
-                .gender(dto.getGender())
+                .gender("男".equals(dto.getGender())? Gender.MALE:Gender.FEMALE)
                 .city(dto.getCity())
                 .address(dto.getAddress())
                 .build());
@@ -85,7 +86,7 @@ public class CandidateController {
                     c.setName(dto.getName());
                     c.setPhone(dto.getPhone());
                     c.setIdNumber(dto.getIdNumber());
-                    c.setGender(dto.getGender());
+                    c.setGender("男".equals(dto.getGender())? Gender.MALE:Gender.FEMALE);
                     c.setCity(dto.getCity());
                     c.setAddress(dto.getAddress());
                     getCandidateService().save(c);

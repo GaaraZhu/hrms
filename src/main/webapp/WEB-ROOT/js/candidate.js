@@ -3,8 +3,9 @@
 
 	$("#reset").click(
         function() {
-            $("#selectNumber").val("");
-            $("#selectName").val("");
+            $("#name").val("");
+            $("#phone").val("");
+            $("#city").val("");
         }
 	);
 
@@ -15,13 +16,14 @@
 	);
 
     function queryPage(cp) {
-        depNum = $("#selectNumber").val();
-        depName = $("#selectName").val();
+        name = $("#name").val();
+        phone = $("#phone").val();
+        city = $("#city").val();
         $.ajax({
-            url : "departments",
+            url : "candidates",
             type : "GET",
             async: true,
-            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&depNum=" +depNum+ "&depName="+depName,
+            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&phone="+phone + "&city="+city,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 initTable(data, cp);
@@ -39,12 +41,14 @@
             data : data.results,
             title : [
                     "id",
-                    "number",
                     "name",
-                    "manager",
-                    "telephone",
+                    "gender",
+                    "phone",
+                    "idNumber",
+                    "city",
+                    "address",
                     "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-user'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-user'></span>删除</button>" ] ,
-            name : ["ID", "部门编号", "部门名称", "部门主管", "部门电话", "_opt" ],
+            name : ["ID", "姓名", "性别", "电话", "身份证", "城市", "地址", "_opt" ],
             tid : "id",
             checkBox : "id"
         });
@@ -64,22 +68,24 @@
 	function updF(id) {
         $.ajax({
             type : "GET",
-            url : "department?id="+id,
+            url : "candidate?id="+id,
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#addDepList").load(
-                    "WEB-ROOT/html/addDepartments.jsp",
+                $("#addCandidateList").load(
+                    "WEB-ROOT/html/addCandidates.jsp",
                     function() {
                         $("#addModel").modal({
                             keyboard : true
                         });
                         if (data != null) {
                             $("#id").val(data.id);
-                            $("#number").val(data.number);
                             $("#name").val(data.name);
-                            $("#manager").val(data.manager);
-                            $("#telephone").val(data.telephone);
+                            $("#gender").val(data.gender);
+                            $("#idNumber").val(data.idNumber);
+                            $("#phone").val(data.phone);
+                            $("#city").val(data.city);
+                            $("#address").val(data.address);
                             $("#submitType").val("POST")
                         }
                     });
@@ -97,7 +103,7 @@
             });
         $.ajax({
             type : "DELETE",
-            url : "department?id="+id,
+            url : "candidate?id="+id,
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(msg) {
@@ -115,9 +121,9 @@
         });
     }
 
-    $("#addDep").click(
+    $("#addCandidate").click(
         function(){
-             $("#addDepList").load("WEB-ROOT/html/addDepartments.jsp", function(){
+             $("#addCandidateList").load("WEB-ROOT/html/addCandidates.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });
@@ -125,7 +131,7 @@
         }
     );
 
-    $('#depForm').bootstrapValidator({
+    $('#candidateForm').bootstrapValidator({
         message : 'This value is not valid',
         feedbackIcons : {
             valid : 'glyphicon glyphicon-ok',
@@ -133,30 +139,34 @@
             validating : 'glyphicon glyphicon-refresh'
         },
         fields : {
-            number : {
-                message : '部门编号验证失败',
-                validators : {
-                    notEmpty : {
-                        message : '部门编号不能为空'
-                    },
-                    regexp : {
-                        regexp : /^[a-zA-Z0-9_]+$/,
-                        message : '员工编号只能包含大写、小写、数字和下划线'
-                    }
-                }
-            },
             name : {
                 validators : {
                     notEmpty : {
-                        message : '部门名称不能为空'
+                        message : '名称不能为空'
                     },
 
                 }
             },
-            manager : {
+            phone : {
                 validators : {
                     notEmpty : {
-                        message : '部门主管不能为空'
+                        message : '电话不能为空'
+                    },
+
+                }
+            },
+            idNumber : {
+                validators : {
+                    notEmpty : {
+                        message : '身份证号不能为空'
+                    },
+
+                }
+            },
+            city : {
+                validators : {
+                    notEmpty : {
+                        message : '城市不能为空'
                     },
                 }
             },
@@ -168,9 +178,9 @@
 
     function onCreateOrUpdate(e){
         e.preventDefault();
-        var data = $('form#depForm').serializeObject();
+        var data = $('form#candidateForm').serializeObject();
         var method = $("#submitType").val();
-        var url = method=="POST"?"department?id="+$("#id").val():"department";
+        var url = method=="POST"?"candidate?id="+$("#id").val():"candidate";
         $.ajax({
             type : method,
             url : url,

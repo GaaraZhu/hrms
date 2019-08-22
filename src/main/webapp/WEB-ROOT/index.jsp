@@ -31,7 +31,7 @@
         <nav id="navbar" class="">
             <ul>
                 <li>
-                    <span class="spliter">
+                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/candidates.jsp',' 首页/ 简历管理','简历管理')">
                         <i class="fas fa-id-card"></i>
                         简历管理
                     </span>
