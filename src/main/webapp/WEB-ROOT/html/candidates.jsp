@@ -12,17 +12,17 @@ HttpSession s = request.getSession();
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectCandidatesVal">
 				<div class="row">
-					<div class="form-group inputselect col-lg-4">
+					<div class="form-group inputselect col-lg-3">
 						<label for="name">姓名</label> <input type="text"
 							class="form-control  " id="name" name="name"
 						    placeholder="请输入姓名">
 					</div>
-					<div class="form-group inputselect col-lg-4">
+					<div class="form-group inputselect col-lg-3">
 						<label for="name">电话</label> <input type="text"
 							class=" form-control " id="phone" name="phone"
 							placeholder="请输入电话">
 					</div>
-					<div class="form-group inputselect col-lg-4">
+					<div class="form-group inputselect col-lg-3">
                         <label for="name">城市</label> <input type="text"
                             class="form-control  " id="city" name="city"
                             placeholder="请输入城市">
@@ -39,8 +39,8 @@ HttpSession s = request.getSession();
                             <span class="glyphicon glyphicon-user"></span> 重置
                         </button>
                     </div>
-					<div class="form-group inputselect col-lg-4">
-                        <button type="button" class="btn btn-info btn-sm " id="addCandidate"">
+					<div class="form-group inputselect col-lg-2">
+                        <button type="button" class="btn btn-info btn-sm " style="margin-left: 225px" id="addCandidate"">
                             <span class="glyphicon glyphicon-user"></span> 新增候选人
                         </button>
 					</div>
