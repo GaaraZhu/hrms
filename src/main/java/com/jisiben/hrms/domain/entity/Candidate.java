@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "candidate")
-public class Candidate extends PersistentRoot {
+public class Candidate extends PersistentRoot<Candidate> {
     private static final long serialVersionUID = 3518845612990325404L;
 
     private String name;
@@ -39,9 +39,7 @@ public class Candidate extends PersistentRoot {
         this.address = builder.address;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public Gender getGender() {
         return gender;
@@ -51,9 +49,7 @@ public class Candidate extends PersistentRoot {
         return idNumber;
     }
 
-    public String getPhone() {
-        return phone;
-    }
+    public String getPhone() { return phone; }
 
     public String getCity() {
         return city;
@@ -63,28 +59,34 @@ public class Candidate extends PersistentRoot {
         return address;
     }
 
-    public void setName(String name) {
+    public Candidate name(String name) {
         this.name = name;
+        return this;
     }
 
-    public void setGender(Gender gender) {
+    public Candidate gender(Gender gender) {
         this.gender = gender;
+        return this;
     }
 
-    public void setIdNumber(String idNumber) {
+    public Candidate idNumber(String idNumber) {
         this.idNumber = idNumber;
+        return this;
     }
 
-    public void setPhone(String phone) {
+    public Candidate phone(String phone) {
         this.phone = phone;
+        return this;
     }
 
-    public void setCity(String city) {
+    public Candidate city(String city) {
         this.city = city;
+        return this;
     }
 
-    public void setAddress(String address) {
+    public Candidate address(String address) {
         this.address = address;
+        return this;
     }
 
     public static class Builder extends PersistentRoot.Builder<Builder, Candidate> {

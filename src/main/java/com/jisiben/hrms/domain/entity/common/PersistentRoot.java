@@ -18,7 +18,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class PersistentRoot implements Serializable {
+public abstract class PersistentRoot<T extends PersistentRoot> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -61,48 +61,49 @@ public abstract class PersistentRoot implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public int getJpaVersion() {
         return jpaVersion;
-    }
-
-    public void setJpaVersion(int jpaVersion) {
-        this.jpaVersion = jpaVersion;
     }
 
     public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
     public String getLastUpdatedBy() {
         return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdateBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
     }
 
     public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
-
     public Date getLastUpdatedTime() {
         return lastUpdatedTime;
     }
 
-    public void setLastUpdatedTime(Date lastUpdatedTime) {
+    public T jpaVersion(int jpaVersion) {
+        this.jpaVersion = jpaVersion;
+        return (T) this;
+    }
+
+    public T createdBy(String createdBy) {
+        this.createdBy = createdBy;
+        return (T) this;
+    }
+
+    public T createdTime(Date createdTime) {
+        this.createdTime = createdTime;
+        return (T)this;
+    }
+
+    public T lastUpdatedBy(String lastUpdateBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+        return (T)this;
+    }
+
+    public T lastUpdatedTime(Date lastUpdatedTime) {
         this.lastUpdatedTime = lastUpdatedTime;
+        return (T)this;
     }
 
     public static abstract class Builder<T extends PersistentRoot.Builder, D extends PersistentRoot> {

@@ -80,10 +80,11 @@ public class DepartmentController {
     public void update(Long id, @RequestBody DepartmentDTO dto) {
         getDepartmentService().findById(id)
                 .ifPresent((Department dep)-> {
-                    dep.setName(dto.getName());
-                    dep.setNumber(dto.getNumber());
-                    dep.setManager(dto.getManager());
-                    dep.setTelephone(dto.getTelephone());
+                    dep.name(dto.getName())
+                            .number(dto.getNumber())
+                            .manager(dto.getManager())
+                            .telephone(dto.getTelephone());
+                            getDepartmentService().save(dep);
                     getDepartmentService().save(dep);
                 });
     }

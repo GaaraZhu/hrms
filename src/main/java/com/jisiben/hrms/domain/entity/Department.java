@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "department")
-public class Department extends PersistentRoot {
+public class Department extends PersistentRoot<Department> {
 
     private static final long serialVersionUID = 6538825612999325493L;
 
@@ -34,32 +34,36 @@ public class Department extends PersistentRoot {
         return name;
     }
 
-    public void setName(String name) {
+    public Department name(String name) {
         this.name = name;
+        return this;
     }
 
     public String getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public Department number(String number) {
         this.number = number;
+        return this;
     }
 
     public String getManager() {
         return manager;
     }
 
-    public void setManager(String manager) {
+    public Department manager(String manager) {
         this.manager = manager;
+        return this;
     }
 
     public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(String telephone) {
+    public Department telephone(String telephone) {
         this.telephone = telephone;
+        return this;
     }
 
     public static class Builder extends PersistentRoot.Builder<Builder, Department> {

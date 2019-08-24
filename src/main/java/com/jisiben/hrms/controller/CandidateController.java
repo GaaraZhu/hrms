@@ -84,12 +84,12 @@ public class CandidateController {
     public void update(Long id, @RequestBody CandidateDTO dto) {
         getCandidateService().findById(id)
                 .ifPresent((Candidate c)-> {
-                    c.setName(dto.getName());
-                    c.setPhone(dto.getPhone());
-                    c.setIdNumber(dto.getIdNumber());
-                    c.setGender("男".equals(dto.getGender())? Gender.MALE:Gender.FEMALE);
-                    c.setCity(dto.getCity());
-                    c.setAddress(dto.getAddress());
+                    c.name(dto.getName())
+                            .phone(dto.getPhone())
+                            .idNumber(dto.getIdNumber())
+                            .gender("男".equals(dto.getGender())? Gender.MALE:Gender.FEMALE)
+                            .city(dto.getCity())
+                            .address(dto.getAddress());
                     getCandidateService().save(c);
                 });
     }

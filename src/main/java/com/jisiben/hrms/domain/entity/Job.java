@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Job")
-public class Job extends PersistentRoot {
+public class Job extends PersistentRoot<Job> {
     private static final long serialVersionUID = 1568877619990325404L;
 
     private String company;
@@ -63,97 +63,97 @@ public class Job extends PersistentRoot {
         return company;
     }
 
-    public Job setCompany(String company) {
-        this.company = company;
-        return this;
-    }
-
     public String getCity() {
         return city;
-    }
-
-    public Job setCity(String city) {
-        this.city = city;
-        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public Job setName(String name) {
-        this.name = name;
-        return this;
-    }
-
     public String getSalaryRange() {
         return salaryRange;
-    }
-
-    public Job setSalaryRange(String salaryRange) {
-        this.salaryRange = salaryRange;
-        return this;
     }
 
     public JobType getType() {
         return type;
     }
 
-    public Job setType(JobType type) {
-        this.type = type;
-        return this;
-    }
-
     public int getQuota() {
         return quota;
-    }
-
-    public Job setQuota(int quota) {
-        this.quota = quota;
-        return this;
     }
 
     public boolean isReferralBonus() {
         return referralBonus;
     }
 
-    public Job setReferralBonus(boolean referralBonus) {
-        this.referralBonus = referralBonus;
-        return this;
-    }
-
     public int getReferralBonusAmount() {
         return referralBonusAmount;
-    }
-
-    public Job setReferralBonusAmount(int referralBonusAmount) {
-        this.referralBonusAmount = referralBonusAmount;
-        return this;
     }
 
     public boolean isActive() {
         return active;
     }
 
-    public Job setActive(boolean active) {
-        this.active = active;
-        return this;
-    }
-
     public ReferralBonusCondition getBonusCondition() {
         return bonusCondition;
-    }
-
-    public Job setBonusCondition(ReferralBonusCondition bonusCondition) {
-        this.bonusCondition = bonusCondition;
-        return this;
     }
 
     public String getNote() {
         return note;
     }
 
-    public Job setNote(String note) {
+    public Job company(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public Job city(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public Job name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Job type(JobType type) {
+        this.type = type;
+        return this;
+    }
+
+    public Job salaryRange(String salaryRange) {
+        this.salaryRange = salaryRange;
+        return this;
+    }
+
+    public Job quota(int quota) {
+        this.quota = quota;
+        return this;
+    }
+
+    public Job referralBonus(boolean referralBonus) {
+        this.referralBonus = referralBonus;
+        return this;
+    }
+
+    public Job referralBonusAmount(int referralBonusAmount) {
+        this.referralBonusAmount = referralBonusAmount;
+        return this;
+    }
+
+    public Job active(boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public Job bonusCondition(ReferralBonusCondition bonusCondition) {
+        this.bonusCondition = bonusCondition;
+        return this;
+    }
+
+    public Job note(String note) {
         this.note = note;
         return this;
     }
@@ -171,57 +171,57 @@ public class Job extends PersistentRoot {
         private String note;
         private boolean active;
 
-        public Builder setCompany(String company) {
+        public Builder company(String company) {
             this.company = company;
             return this;
         }
 
-        public Builder setCity(String city) {
+        public Builder city(String city) {
             this.city = city;
             return this;
         }
 
-        public Builder setName(String name) {
+        public Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder setSalaryRange(String salaryRange) {
+        public Builder salaryRange(String salaryRange) {
             this.salaryRange = salaryRange;
             return this;
         }
 
-        public Builder setType(JobType type) {
+        public Builder type(JobType type) {
             this.type = type;
             return this;
         }
 
-        public Builder setQuota(int quota) {
+        public Builder quota(int quota) {
             this.quota = quota;
             return this;
         }
 
-        public Builder setReferralBonus(boolean referralBonus) {
+        public Builder referralBonus(boolean referralBonus) {
             this.referralBonus = referralBonus;
             return this;
         }
 
-        public Builder setReferralBonusAmount(int referralBonusAmount) {
+        public Builder referralBonusAmount(int referralBonusAmount) {
             this.referralBonusAmount = referralBonusAmount;
             return this;
         }
 
-        public Builder setBonusCondition(ReferralBonusCondition bonusCondition) {
+        public Builder bonusCondition(ReferralBonusCondition bonusCondition) {
             this.bonusCondition = bonusCondition;
             return this;
         }
 
-        public Builder setNote(String note) {
+        public Builder note(String note) {
             this.note = note;
             return this;
         }
 
-        public Builder setActive(boolean active) {
+        public Builder active(boolean active) {
             this.active = active;
             return this;
         }

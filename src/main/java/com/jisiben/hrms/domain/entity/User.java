@@ -7,7 +7,7 @@ import com.jisiben.hrms.domain.entity.common.PersistentRoot;
 
 @Entity
 @Table(name = "user")
-public class User extends PersistentRoot {
+public class User extends PersistentRoot<User> {
 
     private static final long serialVersionUID = 3738425611999325473L;
 
@@ -31,24 +31,27 @@ public class User extends PersistentRoot {
         return name;
     }
 
-    public void setName(String name) {
+    public User name(String name) {
         this.name = name;
+        return this;
     }
 
     public String getAccount() {
         return account;
     }
 
-    public void setAccount(String account) {
+    public User account(String account) {
         this.account = account;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User password(String password) {
         this.password = password;
+        return this;
     }
 
     public static class Builder extends PersistentRoot.Builder<Department.Builder, User> {

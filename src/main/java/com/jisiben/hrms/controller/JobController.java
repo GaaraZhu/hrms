@@ -72,15 +72,15 @@ public class JobController {
     @ResponseStatus(value = HttpStatus.OK)
     public void add(@RequestBody JobDTO dto) {
         getJobService().save(new Job.Builder()
-                .setCompany(dto.getCompany())
-                .setCity(dto.getCity())
-                .setName(dto.getName())
-                .setSalaryRange(dto.getSalaryRange())
-                .setType(JobType.valueOf(dto.getType()))
-                .setQuota(dto.getQuota())
-                .setReferralBonus(dto.isReferralBonus())
-                .setReferralBonusAmount(dto.getReferralBonusAmount())
-                .setBonusCondition(ReferralBonusCondition.valueOf(dto.getBonusCondition()))
+                .company(dto.getCompany())
+                .city(dto.getCity())
+                .name(dto.getName())
+                .salaryRange(dto.getSalaryRange())
+                .type(JobType.valueOf(dto.getType()))
+                .quota(dto.getQuota())
+                .referralBonus(dto.isReferralBonus())
+                .referralBonusAmount(dto.getReferralBonusAmount())
+                .bonusCondition(ReferralBonusCondition.valueOf(dto.getBonusCondition()))
                 .build());
     }
 
@@ -89,15 +89,16 @@ public class JobController {
     public void update(Long id, @RequestBody JobDTO dto) {
         getJobService().findById(id)
                 .ifPresent((Job job)-> {
-                    job.setCompany(dto.getCompany())
-                    .setCity(dto.getCity())
-                    .setName(dto.getName())
-                    .setSalaryRange(dto.getSalaryRange())
-                    .setType(JobType.valueOf(dto.getType()))
-                    .setQuota(dto.getQuota())
-                    .setReferralBonus(dto.isReferralBonus())
-                    .setReferralBonusAmount(dto.getReferralBonusAmount())
-                    .setBonusCondition(ReferralBonusCondition.valueOf(dto.getBonusCondition()));
+                    job.company(dto.getCompany())
+                            .city(dto.getCity())
+                            .name(dto.getName())
+                            .salaryRange(dto.getSalaryRange())
+                            .type(JobType.valueOf(dto.getType()))
+                            .quota(dto.getQuota())
+                            .referralBonus(dto.isReferralBonus())
+                            .referralBonusAmount(dto.getReferralBonusAmount())
+                            .bonusCondition(ReferralBonusCondition.valueOf(dto.getBonusCondition()));
+                    getJobService().save(job);
                 });
     }
 
