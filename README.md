@@ -60,3 +60,25 @@
 4. **职位推荐**
 5. **推荐费记录**
 6. **工资预支录**
+
+### 安装及运行
+
+1. 服务器设置
+   修改web服务器默认编码
+   比如tomcat服务器，修改conf/server.xml
+```
+   <Connector port="8080" protocol="HTTP/1.1"
+        connectionTimeout="20000" redirectPort="8443" URIEncoding="UTF-8"/>
+```
+2. 数据库设置
+   mysql中新建数据库hrms_db，并执行dump file：[schema.sql](schema.sql)
+
+3. maven打包生成war文件
+```
+  mvn clean install
+```
+
+4. 部署war文件至web服务器，并启动web服务器
+
+5. 打开首页：http://localhost:8080/hrms
+   登陆名：admin，密码：admin
