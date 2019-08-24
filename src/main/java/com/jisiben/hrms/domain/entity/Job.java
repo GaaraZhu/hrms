@@ -30,6 +30,8 @@ public class Job extends PersistentRoot {
 
     private int referralBonusAmount;
 
+    private boolean active;
+
     @Enumerated(EnumType.STRING)
     private ReferralBonusCondition bonusCondition;
 
@@ -50,6 +52,7 @@ public class Job extends PersistentRoot {
         this.referralBonusAmount=builder.referralBonusAmount;
         this.bonusCondition=builder.bonusCondition;
         this.note=builder.note;
+        this.active=builder.active;
     }
 
     public static long getSerialVersionUID() {
@@ -147,6 +150,7 @@ public class Job extends PersistentRoot {
         private int referralBonusAmount;
         private ReferralBonusCondition bonusCondition;
         private String note;
+        private boolean active;
 
         public Builder setCompany(String company) {
             this.company = company;
@@ -195,6 +199,11 @@ public class Job extends PersistentRoot {
 
         public Builder setNote(String note) {
             this.note = note;
+            return this;
+        }
+
+        public Builder setActive(boolean active) {
+            this.active = active;
             return this;
         }
 
