@@ -11,7 +11,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "candidate")
 public class Candidate extends PersistentRoot<Candidate> {
-    private static final long serialVersionUID = 3518845612990325404L;
 
     private String name;
 

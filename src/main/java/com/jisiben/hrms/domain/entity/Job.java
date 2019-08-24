@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Job")
 public class Job extends PersistentRoot<Job> {
-    private static final long serialVersionUID = 1568877619990325404L;
 
     private String company;
 
@@ -53,10 +52,6 @@ public class Job extends PersistentRoot<Job> {
         this.bonusCondition=builder.bonusCondition;
         this.note=builder.note;
         this.active=builder.active;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public String getCompany() {

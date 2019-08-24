@@ -9,8 +9,6 @@ import com.jisiben.hrms.domain.entity.common.PersistentRoot;
 @Table(name = "user")
 public class User extends PersistentRoot<User> {
 
-    private static final long serialVersionUID = 3738425611999325473L;
-
     private String name;
 
     private String account;

@@ -9,8 +9,6 @@ import javax.persistence.Table;
 @Table(name = "department")
 public class Department extends PersistentRoot<Department> {
 
-    private static final long serialVersionUID = 6538825612999325493L;
-
     private String name;
 
     private String number;

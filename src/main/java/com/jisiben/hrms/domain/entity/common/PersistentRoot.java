@@ -1,6 +1,5 @@
 package com.jisiben.hrms.domain.entity.common;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,9 +17,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class PersistentRoot<T extends PersistentRoot> implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public abstract class PersistentRoot<T extends PersistentRoot> {
 
     protected PersistentRoot(){}
 
