@@ -6,7 +6,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 @NoRepositoryBean
-public interface Dao<T extends PersistentRoot, ID> extends
+public interface Dao<T extends PersistentRoot<T>, ID> extends
         PagingAndSortingRepository<T, Long> {
 
 }

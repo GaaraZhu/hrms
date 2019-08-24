@@ -1,7 +1,8 @@
 package com.jisiben.hrms.controller.dto;
 
-public class CandidateDTO {
-    private Long id;
+import com.jisiben.hrms.controller.dto.common.DTORoot;
+
+public class CandidateDTO extends DTORoot<CandidateDTO> {
     private String name;
     private String gender;
     private String idNumber;
@@ -12,17 +13,13 @@ public class CandidateDTO {
     public CandidateDTO(){}
 
     private CandidateDTO(Builder builder){
-        this.id = builder.id;
+        super(builder);
         this.name = builder.name;
         this.gender = builder.gender;
         this.idNumber = builder.idNumber;
         this.phone = builder.phone;
         this.city = builder.city;
         this.address = builder.address;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -49,7 +46,7 @@ public class CandidateDTO {
         return address;
     }
 
-    public static class Builder {
+    public static class Builder extends DTORoot.Builder<Builder, CandidateDTO> {
         private Long id;
         private String name;
         private String gender;

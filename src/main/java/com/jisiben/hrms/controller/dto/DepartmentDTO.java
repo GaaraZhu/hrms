@@ -1,7 +1,8 @@
 package com.jisiben.hrms.controller.dto;
 
-public class DepartmentDTO {
-    private Long id;
+import com.jisiben.hrms.controller.dto.common.DTORoot;
+
+public class DepartmentDTO extends DTORoot<DepartmentDTO> {
     private String name;
     private String number;
     private String manager;
@@ -11,15 +12,11 @@ public class DepartmentDTO {
     }
 
     private DepartmentDTO(Builder builder) {
-        this.id = builder.id;
+        super(builder);
         this.name = builder.name;
         this.number = builder.number;
         this.manager = builder.manager;
         this.telephone = builder.telephone;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -38,19 +35,11 @@ public class DepartmentDTO {
         return telephone;
     }
 
-    public static class Builder {
-        private Long id;
+    public static class Builder extends DTORoot.Builder<Builder, DepartmentDTO> {
         private String name;
         private String number;
         private String manager;
         private String telephone;
-
-        public Builder(){}
-
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
 
         public Builder name(String name) {
             this.name = name;

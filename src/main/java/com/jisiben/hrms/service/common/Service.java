@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
-public interface Service<T extends PersistentRoot> {
+public interface Service<T extends PersistentRoot<T>> {
 
     Optional<T> findById(Long id);
 

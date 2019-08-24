@@ -1,7 +1,8 @@
 package com.jisiben.hrms.controller.dto;
 
-public class JobDTO {
-    private Long id;
+import com.jisiben.hrms.controller.dto.common.DTORoot;
+
+public class JobDTO extends DTORoot<JobDTO>{
     private String company;
     private String city;
     private String name;
@@ -20,7 +21,7 @@ public class JobDTO {
     }
 
     private JobDTO(Builder builder) {
-        this.id=builder.id;
+        super(builder);
         this.company=builder.company;
         this.city=builder.city;
         this.name=builder.name;
@@ -34,10 +35,6 @@ public class JobDTO {
         this.referralBonus=builder.referralBonus;
         this.referralBonusAmount=builder.referralBonusAmount;
         this.bonusCondition=builder.bonusCondition;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getCompany() {
@@ -92,8 +89,7 @@ public class JobDTO {
         return bonusCondition;
     }
 
-    public static class Builder {
-        private Long id;
+    public static class Builder extends DTORoot.Builder<Builder, JobDTO> {
         private String company;
         private String city;
         private String name;
@@ -109,11 +105,6 @@ public class JobDTO {
         private String bonusCondition;
 
         public Builder(){}
-
-        public Builder setId(Long id) {
-            this.id = id;
-            return this;
-        }
 
         public Builder setCompany(String company) {
             this.company = company;

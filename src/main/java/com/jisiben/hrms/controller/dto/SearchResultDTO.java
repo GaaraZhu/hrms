@@ -1,8 +1,10 @@
 package com.jisiben.hrms.controller.dto;
 
+import com.jisiben.hrms.controller.dto.common.DTORoot;
+
 import java.util.List;
 
-public class SearchResultDTO<T> {
+public class SearchResultDTO<T extends DTORoot> {
     private List<T> results;
 
     protected SearchResultDTO(Builder builder) {
@@ -13,7 +15,7 @@ public class SearchResultDTO<T> {
         return results;
     }
 
-    public static class Builder<T, D extends SearchResultDTO.Builder> {
+    public static class Builder<T extends DTORoot, D extends SearchResultDTO.Builder> {
         private List<T> results;
 
         public D results(List<T> results) {

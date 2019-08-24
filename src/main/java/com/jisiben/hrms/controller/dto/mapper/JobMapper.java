@@ -6,7 +6,7 @@ import com.jisiben.hrms.domain.entity.Job;
 public class JobMapper {
     public static JobDTO map(Job job) {
         return new JobDTO.Builder()
-                .setId(job.getId())
+                .id(job.getId())
                 .setCompany(job.getCompany())
                 .setCity(job.getCity())
                 .setName(job.getName())
