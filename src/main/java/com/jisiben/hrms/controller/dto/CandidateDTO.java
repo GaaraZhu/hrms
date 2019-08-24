@@ -1,8 +1,5 @@
 package com.jisiben.hrms.controller.dto;
 
-import com.jisiben.hrms.domain.entity.Candidate;
-import com.jisiben.hrms.domain.entity.common.Gender;
-
 public class CandidateDTO {
     private Long id;
     private String name;

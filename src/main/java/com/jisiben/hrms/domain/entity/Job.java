@@ -63,80 +63,99 @@ public class Job extends PersistentRoot {
         return company;
     }
 
-    public void setCompany(String company) {
+    public Job setCompany(String company) {
         this.company = company;
+        return this;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public Job setCity(String city) {
         this.city = city;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Job setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getSalaryRange() {
         return salaryRange;
     }
 
-    public void setSalaryRange(String salaryRange) {
+    public Job setSalaryRange(String salaryRange) {
         this.salaryRange = salaryRange;
+        return this;
     }
 
     public JobType getType() {
         return type;
     }
 
-    public void setType(JobType type) {
+    public Job setType(JobType type) {
         this.type = type;
+        return this;
     }
 
     public int getQuota() {
         return quota;
     }
 
-    public void setQuota(int quota) {
+    public Job setQuota(int quota) {
         this.quota = quota;
+        return this;
     }
 
     public boolean isReferralBonus() {
         return referralBonus;
     }
 
-    public void setReferralBonus(boolean referralBonus) {
+    public Job setReferralBonus(boolean referralBonus) {
         this.referralBonus = referralBonus;
+        return this;
     }
 
     public int getReferralBonusAmount() {
         return referralBonusAmount;
     }
 
-    public void setReferralBonusAmount(int referralBonusAmount) {
+    public Job setReferralBonusAmount(int referralBonusAmount) {
         this.referralBonusAmount = referralBonusAmount;
+        return this;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public Job setActive(boolean active) {
+        this.active = active;
+        return this;
     }
 
     public ReferralBonusCondition getBonusCondition() {
         return bonusCondition;
     }
 
-    public void setBonusCondition(ReferralBonusCondition bonusCondition) {
+    public Job setBonusCondition(ReferralBonusCondition bonusCondition) {
         this.bonusCondition = bonusCondition;
+        return this;
     }
 
     public String getNote() {
         return note;
     }
 
-    public void setNote(String note) {
+    public Job setNote(String note) {
         this.note = note;
+        return this;
     }
 
     public static class Builder extends PersistentRoot.Builder<Builder, Job> {

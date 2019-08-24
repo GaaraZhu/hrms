@@ -1,7 +1,5 @@
 package com.jisiben.hrms.controller.dto;
 
-import com.jisiben.hrms.domain.entity.Department;
-
 public class DepartmentDTO {
     private Long id;
     private String name;
