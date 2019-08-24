@@ -1,16 +1,15 @@
 package com.jisiben.hrms.controller;
 
-import javax.annotation.Resource;
 import javax.ws.rs.Produces;
 
 import com.google.common.collect.Streams;
 import com.jisiben.hrms.controller.dto.JobDTO;
 import com.jisiben.hrms.controller.dto.PageableSearchResultDTO;
-import com.jisiben.hrms.controller.dto.mapper.JobMapper;
+import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.entity.Job;
-import com.jisiben.hrms.domain.entity.common.JobType;
-import com.jisiben.hrms.domain.entity.common.ReferralBonusCondition;
 import com.jisiben.hrms.service.JobService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -26,8 +25,12 @@ import java.util.stream.Collectors;
 
 @Controller
 public class JobController {
-    @Resource
+    @Autowired
     private JobService jobService;
+
+    @Autowired
+    @Qualifier("jobEntityDTOMapper")
+    private Mapper<Job, JobDTO> mapper;
 
     private Logger logger = Logger.getLogger(JobController.class.getSimpleName());
 
@@ -51,7 +54,7 @@ public class JobController {
                 .orElse(getJobService()
                         .findAll(pageRequest));
         List<JobDTO> js = Streams.stream(allJobs.iterator())
-                .map(JobMapper::map)
+                .map(mapper::toDTO)
                 .collect(Collectors.toList());
         return new PageableSearchResultDTO.Builder<JobDTO>()
                 .totalElements(allJobs.getTotalElements())
@@ -65,41 +68,23 @@ public class JobController {
     public JobDTO find(Long id) { //TODO: optional serialization
         return getJobService()
                 .findById(id)
-                .map(JobMapper::map).orElse(new JobDTO());
+                .map(mapper::toDTO).orElse(new JobDTO.Builder().build());
     }
 
     @RequestMapping(value = "/job", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void add(@RequestBody JobDTO dto) {
-        getJobService().save(new Job.Builder()
-                .company(dto.getCompany())
-                .city(dto.getCity())
-                .name(dto.getName())
-                .salaryRange(dto.getSalaryRange())
-                .type(JobType.valueOf(dto.getType()))
-                .quota(dto.getQuota())
-                .referralBonus(dto.isReferralBonus())
-                .referralBonusAmount(dto.getReferralBonusAmount())
-                .bonusCondition(ReferralBonusCondition.valueOf(dto.getBonusCondition()))
-                .build());
+        getJobService().save(
+                mapper.toEntity(dto, new Job())
+        );
     }
 
     @RequestMapping(value = "/job", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void update(Long id, @RequestBody JobDTO dto) {
         getJobService().findById(id)
-                .ifPresent((Job job)-> {
-                    job.company(dto.getCompany())
-                            .city(dto.getCity())
-                            .name(dto.getName())
-                            .salaryRange(dto.getSalaryRange())
-                            .type(JobType.valueOf(dto.getType()))
-                            .quota(dto.getQuota())
-                            .referralBonus(dto.isReferralBonus())
-                            .referralBonusAmount(dto.getReferralBonusAmount())
-                            .bonusCondition(ReferralBonusCondition.valueOf(dto.getBonusCondition()));
-                    getJobService().save(job);
-                });
+                .ifPresent((Job job)->
+                    getJobService().save(mapper.toEntity(dto, job)));
     }
 
     @RequestMapping(value = "/job", method = RequestMethod.DELETE)

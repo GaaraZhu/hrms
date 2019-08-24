@@ -3,10 +3,11 @@ package com.jisiben.hrms.controller;
 import com.google.common.collect.Streams;
 import com.jisiben.hrms.controller.dto.CandidateDTO;
 import com.jisiben.hrms.controller.dto.PageableSearchResultDTO;
-import com.jisiben.hrms.controller.dto.mapper.CandidateDTOMapper;
+import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.entity.Candidate;
-import com.jisiben.hrms.domain.entity.common.Gender;
 import com.jisiben.hrms.service.CandidateService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.ws.rs.Produces;
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +25,12 @@ import java.util.stream.Collectors;
 @Controller
 public class CandidateController {
 
-    @Resource
+    @Autowired
     private CandidateService candidateService;
+
+    @Autowired
+    @Qualifier("candidateEntityDTOMapper")
+    private Mapper<Candidate, CandidateDTO> mapper;
 
     private Logger logger = Logger.getLogger(CandidateController.class.getSimpleName());
 
@@ -49,7 +53,7 @@ public class CandidateController {
                 .orElse(getCandidateService()
                         .findAll(pageRequest));
         List<CandidateDTO> ds = Streams.stream(allCandidates.iterator())
-                .map(CandidateDTOMapper::map)
+                .map(mapper::toDTO)
                 .collect(Collectors.toList());
         return new PageableSearchResultDTO.Builder<CandidateDTO>()
                 .totalElements(allCandidates.getTotalElements())
@@ -60,38 +64,25 @@ public class CandidateController {
 
     @ResponseBody
     @RequestMapping(value = "/candidate", method = RequestMethod.GET)
-    public CandidateDTO find(Long id) { //TODO: optional serialization
+    public CandidateDTO find(Long id) {
         return getCandidateService()
                 .findById(id)
-                .map(CandidateDTOMapper::map).orElse(new CandidateDTO());
+                .map(mapper::toDTO).orElse(new CandidateDTO());
     }
 
     @RequestMapping(value = "/candidate", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void add(@RequestBody CandidateDTO dto) {
-        getCandidateService().save(new Candidate.Builder()
-                .name(dto.getName())
-                .phone(dto.getPhone())
-                .idNumber(dto.getIdNumber())
-                .gender("男".equals(dto.getGender())? Gender.MALE:Gender.FEMALE)
-                .city(dto.getCity())
-                .address(dto.getAddress())
-                .build());
+        getCandidateService().save(
+                mapper.toEntity(dto, new Candidate.Builder().build()));
     }
 
     @RequestMapping(value = "/candidate", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void update(Long id, @RequestBody CandidateDTO dto) {
         getCandidateService().findById(id)
-                .ifPresent((Candidate c)-> {
-                    c.name(dto.getName())
-                            .phone(dto.getPhone())
-                            .idNumber(dto.getIdNumber())
-                            .gender("男".equals(dto.getGender())? Gender.MALE:Gender.FEMALE)
-                            .city(dto.getCity())
-                            .address(dto.getAddress());
-                    getCandidateService().save(c);
-                });
+                .ifPresent((Candidate c)->
+                    getCandidateService().save(mapper.toEntity(dto, c)));
     }
 
     @RequestMapping(value = "/candidate", method = RequestMethod.DELETE)

@@ -1,14 +1,15 @@
 package com.jisiben.hrms.controller;
 
-import javax.annotation.Resource;
 import javax.ws.rs.Produces;
 
 import com.google.common.collect.Streams;
 import com.jisiben.hrms.controller.dto.DepartmentDTO;
 import com.jisiben.hrms.controller.dto.PageableSearchResultDTO;
-import com.jisiben.hrms.controller.dto.mapper.DepartmentDTOMapper;
+import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.entity.Department;
 import com.jisiben.hrms.service.DepartmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,12 @@ import java.util.stream.Collectors;
 
 @Controller
 public class DepartmentController {
-    @Resource
+    @Autowired
     private DepartmentService departmentService;
+
+    @Autowired
+    @Qualifier("departmentEntityDTOMapper")
+    private Mapper<Department, DepartmentDTO> mapper;
 
     private Logger logger = Logger.getLogger(DepartmentController.class.getSimpleName());
 
@@ -47,7 +52,7 @@ public class DepartmentController {
                 .orElse(getDepartmentService()
                         .findAll(pageRequest));
         List<DepartmentDTO> ds = Streams.stream(allDepartments.iterator())
-                .map(DepartmentDTOMapper::map)
+                .map(mapper::toDTO)
                 .collect(Collectors.toList());
         return new PageableSearchResultDTO.Builder<DepartmentDTO>()
                 .totalElements(allDepartments.getTotalElements())
@@ -58,35 +63,25 @@ public class DepartmentController {
 
     @ResponseBody
     @RequestMapping(value = "/department", method = RequestMethod.GET)
-    public DepartmentDTO find(Long id) { //TODO: optional serialization
+    public DepartmentDTO find(Long id) {
         return getDepartmentService()
                 .findById(id)
-                .map(DepartmentDTOMapper::map).orElse(new DepartmentDTO());
+                .map(mapper::toDTO).orElse(new DepartmentDTO.Builder().build());
     }
 
     @RequestMapping(value = "/department", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void add(@RequestBody DepartmentDTO dto) {
-        getDepartmentService().save(new Department.Builder()
-                .manager(dto.getManager())
-                .name(dto.getName())
-                .number(dto.getNumber())
-                .telephone(dto.getTelephone())
-                .build());
+        getDepartmentService().save(
+                mapper.toEntity(dto, new Department()));
     }
 
     @RequestMapping(value = "/department", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void update(Long id, @RequestBody DepartmentDTO dto) {
         getDepartmentService().findById(id)
-                .ifPresent((Department dep)-> {
-                    dep.name(dto.getName())
-                            .number(dto.getNumber())
-                            .manager(dto.getManager())
-                            .telephone(dto.getTelephone());
-                            getDepartmentService().save(dep);
-                    getDepartmentService().save(dep);
-                });
+                .ifPresent((Department dep)->
+                    getDepartmentService().save(mapper.toEntity(dto, dep)));
     }
 
     @RequestMapping(value = "/department", method = RequestMethod.DELETE)
