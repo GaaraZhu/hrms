@@ -6,6 +6,7 @@ import javax.ws.rs.Produces;
 import com.google.common.collect.Streams;
 import com.jisiben.hrms.controller.dto.DepartmentDTO;
 import com.jisiben.hrms.controller.dto.PageableSearchResultDTO;
+import com.jisiben.hrms.controller.dto.mapper.DepartmentDTOMapper;
 import com.jisiben.hrms.domain.entity.Department;
 import com.jisiben.hrms.service.DepartmentService;
 import org.springframework.data.domain.Page;
@@ -46,7 +47,7 @@ public class DepartmentController {
                 .orElse(getDepartmentService()
                         .findAll(pageRequest));
         List<DepartmentDTO> ds = Streams.stream(allDepartments.iterator())
-                .map(DepartmentDTO::map)
+                .map(DepartmentDTOMapper::map)
                 .collect(Collectors.toList());
         return new PageableSearchResultDTO.Builder<DepartmentDTO>()
                 .totalElements(allDepartments.getTotalElements())
@@ -60,7 +61,7 @@ public class DepartmentController {
     public DepartmentDTO find(Long id) { //TODO: optional serialization
         return getDepartmentService()
                 .findById(id)
-                .map(DepartmentDTO::map).orElse(new DepartmentDTO());
+                .map(DepartmentDTOMapper::map).orElse(new DepartmentDTO());
     }
 
     @RequestMapping(value = "/department", method = RequestMethod.PUT)

@@ -100,16 +100,4 @@ public class CandidateDTO {
             return new CandidateDTO(this);
         }
     }
-
-    public static CandidateDTO map(Candidate c) {
-        return new CandidateDTO.Builder()
-                .id(c.getId())
-                .name(c.getName())
-                .gender(c.getGender().equals(Gender.MALE)?"男":"女")
-                .idNumber(c.getIdNumber())
-                .phone(c.getPhone())
-                .city(c.getCity())
-                .address(c.getAddress())
-                .build();
-    }
 }

@@ -78,14 +78,4 @@ public class DepartmentDTO {
             return new DepartmentDTO(this);
         }
     }
-
-    public static DepartmentDTO map(Department dep) {
-        return new DepartmentDTO.Builder()
-                .id(dep.getId())
-                .name(dep.getName())
-                .number(dep.getNumber())
-                .manager(dep.getManager())
-                .telephone(dep.getTelephone())
-                .build();
-    }
 }

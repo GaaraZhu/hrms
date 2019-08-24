@@ -3,6 +3,7 @@ package com.jisiben.hrms.controller;
 import com.google.common.collect.Streams;
 import com.jisiben.hrms.controller.dto.CandidateDTO;
 import com.jisiben.hrms.controller.dto.PageableSearchResultDTO;
+import com.jisiben.hrms.controller.dto.mapper.CandidateDTOMapper;
 import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.domain.entity.common.Gender;
 import com.jisiben.hrms.service.CandidateService;
@@ -48,7 +49,7 @@ public class CandidateController {
                 .orElse(getCandidateService()
                         .findAll(pageRequest));
         List<CandidateDTO> ds = Streams.stream(allCandidates.iterator())
-                .map(CandidateDTO::map)
+                .map(CandidateDTOMapper::map)
                 .collect(Collectors.toList());
         return new PageableSearchResultDTO.Builder<CandidateDTO>()
                 .totalElements(allCandidates.getTotalElements())
@@ -62,7 +63,7 @@ public class CandidateController {
     public CandidateDTO find(Long id) { //TODO: optional serialization
         return getCandidateService()
                 .findById(id)
-                .map(CandidateDTO::map).orElse(new CandidateDTO());
+                .map(CandidateDTOMapper::map).orElse(new CandidateDTO());
     }
 
     @RequestMapping(value = "/candidate", method = RequestMethod.PUT)
