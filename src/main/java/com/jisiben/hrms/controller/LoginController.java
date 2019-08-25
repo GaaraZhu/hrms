@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Arrays;
 import java.util.Optional;
 
+// TODO: substitute this with UserController
 @Controller
 public class LoginController {
 	@Resource

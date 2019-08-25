@@ -7,18 +7,16 @@ import com.jisiben.hrms.service.JobService;
 import com.jisiben.hrms.service.common.impl.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class JobServiceImpl extends AbstractService<Job> implements JobService {
     @Autowired
     private JobDao jobDao;
-
-    @Override
-    public Page<Job> search(String company, String city, String name, Boolean active, Pageable pageable) {
-        return jobDao.findByCompanyAndCityAndNameAndActive(company, city, name, active, pageable);
-    }
 
     @Override
     public Dao<Job, Long> getDao() {
@@ -31,5 +29,14 @@ public class JobServiceImpl extends AbstractService<Job> implements JobService {
 
     public void setJobDao(JobDao jobDao) {
         this.jobDao = jobDao;
+    }
+
+    @Override
+    public Page<Job> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
+        String company = criteria.get("company").map(Object::toString).orElse(null);
+        String city = criteria.get("city").map(Object::toString).orElse(null);
+        String name = criteria.get("name").map(Object::toString).orElse(null);
+        Boolean active = criteria.get("active").map(Boolean.class::cast).orElse(null);
+        return jobDao.findByCompanyAndCityAndNameAndActive(company, city, name, active, new PageRequest(currentPage-1, pageSize));
     }
 }

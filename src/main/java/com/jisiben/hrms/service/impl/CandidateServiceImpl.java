@@ -7,8 +7,11 @@ import com.jisiben.hrms.service.CandidateService;
 import com.jisiben.hrms.service.common.impl.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class CandidateServiceImpl extends AbstractService<Candidate> implements CandidateService {
@@ -21,7 +24,10 @@ public class CandidateServiceImpl extends AbstractService<Candidate> implements 
     }
 
     @Override
-    public Page<Candidate> search(String name, String phone, String city, Pageable pageable) {
-        return candidateDao.findByNameAndPhoneAndCity(name, phone, city, pageable);
+    public Page<Candidate> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
+        String name = criteria.get("name").map(Object::toString).orElse(null);
+        String phone = criteria.get("phone").map(Object::toString).orElse(null);
+        String city = criteria.get("city").map(Object::toString).orElse(null);
+        return candidateDao.findByNameAndPhoneAndCity(name, phone, city, new PageRequest(currentPage-1, pageSize));
     }
 }

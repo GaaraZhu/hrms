@@ -1,29 +1,26 @@
 package com.jisiben.hrms.controller;
 
-import com.google.common.collect.Streams;
+import com.google.common.collect.ImmutableMap;
+import com.jisiben.hrms.controller.common.AbstractController;
 import com.jisiben.hrms.controller.dto.CandidateDTO;
 import com.jisiben.hrms.controller.dto.PageableSearchResultDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.service.CandidateService;
+import com.jisiben.hrms.service.common.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Produces;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Controller
-public class CandidateController {
+public class CandidateController extends AbstractController<Candidate, CandidateDTO, Candidate.Builder> {
 
     @Autowired
     private CandidateService candidateService;
@@ -43,67 +40,49 @@ public class CandidateController {
             @RequestParam("city") String city,
             @RequestParam("currentPage") int currentPage,
             @RequestParam("pageSize") int pageSize) {
-        PageRequest pageRequest = new PageRequest(currentPage-1, pageSize);
-        Page<Candidate> allCandidates = Arrays.asList(name, phone, city)
-                .stream()
-                .filter(Objects::nonNull)
-                .findAny()
-                .map((String s)->getCandidateService()
-                        .search(name, phone, city, pageRequest))
-                .orElse(getCandidateService()
-                        .findAll(pageRequest));
-        List<CandidateDTO> ds = Streams.stream(allCandidates.iterator())
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
-        return new PageableSearchResultDTO.Builder<CandidateDTO>()
-                .totalElements(allCandidates.getTotalElements())
-                .totalPages(allCandidates.getTotalPages())
-                .results(ds)
-                .build();
+        return doFindAll(
+                ImmutableMap.of(
+                "name", Optional.ofNullable(name),
+                "phone", Optional.ofNullable(phone),
+                "city", Optional.ofNullable(city)), currentPage, pageSize);
     }
 
     @ResponseBody
     @RequestMapping(value = "/candidate", method = RequestMethod.GET)
     public CandidateDTO find(Long id) {
-        return getCandidateService()
-                .findById(id)
-                .map(mapper::toDTO).orElse(new CandidateDTO());
+        return doFind(id);
     }
 
     @RequestMapping(value = "/candidate", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void add(@RequestBody CandidateDTO dto) {
-        getCandidateService().save(
-                mapper.toEntity(dto, new Candidate.Builder().build()));
+        doAdd(dto);
     }
 
     @RequestMapping(value = "/candidate", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void update(Long id, @RequestBody CandidateDTO dto) {
-        getCandidateService().findById(id)
-                .ifPresent((Candidate c)->
-                    getCandidateService().save(mapper.toEntity(dto, c)));
+        doUpdate(id, dto);
     }
 
     @RequestMapping(value = "/candidate", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@RequestParam Long id, ModelMap model) {
-        getCandidateService().delete(id);
+        doDelete(id);
     }
 
-    public CandidateService getCandidateService() {
+    @Override
+    protected Service<Candidate> getService() {
         return candidateService;
     }
 
-    public void setCandidateService(CandidateService candidateService) {
-        this.candidateService = candidateService;
+    @Override
+    protected Mapper<Candidate, CandidateDTO> getMapper() {
+        return mapper;
     }
 
-    public Logger getLogger() {
-        return logger;
-    }
-
-    public void setLogger(Logger logger) {
-        this.logger = logger;
+    @Override
+    protected Candidate.Builder getEntityBuilder() {
+        return new Candidate.Builder();
     }
 }

@@ -7,9 +7,11 @@ import com.jisiben.hrms.service.UserService;
 import com.jisiben.hrms.service.common.impl.AbstractService;
 import com.jisiben.hrms.util.EncryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.apache.log4j.Logger;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -44,4 +46,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         this.userDao = userDao;
     }
 
+    @Override
+    public Page<User> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
+        return null;
+    }
 }
