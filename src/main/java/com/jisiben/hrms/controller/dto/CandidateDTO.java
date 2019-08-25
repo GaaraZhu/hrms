@@ -47,18 +47,12 @@ public class CandidateDTO extends DTORoot<CandidateDTO> {
     }
 
     public static class Builder extends DTORoot.Builder<Builder, CandidateDTO> {
-        private Long id;
         private String name;
         private String gender;
         private String idNumber;
         private String phone;
         private String city;
         private String address;
-
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
 
         public Builder name(String name) {
             this.name = name;
