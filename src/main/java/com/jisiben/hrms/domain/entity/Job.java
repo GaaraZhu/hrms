@@ -2,11 +2,8 @@ package com.jisiben.hrms.domain.entity;
 
 import com.jisiben.hrms.domain.entity.common.JobType;
 import com.jisiben.hrms.domain.entity.common.PersistentRoot;
-import com.jisiben.hrms.domain.entity.common.ReferralBonusCondition;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
@@ -31,9 +28,6 @@ public class Job extends PersistentRoot<Job> {
 
     private boolean active;
 
-    @Enumerated(EnumType.STRING)
-    private ReferralBonusCondition bonusCondition;
-
     private String note;
 
     public Job() {
@@ -49,7 +43,6 @@ public class Job extends PersistentRoot<Job> {
         this.quota=builder.quota;
         this.referralBonus=builder.referralBonus;
         this.referralBonusAmount=builder.referralBonusAmount;
-        this.bonusCondition=builder.bonusCondition;
         this.note=builder.note;
         this.active=builder.active;
     }
@@ -88,10 +81,6 @@ public class Job extends PersistentRoot<Job> {
 
     public boolean isActive() {
         return active;
-    }
-
-    public ReferralBonusCondition getBonusCondition() {
-        return bonusCondition;
     }
 
     public String getNote() {
@@ -143,11 +132,6 @@ public class Job extends PersistentRoot<Job> {
         return this;
     }
 
-    public Job bonusCondition(ReferralBonusCondition bonusCondition) {
-        this.bonusCondition = bonusCondition;
-        return this;
-    }
-
     public Job note(String note) {
         this.note = note;
         return this;
@@ -162,7 +146,6 @@ public class Job extends PersistentRoot<Job> {
         private int quota;
         private boolean referralBonus;
         private int referralBonusAmount;
-        private ReferralBonusCondition bonusCondition;
         private String note;
         private boolean active;
 
@@ -203,11 +186,6 @@ public class Job extends PersistentRoot<Job> {
 
         public Builder referralBonusAmount(int referralBonusAmount) {
             this.referralBonusAmount = referralBonusAmount;
-            return this;
-        }
-
-        public Builder bonusCondition(ReferralBonusCondition bonusCondition) {
-            this.bonusCondition = bonusCondition;
             return this;
         }
 

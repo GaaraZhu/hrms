@@ -4,7 +4,6 @@ import com.jisiben.hrms.controller.dto.JobDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.entity.Job;
 import com.jisiben.hrms.domain.entity.common.JobType;
-import com.jisiben.hrms.domain.entity.common.ReferralBonusCondition;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,7 +20,7 @@ public class JobEntityDTOMapper implements Mapper<Job, JobDTO> {
                 .setQuota(entity.getQuota())
                 .setReferralBonus(entity.isReferralBonus())
                 .setReferralBonusAmount(entity.getReferralBonusAmount())
-                .setBonusCondition(entity.getBonusCondition().toString())
+                .setActive(entity.isActive())
                 .build();
     }
 
@@ -35,6 +34,6 @@ public class JobEntityDTOMapper implements Mapper<Job, JobDTO> {
                 .quota(dto.getQuota())
                 .referralBonus(dto.isReferralBonus())
                 .referralBonusAmount(dto.getReferralBonusAmount())
-                .bonusCondition(ReferralBonusCondition.valueOf(dto.getBonusCondition()));
+                .active(dto.isActive());
     }
 }
