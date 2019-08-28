@@ -46,9 +46,11 @@
 								</div>
 								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">工作性质</label>
                                 <div class="col-lg-35" style=" padding-top: 25px;">
-                                 <input
-                                    type="text" class="form-control col-lg-35" name="type"
-                                    id="type" placeholder="请输入工作性质">
+                                 <select id="type" name="type" style="width: 62px;height: 32px;">
+                                         <option value="FULL_TIME">全职</option>
+                                         <option value="PART_TIME">兼职</option>
+                                         <option value="CONTRACTOR">小时工</option>
+                                 </select>
                                 </div>
                                 <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">招聘人数</label>
                                 <div class="col-lg-35" style=" padding-top: 25px;">
@@ -56,11 +58,12 @@
                                     type="text" class="form-control col-lg-35" name="quota"
                                     id="quota" placeholder="请输入招聘人数">
                                 </div>
-                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">是否推荐有奖</label>
-                                <div class="col-lg-35" style=" padding-top: 25px;">
-                                 <input
-                                    type="text" class="form-control col-lg-35" name="referralBonus"
-                                    id="referralBonus" placeholder="请选择是否推荐有奖">
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">推荐有奖</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                 <select id="referralBonus" name="referralBonus" style="width: 62px;height: 32px;">
+                                         <option value="true">有奖</option>
+                                         <option value="false">无奖</option>
+                                 </select>
                                 </div>
                                 <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">奖励金额</label>
                                 <div class="col-lg-35" style=" padding-top: 25px;">
@@ -69,9 +72,17 @@
                                     id="referralBonusAmount" placeholder="请输入奖励金额">
                                 </div>
                                 <div class="form-group inputselect col-lg-3">
-                                    <label for="name">是否有效</label> <input type="text"
-                                        class=" form-control " id="active" name="active"
-                                        placeholder="请选择是否有效">
+                                    <label for="name">是否显示</label><br/>
+                                    <select id="active" name="active" style="width: 62px;height: 32px;">
+                                            <option value="true">显示</option>
+                                            <option value="false">隐藏</option>
+                                    </select>
+                                </div>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">备注</label>
+                                <div class="col-lg-35" style=" padding-top: 25px;">
+                                 <input
+                                    type="text" class="form-control col-lg-35" name="note"
+                                    id="note" placeholder="请输入备注">
                                 </div>
 								<input type="hidden" id="id" value="">
 							</div>

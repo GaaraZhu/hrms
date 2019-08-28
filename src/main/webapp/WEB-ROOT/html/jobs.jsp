@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-HttpSession s = request.getSession();
-%>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/job.js"></script>
 	<div id="alert"></div>
@@ -28,9 +24,11 @@ HttpSession s = request.getSession();
                             placeholder="请输入职位名称">
                     </div>
                     <div class="form-group inputselect col-lg-2">
-                        <label for="name">是否有效</label> <input type="text"
-                            class=" form-control " id="active" name="active"
-                            placeholder="请选择是否有效">
+                        <label for="name">是否显示</label><br/>
+                        <select id="active" name="active" style="width: 62px;height: 32px;">
+                                <option value="true">显示</option>
+                                <option value="false">隐藏</option>
+                        </select>
                     </div>
 
                     <div class="form-group inputselect col-lg-4">

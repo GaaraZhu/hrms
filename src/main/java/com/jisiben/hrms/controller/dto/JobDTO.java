@@ -9,13 +9,10 @@ public class JobDTO extends DTORoot<JobDTO>{
     private String salaryRange;
     private String type;
     private int quota;
-    private String publisher;
-    private String publishedTime;
-    private String updater;
-    private String updatedTime;
     private boolean referralBonus;
     private int referralBonusAmount;
     private boolean active;
+    private String note;
 
     public JobDTO() {
     }
@@ -28,13 +25,10 @@ public class JobDTO extends DTORoot<JobDTO>{
         this.salaryRange=builder.salaryRange;
         this.type=builder.type;
         this.quota=builder.quota;
-        this.publisher=builder.publisher;
-        this.publishedTime=builder.publishedTime;
-        this.updater=builder.updater;
-        this.updatedTime=builder.updatedTime;
         this.referralBonus=builder.referralBonus;
         this.referralBonusAmount=builder.referralBonusAmount;
         this.active=builder.active;
+        this.note=builder.note;
     }
 
     public String getCompany() {
@@ -61,25 +55,11 @@ public class JobDTO extends DTORoot<JobDTO>{
         return quota;
     }
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public String getPublishedTime() {
-        return publishedTime;
-    }
-
-    public String getUpdater() {
-        return updater;
-    }
-
-    public String getUpdatedTime() {
-        return updatedTime;
-    }
-
     public boolean isActive() {
         return active;
     }
+
+    public String getNote() { return note; }
 
     public boolean isReferralBonus() {
         return referralBonus;
@@ -96,13 +76,10 @@ public class JobDTO extends DTORoot<JobDTO>{
         private String salaryRange;
         private String type;
         private int quota;
-        private String publisher;
-        private String publishedTime;
-        private String updater;
-        private String updatedTime;
         private boolean referralBonus;
         private int referralBonusAmount;
         private boolean active;
+        private String note;
 
         public Builder(){}
 
@@ -136,26 +113,6 @@ public class JobDTO extends DTORoot<JobDTO>{
             return this;
         }
 
-        public Builder setPublisher(String publisher) {
-            this.publisher = publisher;
-            return this;
-        }
-
-        public Builder setPublishedTime(String publishedTime) {
-            this.publishedTime = publishedTime;
-            return this;
-        }
-
-        public Builder setUpdater(String updater) {
-            this.updater = updater;
-            return this;
-        }
-
-        public Builder setUpdatedTime(String updatedTime) {
-            this.updatedTime = updatedTime;
-            return this;
-        }
-
         public Builder setReferralBonus(boolean referralBonus) {
             this.referralBonus = referralBonus;
             return this;
@@ -168,6 +125,11 @@ public class JobDTO extends DTORoot<JobDTO>{
 
         public Builder setActive(boolean active) {
             this.active = active;
+            return this;
+        }
+
+        public Builder setNote(String note) {
+            this.note = note;
             return this;
         }
 

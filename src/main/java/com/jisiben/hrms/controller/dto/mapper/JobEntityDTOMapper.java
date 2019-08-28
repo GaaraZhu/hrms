@@ -21,6 +21,11 @@ public class JobEntityDTOMapper implements Mapper<Job, JobDTO> {
                 .setReferralBonus(entity.isReferralBonus())
                 .setReferralBonusAmount(entity.getReferralBonusAmount())
                 .setActive(entity.isActive())
+                .setNote(entity.getNote())
+                .setCreator(entity.getCreatedBy())
+                .setCreatedTime(entity.getCreatedTime().toString())
+                .setUpdater(entity.getLastUpdatedBy())
+                .setUpdatedTime(entity.getLastUpdatedTime().toString())
                 .build();
     }
 
@@ -34,6 +39,7 @@ public class JobEntityDTOMapper implements Mapper<Job, JobDTO> {
                 .quota(dto.getQuota())
                 .referralBonus(dto.isReferralBonus())
                 .referralBonusAmount(dto.getReferralBonusAmount())
-                .active(dto.isActive());
+                .active(dto.isActive())
+                .note(dto.getNote());
     }
 }

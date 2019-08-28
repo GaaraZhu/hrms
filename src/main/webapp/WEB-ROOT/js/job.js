@@ -3,7 +3,6 @@
 
 	$("#reset").click(
         function() {
-            console.log("1111111");
             $("#company").val("");
             $("#city").val("");
             $("#name").val("");
@@ -13,7 +12,6 @@
 
 	$("#search").click(
         function() {
-        console.log("222222222");
             queryPage(1);
 	    }
 	);
@@ -53,13 +51,13 @@
                     "quota",
                     "referralBonus",
                     "referralBonusAmount",
-                    "publisher",
-                    "publishedTime",
+                    "creator",
+                    "createdTime",
                     "updater",
                     "updatedTime",
                     "active",
                     "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-user'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-user'></span>删除</button>" ] ,
-            name : ["ID", "所属企业", "城市", "名称", "待遇", "性质", "招聘人数", "推荐有奖", "奖励金额", "发布人", "发布时间", "修改人", "修改时间", "是否有效" "_opt" ],
+            name : ["ID", "所属企业", "城市", "名称", "待遇", "性质", "招聘人数", "推荐有奖", "奖励金额", "发布人", "发布时间", "修改人", "修改时间", "是否有效", "_opt" ],
             tid : "id",
             checkBox : "id"
         });
@@ -137,7 +135,6 @@
 
     $("#addJob").click(
         function(){
-        console.log("333333");
              $("#addJobList").load("WEB-ROOT/html/addJobs.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
