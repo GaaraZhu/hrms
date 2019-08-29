@@ -61,4 +61,8 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+	    queryPage(1);
+	</script>
 </body>

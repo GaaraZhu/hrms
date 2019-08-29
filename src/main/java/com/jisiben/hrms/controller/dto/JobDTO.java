@@ -9,9 +9,9 @@ public class JobDTO extends DTORoot<JobDTO>{
     private String salaryRange;
     private String type;
     private int quota;
-    private boolean referralBonus;
+    private String referralBonus;
     private int referralBonusAmount;
-    private boolean active;
+    private String active;
     private String note;
 
     public JobDTO() {
@@ -55,13 +55,13 @@ public class JobDTO extends DTORoot<JobDTO>{
         return quota;
     }
 
-    public boolean isActive() {
+    public String getActive() {
         return active;
     }
 
     public String getNote() { return note; }
 
-    public boolean isReferralBonus() {
+    public String getReferralBonus() {
         return referralBonus;
     }
 
@@ -76,9 +76,9 @@ public class JobDTO extends DTORoot<JobDTO>{
         private String salaryRange;
         private String type;
         private int quota;
-        private boolean referralBonus;
+        private String referralBonus;
         private int referralBonusAmount;
-        private boolean active;
+        private String active;
         private String note;
 
         public Builder(){}
@@ -113,7 +113,7 @@ public class JobDTO extends DTORoot<JobDTO>{
             return this;
         }
 
-        public Builder setReferralBonus(boolean referralBonus) {
+        public Builder setReferralBonus(String referralBonus) {
             this.referralBonus = referralBonus;
             return this;
         }
@@ -123,7 +123,7 @@ public class JobDTO extends DTORoot<JobDTO>{
             return this;
         }
 
-        public Builder setActive(boolean active) {
+        public Builder setActive(String active) {
             this.active = active;
             return this;
         }

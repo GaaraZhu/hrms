@@ -71,6 +71,7 @@
 	   		
 			$("th,td").css({"height":"40px","line-height":"30px","margin":"5px,0"});
 			$("th,td").css({"text-align":"left"});
+			$("table").css({"height":"200px !important;", "overflow":"scroll;"});
 		}
 		
 		self.checkAll = function () {

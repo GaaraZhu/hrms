@@ -1,6 +1,4 @@
     var pageSize = 8;
-    queryPage(1);
-
 	$("#reset").click(
         function() {
             $("#selectNumber").val("");

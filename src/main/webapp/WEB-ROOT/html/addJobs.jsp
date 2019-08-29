@@ -47,9 +47,9 @@
 								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">工作性质</label>
                                 <div class="col-lg-35" style=" padding-top: 25px;">
                                  <select id="type" name="type" style="width: 62px;height: 32px;">
-                                         <option value="FULL_TIME">全职</option>
-                                         <option value="PART_TIME">兼职</option>
-                                         <option value="CONTRACTOR">小时工</option>
+                                         <option value="全职">全职</option>
+                                         <option value="兼职">兼职</option>
+                                         <option value="小时工">小时工</option>
                                  </select>
                                 </div>
                                 <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">招聘人数</label>
@@ -61,8 +61,8 @@
                                 <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">推荐有奖</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
                                  <select id="referralBonus" name="referralBonus" style="width: 62px;height: 32px;">
-                                         <option value="true">有奖</option>
-                                         <option value="false">无奖</option>
+                                         <option value="有">有奖</option>
+                                         <option value="无">无奖</option>
                                  </select>
                                 </div>
                                 <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">奖励金额</label>
@@ -71,12 +71,12 @@
                                     type="text" class="form-control col-lg-35" name="referralBonusAmount"
                                     id="referralBonusAmount" placeholder="请输入奖励金额">
                                 </div>
-                                <div class="form-group inputselect col-lg-3">
-                                    <label for="name">是否显示</label><br/>
-                                    <select id="active" name="active" style="width: 62px;height: 32px;">
-                                            <option value="true">显示</option>
-                                            <option value="false">隐藏</option>
-                                    </select>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">是否显示</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                     <select id="active" name="active" style="width: 62px;height: 32px;">
+                                         <option value="是">显示</option>
+                                         <option value="否">隐藏</option>
+                                     </select>
                                 </div>
                                 <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">备注</label>
                                 <div class="col-lg-35" style=" padding-top: 25px;">
