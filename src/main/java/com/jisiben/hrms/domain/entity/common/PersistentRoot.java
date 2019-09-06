@@ -1,22 +1,17 @@
 package com.jisiben.hrms.domain.entity.common;
 
 import java.util.Date;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Version;
+import javax.persistence.*;
+
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@EntityListeners(AuditingEntityListener.class)
 public abstract class PersistentRoot<T extends PersistentRoot> {
 
     protected PersistentRoot(){}
@@ -27,10 +22,6 @@ public abstract class PersistentRoot<T extends PersistentRoot> {
         this.createdTime = builder.createdTime;
         this.lastUpdatedBy = builder.lastUpdatedBy;
         this.lastUpdatedTime = builder.lastUpdatedTime;
-        this.createdBy = "admin"; //TODO: get from user context
-        this.createdTime = new Date();
-        this.lastUpdatedBy = "admin"; //TODO: get from user context
-        this.lastUpdatedTime = new Date();
     }
 
     @Id

@@ -8,22 +8,31 @@ import com.jisiben.hrms.service.impl.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.dao.SaltSource;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Optional;
 
 @Configuration
 @EnableJpaRepositories(basePackages="com.jisiben.hrms.domain.dao")
+@EnableJpaAuditing(auditorAwareRef = "auditorProvider")
 public class Configurations {
     @Bean
     public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new Jdk8Module());
         return mapper;
+    }
+
+    @Bean
+    public AuditorAware<String> auditorProvider() {
+        return ()->SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
     @Bean
