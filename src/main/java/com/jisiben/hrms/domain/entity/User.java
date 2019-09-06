@@ -15,6 +15,8 @@ public class User extends PersistentRoot<User> {
 
     private String password;
 
+    private Integer authority;
+
     public User() {
     }
 
@@ -23,6 +25,7 @@ public class User extends PersistentRoot<User> {
         this.name = builder.name;
         this.account = builder.account;
         this.password = builder.password;
+        this.authority = builder.authority;
     }
 
     public String getName() {
@@ -52,11 +55,21 @@ public class User extends PersistentRoot<User> {
         return this;
     }
 
+    public Integer getAuthority() {
+        return authority;
+    }
+
+    public User authority(Integer authority) {
+        this.authority = authority;
+        return this;
+    }
+
     public static class Builder extends PersistentRoot.Builder<Department.Builder, User> {
 
         private String name;
         private String account;
         private String password;
+        private Integer authority;
 
         public Builder name(String name) {
             this.name = name;
@@ -70,6 +83,11 @@ public class User extends PersistentRoot<User> {
 
         public Builder password(String password) {
             this.password = password;
+            return this;
+        }
+
+        public Builder authority(Integer authority) {
+            this.authority = authority;
             return this;
         }
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http security="none" pattern="/login*"></http>
+    <http use-expressions="true" auto-config="true">
+        <intercept-url pattern="/login" access="permitAll"/>
+        <intercept-url pattern=" /WEB-ROOT/bootstrap/js/jquery-min.js" access="permitAll"/>
+        <intercept-url pattern=" /WEB-ROOT/img/logol.png" access="permitAll"/>
+        <intercept-url pattern="/WEB-ROOT/bootstrap/js/bootstrap.min.js" access="permitAll"/>
+        <intercept-url pattern=" /WEB-ROOT/bootstrap/css/bootstrap.min.css " access="permitAll"/>
+        <intercept-url pattern="/WEB-ROOT/img/login.jpg" access="permitAll"/>
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+        <csrf disabled="true" />
+        <headers>
+            <frame-options policy="SAMEORIGIN"/>
+        </headers>
+        <form-login login-page="/login"
+                    authentication-failure-url="/login?error=true"
+                    login-processing-url="/perform_login"
+                    default-target-url="/index"
+                    always-use-default-target="true"
+                    username-parameter="username"
+                    password-parameter="password"/>
+        <logout logout-success-url="/login"
+                invalidate-session="true"
+                logout-url="/logout"/>
+        <session-management invalid-session-url="/login">
+        </session-management>
+    </http>
+
+    <authentication-manager>
+        <authentication-provider
+                ref="daoAuthenticationProvider" />
+    </authentication-manager>
+
+</beans:beans>

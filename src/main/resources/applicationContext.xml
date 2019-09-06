@@ -50,7 +50,6 @@
 		<aop:pointcut id="commonPointcut"
 					  expression="execution(* com..controller.*.*(..))" />
 		<aop:advisor pointcut-ref="commonPointcut" advice-ref="businessExceptionInterceptor" />
-		<aop:advisor pointcut-ref="commonPointcut" advice-ref="userContextInterceptor" />
 		<aop:advisor pointcut-ref="commonPointcut" advice-ref="txAdvice" />
 	</aop:config>
 </beans>
