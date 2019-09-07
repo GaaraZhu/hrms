@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,6 +29,8 @@
         </script>
     </head>
     <body>
+        <sec:authentication property="principal.authorities" scope="session" var="authority"/>
+        <sec:authentication property="principal.username" scope="session" var="username"/>
         <nav id="navbar" class="">
             <ul>
                 <li>
@@ -60,44 +63,48 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#">
-                        <i class="fab fa-alipay"></i>
-                        推荐费管理
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="#">
-                                推荐费信息
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                推荐费审批
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-alipay"></i>
+                            推荐费管理
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    推荐费信息
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    推荐费审批
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </sec:authorize>
                 <li>
                     <a href="#">
                         <i class="fa fa-cogs"></i>
                         系统管理
                     </a>
-                    <ul>
-                        <li>
-                            <a href="#">
-                                用户管理
-                            </a>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <a href="javascript:void(0)"
-                                onclick="htmlDispatcher('WEB-ROOT/html/departments.jsp',' 首页/ 系统管理/ 部门管理','部门管理')">
-                                部门管理
-                            </a>
-                        </li>
-                    </ul>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    用户管理
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)"
+                                    onclick="htmlDispatcher('WEB-ROOT/html/departments.jsp',' 首页/ 系统管理/ 部门管理','部门管理')">
+                                    部门管理
+                                </a>
+                            </li>
+                        </ul>
+                    </sec:authorize>
                     <ul>
                         <li>
                             <a href="#">
