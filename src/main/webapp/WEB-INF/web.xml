@@ -79,4 +79,8 @@
         <servlet-name>DispatcherServlet</servlet-name>
     </filter-mapping>
 
+    <session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
+
 </web-app>

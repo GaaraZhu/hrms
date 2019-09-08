@@ -144,6 +144,9 @@
              });
             htmlDispatcher=function(url, title){
                 $( "#frame" ).load(url, function(response, status, xhr) {
+                    if(response.includes("login_form")) { //TODO: could be more elegant
+                        window.location.replace("login");
+                    }
                     $('#frame').html(response);
                 });
                 $( "#headTitle" ).text(title);

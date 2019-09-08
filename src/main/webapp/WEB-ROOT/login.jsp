@@ -22,7 +22,7 @@
                 <h3  style="color: #FFFFFF; " >上海庆楷实业</h3>
             </div>
             <div class="row">
-                <form class="form-horizontal" method="post" action="perform_login">
+                <form name="login_form" class="form-horizontal" method="post" action="perform_login">
                     <div class="form-group">
                         <label  class="col-sm-2 control-label"></label>
                         <div class="col-lg-3 col-sm-7" style="left:7%;color:White">

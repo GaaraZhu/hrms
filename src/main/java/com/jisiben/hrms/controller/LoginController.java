@@ -22,7 +22,7 @@ public class LoginController {
 		return "index";
 	}
 
-	@RequestMapping("logout")
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(@RequestParam(value = "username", required = false) String username,
 			RedirectAttributes redirectAttributes) {
 		return "redirect:/login";
