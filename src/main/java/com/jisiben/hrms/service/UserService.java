@@ -6,7 +6,5 @@ import com.jisiben.hrms.service.common.Service;
 import java.util.Optional;
 
 public interface UserService extends Service<User> {
-
-    Optional<User> login(String account, String rawPassword);
-
+    void updatePassword(String account, String password);
 }

@@ -35,21 +35,9 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<!-- Transaction advice -->
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="get*" read-only="true" />
-			<tx:method name="find*" read-only="true" />
-			<tx:method name="search*" read-only="true" />
-			<tx:method name="*" />
-		</tx:attributes>
-	</tx:advice>
-
-	<!-- AOP configuration -->
 	<aop:config>
 		<aop:pointcut id="commonPointcut"
 					  expression="execution(* com..controller.*.*(..))" />
 		<aop:advisor pointcut-ref="commonPointcut" advice-ref="businessExceptionInterceptor" />
-		<aop:advisor pointcut-ref="commonPointcut" advice-ref="txAdvice" />
 	</aop:config>
 </beans>

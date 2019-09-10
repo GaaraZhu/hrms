@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label  class="col-sm-2 control-label">密码</label>
                         <div class="col-lg-3 col-sm-7">
-                            <input type="text" class="form-control" name="password"
+                            <input type="password" class="form-control" name="password"
                                 placeholder="请输入密码">
                         </div>
                     </div>

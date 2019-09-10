@@ -64,7 +64,7 @@ public class User extends PersistentRoot<User> {
         return this;
     }
 
-    public static class Builder extends PersistentRoot.Builder<Department.Builder, User> {
+    public static class Builder extends PersistentRoot.Builder<User.Builder, User> {
 
         private String name;
         private String account;

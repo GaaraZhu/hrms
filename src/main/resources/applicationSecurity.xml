@@ -33,7 +33,7 @@
         <session-management invalid-session-url="/login"/>
     </http>
 
-    <authentication-manager>
+    <authentication-manager erase-credentials="false">
         <authentication-provider
                 ref="daoAuthenticationProvider" />
     </authentication-manager>

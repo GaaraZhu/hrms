@@ -107,7 +107,8 @@
                     </sec:authorize>
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="javascript:void(0)"
+                                    onclick="htmlDispatcher('WEB-ROOT/html/resetPassword.jsp',' 首页/ 系统管理/ 密码重置','密码重置')">
                                 密码重置
                             </a>
                         </li>

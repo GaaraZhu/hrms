@@ -20,9 +20,8 @@
 		    </div>
 		</div>
 		<script type="text/javascript">
-		 $("#alertSubmit").click(function(){
-			 $("#alertQuit").click();
-		 });
-
+             $("#alertSubmit").click(function(){
+                 $("#alertQuit").click();
+             });
 		</script>
 </body>
