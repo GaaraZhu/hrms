@@ -9,16 +9,22 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectUserVal">
 				<div class="row">
-					<div class="form-group inputselect col-lg-4">
+					<div class="form-group inputselect col-lg-3">
 						<label for="name">用户姓名</label> <input type="text"
 							class="form-control" id="name" name="name"
 						    placeholder="请输入姓名">
 					</div>
-					<div class="form-group inputselect col-lg-2">
+					<div class="form-group inputselect col-lg-3">
+                        <label for="name">用户账号</label> <input type="text"
+                            class="form-control" id="account" name="account"
+                            placeholder="请输入账号">
+                    </div>
+					<div class="form-group inputselect col-lg-3">
                         <label for="name">用户权限</label><br/>
-                        <select id="authority" name="authority" style="width: 62px;height: 32px;">
-                                <option value="0">普通用户</option>
-                                <option value="1">管理员</option>
+                        <select id="authority" name="authority" style="width: 85px;height: 32px;">
+                            <option value="-1">所有用户</option>
+                            <option value="0">普通用户</option>
+                            <option value="1">管理员</option>
                         </select>
                     </div>
 				
@@ -34,7 +40,7 @@
 						</button>
 					</div>
 					<div class="form-group inputselect col-lg-4">
-                        <button type="button" class="btn btn-info btn-sm " id="addUser">
+                        <button type="button" class="btn btn-info btn-sm " style="margin-left: 130px" id="addUser">
                             <span class="glyphicon glyphicon-user"></span> 新增用户
                         </button>
 					</div>

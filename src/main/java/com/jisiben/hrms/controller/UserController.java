@@ -38,12 +38,15 @@ public class UserController extends AbstractController<User, UserDTO, User.Build
     public PageableSearchResultDTO<UserDTO> findAll(
             @RequestParam("name") String name,
             @RequestParam("account") String account,
+            @RequestParam("authority") Integer authority,
             @RequestParam("currentPage") int currentPage,
             @RequestParam("pageSize") int pageSize) {
+        authority = authority==-1?null:authority;
         return doFindAll(
                 ImmutableMap.of(
                         "name", Optional.ofNullable(name),
-                        "account", Optional.ofNullable(account)), currentPage, pageSize);
+                        "account", Optional.ofNullable(account),
+                        "authority", Optional.ofNullable(authority)), currentPage, pageSize);
     }
 
     @ResponseBody

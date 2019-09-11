@@ -7,6 +7,7 @@ import com.jisiben.hrms.service.UserService;
 import com.jisiben.hrms.service.common.impl.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -38,6 +39,9 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
     @Override
     public Page<User> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
-        return null;
+        String name = criteria.get("name").map(Object::toString).orElse(null);
+        String account = criteria.get("account").map(Object::toString).orElse(null);
+        Integer authority = criteria.get("authority").map(Integer.class::cast).orElse(null);
+        return userDao.findByAccountAndNameAndAuthority(account, name, authority, new PageRequest(currentPage-1, pageSize));
     }
 }

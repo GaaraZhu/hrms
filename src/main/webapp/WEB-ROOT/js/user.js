@@ -14,12 +14,13 @@
 
     function queryPage(cp) {
         name = $("#name").val();
+        account = $("#account").val();
         authority = $("#authority").val();
         $.ajax({
             url : "users",
             type : "GET",
             async: true,
-            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&authority="+authority,
+            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&account=" + account+"&authority="+authority,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 initTable(data, cp);

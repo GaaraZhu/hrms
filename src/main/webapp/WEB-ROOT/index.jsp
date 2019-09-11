@@ -91,7 +91,8 @@
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <ul>
                             <li>
-                                <a href="#">
+                                <a href="javascript:void(0)"
+                                    onclick="htmlDispatcher('WEB-ROOT/html/users.jsp',' 首页/ 系统管理/ 用户管理','用户管理')">
                                     用户管理
                                 </a>
                             </li>
