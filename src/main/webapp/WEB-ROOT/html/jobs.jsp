@@ -43,7 +43,7 @@
                         </button>
                     </div>
 					<div class="form-group inputselect col-lg-2">
-                        <button type="button" class="btn btn-info btn-sm " style="margin-left: 225px" id="addJob"">
+                        <button type="button" class="btn btn-info btn-sm " style="margin-left: 225px" id="addJob">
                             <span class="glyphicon glyphicon-user"></span> 新增职位
                         </button>
 					</div>

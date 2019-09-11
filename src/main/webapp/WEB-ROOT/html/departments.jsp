@@ -35,7 +35,7 @@ HttpSession s = request.getSession();
 						</button>
 					</div>
 					<div class="form-group inputselect col-lg-4">
-                        <button type="button" class="btn btn-info btn-sm " id="addDep"">
+                        <button type="button" class="btn btn-info btn-sm " id="addDep">
                             <span class="glyphicon glyphicon-user"></span> 新增部门
                         </button>
 					</div>
