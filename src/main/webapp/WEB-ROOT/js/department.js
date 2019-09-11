@@ -67,7 +67,7 @@
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 $("#addDepList").load(
-                    "WEB-ROOT/html/addDepartments.jsp",
+                    "WEB-ROOT/html/department.jsp",
                     function() {
                         $("#addModel").modal({
                             keyboard : true
@@ -115,7 +115,7 @@
 
     $("#addDep").click(
         function(){
-             $("#addDepList").load("WEB-ROOT/html/addDepartments.jsp", function(){
+             $("#addDepList").load("WEB-ROOT/html/department.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });

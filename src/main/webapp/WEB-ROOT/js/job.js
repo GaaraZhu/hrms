@@ -78,7 +78,7 @@
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 $("#addJobList").load(
-                    "WEB-ROOT/html/addJobs.jsp",
+                    "WEB-ROOT/html/job.jsp",
                     function() {
                         $("#addModel").modal({
                             keyboard : true
@@ -131,7 +131,7 @@
 
     $("#addJob").click(
         function(){
-             $("#addJobList").load("WEB-ROOT/html/addJobs.jsp", function(){
+             $("#addJobList").load("WEB-ROOT/html/job.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });

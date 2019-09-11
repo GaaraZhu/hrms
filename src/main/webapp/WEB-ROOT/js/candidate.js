@@ -71,7 +71,7 @@
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 $("#addCandidateList").load(
-                    "WEB-ROOT/html/addCandidates.jsp",
+                    "WEB-ROOT/html/candidate.jsp",
                     function() {
                         $("#addModel").modal({
                             keyboard : true
@@ -121,7 +121,7 @@
 
     $("#addCandidate").click(
         function(){
-             $("#addCandidateList").load("WEB-ROOT/html/addCandidates.jsp", function(){
+             $("#addCandidateList").load("WEB-ROOT/html/candidate.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });
