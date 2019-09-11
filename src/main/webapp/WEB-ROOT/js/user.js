@@ -13,9 +13,9 @@
 	);
 
     function queryPage(cp) {
-        name = $("#name").val();
-        account = $("#account").val();
-        authority = $("#authority").val();
+        name = $("#searchName").val();
+        account = $("#searchAccount").val();
+        authority = $("#searchAuthority").val();
         $.ajax({
             url : "users",
             type : "GET",
@@ -74,10 +74,9 @@
                         });
                         if (data != null) {
                             $("#id").val(data.id);
-                            $("#number").val(data.number);
                             $("#name").val(data.name);
-                            $("#manager").val(data.manager);
-                            $("#telephone").val(data.telephone);
+                            $("#account").val(data.account);
+                            $("#authority").val(data.authority);
                             $("#submitType").val("POST")
                         }
                     });

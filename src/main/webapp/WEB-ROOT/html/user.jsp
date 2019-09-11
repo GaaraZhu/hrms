@@ -35,7 +35,6 @@
 								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">用户权限</label>
                                 <div class="col-lg-35" style=" padding-top: 25px;">
                                  <select id="authority" name="authority" style="width: 85px;height: 32px;">
-                                     <option value="-1">所有用户</option>
                                      <option value="0">普通用户</option>
                                      <option value="1">管理员</option>
                                  </select>
