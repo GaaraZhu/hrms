@@ -14,12 +14,12 @@ HttpSession s = request.getSession();
 				<div class="row">
 					<div class="form-group inputselect col-lg-4">
 						<label for="name">部门编号</label> <input type="text"
-							class="form-control  " id="selectNumber" name="number"
+							class="form-control  " id="searchNumber" name="searchNumber"
 						    placeholder="请输入编号">
 					</div>
 					<div class="form-group inputselect col-lg-4">
 						<label for="name">部门名称</label> <input type="text"
-							class=" form-control " id="selectName" name="name"
+							class=" form-control " id="searchName" name="searchName"
 							placeholder="请输入名称">
 					</div>
 				

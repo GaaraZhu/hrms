@@ -1,8 +1,8 @@
     var pageSize = 8;
 	$("#reset").click(
         function() {
-            $("#selectNumber").val("");
-            $("#selectName").val("");
+            $("#searchNumber").val("");
+            $("#searchName").val("");
         }
 	);
 
@@ -13,8 +13,8 @@
 	);
 
     function queryPage(cp) {
-        depNum = $("#selectNumber").val();
-        depName = $("#selectName").val();
+        depNum = $("#searchNumber").val();
+        depName = $("#searchName").val();
         $.ajax({
             url : "departments",
             type : "GET",
