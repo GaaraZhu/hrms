@@ -10,22 +10,22 @@
 				<div class="row">
 					<div class="form-group inputselect col-lg-2">
 						<label for="name">公司</label> <input type="text"
-							class="form-control  " id="company" name="company"
+							class="form-control  " id="searchCompany" name="searchCompany"
 						    placeholder="请输入所属企业">
 					</div>
 					<div class="form-group inputselect col-lg-2">
 						<label for="name">城市</label> <input type="text"
-							class=" form-control " id="city" name="city"
+							class=" form-control " id="searchCity" name="searchCity"
 							placeholder="请输入所在城市">
 					</div>
 					<div class="form-group inputselect col-lg-2">
                         <label for="name">职位名称</label> <input type="text"
-                            class="form-control  " id="name" name="name"
+                            class="form-control  " id="searchName" name="searchName"
                             placeholder="请输入职位名称">
                     </div>
                     <div class="form-group inputselect col-lg-2">
                         <label for="name">是否显示</label><br/>
-                        <select id="active" name="active" style="width: 62px;height: 32px;">
+                        <select id="searchActive" name="searchActive" style="width: 62px;height: 32px;">
                                 <option value="true">显示</option>
                                 <option value="false">隐藏</option>
                         </select>

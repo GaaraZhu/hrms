@@ -1,10 +1,10 @@
     var pageSize = 8;
 	$("#reset").click(
         function() {
-            $("#company").val("");
-            $("#city").val("");
-            $("#name").val("");
-            $("#active").val("");
+            $("#searchCompany").val("");
+            $("#searchCity").val("");
+            $("#searchName").val("");
+            $("#searchActive").val("true");
         }
 	);
 
@@ -15,10 +15,10 @@
 	);
 
     function queryPage(cp) {
-        company = $("#company").val();
-        city = $("#city").val();
-        name = $("#name").val();
-        active = $("#active").val();
+        company = $("#searchCompany").val();
+        city = $("#searchCity").val();
+        name = $("#searchName").val();
+        active = $("#searchActive").val();
         $.ajax({
             url : "jobs",
             type : "GET",
