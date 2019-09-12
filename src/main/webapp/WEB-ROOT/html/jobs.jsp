@@ -24,10 +24,10 @@
                             placeholder="请输入职位名称">
                     </div>
                     <div class="form-group inputselect col-lg-2">
-                        <label for="name">是否显示</label><br/>
+                        <label for="name">是否有效</label><br/>
                         <select id="searchActive" name="searchActive" style="width: 62px;height: 32px;">
-                                <option value="true">显示</option>
-                                <option value="false">隐藏</option>
+                                <option value="true">有效</option>
+                                <option value="false">无效</option>
                         </select>
                     </div>
 

@@ -15,7 +15,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" id="addAlertSubmit"
 						data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel">新增候选人</h4>
+					<h4 class="modal-title" id="myModalLabel">新增职位</h4>
 				</div>
 				<form class="form-horizontal" role="form" id="jobForm" >
 					<div class="modal-body" style="height: 60%;">
@@ -71,11 +71,11 @@
                                     type="text" class="form-control col-lg-35" name="referralBonusAmount"
                                     id="referralBonusAmount" placeholder="请输入奖励金额">
                                 </div>
-                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">是否显示</label>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">是否有效</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
                                      <select id="active" name="active" style="width: 62px;height: 32px;">
-                                         <option value="是">显示</option>
-                                         <option value="否">隐藏</option>
+                                         <option value="是">有效</option>
+                                         <option value="否">无效</option>
                                      </select>
                                 </div>
                                 <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">备注</label>
