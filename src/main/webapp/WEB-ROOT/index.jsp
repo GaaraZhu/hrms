@@ -41,7 +41,7 @@
                 </li>
                 <li>
                     <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/jobs.jsp',' 首页/ 职位管理','职位管理')">
-                        <i class="fas fa-id-card"></i>
+                        <i class="fas fa-briefcase"></i>
                         职位管理
                     </span>
                 </li>
