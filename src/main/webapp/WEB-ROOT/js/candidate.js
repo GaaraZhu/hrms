@@ -1,9 +1,9 @@
     var pageSize = 8;
 	$("#reset").click(
         function() {
-            $("#name").val("");
-            $("#phone").val("");
-            $("#city").val("");
+            $("#searchName").val("");
+            $("#searchPhone").val("");
+            $("#searchCity").val("");
         }
 	);
 
@@ -14,9 +14,9 @@
 	);
 
     function queryPage(cp) {
-        name = $("#name").val();
-        phone = $("#phone").val();
-        city = $("#city").val();
+        name = $("#searchName").val();
+        phone = $("#searchPhone").val();
+        city = $("#searchCity").val();
         $.ajax({
             url : "candidates",
             type : "GET",
