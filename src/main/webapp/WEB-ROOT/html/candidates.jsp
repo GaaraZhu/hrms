@@ -7,7 +7,8 @@ HttpSession s = request.getSession();
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/candidate.js"></script>
 	<div id="alert"></div>
-	<div id="addCandidateList"></div>
+	<div id="addCandidatePage"></div>
+	<div id="uploadCandidatesPage"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectCandidatesVal">
@@ -39,11 +40,14 @@ HttpSession s = request.getSession();
                             <span class="glyphicon glyphicon-user"></span> 重置
                         </button>
                     </div>
-					<div class="form-group inputselect col-lg-2">
-                        <button type="button" class="btn btn-info btn-sm " style="margin-left: 225px" id="addCandidate">
+                    <div class="form-group inputselect col-lg-4" style="left: 150px;">
+                        <button type="button" class="btn btn-info btn-sm" id="uploadCandidates">
+                            <span class="glyphicon glyphicon-user"></span> 上传候选人
+                        </button>
+                        <button type="button" class="btn btn-info btn-sm" id="addCandidate">
                             <span class="glyphicon glyphicon-user"></span> 新增候选人
                         </button>
-					</div>
+                    </div>
 				</div>
 			</form>
 			<form class="form-inline" role="form"></form>

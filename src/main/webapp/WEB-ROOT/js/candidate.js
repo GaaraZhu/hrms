@@ -121,10 +121,23 @@
 
     $("#addCandidate").click(
         function(){
-             $("#addCandidateList").load("WEB-ROOT/html/candidate.jsp", function(){
+             $("#addCandidatePage").load("WEB-ROOT/html/candidate.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });
+            });
+        }
+    );
+
+    $("#uploadCandidates").click(
+        function(){
+            $("#uploadCandidatesPage").load(
+                "WEB-ROOT/common/upload.jsp",
+                function() {
+                    $("#addModel").modal({
+                        keyboard : true
+                    });
+                    $("#uploadDataType").val("candidate");
             });
         }
     );
