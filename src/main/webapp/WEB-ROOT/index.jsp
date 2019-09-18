@@ -25,111 +25,114 @@
                     theme: 'dark-lesb'
                 });
                 rvnMenu.setTheme('dark-ruby');
+                $("#homepage").show();
             });
         </script>
     </head>
     <body>
         <sec:authentication property="principal.authorities" scope="session" var="authority"/>
         <sec:authentication property="principal.username" scope="session" var="username"/>
-        <nav id="navbar" class="">
-            <ul>
-                <li>
-                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/candidates.jsp',' 首页/ 简历管理','简历管理')">
-                        <i class="fas fa-id-card"></i>
-                        简历管理
-                    </span>
-                </li>
-                <li>
-                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/jobs.jsp',' 首页/ 职位管理','职位管理')">
-                        <i class="fas fa-briefcase"></i>
-                        职位管理
-                    </span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-user-tie"></i>
-                        求职管理
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="#">
-                                求职信息
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                求职统计
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <div id="homepage" style="display:none;">
+            <nav id="navbar" class="">
+                <ul>
+                    <li>
+                        <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/candidates.jsp',' 首页/ 简历管理','简历管理')">
+                            <i class="fas fa-id-card"></i>
+                            简历管理
+                        </span>
+                    </li>
+                    <li>
+                        <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/jobs.jsp',' 首页/ 职位管理','职位管理')">
+                            <i class="fas fa-briefcase"></i>
+                            职位管理
+                        </span>
+                    </li>
                     <li>
                         <a href="#">
-                            <i class="fab fa-alipay"></i>
-                            推荐费管理
+                            <i class="fas fa-user-tie"></i>
+                            求职管理
                         </a>
                         <ul>
                             <li>
                                 <a href="#">
-                                    推荐费信息
+                                    求职信息
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    推荐费审批
+                                    求职统计
                                 </a>
                             </li>
                         </ul>
                     </li>
-                </sec:authorize>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-cogs"></i>
-                        系统管理
-                    </a>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)"
-                                    onclick="htmlDispatcher('WEB-ROOT/html/users.jsp',' 首页/ 系统管理/ 用户管理','用户管理')">
-                                    用户管理
-                                </a>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)"
-                                    onclick="htmlDispatcher('WEB-ROOT/html/departments.jsp',' 首页/ 系统管理/ 部门管理','部门管理')">
-                                    部门管理
-                                </a>
-                            </li>
-                        </ul>
-                    </sec:authorize>
-                    <ul>
                         <li>
-                            <a href="javascript:void(0)"
-                                    onclick="htmlDispatcher('WEB-ROOT/html/resetPassword.jsp',' 首页/ 系统管理/ 密码重置','密码重置')">
-                                密码重置
+                            <a href="#">
+                                <i class="fab fa-alipay"></i>
+                                推荐费管理
                             </a>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        推荐费信息
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        推荐费审批
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="spliter">
-                        <i class="fas fa-bell"></i>
-                        系统通知
-                    </span>
-                </li>
-        </nav>
-        <div id="wrapper">
-            <div class="col-lg-10 col-sm-12">
-                <div style="margin-top: 3px">
-                    <ol class="breadcrumb hid">
-                        <li class="active" id="headTitle">首页</li>
-                    </ol>
+                    </sec:authorize>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-cogs"></i>
+                            系统管理
+                        </a>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)"
+                                        onclick="htmlDispatcher('WEB-ROOT/html/users.jsp',' 首页/ 系统管理/ 用户管理','用户管理')">
+                                        用户管理
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)"
+                                        onclick="htmlDispatcher('WEB-ROOT/html/departments.jsp',' 首页/ 系统管理/ 部门管理','部门管理')">
+                                        部门管理
+                                    </a>
+                                </li>
+                            </ul>
+                        </sec:authorize>
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)"
+                                        onclick="htmlDispatcher('WEB-ROOT/html/resetPassword.jsp',' 首页/ 系统管理/ 密码重置','密码重置')">
+                                    密码重置
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="spliter">
+                            <i class="fas fa-bell"></i>
+                            系统通知
+                        </span>
+                    </li>
+            </nav>
+            <div id="wrapper">
+                <div class="col-lg-10 col-sm-12">
+                    <div style="margin-top: 3px">
+                        <ol class="breadcrumb hid">
+                            <li class="active" id="headTitle">首页</li>
+                        </ol>
+                    </div>
+                    <div id="frame"></div>
                 </div>
-                <div id="frame"></div>
             </div>
         </div>
 
