@@ -16,8 +16,16 @@ public class CandidateEntityDTOMapper implements Mapper<Candidate, CandidateDTO>
                 .gender(entity.getGender().equals(Gender.MALE)?"男":"女")
                 .idNumber(entity.getIdNumber())
                 .phone(entity.getPhone())
-                .city(entity.getCity())
-                .address(entity.getAddress())
+                .ethnicity(entity.getEthnicity())
+                .degree(entity.getDegree())
+                .politicalStatus(entity.getPoliticalStatus())
+                .bornAddress(entity.getBornAddress())
+                .bank(entity.getBank())
+                .bankAccount(entity.getBankAccount())
+                .currentAddress(entity.getCurrentAddress())
+                .emergencyContactName(entity.getEmergencyContactName())
+                .emergencyContactRelationship(entity.getEmergencyContactName())
+                .emergencyContactPhone(entity.getEmergencyContactPhone())
                 .build();
     }
 
@@ -27,7 +35,15 @@ public class CandidateEntityDTOMapper implements Mapper<Candidate, CandidateDTO>
                 .phone(dto.getPhone())
                 .idNumber(dto.getIdNumber())
                 .gender("男".equals(dto.getGender())? Gender.MALE:Gender.FEMALE)
-                .city(dto.getCity())
-                .address(dto.getAddress());
+                .bornAddress(dto.getBornAddress())
+                .currentAddress(dto.getCurrentAddress())
+                .ethnicity(dto.getEthnicity())
+                .politicalStatus(dto.getPoliticalStatus())
+                .degree(dto.getDegree())
+                .bank(dto.getBank())
+                .bankAccount(dto.getBankAccount())
+                .emergencyContactName(dto.getEmergencyContactName())
+                .emergencyContactPhone(dto.getEmergencyContactPhone())
+                .emergencyContactRelationship(dto.getEmergencyContactRelationship());
     }
 }

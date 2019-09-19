@@ -7,8 +7,16 @@ public class CandidateDTO extends DTORoot<CandidateDTO> {
     private String gender;
     private String idNumber;
     private String phone;
-    private String city;
-    private String address;
+    private String ethnicity;
+    private String politicalStatus;
+    private String degree;
+    private String bornAddress;
+    private String currentAddress;
+    private String bank;
+    private String bankAccount;
+    private String emergencyContactName;
+    private String emergencyContactPhone;
+    private String emergencyContactRelationship;
 
     public CandidateDTO(){}
 
@@ -18,8 +26,17 @@ public class CandidateDTO extends DTORoot<CandidateDTO> {
         this.gender = builder.gender;
         this.idNumber = builder.idNumber;
         this.phone = builder.phone;
-        this.city = builder.city;
-        this.address = builder.address;
+        this.ethnicity=builder.ethnicity;
+        this.politicalStatus=builder.politicalStatus;
+        this.degree=builder.degree;
+        this.bornAddress=builder.bornAddress;
+        this.currentAddress=builder.currentAddress;
+        this.bank=builder.bank;
+        this.bankAccount=builder.bankAccount;
+        this.emergencyContactName=builder.emergencyContactName;
+        this.emergencyContactPhone=builder.emergencyContactPhone;
+        this.emergencyContactRelationship=builder.emergencyContactRelationship;
+
     }
 
     public String getName() {
@@ -38,12 +55,44 @@ public class CandidateDTO extends DTORoot<CandidateDTO> {
         return phone;
     }
 
-    public String getCity() {
-        return city;
+    public String getEthnicity() {
+        return ethnicity;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPoliticalStatus() {
+        return politicalStatus;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public String getBornAddress() {
+        return bornAddress;
+    }
+
+    public String getCurrentAddress() {
+        return currentAddress;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public String getBankAccount() {
+        return bankAccount;
+    }
+
+    public String getEmergencyContactName() {
+        return emergencyContactName;
+    }
+
+    public String getEmergencyContactPhone() {
+        return emergencyContactPhone;
+    }
+
+    public String getEmergencyContactRelationship() {
+        return emergencyContactRelationship;
     }
 
     public static class Builder extends DTORoot.Builder<Builder, CandidateDTO> {
@@ -51,8 +100,16 @@ public class CandidateDTO extends DTORoot<CandidateDTO> {
         private String gender;
         private String idNumber;
         private String phone;
-        private String city;
-        private String address;
+        private String ethnicity;
+        private String politicalStatus;
+        private String degree;
+        private String bornAddress;
+        private String currentAddress;
+        private String bank;
+        private String bankAccount;
+        private String emergencyContactName;
+        private String emergencyContactPhone;
+        private String emergencyContactRelationship;
 
         public Builder name(String name) {
             this.name = name;
@@ -74,13 +131,53 @@ public class CandidateDTO extends DTORoot<CandidateDTO> {
             return this;
         }
 
-        public Builder city(String city) {
-            this.city = city;
+        public Builder ethnicity(String ethnicity) {
+            this.ethnicity = ethnicity;
             return this;
         }
 
-        public Builder address(String address) {
-            this.address = address;
+        public Builder politicalStatus(String politicalStatus) {
+            this.politicalStatus = politicalStatus;
+            return this;
+        }
+
+        public Builder degree(String degree) {
+            this.degree = degree;
+            return this;
+        }
+
+        public Builder bornAddress(String bornAddress) {
+            this.bornAddress = bornAddress;
+            return this;
+        }
+
+        public Builder currentAddress(String currentAddress) {
+            this.currentAddress = currentAddress;
+            return this;
+        }
+
+        public Builder bank(String bank) {
+            this.bank = bank;
+            return this;
+        }
+
+        public Builder bankAccount(String bankAccount) {
+            this.bankAccount = bankAccount;
+            return this;
+        }
+
+        public Builder emergencyContactName(String emergencyContactName) {
+            this.emergencyContactName = emergencyContactName;
+            return this;
+        }
+
+        public Builder emergencyContactPhone(String emergencyContactPhone) {
+            this.emergencyContactPhone = emergencyContactPhone;
+            return this;
+        }
+
+        public Builder emergencyContactRelationship(String emergencyContactRelationship) {
+            this.emergencyContactRelationship = emergencyContactRelationship;
             return this;
         }
 
