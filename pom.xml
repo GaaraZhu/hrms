@@ -265,11 +265,16 @@
 			<version>1.10</version>    
 		</dependency>
 
-		<dependency>
-			<groupId>cn.xiaobai.app</groupId>    
-			<artifactId>gen</artifactId>    
-			<version>3.0.1</version>    
+	    <dependency>
+			<groupId>com.github.ozlerhakan</groupId>
+			<artifactId>poiji</artifactId>
+			<version>1.22.0</version>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>cn.xiaobai.app</groupId>    -->
+<!--			<artifactId>gen</artifactId>    -->
+<!--			<version>3.0.1</version>    -->
+<!--		</dependency>-->
   </dependencies>
   <build>
 	<finalName>hrms</finalName>

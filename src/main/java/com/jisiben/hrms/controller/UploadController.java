@@ -1,5 +1,10 @@
 package com.jisiben.hrms.controller;
 
+import com.jisiben.hrms.domain.entity.Candidate;
+import com.jisiben.hrms.service.CandidateService;
+import com.jisiben.hrms.service.bean.CandidateBean;
+import com.poiji.bind.Poiji;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,12 +15,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
 public class UploadController {
 
     protected Logger logger = Logger.getLogger(this.getClass().getSimpleName());
+
+    @Autowired
+    private CandidateService candidateService;
 
     @RequestMapping(value = "/uploadData", method = RequestMethod.POST)
     public String uploadFile(Model model, MultipartFile file) throws IOException {
@@ -30,8 +39,11 @@ public class UploadController {
         }
         f.flush();
         f.close();
-
         logger.info("Upload file successfully: "+ fileLocation);
+
+        List<CandidateBean> candidates = Poiji.fromExcel(new File(fileLocation), CandidateBean.class);
+
+        candidates.forEach((CandidateBean c)->logger.info(c.toString()));
 
         return "redirect:/index";
     }
