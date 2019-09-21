@@ -34,26 +34,21 @@
 			if(null!=checkBox&&checkBox!=""){
             	ths+='<th><input type="checkbox" class="checkAll" /></th>';
             }
-			for(var k in thnames){
-	        	if(thnames[k]=="_opt"){
-	        		ths+='<th>操作</th>';
-	        	}else{
-	        		ths+='<th>'+thnames[k]+'</th>';
-	        	}
+			for(var k in thnames) {
+                ths+='<th style="height: 40px; line-height: 30px; text-align:left; white-space:nowrap;">'+(thnames[k]=="_opt"?"操作":thnames[k])+'</th>';
 	        }
         	ths+='</tr>';
             for(var m in data){
             	thb+='<tr>';
 
             	if(null!=checkBox&&checkBox!=""){
-            			thb+='<td><input name="ids" type="checkbox" cbValue="'+data[m][checkBox]+'" /></td>';
+                    thb+='<td><input name="ids" type="checkbox" cbValue="'+data[m][checkBox]+'" /></td>';
             	}
 
             	for(var k=0;k<thids.length;k++){
-
             		for(var n in data[m]){
 	        			if(n==thids[k]){
-	        				thb+=('<td>'+(data[m][n]==null?"":data[m][n])+'</td>');
+                            thb+=('<td style="height: 40px; line-height: 30px; text-align:left; white-space:nowrap;">'+(data[m][n]==null?"":data[m][n])+'</td>');
 	        				break;
 	        			}
             		}
@@ -61,16 +56,13 @@
 
             	for(var k=0;k<thids.length;k++){
             		if(thnames[k]=="_opt"){
-            			thb+=('<td>'+thids[k].replace(/\id/g,("\""+data[m][tid]+"\""))+'</td>');
+                        thb+=('<td style="height: 40px; line-height: 30px; text-align:left; white-space:nowrap;">'+thids[k].replace(/\id/g,("\""+data[m][tid]+"\""))+'</td>');
             		}
             	}
             	thb+='</tr>';
            	}
 			htmls="<table>"+(ths+thb)+"</table>";
 			self.$container.html(htmls);
-	   		
-			$("th,td").css({"height":"40px","line-height":"30px","margin":"5px,0"});
-			$("th,td").css({"text-align":"left"});
 			$("table").css({"height":"200px !important;", "overflow":"scroll;"});
 		}
 		

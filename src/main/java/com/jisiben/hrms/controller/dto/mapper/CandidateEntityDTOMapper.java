@@ -24,7 +24,7 @@ public class CandidateEntityDTOMapper implements Mapper<Candidate, CandidateDTO>
                 .bankAccount(entity.getBankAccount())
                 .currentAddress(entity.getCurrentAddress())
                 .emergencyContactName(entity.getEmergencyContactName())
-                .emergencyContactRelationship(entity.getEmergencyContactName())
+                .emergencyContactRelationship(entity.getEmergencyContactRelationship())
                 .emergencyContactPhone(entity.getEmergencyContactPhone())
                 .build();
     }

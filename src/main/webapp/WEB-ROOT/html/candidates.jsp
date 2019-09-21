@@ -55,11 +55,11 @@ HttpSession s = request.getSession();
 				<table class="table table-hover tablefont">
 					<tbody id="tableList"/>
 				</table>
-				<div style="bottom: 10%">
-					<div id="paging" style="text-align: center; margin-left: 25%;">
-					</div>
-				</div>
 			</div>
+			<div style="bottom: 10%">
+                <div id="paging" style="text-align: center; margin-left: 25%;">
+                </div>
+            </div>
 		</div>
 	</div>
     <script type="text/javascript">

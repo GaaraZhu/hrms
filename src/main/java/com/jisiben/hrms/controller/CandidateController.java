@@ -37,14 +37,12 @@ public class CandidateController extends AbstractController<Candidate, Candidate
     public PageableSearchResultDTO<CandidateDTO> findAll(
             @RequestParam("name") String name,
             @RequestParam("phone") String phone,
-            @RequestParam("city") String city,
             @RequestParam("currentPage") int currentPage,
             @RequestParam("pageSize") int pageSize) {
         return doFindAll(
                 ImmutableMap.of(
                 "name", Optional.ofNullable(name),
-                "phone", Optional.ofNullable(phone),
-                "city", Optional.ofNullable(city)), currentPage, pageSize);
+                "phone", Optional.ofNullable(phone)), currentPage, pageSize);
     }
 
     @ResponseBody

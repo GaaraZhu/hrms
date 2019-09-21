@@ -21,7 +21,7 @@
             url : "candidates",
             type : "GET",
             async: true,
-            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&phone="+phone + "&city="+city,
+            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&phone="+phone,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 initTable(data, cp);
@@ -41,12 +41,20 @@
                     "id",
                     "name",
                     "gender",
-                    "phone",
                     "idNumber",
-                    "city",
-                    "address",
-                    "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-user'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-user'></span>删除</button>" ] ,
-            name : ["ID", "姓名", "性别", "电话", "身份证", "城市", "地址", "_opt" ],
+                    "phone",
+                    "ethnicity",
+                    "politicalStatus",
+                    "degree",
+                    "bornAddress",
+                    "currentAddress",
+                    "bankAccount",
+                    "bank",
+                    "emergencyContactName",
+                    "emergencyContactPhone",
+                    "emergencyContactRelationship",
+                    "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-user'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-user'></span> 删除</button>" ] ,
+            name : ["ID", "姓名", "性别", "身份证号", "电话号码", "民族", "政治面貌", "学历", "户籍地址", "当前住址", "银行卡号", "开户银行", "紧急联系人", "联系人电话", "联系人关系", "_opt" ],
             tid : "id",
             checkBox : "id"
         });
@@ -70,7 +78,7 @@
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#addCandidateList").load(
+                $("#addCandidatePage").load(
                     "WEB-ROOT/html/candidate.jsp",
                     function() {
                         $("#addModel").modal({
@@ -82,8 +90,16 @@
                             $("#gender").val(data.gender);
                             $("#idNumber").val(data.idNumber);
                             $("#phone").val(data.phone);
-                            $("#city").val(data.city);
-                            $("#address").val(data.address);
+                            $("#ethnicity").val(data.ethnicity);
+                            $("#degree").val(data.degree);
+                            $("#politicalStatus").val(data.politicalStatus);
+                            $("#bornAddress").val(data.bornAddress);
+                            $("#currentAddress").val(data.currentAddress);
+                            $("#bankAccount").val(data.bankAccount);
+                            $("#bank").val(data.bank);
+                            $("#emergencyContactName").val(data.emergencyContactName);
+                            $("#emergencyContactPhone").val(data.emergencyContactPhone);
+                            $("#emergencyContactRelationship").val(data.emergencyContactRelationship);
                             $("#submitType").val("POST")
                         }
                     });
@@ -158,6 +174,14 @@
 
                 }
             },
+            gender : {
+                validators : {
+                    notEmpty : {
+                        message : '性别不能为空'
+                    },
+
+                }
+            },
             phone : {
                 validators : {
                     notEmpty : {
@@ -173,14 +197,7 @@
                     },
 
                 }
-            },
-            city : {
-                validators : {
-                    notEmpty : {
-                        message : '城市不能为空'
-                    },
-                }
-            },
+            }
         }
     }).on(
         'success.form.bv',

@@ -27,7 +27,6 @@ public class CandidateServiceImpl extends AbstractService<Candidate> implements 
     public Page<Candidate> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
         String name = criteria.get("name").map(Object::toString).orElse(null);
         String phone = criteria.get("phone").map(Object::toString).orElse(null);
-        String city = criteria.get("city").map(Object::toString).orElse(null);
-        return candidateDao.findByNameAndPhoneAndCity(name, phone, city, new PageRequest(currentPage-1, pageSize));
+        return candidateDao.findByNameAndPhone(name, phone, new PageRequest(currentPage-1, pageSize));
     }
 }

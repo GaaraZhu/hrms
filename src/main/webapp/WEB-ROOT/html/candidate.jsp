@@ -32,6 +32,18 @@
 									type="text" class="form-control col-lg-35" name="gender"
 									id="gender" placeholder="请输入性别">
 								</div>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">民族</label>
+                                <div class="col-lg-35" style=" padding-top: 25px;">
+                                 <input
+                                    type="text" class="form-control col-lg-35" name="ethnicity"
+                                    id="ethnicity" placeholder="请输入民族">
+                                </div>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">学历</label>
+                                <div class="col-lg-35" style=" padding-top: 25px;">
+                                 <input
+                                    type="text" class="form-control col-lg-35" name="degree"
+                                    id="degree" placeholder="请输入学历">
+                                </div>
 								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">手机号码</label>
 								<div class="col-lg-35" style=" padding-top: 25px;">
 								 <input
@@ -44,17 +56,53 @@
 									type="text" class="form-control col-lg-35" name="idNumber"
 									id="idNumber" placeholder="请输入身份证号">
 								</div>
-								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">城市</label>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">政治面貌</label>
                                 <div class="col-lg-35" style=" padding-top: 25px;">
                                  <input
-                                    type="text" class="form-control col-lg-35" name="city"
-                                    id="city" placeholder="请输入城市">
+                                    type="text" class="form-control col-lg-35" name="politicalStatus"
+                                    id="politicalStatus" placeholder="请输入政治面貌">
                                 </div>
-                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">地址</label>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">户籍地址</label>
                                 <div class="col-lg-35" style=" padding-top: 25px;">
                                  <input
-                                    type="text" class="form-control col-lg-35" name="address"
-                                    id="address" placeholder="请输入地址">
+                                    type="text" class="form-control col-lg-35" name="bornAddress"
+                                    id="bornAddress" placeholder="请输入户籍地址">
+                                </div>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">当前住址</label>
+                                <div class="col-lg-35" style=" padding-top: 25px;">
+                                 <input
+                                    type="text" class="form-control col-lg-35" name="currentAddress"
+                                    id="currentAddress" placeholder="请输入当前住址">
+                                </div>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">银行卡号</label>
+                                <div class="col-lg-35" style=" padding-top: 25px;">
+                                 <input
+                                    type="text" class="form-control col-lg-35" name="bankAccount"
+                                    id="bankAccount" placeholder="请输入银行卡号">
+                                </div>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">开户银行</label>
+                                <div class="col-lg-35" style=" padding-top: 25px;">
+                                 <input
+                                    type="text" class="form-control col-lg-35" name="bank"
+                                    id="bank" placeholder="请输入开户银行">
+                                </div>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">紧急联系人</label>
+                                <div class="col-lg-35" style=" padding-top: 25px;">
+                                 <input
+                                    type="text" class="form-control col-lg-35" name="emergencyContactName"
+                                    id="emergencyContactName" placeholder="请输入紧急联系人">
+                                </div>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">联系人电话</label>
+                                <div class="col-lg-35" style=" padding-top: 25px;">
+                                 <input
+                                    type="text" class="form-control col-lg-35" name="emergencyContactPhone"
+                                    id="emergencyContactPhone" placeholder="请输入紧急联系人电话">
+                                </div>
+                                <label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">联系人关系</label>
+                                <div class="col-lg-35" style=" padding-top: 25px;">
+                                 <input
+                                    type="text" class="form-control col-lg-35" name="emergencyContactRelationship"
+                                    id="emergencyContactRelationship" placeholder="请输入紧急联系人关系">
                                 </div>
 								<input type="hidden" id="id" value="">
 							</div>
