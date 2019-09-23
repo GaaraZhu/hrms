@@ -154,6 +154,7 @@
                         keyboard : true
                     });
                     $("#uploadDataType").val("candidate");
+                    $("#uploadModalHeader").text("上传候选人");
             });
         }
     );

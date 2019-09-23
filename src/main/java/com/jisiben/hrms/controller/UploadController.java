@@ -1,10 +1,12 @@
 package com.jisiben.hrms.controller;
 
+import com.jisiben.hrms.controller.dto.CandidateDTO;
+import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.service.CandidateService;
-import com.jisiben.hrms.service.bean.CandidateBean;
 import com.poiji.bind.Poiji;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Controller
 public class UploadController {
@@ -26,8 +29,12 @@ public class UploadController {
     @Autowired
     private CandidateService candidateService;
 
+    @Autowired
+    @Qualifier("candidateEntityDTOMapper")
+    private Mapper<Candidate, CandidateDTO> mapper;
+
     @RequestMapping(value = "/uploadData", method = RequestMethod.POST)
-    public String uploadFile(Model model, MultipartFile file) throws IOException {
+    public String uploadFile(Model model, String uploadDataType, MultipartFile file) throws IOException {
         InputStream in = file.getInputStream();
         File currDir = new File(".");
         String path = currDir.getAbsolutePath();
@@ -39,11 +46,15 @@ public class UploadController {
         }
         f.flush();
         f.close();
+        logger.info("Upload type: "+ uploadDataType);
         logger.info("Upload file successfully: "+ fileLocation);
 
-        List<CandidateBean> candidates = Poiji.fromExcel(new File(fileLocation), CandidateBean.class);
-
-        candidates.forEach((CandidateBean c)->logger.info(c.toString()));
+        List<CandidateDTO> candidateDTOs = Poiji.fromExcel(new File(fileLocation), CandidateDTO.class);
+        List<Candidate> candidates = candidateDTOs.stream()
+                .skip(1)
+                .map((CandidateDTO dto)->mapper.toEntity(dto, new Candidate.Builder().build()))
+                .collect(Collectors.toList());
+        candidateService.saveAll(candidates);
 
         return "redirect:/index";
     }

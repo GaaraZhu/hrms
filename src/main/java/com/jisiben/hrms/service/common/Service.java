@@ -16,6 +16,8 @@ public interface Service<T extends PersistentRoot<T>> {
 
     Optional<T> save(T t);
 
+    Iterable<T> saveAll(List<T> t);
+
     Page<T> findAll(Pageable pageable);
 
     void delete(Long id);

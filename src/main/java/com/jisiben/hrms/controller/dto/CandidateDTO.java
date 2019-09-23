@@ -1,21 +1,50 @@
 package com.jisiben.hrms.controller.dto;
 
 import com.jisiben.hrms.controller.dto.common.DTORoot;
+import com.poiji.annotation.ExcelCell;
 
 public class CandidateDTO extends DTORoot<CandidateDTO> {
+
+    @ExcelCell(0)
     private String name;
+
+    @ExcelCell(1)
     private String gender;
+
+    @ExcelCell(2)
     private String idNumber;
+
+    @ExcelCell(3)
     private String phone;
+
+    @ExcelCell(4)
     private String ethnicity;
+
+    @ExcelCell(5)
     private String politicalStatus;
+
+    @ExcelCell(6)
     private String degree;
+
+    @ExcelCell(7)
     private String bornAddress;
+
+    @ExcelCell(8)
     private String currentAddress;
-    private String bank;
+
+    @ExcelCell(9)
     private String bankAccount;
+
+    @ExcelCell(10)
+    private String bank;
+
+    @ExcelCell(11)
     private String emergencyContactName;
+
+    @ExcelCell(12)
     private String emergencyContactPhone;
+
+    @ExcelCell(13)
     private String emergencyContactRelationship;
 
     public CandidateDTO(){}

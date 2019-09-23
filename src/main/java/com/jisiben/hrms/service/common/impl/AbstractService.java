@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 import org.springframework.data.domain.Page;
 
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractService<T extends PersistentRoot<T>> implements
@@ -26,5 +28,9 @@ public abstract class AbstractService<T extends PersistentRoot<T>> implements
     public abstract Dao<T, Long> getDao();
 
     public void delete(Long id) { getDao().delete(id); }
+
+    public Iterable<T> saveAll(List<T> ts) {
+        return getDao().save(ts);
+    }
 
 }
