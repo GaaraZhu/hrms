@@ -10,17 +10,17 @@
 		<form class="form-inline" role="form" id="selectUserVal">
 				<div class="row">
 					<div class="form-group inputselect col-lg-3">
-						<label for="name">用户姓名</label> <input type="text"
+						<label for="searchName">用户姓名</label> <input type="text"
 							class="form-control" id="searchName" name="searchName"
 						    placeholder="请输入姓名">
 					</div>
 					<div class="form-group inputselect col-lg-3">
-                        <label for="name">用户账号</label> <input type="text"
+                        <label for="searchAccount">用户账号</label> <input type="text"
                             class="form-control" id="searchAccount" name="searchAccount"
                             placeholder="请输入账号">
                     </div>
 					<div class="form-group inputselect col-lg-3">
-                        <label for="name">用户权限</label><br/>
+                        <label for="searchAuthority">用户权限</label><br/>
                         <select id="searchAuthority" name="searchAuthority" style="width: 85px;height: 32px;">
                             <option value="-1">所有用户</option>
                             <option value="0">普通用户</option>

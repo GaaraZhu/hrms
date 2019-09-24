@@ -10,7 +10,7 @@
 		<div id="addAlert">
 		</div>
 		<input type="hidden" id="submitType" value="PUT">
-		<div class="modal-dialog" style="width: 60%; ">
+		<div class="modal-dialog" style="width: 60%;">
 			<div class="modal-content" style="background: #F5F5F5;">
 				<div class="modal-header">
 					<button type="button" class="close" id="addAlertSubmit"
@@ -19,21 +19,21 @@
 				</div>
 				<form class="form-horizontal" role="form" id="userForm" >
 					<div class="modal-body" style="height: 60%;">
-						<div class="col-lg-10 col-md-9 col-sm-9 ">
+						<div class="col-lg-10 col-md-9 col-sm-9">
 							<div class="form-group " >
-								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">用户账号</label>
-								<div class="col-lg-35" style=" padding-top: 25px;">
+								<label for="account" class="col-lg-2 control-label" style="padding-top: 30px;">用户账号</label>
+								<div class="col-lg-35" style="padding-top: 25px;">
 									<input type="text" class=" form-control  " name="account"
 										id="account" placeholder="请输入用户账号">
 								</div>
-								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">用户姓名</label>
-								<div class="col-lg-35" style=" padding-top: 25px;">
+								<label for="name" class=" col-lg-2 control-label" style="padding-top: 30px;">用户姓名</label>
+								<div class="col-lg-35" style="padding-top: 25px;">
 								 <input
 									type="text" class="form-control col-lg-35" name="name"
 									id="name" placeholder="请输入用户姓名">
 								</div>
-								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">用户权限</label>
-                                <div class="col-lg-35" style=" padding-top: 25px;">
+								<label for="authority" class="col-lg-2 control-label" style="padding-top: 30px;">用户权限</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
                                  <select id="authority" name="authority" style="width: 85px;height: 32px;">
                                      <option value="0">普通用户</option>
                                      <option value="1">管理员</option>

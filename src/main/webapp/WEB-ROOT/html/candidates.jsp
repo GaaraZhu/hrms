@@ -14,17 +14,17 @@ HttpSession s = request.getSession();
 		<form class="form-inline" role="form" id="selectCandidatesVal">
 				<div class="row">
 					<div class="form-group inputselect col-lg-3">
-						<label for="name">姓名</label> <input type="text"
+						<label for="searchName">姓名</label> <input type="text"
 							class="form-control" id="searchName" name="searchName"
 						    placeholder="请输入姓名">
 					</div>
 					<div class="form-group inputselect col-lg-3">
-						<label for="name">电话</label> <input type="text"
+						<label for="searchPhone">电话</label> <input type="text"
 							class=" form-control" id="searchPhone" name="searchPhone"
 							placeholder="请输入电话">
 					</div>
 					<div class="form-group inputselect col-lg-3">
-                        <label for="name">城市</label> <input type="text"
+                        <label for="searchCity">城市</label> <input type="text"
                             class="form-control" id="searchCity" name="searchCity"
                             placeholder="请输入城市">
                     </div>

@@ -21,25 +21,25 @@
 					<div class="modal-body" style="height: 60%;">
 						<div class="col-lg-10 col-md-9 col-sm-9 ">
 							<div class="form-group " >
-								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">部门编号</label>
-								<div class="col-lg-35" style=" padding-top: 25px;">
-									<input type="text" class=" form-control  " name="number"
+								<label for="number" class="col-lg-2 control-label" style="padding-top: 30px;">部门编号</label>
+								<div class="col-lg-35" style="padding-top: 25px;">
+									<input type="text" class="form-control" name="number"
 										id="number" placeholder="请输入部门编号">
 								</div>
-								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">部门名称</label>
-								<div class="col-lg-35" style=" padding-top: 25px;">
+								<label for="name" class=" col-lg-2 control-label" style="padding-top: 30px;">部门名称</label>
+								<div class="col-lg-35" style="padding-top: 25px;">
 								 <input
 									type="text" class="form-control col-lg-35" name="name"
 									id="name" placeholder="请输入部门名称">
 								</div>
-								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">部门主管</label>
-								<div class="col-lg-35" style=" padding-top: 25px;">
+								<label for="manager" class="col-lg-2 control-label" style="padding-top: 30px;">部门主管</label>
+								<div class="col-lg-35" style="padding-top: 25px;">
 								 <input
 									type="text" class="form-control col-lg-35" name="manager"
 									id="manager" placeholder="请输入部门主管">
 								</div>
-								<label for="name" class=" col-lg-2 control-label" style=" padding-top: 30px;">部门电话</label>
-								<div class="col-lg-35" style=" padding-top: 25px;">
+								<label for="telephone" class="col-lg-2 control-label" style="padding-top: 30px;">部门电话</label>
+								<div class="col-lg-35" style="padding-top: 25px;">
 								 <input
 									type="text" class="form-control col-lg-35" name="telephone"
 									id="telephone" placeholder="请输入部门电话">
