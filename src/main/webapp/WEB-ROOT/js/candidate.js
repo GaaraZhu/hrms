@@ -111,7 +111,7 @@
     }
 
     function delF(id) {
-        $("#alert").load("WEB-ROOT/common/alert.jsp",
+        $("#alert").load("WEB-ROOT/html/common/alert.jsp",
             function(response, status, xhr) {
                 $('#alert').html(response);
             });
@@ -148,7 +148,7 @@
     $("#uploadCandidates").click(
         function(){
             $("#uploadCandidatesPage").load(
-                "WEB-ROOT/common/upload.jsp",
+                "WEB-ROOT/html/common/upload.jsp",
                 function() {
                     $("#addModel").modal({
                         keyboard : true
@@ -217,7 +217,7 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function(msg) {
-                 $( "#addAlert" ).load( "WEB-ROOT/common/alert.jsp", function( response, status, xhr ) {
+                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $('#addAlert').html(response);
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
@@ -226,7 +226,7 @@
                  });
             },
             error : function(msg) {
-                $( "#addAlert" ).load( "WEB-ROOT/common/alert.jsp", function( response, status, xhr ) {
+                $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $('#addAlert').html(response);
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
