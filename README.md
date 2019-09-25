@@ -81,4 +81,4 @@
 4. 部署war文件至web服务器，并启动web服务器
 
 5. 打开首页：http://localhost:8080/hrms
-   登陆名：admin，密码：admin
+   登陆名：admin，密码：123
