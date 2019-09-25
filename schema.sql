@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: hrms_db
 -- ------------------------------------------------------
--- Server version 5.6.24-enterprise-commercial-advanced
+-- Server version	5.6.24-enterprise-commercial-advanced
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -44,7 +44,7 @@ CREATE TABLE `candidate` (
   `lastUpdatedBy` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='候选人';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='候选人';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `candidate` (
 
 LOCK TABLES `candidate` WRITE;
 /*!40000 ALTER TABLE `candidate` DISABLE KEYS */;
-INSERT INTO `candidate` VALUES (1,'刘力','MALE','12334564543','321283193009845','上海','浦东新区张江川北公路1号',2,'admin','2019-08-22 22:44:27','admin','2019-08-22 22:44:27'),(2,'张勇','MALE','123456722342','321283193009845','上海','浦东新区张江川北公路1号',1,'admin','2019-08-24 23:09:44','admin','2019-08-24 23:09:44');
+INSERT INTO `candidate` VALUES (3,'刘云飞','MALE','15128903890','321283193009844','汉族','大专','党员','浦东新区张江路1号','浦东新区张江路1号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',2,'admin','2019-09-21 21:35:14','admin','2019-09-22 11:31:12'),(10,'张飞','MALE','12345678901','321283199903027214','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34'),(11,'刘丽','FEMALE','15672348901','521283199903027290','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34'),(12,'赵云','MALE','10112345678','721283199903027x78','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34'),(13,'李强','MALE','16789011234','412283199903027215','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34'),(14,'陈冰','FEMALE','14125678901','621283199903027267','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34');
 /*!40000 ALTER TABLE `candidate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,7 +76,7 @@ CREATE TABLE `department` (
   `lastUpdatedBy` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='公司部门表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='公司部门表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +85,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'财务','001','赵飞','15685638704',3,'admin','2019-08-19 22:17:41','admin','2019-08-19 22:17:41'),(2,'销售','002','刘春燕','14565638701',0,'admin','2019-08-19 22:17:41','admin','2019-08-19 22:17:41'),(3,'后勤','003','刘勇','16265732724',0,'admin','2019-08-19 22:17:42','admin','2019-08-19 22:17:42'),(5,'研发','004','张力','0273697573',1,'admin','2019-08-20 22:39:59','admin','2019-08-20 22:39:59');
+INSERT INTO `department` VALUES (1,'财务','001','赵飞','15685638704',12,'admin','2019-08-19 22:17:41','admin','2019-09-07 10:50:50'),(2,'销售','002','刘春燕','14565638701',0,'admin','2019-08-19 22:17:41','admin','2019-08-19 22:17:41'),(3,'后勤','003','刘勇','16265732724',0,'admin','2019-08-19 22:17:42','admin','2019-08-19 22:17:42'),(5,'研发','004','张力','0273697573',1,'admin','2019-08-20 22:39:59','admin','2019-08-20 22:39:59'),(7,'客服','006','张什么','0273697573',1,'admin','2019-09-07 10:16:57','admin','2019-09-07 10:16:57');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +114,7 @@ CREATE TABLE `job` (
   `lastUpdatedBy` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='企业职位表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='企业职位表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +123,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
+INSERT INTO `job` VALUES (1,'盒马生鲜','上海','骑手','0','7000-9000',50,1,1,1000,'10月底有效！！！',1,'admin','2019-08-28 21:11:43','james','2019-08-28 21:11:43');
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,13 +139,14 @@ CREATE TABLE `user` (
   `account` varchar(20) NOT NULL,
   `password` varchar(120) NOT NULL,
   `name` varchar(20) NOT NULL,
+  `authority` int(1) DEFAULT NULL,
   `jpaVersion` int(11) NOT NULL,
   `createdBy` varchar(20) NOT NULL,
   `createdTime` datetime NOT NULL,
   `lastUpdatedBy` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='后台用户';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='后台用户';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +155,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','81dd6e3a5c7dd1c701201ef5a2e59f6100e3ac0baa10eb5b14600bc18b29cdeaa7ac97ef816a471d','administrator',0,'admin','2019-08-19 22:16:32','admin','2019-08-19 22:16:32');
+INSERT INTO `user` VALUES (1,'admin','86888061b399e74e30eeead8c7aab922','administrator',1,0,'admin','2019-08-19 22:16:32','admin','2019-08-19 22:16:32'),(2,'gary','010787e658be76708b40aa336e482293','gary',0,12,'admin','2019-08-19 22:16:32','admin','2019-09-12 21:06:47');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -166,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-27 22:20:22
+-- Dump completed on 2019-09-25 20:40:19
