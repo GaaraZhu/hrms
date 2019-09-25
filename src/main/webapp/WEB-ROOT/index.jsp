@@ -10,7 +10,7 @@
         <link rel="stylesheet"
         	href="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet"
-        	href="<%=request.getContextPath() %>/WEB-ROOT/css/common.css">
+        	href="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/css/common.css">
         <link type="text/css" rel="stylesheet"
         href="<%=request.getContextPath() %>/WEB-ROOT/rvnm/assets/css/all.min.css" />
         <link type="text/css" rel="stylesheet"
