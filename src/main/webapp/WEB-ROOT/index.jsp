@@ -143,7 +143,7 @@
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/lTable.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/bootstrapValidator.js"></script>
         <script>
-             $( "#frame" ).load( "WEB-ROOT/html/departments.jsp", function( response, status, xhr ) {
+             $( "#frame" ).load( "WEB-ROOT/html/candidates.jsp", function( response, status, xhr ) {
                     $('#frame').html(response);
                     $("#headTitle").text(" 首页/ 系统管理/ 部门管理");
              });
