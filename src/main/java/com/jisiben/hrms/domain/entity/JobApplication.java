@@ -4,6 +4,8 @@ import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
 import com.jisiben.hrms.domain.entity.common.PersistentRoot;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -11,8 +13,12 @@ import java.util.Date;
 @Table(name = "JobApplication")
 public class JobApplication extends PersistentRoot<JobApplication> {
 
+    @ManyToOne
+    @JoinColumn(name = "jobId")
     private Job job;
 
+    @ManyToOne
+    @JoinColumn(name = "candidateId")
     private Candidate candidate;
 
     private String referee;
