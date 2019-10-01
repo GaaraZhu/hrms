@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "JobApplication")
+@Table(name = "jobApplication")
 public class JobApplication extends PersistentRoot<JobApplication> {
 
     @ManyToOne
@@ -29,7 +29,9 @@ public class JobApplication extends PersistentRoot<JobApplication> {
 
     private JobApplicationStatus status;
 
-    private Date onBoardedOrResignedDate;
+    private Date onBoardedTime;
+
+    private Date resignedTime;
 
     public JobApplication() {
     }
@@ -42,7 +44,8 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         this.refereePhone=builder.refereePhone;
         this.applicationDate=builder.applicationDate;
         this.status=builder.status;
-        this.onBoardedOrResignedDate=builder.onBoardedOrResignedDate;
+        this.onBoardedTime=builder.onBoardedTime;
+        this.resignedTime=builder.resignedTime;
     }
 
     public Job getJob() {
@@ -99,12 +102,21 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         return this;
     }
 
-    public Date getOnBoardedOrResignedDate() {
-        return onBoardedOrResignedDate;
+    public Date getOnBoardedTime() {
+        return onBoardedTime;
     }
 
-    public JobApplication onBoardedOrResignedDate(Date onBoardedOrResignedDate) {
-        this.onBoardedOrResignedDate = onBoardedOrResignedDate;
+    public JobApplication onBoardedTime(Date onBoardedTime) {
+        this.onBoardedTime = onBoardedTime;
+        return this;
+    }
+
+    public Date getResignedDate() {
+        return resignedTime;
+    }
+
+    public JobApplication resignedTime(Date resignedTime) {
+        this.resignedTime = resignedTime;
         return this;
     }
 
@@ -116,7 +128,8 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         private String refereePhone;
         private Date applicationDate;
         private JobApplicationStatus status;
-        private Date onBoardedOrResignedDate;
+        private Date onBoardedTime;
+        private Date resignedTime;
 
         public Builder job(Job job) {
             this.job = job;
@@ -148,8 +161,13 @@ public class JobApplication extends PersistentRoot<JobApplication> {
             return this;
         }
 
-        public Builder onBoardedOrResignedDate(Date onBoardedOrResignedDate) {
-            this.onBoardedOrResignedDate = onBoardedOrResignedDate;
+        public Builder onBoardedTime(Date onBoardedTime) {
+            this.onBoardedTime = onBoardedTime;
+            return this;
+        }
+
+        public Builder resignedTime(Date resignedTime) {
+            this.resignedTime = resignedTime;
             return this;
         }
 
