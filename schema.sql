@@ -44,7 +44,7 @@ CREATE TABLE `candidate` (
   `lastUpdatedBy` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='候选人';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='候选人表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,6 +128,45 @@ INSERT INTO `job` VALUES (1,'盒马生鲜','上海','骑手','0','7000-9000',50,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `jobApplication`
+--
+
+DROP TABLE IF EXISTS `jobApplication`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jobApplication` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jobId` int(11) NOT NULL,
+  `candidateId` int(11) NOT NULL,
+  `referee` varchar(20) DEFAULT NULL,
+  `refereePhone` varchar(20) DEFAULT NULL,
+  `applicationDate` datetime NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `onBoardedTime` datetime NOT NULL,
+  `resignedTime` datetime NOT NULL,
+  `jpaVersion` int(11) NOT NULL,
+  `createdBy` varchar(20) NOT NULL,
+  `createdTime` datetime NOT NULL,
+  `lastUpdatedBy` varchar(20) NOT NULL,
+  `lastUpdatedTime` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `jobId` (`jobId`),
+  KEY `candidateId` (`candidateId`),
+  CONSTRAINT `jobapplication_ibfk_1` FOREIGN KEY (`jobId`) REFERENCES `job` (`id`),
+  CONSTRAINT `jobapplication_ibfk_2` FOREIGN KEY (`candidateId`) REFERENCES `candidate` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='求职信息表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobApplication`
+--
+
+LOCK TABLES `jobApplication` WRITE;
+/*!40000 ALTER TABLE `jobApplication` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jobApplication` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -146,7 +185,7 @@ CREATE TABLE `user` (
   `lastUpdatedBy` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='后台用户';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='后台用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,4 +207,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-25 20:40:19
+-- Dump completed on 2019-10-01 20:55:01
