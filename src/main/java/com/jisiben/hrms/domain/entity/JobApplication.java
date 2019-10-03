@@ -3,10 +3,7 @@ package com.jisiben.hrms.domain.entity;
 import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
 import com.jisiben.hrms.domain.entity.common.PersistentRoot;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -25,12 +22,15 @@ public class JobApplication extends PersistentRoot<JobApplication> {
 
     private String refereePhone;
 
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date applicationDate;
 
     private JobApplicationStatus status;
 
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date onBoardedTime;
 
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date resignedTime;
 
     public JobApplication() {
