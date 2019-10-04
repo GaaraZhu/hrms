@@ -140,7 +140,6 @@ CREATE TABLE `jobApplication` (
   `candidateId` int(11) NOT NULL,
   `referee` varchar(20) DEFAULT NULL,
   `refereePhone` varchar(20) DEFAULT NULL,
-  `applicationDate` datetime NOT NULL,
   `status` varchar(20) NOT NULL,
   `onBoardedTime` datetime NOT NULL,
   `resignedTime` datetime NOT NULL,

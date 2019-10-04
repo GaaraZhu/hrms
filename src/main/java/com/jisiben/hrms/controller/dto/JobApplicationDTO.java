@@ -3,6 +3,8 @@ package com.jisiben.hrms.controller.dto;
 import com.jisiben.hrms.controller.dto.common.DTORoot;
 
 public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
+    private int candidateId;
+    private int jobId;
     private String name;
     private String phone;
     private String idNumber;
@@ -13,7 +15,8 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
     private String jobName;
     private String applicationTime;
     private String status;
-    private String onBoardedOrResignedTime;
+    private String onBoardedTime;
+    private String resignedTime;
     private String lastUpdatedTime;
 
     public JobApplicationDTO() {
@@ -21,6 +24,8 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
 
     private JobApplicationDTO(JobApplicationDTO.Builder builder) {
         super(builder);
+        this.candidateId=builder.candidateId;
+        this.jobId=builder.jobId;
         this.name=builder.name;
         this.phone=builder.phone;
         this.idNumber=builder.idNumber;
@@ -31,7 +36,8 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         this.jobName=builder.jobName;
         this.applicationTime=builder.applicationTime;
         this.status=builder.status;
-        this.onBoardedOrResignedTime=builder.onBoardedOrResignedTime;
+        this.onBoardedTime=builder.onBoardedTime;
+        this.resignedTime=builder.resignedTime;
         this.lastUpdatedTime=builder.lastUpdatedTime;
     }
 
@@ -75,15 +81,29 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         return status;
     }
 
-    public String getOnBoardedOrResignedTime() {
-        return onBoardedOrResignedTime;
+    public String getOnBoardedTime() {
+        return onBoardedTime;
+    }
+
+    public String getResignedTime() {
+        return resignedTime;
     }
 
     public String getLastUpdatedTime() {
         return lastUpdatedTime;
     }
 
+    public int getCandidateId() {
+        return candidateId;
+    }
+
+    public int getJobId() {
+        return jobId;
+    }
+
     public static class Builder extends DTORoot.Builder<JobApplicationDTO.Builder, JobApplicationDTO> {
+        private int candidateId;
+        private int jobId;
         private String name;
         private String phone;
         private String idNumber;
@@ -94,8 +114,19 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         private String jobName;
         private String applicationTime;
         private String status;
-        private String onBoardedOrResignedTime;
+        private String onBoardedTime;
+        private String resignedTime;
         private String lastUpdatedTime;
+
+        public Builder candidateId(int candidateId) {
+            this.candidateId = candidateId;
+            return this;
+        }
+
+        public Builder jobId(int jobId) {
+            this.jobId = jobId;
+            return this;
+        }
 
         public Builder name(String name) {
             this.name = name;
@@ -147,8 +178,13 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
             return this;
         }
 
-        public Builder onBoardedOrResignedTime(String onBoardedOrResignedTime) {
-            this.onBoardedOrResignedTime = onBoardedOrResignedTime;
+        public Builder onBoardedTime(String onBoardedTime) {
+            this.onBoardedTime = onBoardedTime;
+            return this;
+        }
+
+        public Builder resignedTime(String resignedTime) {
+            this.resignedTime = resignedTime;
             return this;
         }
 
