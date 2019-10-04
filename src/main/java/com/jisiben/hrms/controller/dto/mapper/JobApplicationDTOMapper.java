@@ -13,8 +13,26 @@ public class JobApplicationDTOMapper implements Mapper<JobApplication, JobApplic
 
     @Override
     public JobApplicationDTO toDTO(JobApplication entity) {
-        return new JobApplicationDTO.Builder() //TODO: FIXME
+        String onBoardedOrResignedTime;
+        if (entity.getOnBoardedTime() != null) {
+            onBoardedOrResignedTime = sm.format(entity.getOnBoardedTime());
+        } else {
+            onBoardedOrResignedTime = sm.format(entity.getResignedDate());
+        }
+        return new JobApplicationDTO.Builder()
                 .id(entity.getId())
+                .name(entity.getCandidate().getName())
+                .phone(entity.getCandidate().getPhone())
+                .idNumber(entity.getCandidate().getIdNumber())
+                .referee(entity.getReferee())
+                .refereePhone(entity.getRefereePhone())
+                .company(entity.getJob().getCompany())
+                .city(entity.getJob().getCity())
+                .jobName(entity.getJob().getName())
+                .applicationTime(sm.format(entity.getCreatedTime()))
+                .status(entity.getStatus().toString())
+                .onBoardedOrResignedTime(onBoardedOrResignedTime)
+                .lastUpdatedTime(sm.format(entity.getLastUpdatedTime()))
                 .build();
     }
 
