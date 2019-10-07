@@ -36,8 +36,8 @@ public class JobApplicationController extends AbstractController<JobApplication,
             @RequestParam("city")String city,
             @RequestParam("jobId")Integer jobId,
             @RequestParam("hasReferee")Boolean hasReferee,
-            @RequestParam("phone")String phone,
-            @RequestParam("name")String name,
+            @RequestParam("candidate")String candidate,
+            @RequestParam("referee")String referee,
             @RequestParam("status")String status,
             @RequestParam("fromTime") Date fromTime,
             @RequestParam("toTime") Date toTime,
@@ -49,8 +49,8 @@ public class JobApplicationController extends AbstractController<JobApplication,
                         .put("city", Optional.ofNullable(city))
                         .put("jobId", Optional.ofNullable(jobId))
                         .put("hasReferee", Optional.ofNullable(hasReferee))
-                        .put("phone", Optional.ofNullable(phone))
-                        .put("name", Optional.ofNullable(name))
+                        .put("candidate", Optional.ofNullable(candidate))
+                        .put("referee", Optional.ofNullable(referee))
                         .put("status", Optional.ofNullable(status))
                         .put("fromTime", Optional.ofNullable(fromTime))
                         .put("toTime", Optional.ofNullable(toTime)).build(), currentPage, pageSize);

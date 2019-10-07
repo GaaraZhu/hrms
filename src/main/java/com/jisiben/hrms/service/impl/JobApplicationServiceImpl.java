@@ -38,12 +38,12 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
         String city = criteria.get("city").map(Object::toString).orElse(null);
         Integer jobId = criteria.get("jobId").map(Integer.class::cast).orElse(null);
         Boolean hasReferee = criteria.get("hasReferee").map(Boolean.class::cast).orElse(null);
-        String phone = criteria.get("phone").map(Object::toString).orElse(null);
-        String name = criteria.get("name").map(Object::toString).orElse(null);
+        String candidate = criteria.get("candidate").map(Object::toString).orElse(null);
+        String referee = criteria.get("referee").map(Object::toString).orElse(null);
         String status = criteria.get("status").map(Object::toString).orElse(null);
         Date fromTime = criteria.get("fromTime").map(Date.class::cast).orElse(null);
         Date toTime = criteria.get("toTime").map(Date.class::cast).orElse(null);
 
-        return dao.findJobApplications(company, city, jobId, hasReferee, phone, name, status, fromTime, toTime, new PageRequest(currentPage - 1, pageSize));
+        return dao.findJobApplications(company, city, jobId, hasReferee, candidate, referee, status, fromTime, toTime, new PageRequest(currentPage - 1, pageSize));
     }
 }
