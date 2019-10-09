@@ -34,7 +34,7 @@ public class JobApplicationController extends AbstractController<JobApplication,
     public PageableSearchResultDTO<JobApplicationDTO> findAll(
             @RequestParam("company")String company,
             @RequestParam("city")String city,
-            @RequestParam("jobId")Integer jobId,
+            @RequestParam("jobName")String jobName,
             @RequestParam("hasReferee")Boolean hasReferee,
             @RequestParam("candidate")String candidate,
             @RequestParam("referee")String referee,
@@ -47,7 +47,7 @@ public class JobApplicationController extends AbstractController<JobApplication,
                 ImmutableMap.<String, Optional<Object>>builder()
                         .put("company", Optional.ofNullable(company))
                         .put("city", Optional.ofNullable(city))
-                        .put("jobId", Optional.ofNullable(jobId))
+                        .put("jobName", Optional.ofNullable(jobName))
                         .put("hasReferee", Optional.ofNullable(hasReferee))
                         .put("candidate", Optional.ofNullable(candidate))
                         .put("referee", Optional.ofNullable(referee))

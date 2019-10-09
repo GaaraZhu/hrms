@@ -54,7 +54,8 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="#">
+                                <a href="javascript:void(0)"
+                                    onclick="htmlDispatcher('WEB-ROOT/html/jobApplications.jsp',' 首页/ 求职管理/ 求职信息','求职信息')">
                                     求职信息
                                 </a>
                             </li>
