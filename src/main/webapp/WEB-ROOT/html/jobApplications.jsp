@@ -8,40 +8,29 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectJobApplicationsVal">
 				<div class="row">
-					<div class="form-group inputselect col-lg-2">
+					<div class="form-group inputselect">
 						<label for="searchCompany">应聘企业</label> <input type="text"
 							class="form-control" id="searchCompany" name="searchCompany"
 						    placeholder="企业">
 					</div>
-					<div class="form-group inputselect col-lg-2">
+					<div class="form-group inputselect">
 						<label for="searchCity">应聘城市</label> <input type="text"
 							class=" form-control" id="searchCity" name="searchCity"
 							placeholder="城市">
 					</div>
-					<div class="form-group inputselect col-lg-2">
+					<div class="form-group inputselect">
                         <label for="searchJobName">应聘职位</label> <input type="text"
                             class="form-control" id="searchJobName" name="searchJobName"
                             placeholder="职位名称">
                     </div>
-                    <div class="form-group inputselect col-lg-2">
+                    <div class="form-group inputselect" style="margin-left: 63px;">
                         <label for="searchCandidate">求职者</label> <input type="text"
                             class="form-control" id="searchCandidate" name="searchCandidate"
                             placeholder="姓名或手机号">
                     </div>
-                    <div class="form-group inputselect col-lg-2">
-                        <label for="searchHasReferee">有无推荐人</label><br/>
-                        <select id="searchHasReferee" name="searchHasReferee" style="width: 170px;height: 32px;">
-                            <option value="1">有</option>
-                            <option value="0">无</option>
-                        </select>
-                    </div>
-                    <div class="form-group inputselect col-lg-2">
-                        <label for="searchReferee">推荐人</label> <input type="text"
-                            class="form-control" id="searchReferee" name="searchReferee"
-                            placeholder="姓名或手机号">
-                    </div>
-                    <div class="form-group inputselect col-lg-2">
-                        <label for="searchStatus">处理状态</label><br/>
+
+                    <div class="form-group inputselect">
+                        <label for="searchStatus">处理状态</label>
                         <select id="searchStatus" name="searchStatus" style="width: 170px;height: 32px;">
                             <option value="NEW">未处理</option>
                             <option value="FAILED">申请失败</option>
@@ -57,7 +46,29 @@
                         </select>
                     </div>
 
-                    <div class="form-group inputselect col-lg-4">
+                    <div class="form-group inputselect" style="margin-left: 41px;">
+                        <label for="searchHasReferee">有无推荐人</label>
+                        <select id="searchHasReferee" name="searchHasReferee" style="width: 170px;height: 32px;">
+                            <option value="1">有</option>
+                            <option value="0">无</option>
+                        </select>
+                    </div>
+                    <div class="form-group inputselect" style="margin-left: 63px;">
+                        <label for="searchReferee">推荐人</label> <input type="text"
+                            class="form-control" id="searchReferee" name="searchReferee"
+                            placeholder="姓名或手机号">
+                    </div>
+
+                    <div class="form-group inputselect">
+                        <label for="searchFromTime">求职/推荐时间</label> <input type="text"
+                            class="form-control" id="searchFromTime" name="searchFromTime"
+                            placeholder="年年年年-月月-日日"> -
+                         <input type="text"
+                             class="form-control" id="searchToTime" name="searchToTime"
+                             placeholder="年年年年-月月-日日">
+                    </div>
+
+                    <div class="form-group inputselect" style="padding-left: 600px;" >
                         <button type="button" class="btn btn-success btn-sm"
                             id="search">
                             <span class="glyphicon glyphicon-user"></span> 搜索
@@ -67,12 +78,11 @@
                             id="reset">
                             <span class="glyphicon glyphicon-user"></span> 重置
                         </button>
-                    </div>
-					<div class="form-group inputselect col-lg-2">
-                        <button type="button" class="btn btn-info btn-sm" style="margin-left: 225px" id="addJobApplication">
+
+                        <button type="button" class="btn btn-info btn-sm" id="addJobApplication">
                             <span class="glyphicon glyphicon-user"></span> 新增求职记录
                         </button>
-					</div>
+                    </div>
 				</div>
 			</form>
 			<form class="form-inline" role="form"></form>
