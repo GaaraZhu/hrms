@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="form-group inputselect">
-                        <label for="searchFromTime">求职/推荐时间</label> <input type="text"
+                        <label for="searchFromTime">求职时间</label> <input type="text"
                             class="form-control" id="searchFromTime" name="searchFromTime"
                             placeholder="年年年年-月月-日日"> -
                          <input type="text"
