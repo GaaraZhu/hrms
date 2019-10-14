@@ -29,7 +29,7 @@ public class JobApplicationDTOMapper implements Mapper<JobApplication, JobApplic
                 .city(entity.getJob().getCity())
                 .jobName(entity.getJob().getName())
                 .applicationTime(sm.format(entity.getCreatedTime()))
-                .status(entity.getStatus().toString())
+                .status(entity.getStatus().getValue())
                 .onBoardedTime(entity.getOnBoardedTime()!=null?sm.format(entity.getOnBoardedTime()):"")
                 .resignedTime(entity.getResignedDate()!=null?sm.format(entity.getResignedDate()):"")
                 .lastUpdatedTime(sm.format(entity.getLastUpdatedTime()))
