@@ -10,11 +10,11 @@ import java.util.Date;
 @Table(name = "jobApplication")
 public class JobApplication extends PersistentRoot<JobApplication> {
 
-    @ManyToOne
+    @ManyToOne(targetEntity=Job.class)
     @JoinColumn(name = "jobId")
     private Job job;
 
-    @ManyToOne
+    @ManyToOne(targetEntity=Candidate.class)
     @JoinColumn(name = "candidateId")
     private Candidate candidate;
 
@@ -22,6 +22,7 @@ public class JobApplication extends PersistentRoot<JobApplication> {
 
     private String refereePhone;
 
+    @Enumerated(EnumType.STRING)
     private JobApplicationStatus status;
 
     @Temporal(value = TemporalType.TIMESTAMP)
