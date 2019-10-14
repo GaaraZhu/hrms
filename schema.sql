@@ -44,7 +44,7 @@ CREATE TABLE `candidate` (
   `lastUpdatedBy` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='候选人表';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='候选人';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,8 +141,8 @@ CREATE TABLE `jobApplication` (
   `referee` varchar(20) DEFAULT NULL,
   `refereePhone` varchar(20) DEFAULT NULL,
   `status` varchar(20) NOT NULL,
-  `onBoardedTime` datetime NOT NULL,
-  `resignedTime` datetime NOT NULL,
+  `onBoardedTime` datetime DEFAULT NULL,
+  `resignedTime` datetime DEFAULT NULL,
   `jpaVersion` int(11) NOT NULL,
   `createdBy` varchar(20) NOT NULL,
   `createdTime` datetime NOT NULL,
@@ -153,7 +153,7 @@ CREATE TABLE `jobApplication` (
   KEY `candidateId` (`candidateId`),
   CONSTRAINT `jobapplication_ibfk_1` FOREIGN KEY (`jobId`) REFERENCES `job` (`id`),
   CONSTRAINT `jobapplication_ibfk_2` FOREIGN KEY (`candidateId`) REFERENCES `candidate` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='求职信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='求职信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,6 +162,7 @@ CREATE TABLE `jobApplication` (
 
 LOCK TABLES `jobApplication` WRITE;
 /*!40000 ALTER TABLE `jobApplication` DISABLE KEYS */;
+INSERT INTO `jobApplication` VALUES (1,1,3,'张群','15790476239','WAITING_INTERVIEW',NULL,NULL,1,'gary','2019-10-14 22:49:32','gary','2019-10-14 22:49:32');
 /*!40000 ALTER TABLE `jobApplication` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +185,7 @@ CREATE TABLE `user` (
   `lastUpdatedBy` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='后台用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='后台用户';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,4 +207,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-01 20:55:01
+-- Dump completed on 2019-10-14 23:28:09
