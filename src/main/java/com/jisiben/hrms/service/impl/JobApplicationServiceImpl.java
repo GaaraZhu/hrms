@@ -6,6 +6,7 @@ import com.jisiben.hrms.domain.entity.JobApplication;
 import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
 import com.jisiben.hrms.service.JobApplicationService;
 import com.jisiben.hrms.service.common.impl.AbstractService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,7 +43,7 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
         String candidate = criteria.get("candidate").map(Object::toString).orElse(null);
         String referee = criteria.get("referee").map(Object::toString).orElse(null);
         String statusString = criteria.get("status").map(Object::toString).orElse(null);
-        JobApplicationStatus status = JobApplicationStatus.valueOf(statusString);
+        JobApplicationStatus status = StringUtils.isEmpty(statusString)?null:JobApplicationStatus.valueOf(statusString);
         Date fromTime = criteria.get("fromTime").map(Date.class::cast).orElse(null);
         Date toTime = criteria.get("toTime").map(Date.class::cast).orElse(null);
 

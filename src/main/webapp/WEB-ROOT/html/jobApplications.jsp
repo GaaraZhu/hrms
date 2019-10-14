@@ -32,6 +32,7 @@
                     <div class="form-group inputselect">
                         <label for="searchStatus">处理状态</label>
                         <select id="searchStatus" name="searchStatus" style="width: 170px;height: 32px;">
+                            <option value=""></option>
                             <option value="NEW">未处理</option>
                             <option value="FAILED">申请失败</option>
                             <option value="WAITING_INTERVIEW">等待面试</option>
