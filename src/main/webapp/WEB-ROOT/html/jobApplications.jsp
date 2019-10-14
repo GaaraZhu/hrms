@@ -50,6 +50,7 @@
                     <div class="form-group inputselect" style="margin-left: 41px;">
                         <label for="searchHasReferee">有无推荐人</label>
                         <select id="searchHasReferee" name="searchHasReferee" style="width: 170px;height: 32px;">
+                            <option value=""></option>
                             <option value="1">有</option>
                             <option value="0">无</option>
                         </select>
