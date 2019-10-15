@@ -70,19 +70,9 @@
                              placeholder="年年年年-月月-日日">
                     </div>
 
-                    <div class="form-group inputselect" style="padding-left: 600px;" >
-                        <button type="button" class="btn btn-success btn-sm"
-                            id="search">
+                    <div class="form-group inputselect" style="margin-left: 40px;">
+                        <button type="button" class="btn btn-success btn-sm" id="search">
                             <span class="glyphicon glyphicon-user"></span> 搜索
-                        </button>
-
-                        <button type="button" class="btn btn-success btn-sm"
-                            id="reset">
-                            <span class="glyphicon glyphicon-user"></span> 重置
-                        </button>
-
-                        <button type="button" class="btn btn-info btn-sm" id="addJobApplication">
-                            <span class="glyphicon glyphicon-user"></span> 新增求职记录
                         </button>
                     </div>
 				</div>
