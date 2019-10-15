@@ -42,11 +42,14 @@
                             <span class="glyphicon glyphicon-user"></span> 重置
                         </button>
                     </div>
-					<div class="form-group inputselect col-lg-2">
-                        <button type="button" class="btn btn-info btn-sm" style="margin-left: 225px" id="addJob">
+					<div class="form-group inputselect col-lg-4">
+                        <button type="button" class="btn btn-info btn-sm" id="addJob" style="margin-left: 130px;">
                             <span class="glyphicon glyphicon-user"></span> 新增职位
                         </button>
-					</div>
+                        <button type="button" class="btn btn-info btn-sm" id="addJobApplication">
+                            <span class="glyphicon glyphicon-user"></span> 新增申请
+                        </button>
+                    </div>
 				</div>
 			</form>
 			<form class="form-inline" role="form"></form>
