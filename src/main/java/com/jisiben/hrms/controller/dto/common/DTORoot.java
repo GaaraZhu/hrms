@@ -49,22 +49,22 @@ public abstract class DTORoot<T extends DTORoot> {
             return (T)this;
         }
 
-        public T setCreator(String creator) {
+        public T creator(String creator) {
             this.creator = creator;
             return (T)this;
         }
 
-        public T setCreatedTime(String createdTime) {
+        public T createdTime(String createdTime) {
             this.createdTime = createdTime;
             return (T)this;
         }
 
-        public T setUpdater(String updater) {
+        public T updater(String updater) {
             this.updater = updater;
             return (T)this;
         }
 
-        public T setUpdatedTime(String updatedTime) {
+        public T updatedTime(String updatedTime) {
             this.updatedTime = updatedTime;
             return (T)this;
         }

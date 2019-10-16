@@ -5,6 +5,8 @@ import com.jisiben.hrms.controller.dto.common.DTORoot;
 public class JobDTO extends DTORoot<JobDTO>{
     private String company;
     private String city;
+    private String district;
+    private String address;
     private String name;
     private String salaryRange;
     private String type;
@@ -21,6 +23,8 @@ public class JobDTO extends DTORoot<JobDTO>{
         super(builder);
         this.company=builder.company;
         this.city=builder.city;
+        this.district=builder.district;
+        this.address=builder.address;
         this.name=builder.name;
         this.salaryRange=builder.salaryRange;
         this.type=builder.type;
@@ -69,9 +73,19 @@ public class JobDTO extends DTORoot<JobDTO>{
         return referralBonusAmount;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public static class Builder extends DTORoot.Builder<Builder, JobDTO> {
         private String company;
         private String city;
+        private String district;
+        private String address;
         private String name;
         private String salaryRange;
         private String type;
@@ -83,53 +97,63 @@ public class JobDTO extends DTORoot<JobDTO>{
 
         public Builder(){}
 
-        public Builder setCompany(String company) {
+        public Builder company(String company) {
             this.company = company;
             return this;
         }
 
-        public Builder setCity(String city) {
+        public Builder city(String city) {
             this.city = city;
             return this;
         }
 
-        public Builder setName(String name) {
+        public Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder setSalaryRange(String salaryRange) {
+        public Builder salaryRange(String salaryRange) {
             this.salaryRange = salaryRange;
             return this;
         }
 
-        public Builder setType(String type) {
+        public Builder type(String type) {
             this.type = type;
             return this;
         }
 
-        public Builder setQuota(int quota) {
+        public Builder quota(int quota) {
             this.quota = quota;
             return this;
         }
 
-        public Builder setReferralBonus(String referralBonus) {
+        public Builder referralBonus(String referralBonus) {
             this.referralBonus = referralBonus;
             return this;
         }
 
-        public Builder setReferralBonusAmount(int referralBonusAmount) {
+        public Builder referralBonusAmount(int referralBonusAmount) {
             this.referralBonusAmount = referralBonusAmount;
             return this;
         }
 
-        public Builder setActive(String active) {
+        public Builder active(String active) {
             this.active = active;
             return this;
         }
 
-        public Builder setNote(String note) {
+        public Builder note(String note) {
             this.note = note;
+            return this;
+        }
+
+        public Builder district(String district) {
+            this.district = district;
+            return this;
+        }
+
+        public Builder address(String address) {
+            this.address = address;
             return this;
         }
 

@@ -43,6 +43,8 @@
                     "id",
                     "company",
                     "city",
+                    "district",
+                    "address",
                     "name",
                     "salaryRange",
                     "type",
@@ -53,7 +55,7 @@
                     "createdTime",
                     "active",
                     "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-user'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-user'></span>删除</button>" ] ,
-            name : ["ID", "所属企业", "城市", "名称", "待遇", "性质", "招聘人数", "推荐有奖", "奖励金额", "发布人", "发布时间", "是否有效", "_opt" ],
+            name : ["ID", "企业", "城市", "区域", "地址", "职位名称", "待遇", "工作性质", "招聘人数", "推荐有奖", "奖励金额", "发布人", "发布时间", "是否有效", "_opt" ],
             tid : "id",
             checkBox : "id"
         });
@@ -87,6 +89,8 @@
                             $("#id").val(data.id);
                             $("#company").val(data.company);
                             $("#city").val(data.city);
+                            $("#district").val(data.district);
+                            $("#address").val(data.address);
                             $("#name").val(data.name);
                             $("#salaryRange").val(data.salaryRange);
                             $("#type").val(data.type);
@@ -159,6 +163,22 @@
                 validators : {
                     notEmpty : {
                         message : '城市不能为空'
+                    },
+
+                }
+            },
+            district : {
+                validators : {
+                    notEmpty : {
+                        message : '城市区域不能为空'
+                    },
+
+                }
+            },
+            address : {
+                validators : {
+                    notEmpty : {
+                        message : '门店地址不能为空'
                     },
 
                 }

@@ -19,7 +19,7 @@ public enum JobApplicationStatus {
         return value;
     }
 
-    private JobApplicationStatus(String value) {
+    JobApplicationStatus(String value) {
         this.value = value;
     }
 }

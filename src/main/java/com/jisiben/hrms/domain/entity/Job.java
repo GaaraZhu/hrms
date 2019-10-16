@@ -14,6 +14,10 @@ public class Job extends PersistentRoot<Job> {
 
     private String city;
 
+    private String district;
+
+    private String address;
+
     private String name;
 
     private String salaryRange;
@@ -37,6 +41,8 @@ public class Job extends PersistentRoot<Job> {
         super(builder);
         this.company=builder.company;
         this.city=builder.city;
+        this.district=builder.district;
+        this.address=builder.address;
         this.name=builder.name;
         this.salaryRange=builder.salaryRange;
         this.type=builder.type;
@@ -137,10 +143,30 @@ public class Job extends PersistentRoot<Job> {
         return this;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public Job district(String district) {
+        this.district = district;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Job address(String address) {
+        this.address = address;
+        return this;
+    }
+
     public static class Builder extends PersistentRoot.Builder<Builder, Job> {
         private String company;
         private String city;
         private String name;
+        private String district;
+        private String address;
         private String salaryRange;
         private JobType type;
         private int quota;
@@ -161,6 +187,16 @@ public class Job extends PersistentRoot<Job> {
 
         public Builder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public Builder district(String district) {
+            this.district = district;
+            return this;
+        }
+
+        public Builder address(String address) {
+            this.address = address;
             return this;
         }
 
