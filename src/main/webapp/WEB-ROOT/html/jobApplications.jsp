@@ -71,8 +71,11 @@
                     </div>
 
                     <div class="form-group inputselect" style="margin-left: 40px;">
-                        <button type="button" class="btn btn-success btn-sm" style="width:72px; margin-left: 20px;" id="search">
+                        <button type="button" class="btn btn-success btn-sm" style="margin-left: 20px;" id="search">
                             <span class="glyphicon glyphicon-search"></span> 搜索
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm" id="reset">
+                            <span class="glyphicon glyphicon-refresh"></span> 重置
                         </button>
                     </div>
 				</div>
