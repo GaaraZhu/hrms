@@ -55,7 +55,7 @@
                     "creator",
                     "createdTime",
                     "active",
-                    "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-user'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-user'></span>删除</button>" ] ,
+                    "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
             name : ["ID", "企业", "城市", "区域", "地址", "职位名称", "待遇", "工作性质", "招聘人数", "推荐有奖", "奖励金额", "发布人", "发布时间", "是否有效", "_opt" ],
             tid : "id",
             checkBox : "id"
@@ -110,28 +110,31 @@
     }
 
     function delF(id) {
-        $("#alert").load("WEB-ROOT/html/common/alert.jsp",
-            function(response, status, xhr) {
-                $('#alert').html(response);
+        if (confirm("确定删除该记录？") == true) {
+            $("#alert").load("WEB-ROOT/html/common/alert.jsp",
+                function(response, status, xhr) {
+                    $('#alert').html(response);
+                });
+            $.ajax({
+                type : "DELETE",
+                url : "job?id="+id,
+                async : true,
+                contentType : "application/json;charset=utf-8",
+                success : function(msg) {
+                    $("#alertText").text("删除成功");
+                    $("#alertModel").modal({
+                        keyboard : true
+                    });
+                    queryPage(1);
+                },
+                error : function(msg) {
+                    $("#alertText").text("删除失败");
+                    $("#alertModel").modal({
+                        keyboard : true
+                    });
+                }
             });
-        $.ajax({
-            type : "DELETE",
-            url : "job?id="+id,
-            async : true,
-            contentType : "application/json;charset=utf-8",
-            success : function(msg) {
-                $("#alertText").text(msg);
-                $("#alertModel").modal({
-                    keyboard : true
-                });
-            },
-            error : function(msg) {
-                $("#alertText").text("删除失败");
-                $("#alertModel").modal({
-                    keyboard : true
-                });
-            }
-        });
+        }
     }
 
     $("#addJob").click(
@@ -230,7 +233,7 @@
             data: JSON.stringify(data),
             async: true,
             contentType: 'application/json;charset=utf-8',
-            success : function(msg) {
+            success : function() {
                  $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $('#addAlert').html(response);
                     $("#alertText").text("操作成功");
@@ -238,6 +241,7 @@
                         keyboard: true
                     });
                  });
+                 queryPage(1);
             },
             error : function(msg) {
                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {

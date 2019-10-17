@@ -53,7 +53,7 @@
                     "emergencyContactName",
                     "emergencyContactPhone",
                     "emergencyContactRelationship",
-                    "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-user'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-user'></span> 删除</button>" ] ,
+                    "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-remove'></span> 删除</button>" ] ,
             name : ["ID", "姓名", "性别", "身份证号", "电话号码", "民族", "政治面貌", "学历", "户籍地址", "当前住址", "银行卡号", "开户银行", "紧急联系人", "联系人电话", "联系人关系", "_opt" ],
             tid : "id",
             checkBox : "id"
@@ -111,28 +111,31 @@
     }
 
     function delF(id) {
-        $("#alert").load("WEB-ROOT/html/common/alert.jsp",
-            function(response, status, xhr) {
-                $('#alert').html(response);
+        if (confirm("确定删除该记录？") == true) {
+            $("#alert").load("WEB-ROOT/html/common/alert.jsp",
+                    function(response, status, xhr) {
+                        $('#alert').html(response);
+                    });
+            $.ajax({
+                type : "DELETE",
+                url : "candidate?id="+id,
+                async : true,
+                contentType : "application/json;charset=utf-8",
+                success : function() {
+                    $("#alertText").text("删除成功");
+                    $("#alertModel").modal({
+                        keyboard : true
+                    });
+                    queryPage(1);
+                },
+                error : function(msg) {
+                    $("#alertText").text("删除失败");
+                    $("#alertModel").modal({
+                        keyboard : true
+                    });
+                }
             });
-        $.ajax({
-            type : "DELETE",
-            url : "candidate?id="+id,
-            async : true,
-            contentType : "application/json;charset=utf-8",
-            success : function(msg) {
-                $("#alertText").text(msg);
-                $("#alertModel").modal({
-                    keyboard : true
-                });
-            },
-            error : function(msg) {
-                $("#alertText").text("删除失败");
-                $("#alertModel").modal({
-                    keyboard : true
-                });
-            }
-        });
+        }
     }
 
     $("#addCandidate").click(
@@ -224,6 +227,7 @@
                         keyboard: true
                     });
                  });
+                queryPage(1);
             },
             error : function(msg) {
                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
