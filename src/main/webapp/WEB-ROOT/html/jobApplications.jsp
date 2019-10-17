@@ -71,8 +71,8 @@
                     </div>
 
                     <div class="form-group inputselect" style="margin-left: 40px;">
-                        <button type="button" class="btn btn-success btn-sm" id="search">
-                            <span class="glyphicon glyphicon-user"></span> 搜索
+                        <button type="button" class="btn btn-success btn-sm" style="width:72px; margin-left: 20px;" id="search">
+                            <span class="glyphicon glyphicon-search"></span> 搜索
                         </button>
                     </div>
 				</div>

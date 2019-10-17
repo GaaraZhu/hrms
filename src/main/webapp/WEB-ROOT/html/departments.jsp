@@ -26,17 +26,17 @@ HttpSession s = request.getSession();
 					<div class="form-group inputselect col-lg-4">
 						<button type="button" class="btn btn-success btn-sm "
 							id="search">
-							<span class="glyphicon glyphicon-user"></span> 搜索
+							<span class="glyphicon glyphicon-search"></span> 搜索
 						</button>
 						
 						<button type="button" class="btn btn-success btn-sm "
 							id="reset">
-							<span class="glyphicon glyphicon-user"></span> 重置
+							<span class="glyphicon glyphicon-refresh"></span> 重置
 						</button>
 					</div>
 					<div class="form-group inputselect col-lg-4">
-                        <button type="button" class="btn btn-info btn-sm " id="addDep">
-                            <span class="glyphicon glyphicon-user"></span> 新增部门
+                        <button type="button" class="btn btn-info btn-sm" style="margin-left: 155px;" id="addDep">
+                            <span class="glyphicon glyphicon-plus"></span> 新增部门
                         </button>
 					</div>
 				</div>

@@ -14,7 +14,7 @@
 		            </div>
 		            <div class="modal-body" id="alertText" align="center">删除失败</div>
 		            <div class="modal-footer">
-		                <button type="button" class="btn btn-primary" id= "alertSubmit"  >确定</button>
+		                <button type="button" class="btn btn-primary" id= "alertSubmit">确定</button>
 		            </div>
 		        </div><!-- /.modal-content -->
 		    </div>
