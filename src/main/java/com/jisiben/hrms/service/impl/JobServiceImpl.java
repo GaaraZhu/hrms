@@ -35,8 +35,9 @@ public class JobServiceImpl extends AbstractService<Job> implements JobService {
     public Page<Job> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
         String company = criteria.get("company").map(Object::toString).orElse(null);
         String city = criteria.get("city").map(Object::toString).orElse(null);
+        String district = criteria.get("district").map(Object::toString).orElse(null);
         String name = criteria.get("name").map(Object::toString).orElse(null);
         Boolean active = criteria.get("active").map(Boolean.class::cast).orElse(null);
-        return jobDao.findByCompanyAndCityAndNameAndActive(company, city, name, active, new PageRequest(currentPage-1, pageSize));
+        return jobDao.findByCompanyAndCityAndNameAndActive(company, city, district, name, active, new PageRequest(currentPage-1, pageSize));
     }
 }

@@ -34,6 +34,7 @@ public class JobController extends AbstractController<Job, JobDTO, Job.Builder> 
     public PageableSearchResultDTO<JobDTO> findAll(
             @RequestParam("company") String company,
             @RequestParam("city") String city,
+            @RequestParam("district") String district,
             @RequestParam("name") String name,
             @RequestParam("active") Boolean active,
             @RequestParam("currentPage") int currentPage,
@@ -41,6 +42,7 @@ public class JobController extends AbstractController<Job, JobDTO, Job.Builder> 
         return doFindAll(
                 ImmutableMap.of(
                         "company", Optional.ofNullable(company),
+                        "district", Optional.ofNullable(district),
                         "city", Optional.ofNullable(city),
                         "name", Optional.ofNullable(name),
                         "active", Optional.ofNullable(active)), currentPage, pageSize);

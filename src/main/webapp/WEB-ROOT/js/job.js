@@ -17,13 +17,14 @@
     function queryPage(cp) {
         company = $("#searchCompany").val();
         city = $("#searchCity").val();
+        district = $("#searchDistrict").val();
         name = $("#searchName").val();
         active = $("#searchActive").val();
         $.ajax({
             url : "jobs",
             type : "GET",
             async: true,
-            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&company=" +company+ "&city="+city + "&name="+name+ "&active="+active,
+            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&company=" +company+ "&city="+city + "&district="+district + "&name="+name+ "&active="+active,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 initTable(data, cp);
