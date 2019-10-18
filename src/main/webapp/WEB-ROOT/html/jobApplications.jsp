@@ -62,12 +62,13 @@
                     </div>
 
                     <div class="form-group inputselect">
-                        <label for="searchFromTime">求职时间</label> <input type="text"
-                            class="form-control" id="searchFromTime" name="searchFromTime"
-                            placeholder="年年年年-月月-日日"> -
+                        <label for="searchFromDate">求职时间</label>
+                        <input type="text"
+                            class="form-control" id="searchFromDate" name="searchFromDate"
+                            placeholder="开始日期" readonly="readonly"> -
                          <input type="text"
-                             class="form-control" id="searchToTime" name="searchToTime"
-                             placeholder="年年年年-月月-日日">
+                            class="form-control" id="searchToDate" name="searchToDate"
+                            placeholder="结束日期" eadonly="readonly">
                     </div>
 
                     <div class="form-group inputselect" style="margin-left: 40px;">
@@ -95,5 +96,9 @@
 
 	<script type="text/javascript">
 	    queryPage(1);
+	    $(function () {
+            $('#searchFromDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
+            $('#searchToDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
+        });
 	</script>
 </body>

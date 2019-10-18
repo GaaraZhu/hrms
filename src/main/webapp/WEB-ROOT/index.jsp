@@ -12,12 +12,21 @@
         <link rel="stylesheet"
         	href="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/css/common.css">
         <link type="text/css" rel="stylesheet"
-        href="<%=request.getContextPath() %>/WEB-ROOT/rvnm/assets/css/all.min.css" />
+                    href="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/css/jquery-ui.min.css" />
         <link type="text/css" rel="stylesheet"
-        href="<%=request.getContextPath() %>/WEB-ROOT/rvnm/src/jquery-rvnm.css" />
+            href="<%=request.getContextPath() %>/WEB-ROOT/rvnm/assets/css/all.min.css" />
+        <link type="text/css" rel="stylesheet"
+            href="<%=request.getContextPath() %>/WEB-ROOT/rvnm/src/jquery-rvnm.css" />
         <script src="<%=request.getContextPath() %>/WEB-ROOT/rvnm/jquery.min.js"></script>
-        <script type="text/javascript"
-        src="<%=request.getContextPath() %>/WEB-ROOT/rvnm/src/jquery-rvnm.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/rvnm/src/jquery-rvnm.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/jquery-ui.min.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/datepicker-zh-CN.min.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/jquery.serializeObject.min.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/js/common.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/treeview.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/lTable.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/bootstrapValidator.js"></script>
         <script type="text/javascript">
             $(function () {
                 var rvnMenu = $("#navbar").rvnm({
@@ -137,18 +146,12 @@
             </div>
         </div>
 
-        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/jquery.serializeObject.min.js"></script>
-        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<%=request.getContextPath() %>/WEB-ROOT/js/common.js"></script>
-        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/treeview.js"></script>
-        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/lTable.js"></script>
-        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/bootstrapValidator.js"></script>
         <script>
              $( "#frame" ).load( "WEB-ROOT/html/candidates.jsp", function( response, status, xhr ) {
-                    $('#frame').html(response);
-                    $("#headTitle").text(" 首页/ 系统管理/ 部门管理");
+                $('#frame').html(response);
+                $("#headTitle").text(" 首页/ 系统管理/ 部门管理");
              });
-            htmlDispatcher=function(url, title){
+             htmlDispatcher=function(url, title){
                 $( "#frame" ).load(url, function(response, status, xhr) {
                     if(response.includes("login_form")) { //TODO: could be more elegant
                         window.location.replace("login");
