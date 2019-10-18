@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
@@ -26,6 +30,17 @@ public class LoginController {
 	public String logout(@RequestParam(value = "username", required = false) String username,
 			RedirectAttributes redirectAttributes) {
 		return "redirect:/login";
+	}
+
+	@RequestMapping(value="/timeout", method = RequestMethod.GET)
+	public void sessionTimeout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		if (request.getHeader("X-Requested-With") != null
+				&& request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
+			response.getWriter().print("timeout");
+			response.getWriter().close();
+		} else {
+			response.sendRedirect("login");
+		}
 	}
 
 }

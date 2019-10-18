@@ -10,6 +10,7 @@
     <http security="none" pattern="/login*"></http>
     <http use-expressions="true" auto-config="true">
         <intercept-url pattern="/login" access="permitAll"/>
+        <intercept-url pattern="/timeout" access="permitAll"/>
         <intercept-url pattern=" /WEB-ROOT/bootstrap/js/jquery-min.js" access="permitAll"/>
         <intercept-url pattern=" /WEB-ROOT/img/logol.png" access="permitAll"/>
         <intercept-url pattern="/WEB-ROOT/bootstrap/js/bootstrap.min.js" access="permitAll"/>
@@ -30,7 +31,7 @@
         <logout logout-success-url="/login"
                 invalidate-session="true"
                 logout-url="/logout"/>
-        <session-management invalid-session-url="/login"/>
+        <session-management invalid-session-url="/timeout"/>
     </http>
 
     <authentication-manager erase-credentials="false">
