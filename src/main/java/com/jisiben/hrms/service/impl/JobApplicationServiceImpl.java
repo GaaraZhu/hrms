@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -46,7 +47,7 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
         JobApplicationStatus status = StringUtils.isEmpty(statusString)?null:JobApplicationStatus.valueOf(statusString);
         Date fromTime = criteria.get("fromTime").map(Date.class::cast).orElse(null);
         Date toTime = criteria.get("toTime").map(Date.class::cast).orElse(null);
-
-        return dao.findJobApplications(company, city, jobName, hasReferee, candidate, referee, status, fromTime, toTime, new PageRequest(currentPage - 1, pageSize));
+        String createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
+        return dao.findJobApplications(company, city, jobName, hasReferee, candidate, referee, status, fromTime, toTime, createdBy, new PageRequest(currentPage - 1, pageSize));
     }
 }

@@ -8,13 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface JobDao extends Dao<Job, Long> {
-    @Query("FROM Job c WHERE (:company is null or c.company = :company) and (:city is null or c.city = :city)"
-            + " and (:district is null or c.district like CONCAT('%',:district,'%')) and (:name is null or c.name = :name) and (:active is null or c.active = :active)")
+    @Query("FROM Job j WHERE (:company is null or j.company = :company) and (:city is null or j.city = :city) and (:district is null or j.district like CONCAT('%',:district,'%')) "
+            + " and (:createdBy = 'admin' or j.createdBy = :createdBy) and (:name is null or j.name = :name) and (:active is null or j.active = :active)")
     Page<Job> findByCompanyAndCityAndNameAndActive(
             @Param("company")String company,
             @Param("city")String city,
             @Param("district")String district,
             @Param("name")String name,
             @Param("active")Boolean active,
+            @Param("createdBy")String createdBy,
             Pageable pageable);
 }
