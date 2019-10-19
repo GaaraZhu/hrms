@@ -136,10 +136,10 @@
             </nav>
             <div id="wrapper">
                 <div class="col-lg-10 col-sm-12">
-                    <div style="margin-top: 3px">
-                        <ol class="breadcrumb hid">
-                            <li class="active" id="headTitle">首页</li>
-                        </ol>
+                    <div style="margin-top: 3px" class="breadcrumb hid">
+                        <div id="headTitle" style="display:inline-block;width:50%">首页</div>
+                        <div style="display:inline-block;width:45%"></div>
+                        <a href="#"><div id="logout" style="display:inline-block;" align="right">退出</div></a>
                     </div>
                     <div id="frame"></div>
                 </div>
@@ -147,23 +147,29 @@
         </div>
 
         <script>
-             $( "#frame" ).load( "WEB-ROOT/html/candidates.jsp", function( response, status, xhr ) {
-                $('#frame').html(response);
+             $("#frame").load( "WEB-ROOT/html/candidates.jsp", function( response, status, xhr ) {
+                $("#frame").html(response);
                 $("#headTitle").text(" 首页/ 系统管理/ 部门管理");
              });
 
              htmlDispatcher=function(url, title){
-                $( "#frame" ).load(url, function(response, status, xhr) {
-                    $('#frame').html(response);
+                $("#frame").load(url, function(response, status, xhr) {
+                    $("#frame").html(response);
                 });
-                $( "#headTitle" ).text(title);
+                $("#headTitle").text(title);
             };
 
-             $(document).ajaxComplete(function(event,obj,settings){
-                if (obj.responseText == 'timeout') {
-                    window.location.replace("login");
+            $("#logout").click(
+                function(){
+                    window.location.replace("logout");
                 }
-             })
+            );
+
+            $(document).ajaxComplete(function(event,obj,settings){
+                if (obj.responseText == 'timeout') {
+                    window.location.replace("logout");
+                }
+            })
         </script>
     </body>
 </html>
