@@ -167,7 +167,7 @@
 
             $(document).ajaxComplete(function(event,obj,settings){
                 if (obj.responseText == 'timeout') {
-                    window.location.replace("logout");
+                    window.location.replace("login");
                 }
             })
         </script>
