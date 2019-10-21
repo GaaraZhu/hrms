@@ -9,11 +9,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
-public class LoginController {
+public class AuthenticationController {
 	protected Logger logger = Logger.getLogger(this.getClass().getSimpleName());
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -36,8 +35,7 @@ public class LoginController {
 	public void sessionTimeout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (request.getHeader("X-Requested-With") != null
 				&& request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
-			response.getWriter().print("timeout");
-			response.getWriter().close();
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		} else {
 			response.sendRedirect("login");
 		}

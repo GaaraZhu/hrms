@@ -166,7 +166,7 @@
             );
 
             $(document).ajaxComplete(function(event,obj,settings){
-                if (obj.responseText == 'timeout') {
+                if (obj.status == 401) {
                     window.location.replace("login");
                 }
             })
