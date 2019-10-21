@@ -1,6 +1,8 @@
     var pageSize = 8;
+    var resultTable;
 	$("#reset").click(
         function() {
+            console.log("select job id is : " + resultTable.getCheckboxIds());
             $("#searchCompany").val("");
             $("#searchCity").val("");
             $("#searchName").val("");
@@ -39,7 +41,7 @@
     }
 
     function initTable(data, currentPage) {
-        $.lTable('#tableList',
+        resultTable = $.lTable('#tableList',
         {
             data : data.results,
             title : [
@@ -152,6 +154,48 @@
         }
     );
 
+    $("#addJobApplication").click(
+        function(){
+            var idsStr = resultTable.getCheckboxIds();
+            if (idsStr=="" || idsStr.includes(",")) {
+                $( "#alert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                    $("#alertText").text("请选择一个职位进行操作");
+                    $("#alertModel").modal({
+                        keyboard: true
+                    });
+                 });
+            } else {
+                $.ajax({
+                    url : "job",
+                    type : "GET",
+                    async: true,
+                    data : "id=" + idsStr,
+                    contentType : "application/json;charset=utf-8",
+                    success : function(data) {
+                        $("#addJobList").load("WEB-ROOT/html/jobApplication.jsp", function(){
+                            $("#id").val(data.id);
+                            $("#jobName").val(data.name);
+                             $("#company").val(data.company);
+                            $("#city").val(data.city);
+                            $("#district").val(data.district);
+                            $("#status").val("NEW");
+                            $("#submitType").val("PUT");
+                            $("#addModel").modal({
+                                keyboard: true
+                            });
+                        });
+                    },
+                    error : function(e) {
+                        if (e.status != 401) {
+                            console.log(e);
+                            alert("操作失败，请查看控制台日志");
+                        }
+                    }
+                });
+            }
+        }
+    );
+
     $('#jobForm').bootstrapValidator({
         message : 'This value is not valid',
         feedbackIcons : {
@@ -239,8 +283,7 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
-                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                    $('#addAlert').html(response);
+                 $( "#alert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
@@ -249,8 +292,7 @@
                  queryPage(1);
             },
             error : function(msg) {
-                $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                    $('#addAlert').html(response);
+                $( "#alert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true

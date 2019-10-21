@@ -68,7 +68,7 @@
                             placeholder="开始日期" readonly="readonly"> -
                          <input type="text"
                             class="form-control" id="searchToDate" name="searchToDate"
-                            placeholder="结束日期" eadonly="readonly">
+                            placeholder="结束日期" readonly="readonly">
                     </div>
 
                     <div class="form-group inputselect" style="margin-left: 40px;">

@@ -15,74 +15,60 @@
 				<div class="modal-header">
 					<button type="button" class="close" id="addAlertSubmit"
 						data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel">新增职位</h4>
+					<h4 class="modal-title" id="myModalLabel">新增求职记录</h4>
 				</div>
 				<form class="form-horizontal" role="form" id="jobApplicationForm" >
 					<div class="modal-body" style="height: 60%;">
 						<div class="col-lg-10 col-md-9 col-sm-9">
 							<div class="form-group " >
-								<label for="company" class="col-lg-2 control-label" style="padding-top: 30px;">所属企业</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-									<input type="text" class="form-control" name="company"
-										id="company" placeholder="请输入所属企业">
-								</div>
+								<label for="jobName" class="col-lg-2 control-label" style="padding-top: 30px;">职位名称</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                    <input id="jobName" type="text" class="form-control" name="jobName" readonly="readonly">
+                                </div>
+                                <label for="company" class="col-lg-2 control-label" style="padding-top: 30px;">所属企业</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                    <input id="company" type="text" class="form-control col-lg-35" name="company" readonly="readonly">
+                                </div>
 								<label for="city" class="col-lg-2 control-label" style="padding-top: 30px;">所在城市</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
-								 <input
-									type="text" class="form-control col-lg-35" name="city"
-									id="city" placeholder="请输入所在城市">
+                                    <input id="city" type="text" class="form-control col-lg-35" name="city" readonly="readonly">
 								</div>
-								<label for="name" class="col-lg-2 control-label" style="padding-top: 30px;">职位名称</label>
+								<label for="district" class="col-lg-2 control-label" style="padding-top: 30px;">所在区域</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
-								 <input
-									type="text" class="form-control col-lg-35" name="name"
-									id="name" placeholder="请输入职位名称">
+                                    <input id="district" type="text" class="form-control col-lg-35" name="district" readonly="readonly">
 								</div>
-								<label for="salaryRange" class="col-lg-2 control-label" style="padding-top: 30px;">薪资待遇</label>
+								<label for="idNumber" class="col-lg-2 control-label" style="padding-top: 30px;">申请人</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
-								 <input
-									type="text" class="form-control col-lg-35" name="salaryRange"
-									id="salaryRange" placeholder="请输入薪资待遇">
+                                    <input id="idNumber" type="text" class="form-control col-lg-35" name="idNumber" placeholder="申请人身份证账号">
 								</div>
-								<label for="type" class="col-lg-2 control-label" style="padding-top: 30px;">工作性质</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                 <select id="type" name="type" style="width: 62px;height: 32px;">
-                                         <option value="全职">全职</option>
-                                         <option value="兼职">兼职</option>
-                                         <option value="小时工">小时工</option>
-                                 </select>
+								<label for="referee" class="col-lg-2 control-label" style="padding-top: 30px;">推荐人</label>
+								<div class="col-lg-35" style="padding-top: 25px;">
+                                    <input id="referee" type="text" class="form-control col-lg-35" name="referee" placeholder="推荐人姓名">
                                 </div>
-                                <label for="quota" class="col-lg-2 control-label" style="padding-top: 30px;">招聘人数</label>
+                                <label for="refereePhone" class="col-lg-2 control-label" style="padding-top: 30px;">推荐人</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
-                                 <input
-                                    type="text" class="form-control col-lg-35" name="quota"
-                                    id="quota" placeholder="请输入招聘人数">
+                                    <input id="refereePhone" type="text" class="form-control col-lg-35" name="refereePhone" placeholder="推荐人电话">
                                 </div>
-                                <label for="referralBonus" class="col-lg-2 control-label" style="padding-top: 30px;">推荐有奖</label>
+                                <label for="applicationDate" class="col-lg-2 control-label" style="padding-top: 30px;">申请日期</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
-                                 <select id="referralBonus" name="referralBonus" style="width: 62px; height: 32px;">
-                                         <option value="有">有奖</option>
-                                         <option value="无">无奖</option>
-                                 </select>
+                                    <input id="applicationDate" type="text" class="form-control col-lg-35" name="applicationDate" readonly="readonly">
                                 </div>
-                                <label for="referralBonusAmount" class="col-lg-2 control-label" style="padding-top: 30px;">奖励金额</label>
+
+                                <label for="status" class="col-lg-2 control-label" style="padding-top: 30px;">当前状态</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
-                                 <input
-                                    type="text" class="form-control col-lg-35" name="referralBonusAmount"
-                                    id="referralBonusAmount" placeholder="请输入奖励金额">
-                                </div>
-                                <label for="active" class="col-lg-2 control-label" style="padding-top: 30px;">是否有效</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                     <select id="active" name="active" style="width: 62px; height: 32px;">
-                                         <option value="是">有效</option>
-                                         <option value="否">无效</option>
+                                     <select id="status" name="status" style="width: 202px;height: 32px;">
+                                         <option value="NEW">未处理</option>
+                                         <option value="FAILED">申请失败</option>
+                                         <option value="WAITING_INTERVIEW">等待面试</option>
+                                         <option value="INTERVIEWED">完成面试</option>
+                                         <option value="INTERVIEW_PASSED">面试通过</option>
+                                         <option value="INTERVIEW_FAILED">面试失败</option>
+                                         <option value="ON_BOARDED">入职</option>
+                                         <option value="ON_BOARDED_ONE_ONE_MONTH">入职满1月</option>
+                                         <option value="ON_BOARDED_ONE_THREE_MONTH">入职满3月</option>
+                                         <option value="ON_BOARDED_ONE_SIX_MONTH">入职满6月</option>
+                                         <option value="RESIGNED">离职</option>
                                      </select>
-                                </div>
-                                <label for="note" class="col-lg-2 control-label" style="padding-top: 30px;">备注</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                 <input
-                                    type="text" class="form-control col-lg-35" name="note"
-                                    id="note" placeholder="请输入备注">
                                 </div>
 								<input type="hidden" id="id" value="">
 							</div>
@@ -99,5 +85,10 @@
 		</div>
 	</div>
 	<script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobApplication.js"></script>
+	<script type="text/javascript">
+        $(function () {
+            $('#applicationDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true}).datepicker("setDate", new Date());;
+        });
+    </script>
 
 </body>

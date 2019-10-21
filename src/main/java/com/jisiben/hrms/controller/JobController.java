@@ -50,7 +50,7 @@ public class JobController extends AbstractController<Job, JobDTO, Job.Builder> 
 
     @ResponseBody
     @RequestMapping(value = "/job", method = RequestMethod.GET)
-    public JobDTO find(Long id) { //TODO: optional serialization
+    public JobDTO find(@RequestParam("id") Long id) { //TODO: optional serialization
         return doFind(id);
     }
 
