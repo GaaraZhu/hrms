@@ -25,8 +25,10 @@
                 initTable(data, cp);
             },
             error : function(e) {
-                console.log(e)
-                alert("搜索失败，请查看控制台日志");
+                if (e.status != 401) {
+                    console.log(e);
+                    alert("搜索失败，请查看控制台日志");
+                }
             }
         });
     }
@@ -82,8 +84,11 @@
                         }
                     });
             },
-            error : function(msg) {
-                alert("bb");
+            error : function(e) {
+                if (e.status != 401) {
+                    console.log(e);
+                    alert("更新失败，请查看控制台日志");
+                }
             }
         });
     }
