@@ -7,7 +7,7 @@
 	<div class="modal fade" id="addModel" data-backdrop="static"
 		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 		aria-hidden="true">
-		<div id="addJobApplicationAlert">
+		<div id="addAlert">
 		</div>
 		<input type="hidden" id="submitType" value="PUT">
 		<div class="modal-dialog" style="width: 60%; ">
@@ -70,8 +70,11 @@
                                          <option value="RESIGNED">离职</option>
                                      </select>
                                 </div>
-								<input type="hidden" id="id" value="">
-								<input type="hidden" id="userId" value="">
+                                <div style="display:none">
+                                    <input type="text" id="id" value="">
+                                    <input type="text" id="jobId" value="">
+                                    <input type="text" id="candidateId" value="">
+								</div>
 							</div>
 						</div>
 					</div>

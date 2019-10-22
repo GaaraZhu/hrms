@@ -1,10 +1,12 @@
 package com.jisiben.hrms.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jisiben.hrms.controller.dto.common.DTORoot;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
-    private int candidateId;
-    private int jobId;
+    private long candidateId;
+    private long jobId;
     private String name;
     private String phone;
     private String idNumber;
@@ -13,7 +15,7 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
     private String company;
     private String city;
     private String jobName;
-    private String applicationTime;
+    private String applicationDate;
     private String status;
     private String onBoardedTime;
     private String resignedTime;
@@ -34,7 +36,7 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         this.company=builder.company;
         this.city=builder.city;
         this.jobName=builder.jobName;
-        this.applicationTime=builder.applicationTime;
+        this.applicationDate=builder.applicationDate;
         this.status=builder.status;
         this.onBoardedTime=builder.onBoardedTime;
         this.resignedTime=builder.resignedTime;
@@ -73,8 +75,8 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         return jobName;
     }
 
-    public String getApplicationTime() {
-        return applicationTime;
+    public String getApplicationDate() {
+        return applicationDate;
     }
 
     public String getStatus() {
@@ -93,17 +95,17 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         return lastUpdatedTime;
     }
 
-    public int getCandidateId() {
+    public long getCandidateId() {
         return candidateId;
     }
 
-    public int getJobId() {
+    public long getJobId() {
         return jobId;
     }
 
     public static class Builder extends DTORoot.Builder<JobApplicationDTO.Builder, JobApplicationDTO> {
-        private int candidateId;
-        private int jobId;
+        private long candidateId;
+        private long jobId;
         private String name;
         private String phone;
         private String idNumber;
@@ -112,18 +114,18 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         private String company;
         private String city;
         private String jobName;
-        private String applicationTime;
+        private String applicationDate;
         private String status;
         private String onBoardedTime;
         private String resignedTime;
         private String lastUpdatedTime;
 
-        public Builder candidateId(int candidateId) {
+        public Builder candidateId(long candidateId) {
             this.candidateId = candidateId;
             return this;
         }
 
-        public Builder jobId(int jobId) {
+        public Builder jobId(long jobId) {
             this.jobId = jobId;
             return this;
         }
@@ -168,8 +170,8 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
             return this;
         }
 
-        public Builder applicationTime(String applicationTime) {
-            this.applicationTime = applicationTime;
+        public Builder applicationDate(String applicationDate) {
+            this.applicationDate = applicationDate;
             return this;
         }
 

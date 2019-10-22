@@ -173,9 +173,9 @@
                     contentType : "application/json;charset=utf-8",
                     success : function(data) {
                         $("#addJobList").load("WEB-ROOT/html/jobApplication.jsp", function(){
-                            $("#id").val(data.id);
+                            $("#jobId").val(data.id);
                             $("#jobName").val(data.name);
-                             $("#company").val(data.company);
+                            $("#company").val(data.company);
                             $("#city").val(data.city);
                             $("#district").val(data.district);
                             $("#status").val("NEW");

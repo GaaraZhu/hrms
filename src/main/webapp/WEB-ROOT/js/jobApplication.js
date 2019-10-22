@@ -26,11 +26,11 @@
                 data : "idNumber=" + idNumber,
                 contentType : "application/json;charset=utf-8",
                 success : function(data) {
-                   $("#userId").val(data.id);
+                   $("#candidateId").val(data.id);
                 },
                 error : function(e) {
                     if (e.status != 401) {
-                        $( "#addJobApplicationAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                        $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                             $("#alertText").text("该候选人不存在，请先录入系统再进行操作");
                             $("#alertModel").modal({
                                 keyboard: true
@@ -84,7 +84,7 @@
                     "company",
                     "city",
                     "jobName",
-                    "applicationTime",
+                    "applicationDate",
                     "status",
                     "onBoardedTime",
                     "resignedTime",
@@ -197,6 +197,9 @@
     function onCreateOrUpdate(e){
         e.preventDefault();
         var data = $('form#jobApplicationForm').serializeObject();
+        data.jobId = $("#jobId").val();
+        data.candidateId = $("#candidateId").val();
+        console.log(data);
         var method = $("#submitType").val();
         var url = method=="POST"?"jobApplication?id="+$("#id").val():"jobApplication";
         $.ajax({
@@ -206,18 +209,18 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
-                 $( "#addJobApplicationAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                    $('#addJobApplicationAlert').html(response);
+                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
                     });
                  });
-                 queryPage(1);
+                 if (method=="POST") {
+                    queryPage(1);
+                 }
             },
             error : function(msg) {
-                $( "#addJobApplicationAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                    $('#addJobApplicationAlert').html(response);
+                $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true
