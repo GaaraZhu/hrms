@@ -1,4 +1,5 @@
     var pageSize = 8;
+    var wto;
 	$("#reset").click(
         function() {
             $("#searchCompany").val("");
@@ -12,7 +13,34 @@
         function() {
             queryPage(1);
 	    }
-	);
+    );
+
+    $('#idNumber').change(function() {
+        clearTimeout(wto);
+        wto = setTimeout(function() {
+            idNumber = $("#idNumber").val();
+            $.ajax({
+                url : "candidate",
+                type : "GET",
+                async: true,
+                data : "idNumber=" + idNumber,
+                contentType : "application/json;charset=utf-8",
+                success : function(data) {
+                   $("#userId").val(data.id);
+                },
+                error : function(e) {
+                    if (e.status != 401) {
+                        $( "#addJobApplicationAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                            $("#alertText").text("该候选人不存在，请先录入系统再进行操作");
+                            $("#alertModel").modal({
+                                keyboard: true
+                            });
+                        });
+                    }
+                }
+            });
+        }, 1000);
+    });
 
     function queryPage(cp) {
         company = $("#searchCompany").val();
@@ -118,9 +146,9 @@
 
     function delF(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#alert").load("WEB-ROOT/html/common/alert.jsp",
+            $("#addJobApplicationAlert").load("WEB-ROOT/html/common/alert.jsp",
                 function(response, status, xhr) {
-                    $('#alert').html(response);
+                    $('#addJobApplicationAlert').html(response);
                 });
             $.ajax({
                 type : "DELETE",
@@ -215,8 +243,8 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
-                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                    $('#addAlert').html(response);
+                 $( "#addJobApplicationAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                    $('#addJobApplicationAlert').html(response);
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
@@ -225,8 +253,8 @@
                  queryPage(1);
             },
             error : function(msg) {
-                $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                    $('#addAlert').html(response);
+                $( "#addJobApplicationAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                    $('#addJobApplicationAlert').html(response);
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true

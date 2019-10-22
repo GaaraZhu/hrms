@@ -7,7 +7,7 @@
 	<div class="modal fade" id="addModel" data-backdrop="static"
 		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 		aria-hidden="true">
-		<div id="addAlert">
+		<div id="addJobApplicationAlert">
 		</div>
 		<input type="hidden" id="submitType" value="PUT">
 		<div class="modal-dialog" style="width: 60%; ">
@@ -71,6 +71,7 @@
                                      </select>
                                 </div>
 								<input type="hidden" id="id" value="">
+								<input type="hidden" id="userId" value="">
 							</div>
 						</div>
 					</div>
