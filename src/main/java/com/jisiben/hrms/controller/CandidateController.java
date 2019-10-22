@@ -1,5 +1,10 @@
 package com.jisiben.hrms.controller;
 
+import java.util.Optional;
+import java.util.logging.Logger;
+
+import javax.ws.rs.Produces;
+
 import com.google.common.collect.ImmutableMap;
 import com.jisiben.hrms.controller.common.AbstractController;
 import com.jisiben.hrms.controller.dto.CandidateDTO;
@@ -8,16 +13,18 @@ import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.service.CandidateService;
 import com.jisiben.hrms.service.common.Service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-
-import javax.ws.rs.Produces;
-import java.util.Optional;
-import java.util.logging.Logger;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 public class CandidateController extends AbstractController<Candidate, CandidateDTO, Candidate.Builder> {
@@ -49,6 +56,13 @@ public class CandidateController extends AbstractController<Candidate, Candidate
     @RequestMapping(value = "/candidate", method = RequestMethod.GET)
     public CandidateDTO find(Long id) {
         return doFind(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/candidate", method = RequestMethod.GET)
+    public CandidateDTO findByIdNumber(String idNumber) {
+        Candidate candidate = candidateService.findByIdNumber(idNumber);
+        return mapper.toDTO(candidate);
     }
 
     @RequestMapping(value = "/candidate", method = RequestMethod.PUT)
