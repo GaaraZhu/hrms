@@ -180,49 +180,12 @@
             validating : 'glyphicon glyphicon-refresh'
         },
         fields : {
-            company : {
+            idNumber : {
                 validators : {
                     notEmpty : {
-                        message : '企业不能为空'
+                        message : '申请人身份证账号不能为空'
                     },
 
-                }
-            },
-            city : {
-                validators : {
-                    notEmpty : {
-                        message : '城市不能为空'
-                    },
-
-                }
-            },
-            name : {
-                validators : {
-                    notEmpty : {
-                        message : '职位名称不能为空'
-                    },
-
-                }
-            },
-            quota : {
-                validators : {
-                    notEmpty : {
-                        message : '招聘人数不能为空'
-                    },
-                }
-            },
-            salaryRange : {
-                validators : {
-                    notEmpty : {
-                        message : '薪资待遇不能为空'
-                    },
-                }
-            },
-            type : {
-                validators : {
-                    notEmpty : {
-                        message : '工作性质不能为空'
-                    },
                 }
             },
         }

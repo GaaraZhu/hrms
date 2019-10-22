@@ -45,7 +45,7 @@
 								<div class="col-lg-35" style="padding-top: 25px;">
                                     <input id="referee" type="text" class="form-control col-lg-35" name="referee" placeholder="推荐人姓名">
                                 </div>
-                                <label for="refereePhone" class="col-lg-2 control-label" style="padding-top: 30px;">推荐人</label>
+                                <label for="refereePhone" class="col-lg-2 control-label" style="padding-top: 30px;">推荐人电话</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
                                     <input id="refereePhone" type="text" class="form-control col-lg-35" name="refereePhone" placeholder="推荐人电话">
                                 </div>
