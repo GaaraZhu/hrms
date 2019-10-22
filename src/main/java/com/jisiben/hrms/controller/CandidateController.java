@@ -53,14 +53,14 @@ public class CandidateController extends AbstractController<Candidate, Candidate
     }
 
     @ResponseBody
-    @RequestMapping(value = "/candidate", method = RequestMethod.GET)
-    public CandidateDTO find(Long id) {
+    @RequestMapping(value = "/candidate", params = "id", method = RequestMethod.GET)
+    public CandidateDTO find(@RequestParam Long id) {
         return doFind(id);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/candidate", method = RequestMethod.GET)
-    public CandidateDTO findByIdNumber(String idNumber) {
+    @RequestMapping(value = "/candidate", params = "idNumber", method = RequestMethod.GET)
+    public CandidateDTO findByIdNumber(@RequestParam String idNumber) {
         Candidate candidate = candidateService.findByIdNumber(idNumber);
         return mapper.toDTO(candidate);
     }
