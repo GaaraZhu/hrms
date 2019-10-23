@@ -178,7 +178,7 @@
                             $("#company").val(data.company);
                             $("#city").val(data.city);
                             $("#district").val(data.district);
-                            $("#status").val("NEW");
+                            $("#status").val("NEW").change();
                             $("#submitType").val("PUT");
                             $("#addModel").modal({
                                 keyboard: true

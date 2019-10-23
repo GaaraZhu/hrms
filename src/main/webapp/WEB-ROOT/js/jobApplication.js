@@ -133,7 +133,7 @@
                             $("#candidateName").val(data.candidateName);
                             $("#referee").val(data.referee);
                             $("#refereePhone").val(data.refereePhone);
-                            $("#status").val(data.status).change();;
+                            $("#status").val(data.status).change();
                             $("#applicationDate").datepicker("setDate", data.applicationDate);
                             $("#submitType").val("POST");
                         }
