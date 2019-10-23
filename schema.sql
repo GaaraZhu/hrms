@@ -53,7 +53,7 @@ CREATE TABLE `candidate` (
 
 LOCK TABLES `candidate` WRITE;
 /*!40000 ALTER TABLE `candidate` DISABLE KEYS */;
-INSERT INTO `candidate` VALUES (3,'刘云飞','MALE','15128903890','321283193009844','汉族','大专','党员','浦东新区张江路1号','浦东新区张江路1号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',4,'admin','2019-09-21 21:35:14','admin','2019-10-16 23:17:06'),(10,'张飞','MALE','12345678901','321283199903027214','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34'),(11,'刘丽','FEMALE','15672348901','521283199903027290','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34'),(12,'赵云','MALE','10112345678','721283199903027x78','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34'),(13,'李强','MALE','16789011234','412283199903027215','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34'),(14,'陈冰','FEMALE','14125678901','621283199903027267','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',1,'admin','2019-09-23 22:02:34','admin','2019-09-23 22:02:34');
+INSERT INTO `candidate` VALUES (3,'刘云飞','MALE','15128903892','321283193009844','汉族','大专','党员','浦东新区张江路1号','浦东新区张江路1号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',6,'gary','2019-09-21 21:35:14','admin','2019-10-22 19:01:15'),(10,'张飞','MALE','12345678908','321283199903027214','汉族','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',10,'admin','2019-09-23 22:02:34','admin','2019-10-17 21:45:48');
 /*!40000 ALTER TABLE `candidate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
-INSERT INTO `job` VALUES (1,'盒马生鲜','上海','浦东新区','张江路2000号','骑手','1','7000-9000',50,1,1,1000,'',4,'admin','2019-08-28 21:11:43','admin','2019-10-16 23:11:43');
+INSERT INTO `job` VALUES (1,'盒马生鲜','上海','浦东新区','张江路2000号','骑手','1','8000-9000',50,1,1,1000,'',5,'gary','2019-08-28 21:11:43','admin','2019-10-17 21:45:59');
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,6 +143,7 @@ CREATE TABLE `jobApplication` (
   `referee` varchar(20) DEFAULT NULL,
   `refereePhone` varchar(20) DEFAULT NULL,
   `status` varchar(20) NOT NULL,
+  `applicationDate` datetime DEFAULT NULL,
   `onBoardedTime` datetime DEFAULT NULL,
   `resignedTime` datetime DEFAULT NULL,
   `jpaVersion` int(11) NOT NULL,
@@ -155,7 +156,7 @@ CREATE TABLE `jobApplication` (
   KEY `candidateId` (`candidateId`),
   CONSTRAINT `jobapplication_ibfk_1` FOREIGN KEY (`jobId`) REFERENCES `job` (`id`),
   CONSTRAINT `jobapplication_ibfk_2` FOREIGN KEY (`candidateId`) REFERENCES `candidate` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='求职信息';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='求职信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +165,7 @@ CREATE TABLE `jobApplication` (
 
 LOCK TABLES `jobApplication` WRITE;
 /*!40000 ALTER TABLE `jobApplication` DISABLE KEYS */;
-INSERT INTO `jobApplication` VALUES (1,1,3,'张群','15790476239','WAITING_INTERVIEW',NULL,NULL,1,'gary','2019-10-14 22:49:32','gary','2019-10-14 22:49:32');
+INSERT INTO `jobApplication` VALUES (1,1,3,'张群2','15790476239','NEW','2019-10-22 00:00:00',NULL,NULL,3,'gary','2019-10-14 22:49:32','admin','2019-10-23 17:58:48'),(2,1,3,'刘四','0273697573','NEW','2019-10-22 00:00:00',NULL,NULL,1,'admin','2019-10-22 20:31:14','admin','2019-10-22 20:31:14');
 /*!40000 ALTER TABLE `jobApplication` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,4 +210,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-16 23:17:18
+-- Dump completed on 2019-10-23 21:01:24
