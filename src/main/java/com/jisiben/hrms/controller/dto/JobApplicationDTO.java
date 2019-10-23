@@ -7,13 +7,14 @@ import com.jisiben.hrms.controller.dto.common.DTORoot;
 public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
     private long candidateId;
     private long jobId;
-    private String name;
+    private String candidateName;
     private String phone;
     private String idNumber;
     private String referee;
     private String refereePhone;
     private String company;
     private String city;
+    private String district;
     private String jobName;
     private String applicationDate;
     private String status;
@@ -28,13 +29,14 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         super(builder);
         this.candidateId=builder.candidateId;
         this.jobId=builder.jobId;
-        this.name=builder.name;
+        this.candidateName=builder.candidateName;
         this.phone=builder.phone;
         this.idNumber=builder.idNumber;
         this.referee=builder.referee;
         this.refereePhone=builder.refereePhone;
         this.company=builder.company;
         this.city=builder.city;
+        this.district=builder.district;
         this.jobName=builder.jobName;
         this.applicationDate=builder.applicationDate;
         this.status=builder.status;
@@ -43,8 +45,8 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         this.lastUpdatedTime=builder.lastUpdatedTime;
     }
 
-    public String getName() {
-        return name;
+    public String getCandidateName() {
+        return candidateName;
     }
 
     public String getPhone() {
@@ -95,6 +97,10 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         return lastUpdatedTime;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
     public long getCandidateId() {
         return candidateId;
     }
@@ -106,13 +112,14 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
     public static class Builder extends DTORoot.Builder<JobApplicationDTO.Builder, JobApplicationDTO> {
         private long candidateId;
         private long jobId;
-        private String name;
+        private String candidateName;
         private String phone;
         private String idNumber;
         private String referee;
         private String refereePhone;
         private String company;
         private String city;
+        private String district;
         private String jobName;
         private String applicationDate;
         private String status;
@@ -130,8 +137,8 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
             return this;
         }
 
-        public Builder name(String name) {
-            this.name = name;
+        public Builder candidateName(String candidateName) {
+            this.candidateName = candidateName;
             return this;
         }
 
@@ -162,6 +169,11 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
 
         public Builder city(String city) {
             this.city = city;
+            return this;
+        }
+
+        public Builder district(String district) {
+            this.district = district;
             return this;
         }
 

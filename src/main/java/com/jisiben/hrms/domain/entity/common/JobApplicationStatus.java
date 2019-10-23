@@ -1,5 +1,8 @@
 package com.jisiben.hrms.domain.entity.common;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum JobApplicationStatus {
     NEW("未处理"),
     FAILED("申请失败"),
@@ -21,5 +24,16 @@ public enum JobApplicationStatus {
 
     JobApplicationStatus(String value) {
         this.value = value;
+    }
+
+    private static final Map<String, JobApplicationStatus> lookup = new HashMap<String, JobApplicationStatus>();
+    static {
+        for (JobApplicationStatus status : JobApplicationStatus.values()) {
+            lookup.put(status.value, status);
+        }
+    }
+
+    public static JobApplicationStatus get(String value) {
+        return lookup.get(value);
     }
 }

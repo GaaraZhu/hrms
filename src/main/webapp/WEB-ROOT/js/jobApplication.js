@@ -26,7 +26,8 @@
                 data : "idNumber=" + idNumber,
                 contentType : "application/json;charset=utf-8",
                 success : function(data) {
-                   $("#candidateId").val(data.id);
+                    $("#candidateId").val(data.id);
+                    $("#candidateName").val(data.name);
                 },
                 error : function(e) {
                     if (e.status != 401) {
@@ -76,7 +77,7 @@
             data : data.results,
             title : [
                     "id",
-                    "name",
+                    "candidateName",
                     "phone",
                     "idNumber",
                     "referee",
@@ -115,23 +116,26 @@
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 $("#addJobApplicationList").load(
-                    "WEB-ROOT/html/job.jsp",
+                    "WEB-ROOT/html/jobApplication.jsp",
                     function() {
                         $("#addModel").modal({
                             keyboard : true
                         });
                         if (data != null) {
-//                            $("#id").val(data.id);
-//                            $("#company").val(data.company);
-//                            $("#city").val(data.city);
-//                            $("#name").val(data.name);
-//                            $("#salaryRange").val(data.salaryRange);
-//                            $("#type").val(data.type);
-//                            $("#quota").val(data.quota);
-//                            $("#referralBonus").val(data.referralBonus);
-//                            $("#referralBonusAmount").val(data.referralBonusAmount);
-//                            $("#active").val(data.active);
-//                            $("#submitType").val("POST");
+                            $("#id").val(data.id);
+                            $("#jobId").val(data.jobId);
+                            $("#candidateId").val(data.candidateId);
+                            $("#jobName").val(data.jobName);
+                            $("#company").val(data.company);
+                            $("#city").val(data.city);
+                            $("#district").val(data.district);
+                            $("#idNumber").val(data.idNumber);
+                            $("#candidateName").val(data.candidateName);
+                            $("#referee").val(data.referee);
+                            $("#refereePhone").val(data.refereePhone);
+                            $("#status").val(data.status).change();;
+                            $("#applicationDate").datepicker("setDate", data.applicationDate);
+                            $("#submitType").val("POST");
                         }
                     });
             },

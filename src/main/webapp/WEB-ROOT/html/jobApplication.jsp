@@ -37,10 +37,14 @@
 								<div class="col-lg-35" style="padding-top: 25px;">
                                     <input id="district" type="text" class="form-control col-lg-35" name="district" readonly="readonly">
 								</div>
-								<label for="idNumber" class="col-lg-2 control-label" style="padding-top: 30px;">申请人</label>
+								<label for="idNumber" class="col-lg-2 control-label" style="padding-top: 30px;">身份证号</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="idNumber" type="text" class="form-control col-lg-35" name="idNumber" placeholder="申请人身份证账号">
+                                    <input id="idNumber" type="text" class="form-control col-lg-35" name="idNumber" placeholder="申请人身份证号">
 								</div>
+								<label for="candidateName" class="col-lg-2 control-label" style="padding-top: 30px;">姓名</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                    <input id="candidateName" type="text" class="form-control col-lg-35" name="candidateName" readonly="readonly">
+                                </div>
 								<label for="referee" class="col-lg-2 control-label" style="padding-top: 30px;">推荐人</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
                                     <input id="referee" type="text" class="form-control col-lg-35" name="referee" placeholder="推荐人姓名">
@@ -57,17 +61,17 @@
                                 <label for="status" class="col-lg-2 control-label" style="padding-top: 30px;">当前状态</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
                                      <select id="status" name="status" style="width: 202px;height: 32px;">
-                                         <option value="NEW">未处理</option>
-                                         <option value="FAILED">申请失败</option>
-                                         <option value="WAITING_INTERVIEW">等待面试</option>
-                                         <option value="INTERVIEWED">完成面试</option>
-                                         <option value="INTERVIEW_PASSED">面试通过</option>
-                                         <option value="INTERVIEW_FAILED">面试失败</option>
-                                         <option value="ON_BOARDED">入职</option>
-                                         <option value="ON_BOARDED_ONE_ONE_MONTH">入职满1月</option>
-                                         <option value="ON_BOARDED_ONE_THREE_MONTH">入职满3月</option>
-                                         <option value="ON_BOARDED_ONE_SIX_MONTH">入职满6月</option>
-                                         <option value="RESIGNED">离职</option>
+                                         <option value="未处理">未处理</option>
+                                         <option value="申请失败">申请失败</option>
+                                         <option value="等待面试">等待面试</option>
+                                         <option value="完成面试">完成面试</option>
+                                         <option value="面试通过">面试通过</option>
+                                         <option value="面试失败">面试失败</option>
+                                         <option value="入职">入职</option>
+                                         <option value="入职满1月">入职满1月</option>
+                                         <option value="入职满3月">入职满3月</option>
+                                         <option value="入职满6月">入职满6月</option>
+                                         <option value="离职">离职</option>
                                      </select>
                                 </div>
                                 <div style="display:none">
@@ -91,7 +95,7 @@
 	<script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobApplication.js"></script>
 	<script type="text/javascript">
         $(function () {
-            $('#applicationDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true}).datepicker("setDate", new Date());;
+            $('#applicationDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true}).datepicker("setDate", new Date());
         });
     </script>
 

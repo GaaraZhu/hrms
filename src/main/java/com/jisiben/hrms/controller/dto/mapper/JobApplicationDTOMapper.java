@@ -32,13 +32,16 @@ public class JobApplicationDTOMapper implements Mapper<JobApplication, JobApplic
     public JobApplicationDTO toDTO(JobApplication entity) {
         return new JobApplicationDTO.Builder()
                 .id(entity.getId())
-                .name(entity.getCandidate().getName())
+                .jobId(entity.getJob().getId())
+                .candidateId(entity.getCandidate().getId())
+                .candidateName(entity.getCandidate().getName())
                 .phone(entity.getCandidate().getPhone())
                 .idNumber(entity.getCandidate().getIdNumber())
                 .referee(entity.getReferee())
                 .refereePhone(entity.getRefereePhone())
                 .company(entity.getJob().getCompany())
                 .city(entity.getJob().getCity())
+                .district(entity.getJob().getDistrict())
                 .jobName(entity.getJob().getName())
                 .applicationDate(sm.format(entity.getApplicationDate()))
                 .status(entity.getStatus().getValue())
@@ -72,7 +75,7 @@ public class JobApplicationDTOMapper implements Mapper<JobApplication, JobApplic
                 .applicationDate(applicationDate)
                 .referee(dto.getReferee())
                 .refereePhone(dto.getRefereePhone())
-                .status(JobApplicationStatus.valueOf(dto.getStatus()))
+                .status(JobApplicationStatus.get(dto.getStatus()))
                 .onBoardedTime(onboardedTime)
                 .resignedTime(resignedTime);
     }
