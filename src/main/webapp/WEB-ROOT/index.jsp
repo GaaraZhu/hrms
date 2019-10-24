@@ -23,7 +23,6 @@
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/datepicker-zh-CN.min.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/jquery.serializeObject.min.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<%=request.getContextPath() %>/WEB-ROOT/js/common.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/treeview.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/lTable.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/bootstrapValidator.js"></script>
