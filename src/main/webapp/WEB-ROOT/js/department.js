@@ -95,10 +95,7 @@
 
     function delF(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#alert").load("WEB-ROOT/html/common/alert.jsp",
-                function(response, status, xhr) {
-                    $('#alert').html(response);
-                });
+            $("#alert").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "department?id="+id,
@@ -185,7 +182,6 @@
             contentType: 'application/json;charset=utf-8',
             success : function() {
                  $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                    $('#addAlert').html(response);
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
@@ -195,7 +191,6 @@
             },
             error : function(msg) {
                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                    $('#addAlert').html(response);
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true

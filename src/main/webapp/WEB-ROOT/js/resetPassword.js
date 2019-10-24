@@ -48,7 +48,6 @@ function resetPassword(e){
         contentType : "application/json;charset=utf-8",
         success : function(msg) {
              $( "#resetAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                $('#resetAlert').html(response);
                 $("#alertText").text("操作成功");
                 $("#alertModel").modal({
                     keyboard: true
@@ -57,7 +56,6 @@ function resetPassword(e){
         },
         error : function(msg) {
             $( "#resetAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
-                $('#resetAlert').html(response);
                 $("#alertText").text("操作失败");
                 $("#alertModel").modal({
                     keyboard: true
