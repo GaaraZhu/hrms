@@ -163,7 +163,9 @@
 
             $("#logout").click(
                 function(){
-                    window.location.replace("logout");
+                    if (confirm("确定退出系统？") == true) {
+                        window.location.replace("logout");
+                    }
                 }
             );
 
