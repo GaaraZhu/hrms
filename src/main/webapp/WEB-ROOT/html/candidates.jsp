@@ -28,19 +28,9 @@ HttpSession s = request.getSession();
                             class="form-control" id="searchCity" name="searchCity"
                             placeholder="请输入城市">
                     </div>
-
+				</div>
+				<div class="row">
                     <div class="form-group inputselect col-lg-4">
-                        <button type="button" class="btn btn-success btn-sm "
-                            id="search">
-                            <span class="glyphicon glyphicon-search"></span> 搜索
-                        </button>
-
-                        <button type="button" class="btn btn-success btn-sm "
-                            id="reset">
-                            <span class="glyphicon glyphicon-refresh"></span> 重置
-                        </button>
-                    </div>
-                    <div class="form-group inputselect col-lg-4" style="left: 150px;">
                         <button type="button" class="btn btn-info btn-sm" id="uploadCandidates">
                             <span class="glyphicon glyphicon-cloud-upload"></span> 上传候选人
                         </button>
@@ -48,7 +38,17 @@ HttpSession s = request.getSession();
                             <span class="glyphicon glyphicon-user"></span> 新增候选人
                         </button>
                     </div>
-				</div>
+                    <div class="form-group inputselect col-lg-4">
+                        <button type="button" class="btn btn-success btn-sm"
+                            id="search" style="margin-left: 192px;">
+                            <span class="glyphicon glyphicon-search"></span> 搜索
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm"
+                            id="reset">
+                            <span class="glyphicon glyphicon-refresh"></span> 重置
+                        </button>
+                    </div>
+                </div>
 			</form>
 			<form class="form-inline" role="form"></form>
 			<div class="table-responsive " style="margin-left: 3%;">

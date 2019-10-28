@@ -22,24 +22,25 @@ HttpSession s = request.getSession();
 							class=" form-control " id="searchName" name="searchName"
 							placeholder="请输入名称">
 					</div>
-				
-					<div class="form-group inputselect col-lg-4">
-						<button type="button" class="btn btn-success btn-sm "
-							id="search">
-							<span class="glyphicon glyphicon-search"></span> 搜索
-						</button>
-						
-						<button type="button" class="btn btn-success btn-sm "
-							id="reset">
-							<span class="glyphicon glyphicon-refresh"></span> 重置
-						</button>
-					</div>
-					<div class="form-group inputselect col-lg-4">
-                        <button type="button" class="btn btn-info btn-sm" style="margin-left: 155px;" id="addDep">
+				</div>
+				<div class="row">
+                    <div class="form-group inputselect col-lg-4">
+                        <button type="button" class="btn btn-info btn-sm" id="addDep">
                             <span class="glyphicon glyphicon-plus"></span> 新增部门
                         </button>
-					</div>
-				</div>
+                    </div>
+                    <div class="form-group inputselect col-lg-4">
+                        <button type="button" class="btn btn-success btn-sm "
+                            id="search" style="margin-left: 192px;">
+                            <span class="glyphicon glyphicon-search"></span> 搜索
+                        </button>
+
+                        <button type="button" class="btn btn-success btn-sm "
+                            id="reset">
+                            <span class="glyphicon glyphicon-refresh"></span> 重置
+                        </button>
+                    </div>
+                </div>
 			</form>
 			<form class="form-inline" role="form"></form>
 			<div class="table-responsive " style="margin-left: 3%;">

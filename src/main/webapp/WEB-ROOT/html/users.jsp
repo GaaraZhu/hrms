@@ -21,30 +21,30 @@
                     </div>
 					<div class="form-group inputselect col-lg-3">
                         <label for="searchAuthority">用户权限</label><br/>
-                        <select id="searchAuthority" name="searchAuthority" style="width: 85px;height: 32px;">
+                        <select id="searchAuthority" name="searchAuthority" style="width: 125px;height: 32px;">
                             <option value="-1">所有用户</option>
                             <option value="0">普通用户</option>
                             <option value="1">管理员</option>
                         </select>
                     </div>
-				
-					<div class="form-group inputselect col-lg-4">
-						<button type="button" class="btn btn-success btn-sm "
-							id="search">
-							<span class="glyphicon glyphicon-search"></span> 搜索
-						</button>
-						
-						<button type="button" class="btn btn-success btn-sm "
-							id="reset">
-							<span class="glyphicon glyphicon-refresh"></span> 重置
-						</button>
-					</div>
-					<div class="form-group inputselect col-lg-4">
-                        <button type="button" class="btn btn-info btn-sm " style="margin-left: 240px" id="addUser">
+				</div>
+				<div class="row">
+                    <div class="form-group inputselect col-lg-4">
+                        <button type="button" class="btn btn-info btn-sm " id="addUser">
                             <span class="glyphicon glyphicon-user"></span> 新增用户
                         </button>
-					</div>
-				</div>
+                    </div>
+                    <div class="form-group inputselect col-lg-4">
+                        <button type="button" class="btn btn-success btn-sm "
+                            id="search" style="margin-left: 192px;">
+                            <span class="glyphicon glyphicon-search"></span> 搜索
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm "
+                            id="reset">
+                            <span class="glyphicon glyphicon-refresh"></span> 重置
+                        </button>
+                    </div>
+                </div>
 			</form>
 			<form class="form-inline" role="form"></form>
 			<div class="table-responsive " style="margin-left: 3%;">
