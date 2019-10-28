@@ -46,15 +46,15 @@ public class UploadController {
         }
         f.flush();
         f.close();
-        logger.info("Upload type: "+ uploadDataType);
         logger.info("Upload file successfully: "+ fileLocation);
 
         List<CandidateDTO> candidateDTOs = Poiji.fromExcel(new File(fileLocation), CandidateDTO.class);
         List<Candidate> candidates = candidateDTOs.stream()
-                .skip(1)
                 .map((CandidateDTO dto)->mapper.toEntity(dto, new Candidate.Builder().build()))
                 .collect(Collectors.toList());
         candidateService.saveAll(candidates);
+
+        logger.info("Total candidate count: "+ candidateDTOs.size());
 
         return "redirect:/index";
     }
