@@ -132,13 +132,17 @@
                             系统通知
                         </span>
                     </li>
+                    <li>
+                        <span class="spliter" id="logout">
+                            <i class="fas fa-power-off"></i>
+                            退出系统
+                        </span>
+                    </li>
             </nav>
             <div id="wrapper">
                 <div class="col-lg-10 col-sm-12">
                     <div style="margin-top: 3px" class="breadcrumb hid">
-                        <div id="headTitle" style="display:inline-block;width:50%">首页</div>
-                        <div style="display:inline-block;width:45%"></div>
-                        <a href="#"><div id="logout" style="display:inline-block;" align="right">退出</div></a>
+                        <div id="headTitle">首页</div>
                     </div>
                     <div id="frame"></div>
                 </div>
