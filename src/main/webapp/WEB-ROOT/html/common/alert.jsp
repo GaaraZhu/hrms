@@ -4,7 +4,6 @@
 <html>
 <body>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- 模态框（Modal） -->
 		<div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		    <div class="modal-dialog" style="width:300px ; margin-top:15% ;">
 		        <div class="modal-content">
@@ -16,7 +15,7 @@
 		            <div class="modal-footer">
 		                <button type="button" class="btn btn-primary" id= "alertSubmit">确定</button>
 		            </div>
-		        </div><!-- /.modal-content -->
+		        </div>
 		    </div>
 		</div>
 		<script type="text/javascript">
