@@ -16,6 +16,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `branch`
+--
+
+DROP TABLE IF EXISTS `branch`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `branch` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `manager` varchar(20) NOT NULL,
+  `telephone` varchar(20) NOT NULL,
+  `jpaVersion` int(11) NOT NULL,
+  `createdBy` varchar(20) NOT NULL,
+  `createdTime` datetime NOT NULL,
+  `lastUpdatedBy` varchar(20) NOT NULL,
+  `lastUpdatedTime` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='公司部门表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `branch`
+--
+
+LOCK TABLES `branch` WRITE;
+/*!40000 ALTER TABLE `branch` DISABLE KEYS */;
+INSERT INTO `branch` VALUES (8,'康兰劳务','浦东新区川北公路1号','张杰','12345678911',1,'admin','2019-10-29 21:41:35','admin','2019-10-29 21:41:35');
+/*!40000 ALTER TABLE `branch` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `candidate`
 --
 
@@ -55,38 +87,6 @@ LOCK TABLES `candidate` WRITE;
 /*!40000 ALTER TABLE `candidate` DISABLE KEYS */;
 INSERT INTO `candidate` VALUES (3,'刘云飞','MALE','15128903893','321283193009844','汉','大专','党员','浦东新区张江路1号','浦东新区张江路1号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',7,'gary','2019-09-21 21:35:14','admin','2019-10-25 00:51:25'),(10,'张飞','MALE','12345678908','321283199903027214','汉','本科','党员','浦东新区张江高科1号','浦东新区张江高科2号','中国银行','3445-6598-0998-4083','张飞','13128903891','朋友',10,'admin','2019-09-23 22:02:34','admin','2019-10-17 21:45:48'),(18,'王彭','MALE','15388936671','412702200210145511','汉','高中','群众','河南省周口市项城市王明口镇后彭庄村','上海市浦东新区唐镇','光大银行','6214920605028842','王付强','17634773219','父亲',1,'admin','2019-10-28 21:12:12','admin','2019-10-28 21:12:12'),(19,'王飞飞','MALE','13598506150','410823198303277000','汉','初中','群众','南省焦作市武陟县圪垱店乡邢庄村青年东街22号','上海市浦东新区曹路镇朱盛村78号','光大银行','6226630604693514','王玲','15939187526','配偶',1,'admin','2019-10-28 21:12:12','admin','2019-10-28 21:12:12');
 /*!40000 ALTER TABLE `candidate` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `department`
---
-
-DROP TABLE IF EXISTS `branch`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `branch` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  `address` varchar(200) NOT NULL,
-  `manager` varchar(20) NOT NULL,
-  `telephone` varchar(20) NOT NULL,
-  `jpaVersion` int(11) NOT NULL,
-  `createdBy` varchar(20) NOT NULL,
-  `createdTime` datetime NOT NULL,
-  `lastUpdatedBy` varchar(20) NOT NULL,
-  `lastUpdatedTime` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='公司部门表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `department`
---
-
-LOCK TABLES `department` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'财务','001','赵飞','15685638704',12,'admin','2019-08-19 22:17:41','admin','2019-09-07 10:50:50'),(2,'销售','002','刘春燕','14565638701',0,'admin','2019-08-19 22:17:41','admin','2019-08-19 22:17:41'),(3,'后勤','003','刘勇','16265732724',0,'admin','2019-08-19 22:17:42','admin','2019-08-19 22:17:42'),(5,'研发','004','张力','0273697573',1,'admin','2019-08-20 22:39:59','admin','2019-08-20 22:39:59'),(7,'客服','006','张什么','0273697573',1,'admin','2019-09-07 10:16:57','admin','2019-09-07 10:16:57');
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -241,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-29 20:45:55
+-- Dump completed on 2019-10-29 21:49:15
