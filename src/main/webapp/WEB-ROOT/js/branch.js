@@ -13,13 +13,13 @@
 	);
 
     function queryPage(cp) {
-        depNum = $("#searchNumber").val();
-        depName = $("#searchName").val();
+        name = $("#searchName").val();
+        manager = $("#searchManager").val();
         $.ajax({
-            url : "departments",
+            url : "branches",
             type : "GET",
             async: true,
-            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&depNum=" +depNum+ "&depName="+depName,
+            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&manager="+manager,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 initTable(data, cp);
@@ -39,12 +39,12 @@
             data : data.results,
             title : [
                     "id",
-                    "number",
                     "name",
+                    "address",
                     "manager",
                     "telephone",
                     "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
-            name : ["ID", "部门编号", "部门名称", "部门主管", "部门电话", "_opt" ],
+            name : ["ID", "门店名称", "门店地址", "门店主管", "门店电话", "_opt" ],
             tid : "id",
             checkBox : "id"
         });
@@ -64,19 +64,19 @@
 	function updF(id) {
         $.ajax({
             type : "GET",
-            url : "department?id="+id,
+            url : "branch?id="+id,
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#addDepList").load(
-                    "WEB-ROOT/html/department.jsp",
+                $("#addBranchList").load(
+                    "WEB-ROOT/html/branch.jsp",
                     function() {
                         $("#addModel").modal({
                             keyboard : true
                         });
                         if (data != null) {
                             $("#id").val(data.id);
-                            $("#number").val(data.number);
+                            $("#address").val(data.address);
                             $("#name").val(data.name);
                             $("#manager").val(data.manager);
                             $("#telephone").val(data.telephone);
@@ -98,7 +98,7 @@
             $("#alert").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
-                url : "department?id="+id,
+                url : "branch?id="+id,
                 async : true,
                 contentType : "application/json;charset=utf-8",
                 success : function() {
@@ -118,9 +118,9 @@
         }
     }
 
-    $("#addDep").click(
+    $("#addBranch").click(
         function(){
-             $("#addDepList").load("WEB-ROOT/html/department.jsp", function(){
+             $("#addBranchList").load("WEB-ROOT/html/branch.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });
@@ -128,7 +128,7 @@
         }
     );
 
-    $('#depForm').bootstrapValidator({
+    $('#branchForm').bootstrapValidator({
         message : 'This value is not valid',
         feedbackIcons : {
             valid : 'glyphicon glyphicon-ok',
@@ -136,30 +136,31 @@
             validating : 'glyphicon glyphicon-refresh'
         },
         fields : {
-            number : {
-                message : '部门编号验证失败',
+            address : {
                 validators : {
                     notEmpty : {
-                        message : '部门编号不能为空'
+                        message : '门店地址不能为空'
                     },
-                    regexp : {
-                        regexp : /^[a-zA-Z0-9_]+$/,
-                        message : '员工编号只能包含大写、小写、数字和下划线'
-                    }
                 }
             },
             name : {
                 validators : {
                     notEmpty : {
-                        message : '部门名称不能为空'
+                        message : '门店名称不能为空'
                     },
-
                 }
             },
             manager : {
                 validators : {
                     notEmpty : {
-                        message : '部门主管不能为空'
+                        message : '门店主管不能为空'
+                    },
+                }
+            },
+            telephone : {
+                validators : {
+                    notEmpty : {
+                        message : '门店电话不能为空'
                     },
                 }
             },
@@ -171,9 +172,9 @@
 
     function onCreateOrUpdate(e){
         e.preventDefault();
-        var data = $('form#depForm').serializeObject();
+        var data = $('form#branchForm').serializeObject();
         var method = $("#submitType").val();
-        var url = method=="POST"?"department?id="+$("#id").val():"department";
+        var url = method=="POST"?"branch?id="+$("#id").val():"branch";
         $.ajax({
             type : method,
             url : url,

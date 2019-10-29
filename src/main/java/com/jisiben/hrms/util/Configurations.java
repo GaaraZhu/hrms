@@ -1,9 +1,7 @@
 package com.jisiben.hrms.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.jisiben.hrms.controller.dto.DepartmentDTO;
 import com.jisiben.hrms.service.impl.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +14,6 @@ import org.springframework.security.authentication.dao.SaltSource;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Optional;
 
 @Configuration
 @EnableJpaRepositories(basePackages="com.jisiben.hrms.domain.dao")
@@ -55,13 +51,5 @@ public class Configurations {
             }
         });
         return provider;
-    }
-
-    public static void main(String[] args) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new Jdk8Module());
-
-        Optional<DepartmentDTO> d = Optional.ofNullable(new DepartmentDTO.Builder().id(123l).build());
-        System.out.println(mapper.writeValueAsString(d));
     }
 }

@@ -15,34 +15,34 @@
 				<div class="modal-header">
 					<button type="button" class="close" id="addAlertSubmit"
 						data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel">新增部门</h4>
+					<h4 class="modal-title" id="myModalLabel">新增门店</h4>
 				</div>
-				<form class="form-horizontal" role="form" id="depForm" >
+				<form class="form-horizontal" role="form" id="branchForm" >
 					<div class="modal-body" style="height: 60%;">
 						<div class="col-lg-10 col-md-9 col-sm-9 ">
 							<div class="form-group " >
-								<label for="number" class="col-lg-2 control-label" style="padding-top: 30px;">部门编号</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-									<input type="text" class="form-control" name="number"
-										id="number" placeholder="请输入部门编号">
-								</div>
-								<label for="name" class=" col-lg-2 control-label" style="padding-top: 30px;">部门名称</label>
+								<label for="name" class=" col-lg-2 control-label" style="padding-top: 30px;">门店名称</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
 								 <input
 									type="text" class="form-control col-lg-35" name="name"
-									id="name" placeholder="请输入部门名称">
+									id="name" placeholder="请输入门店名称">
 								</div>
-								<label for="manager" class="col-lg-2 control-label" style="padding-top: 30px;">部门主管</label>
+								<label for="number" class="col-lg-2 control-label" style="padding-top: 30px;">门店地址</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                    <input type="text" class="form-control" name="address"
+                                        id="address" placeholder="请输入门店地址">
+                                </div>
+								<label for="manager" class="col-lg-2 control-label" style="padding-top: 30px;">门店主管</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
 								 <input
 									type="text" class="form-control col-lg-35" name="manager"
-									id="manager" placeholder="请输入部门主管">
+									id="manager" placeholder="请输入门店主管">
 								</div>
-								<label for="telephone" class="col-lg-2 control-label" style="padding-top: 30px;">部门电话</label>
+								<label for="telephone" class="col-lg-2 control-label" style="padding-top: 30px;">门店电话</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
 								 <input
 									type="text" class="form-control col-lg-35" name="telephone"
-									id="telephone" placeholder="请输入部门电话">
+									id="telephone" placeholder="请输入门店电话">
 								</div>
 								<input type="hidden" id="id" value="">
 							</div>
@@ -58,6 +58,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="<%=request.getContextPath()%>/WEB-ROOT/js/department.js"></script>
+	<script src="<%=request.getContextPath()%>/WEB-ROOT/js/branch.js"></script>
 
 </body>

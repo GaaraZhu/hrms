@@ -111,8 +111,8 @@
                             <ul>
                                 <li>
                                     <a href="javascript:void(0)"
-                                        onclick="htmlDispatcher('WEB-ROOT/html/departments.jsp',' 首页/ 系统管理/ 部门管理','部门管理')">
-                                        部门管理
+                                        onclick="htmlDispatcher('WEB-ROOT/html/branches.jsp',' 首页/ 系统管理/ 门店管理','门店管理')">
+                                        门店管理
                                     </a>
                                 </li>
                             </ul>

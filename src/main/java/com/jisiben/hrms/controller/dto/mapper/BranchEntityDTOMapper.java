@@ -1,28 +1,28 @@
 package com.jisiben.hrms.controller.dto.mapper;
 
-import com.jisiben.hrms.controller.dto.DepartmentDTO;
+import com.jisiben.hrms.controller.dto.BranchDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
-import com.jisiben.hrms.domain.entity.Department;
+import com.jisiben.hrms.domain.entity.Branch;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DepartmentEntityDTOMapper implements Mapper<Department, DepartmentDTO> {
+public class BranchEntityDTOMapper implements Mapper<Branch, BranchDTO> {
     @Override
-    public DepartmentDTO toDTO(Department entity) {
-        return new DepartmentDTO.Builder()
+    public BranchDTO toDTO(Branch entity) {
+        return new BranchDTO.Builder()
                 .id(entity.getId())
                 .name(entity.getName())
-                .number(entity.getNumber())
                 .manager(entity.getManager())
+                .address(entity.getAddress())
                 .telephone(entity.getTelephone())
                 .build();
     }
 
     @Override
-    public Department toEntity(DepartmentDTO dto, Department entity) {
+    public Branch toEntity(BranchDTO dto, Branch entity) {
         return entity.name(dto.getName())
-                .number(dto.getNumber())
                 .manager(dto.getManager())
+                .address(dto.getAddress())
                 .telephone(dto.getTelephone());
     }
 }

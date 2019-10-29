@@ -61,13 +61,13 @@ UNLOCK TABLES;
 -- Table structure for table `department`
 --
 
-DROP TABLE IF EXISTS `department`;
+DROP TABLE IF EXISTS `branch`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `department` (
+CREATE TABLE `branch` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
-  `number` varchar(20) NOT NULL,
+  `address` varchar(200) NOT NULL,
   `manager` varchar(20) NOT NULL,
   `telephone` varchar(20) NOT NULL,
   `jpaVersion` int(11) NOT NULL,

@@ -5,28 +5,28 @@
 HttpSession s = request.getSession(); 
 %>
 <body class="full" id="content">
-    <script src="<%=request.getContextPath()%>/WEB-ROOT/js/department.js"></script>
+    <script src="<%=request.getContextPath()%>/WEB-ROOT/js/branch.js"></script>
 	<div id="alert"></div>
-	<div id="addDepList"></div>
+	<div id="addBranchList"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
-		<form class="form-inline" role="form" id="selectDepVal">
+		<form class="form-inline" role="form" id="selectBranchVal">
 				<div class="row">
 					<div class="form-group inputselect col-lg-4">
-						<label for="name">部门编号</label> <input type="text"
-							class="form-control  " id="searchNumber" name="searchNumber"
-						    placeholder="请输入编号">
-					</div>
-					<div class="form-group inputselect col-lg-4">
-						<label for="name">部门名称</label> <input type="text"
-							class=" form-control " id="searchName" name="searchName"
+						<label for="name">门店名称</label> <input type="text"
+							class=" form-control" id="searchName" name="searchName"
 							placeholder="请输入名称">
 					</div>
+					<div class="form-group inputselect col-lg-4">
+                        <label for="name">门店经理</label> <input type="text"
+                            class="form-control" id="searchManager" name="searchManager"
+                            placeholder="请输入经理">
+                    </div>
 				</div>
 				<div class="row">
                     <div class="form-group inputselect col-lg-4">
-                        <button type="button" class="btn btn-info btn-sm" id="addDep">
-                            <span class="glyphicon glyphicon-plus"></span> 新增部门
+                        <button type="button" class="btn btn-info btn-sm" id="addBranch">
+                            <span class="glyphicon glyphicon-plus"></span> 新增门店
                         </button>
                     </div>
                     <div class="form-group inputselect col-lg-4">
@@ -54,7 +54,4 @@ HttpSession s = request.getSession();
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript">
-        queryPage(1);
-    </script>
 </body>

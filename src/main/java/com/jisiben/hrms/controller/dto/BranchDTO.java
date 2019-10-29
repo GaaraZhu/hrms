@@ -2,19 +2,19 @@ package com.jisiben.hrms.controller.dto;
 
 import com.jisiben.hrms.controller.dto.common.DTORoot;
 
-public class DepartmentDTO extends DTORoot<DepartmentDTO> {
+public class BranchDTO extends DTORoot<BranchDTO> {
     private String name;
-    private String number;
+    private String address;
     private String manager;
     private String telephone;
 
-    public DepartmentDTO() {
+    public BranchDTO() {
     }
 
-    private DepartmentDTO(Builder builder) {
+    private BranchDTO(Builder builder) {
         super(builder);
         this.name = builder.name;
-        this.number = builder.number;
+        this.address = builder.address;
         this.manager = builder.manager;
         this.telephone = builder.telephone;
     }
@@ -23,8 +23,8 @@ public class DepartmentDTO extends DTORoot<DepartmentDTO> {
         return name;
     }
 
-    public String getNumber() {
-        return number;
+    public String getAddress() {
+        return address;
     }
 
     public String getManager() {
@@ -35,9 +35,9 @@ public class DepartmentDTO extends DTORoot<DepartmentDTO> {
         return telephone;
     }
 
-    public static class Builder extends DTORoot.Builder<Builder, DepartmentDTO> {
+    public static class Builder extends DTORoot.Builder<Builder, BranchDTO> {
         private String name;
-        private String number;
+        private String address;
         private String manager;
         private String telephone;
 
@@ -46,8 +46,8 @@ public class DepartmentDTO extends DTORoot<DepartmentDTO> {
             return this;
         }
 
-        public Builder number(String number) {
-            this.number = number;
+        public Builder address(String address) {
+            this.address = address;
             return this;
         }
 
@@ -61,8 +61,8 @@ public class DepartmentDTO extends DTORoot<DepartmentDTO> {
             return this;
         }
 
-        public DepartmentDTO build() {
-            return new DepartmentDTO(this);
+        public BranchDTO build() {
+            return new BranchDTO(this);
         }
     }
 }

@@ -6,24 +6,24 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "department")
-public class Department extends PersistentRoot<Department> {
+@Table(name = "branch")
+public class Branch extends PersistentRoot<Branch> {
 
     private String name;
 
-    private String number;
+    private String address;
 
     private String manager;
 
     private String telephone;
 
-    public Department() {
+    public Branch() {
     }
 
-    private Department(Builder builder) {
+    private Branch(Builder builder) {
         super(builder);
         this.name = builder.name;
-        this.number = builder.number;
+        this.address = builder.address;
         this.manager = builder.manager;
         this.telephone = builder.telephone;
     }
@@ -32,17 +32,17 @@ public class Department extends PersistentRoot<Department> {
         return name;
     }
 
-    public Department name(String name) {
+    public Branch name(String name) {
         this.name = name;
         return this;
     }
 
-    public String getNumber() {
-        return number;
+    public String getAddress() {
+        return address;
     }
 
-    public Department number(String number) {
-        this.number = number;
+    public Branch address(String address) {
+        this.address = address;
         return this;
     }
 
@@ -50,7 +50,7 @@ public class Department extends PersistentRoot<Department> {
         return manager;
     }
 
-    public Department manager(String manager) {
+    public Branch manager(String manager) {
         this.manager = manager;
         return this;
     }
@@ -59,14 +59,14 @@ public class Department extends PersistentRoot<Department> {
         return telephone;
     }
 
-    public Department telephone(String telephone) {
+    public Branch telephone(String telephone) {
         this.telephone = telephone;
         return this;
     }
 
-    public static class Builder extends PersistentRoot.Builder<Builder, Department> {
+    public static class Builder extends PersistentRoot.Builder<Builder, Branch> {
         private String name;
-        private String number;
+        private String address;
         private String manager;
         private String telephone;
 
@@ -75,8 +75,8 @@ public class Department extends PersistentRoot<Department> {
             return this;
         }
 
-        public Builder number(String number) {
-            this.number = number;
+        public Builder address(String address) {
+            this.address = address;
             return this;
         }
 
@@ -91,8 +91,8 @@ public class Department extends PersistentRoot<Department> {
         }
 
         @Override
-        public Department build() {
-            return new Department(this);
+        public Branch build() {
+            return new Branch(this);
         }
     }
 }
