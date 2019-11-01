@@ -56,7 +56,7 @@
 
             	for(var k=0;k<thids.length;k++){
             		if(thnames[k]=="_opt"){
-                        thb+=('<td style="height: 40px; line-height: 30px; text-align:left; white-space:nowrap;">'+thids[k].replace(/\id/g,("\""+data[m][tid]+"\""))+'</td>');
+                        thb+=('<td style="height: 40px; line-height: 30px; text-align:left; white-space:nowrap;">'+thids[k].replace(/\(id\)/g, "("+data[m][tid]+")")+'</td>');
             		}
             	}
             	thb+='</tr>';
