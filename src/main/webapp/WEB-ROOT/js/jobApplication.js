@@ -1,6 +1,6 @@
     var pageSize = 8;
     var wto;
-	$("#reset").click(
+	$("#resetJobApplications").click(
         function() {
             $("#searchCompany").val("");
             $("#searchCity").val("");
@@ -9,9 +9,9 @@
         }
 	);
 
-	$("#search").click(
+	$("#searchJobApplications").click(
         function() {
-            queryPage(1);
+            queryJobApplications(1);
 	    }
     );
 
@@ -31,7 +31,7 @@
                 },
                 error : function(e) {
                     if (e.status != 401) {
-                        $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                        $("#jobApplicationAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                             $("#alertText").text("该候选人不存在，请先录入系统再进行操作");
                             $("#alertModel").modal({
                                 keyboard: true
@@ -43,7 +43,7 @@
         }, 1000);
     });
 
-    function queryPage(cp) {
+    function queryJobApplications(cp) {
         company = $("#searchCompany").val();
         city = $("#searchCity").val();
         jobName = $("#searchJobName").val();
@@ -60,7 +60,7 @@
                     +"&referee="+referee + "&status="+status+"&fromTime="+"" + "&toTime="+"",
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                initTable(data, cp);
+                initJobApplicationTable(data, cp);
             },
             error : function(e) {
                 if (e.status != 401) {
@@ -71,7 +71,7 @@
         });
     }
 
-    function initTable(data, currentPage) {
+    function initJobApplicationTable(data, currentPage) {
         $.lTable('#tableList',
         {
             data : data.results,
@@ -90,7 +90,7 @@
                     "onBoardedTime",
                     "resignedTime",
                     "lastUpdatedTime",
-                    "<button  class='btn btn-info btn-sm editJobA'  ID='editJobA' onclick='updF(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delJobA' ID='delJobA' onclick='delF(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
+                    "<button  class='btn btn-info btn-sm editJobA'  ID='editJobA' onclick='updateJobApplication(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delJobA' ID='delJobA' onclick='deleteJobApplication(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
             name : ["ID", "姓名", "电话", "身份证号", "推荐人", "推荐人电话", "应聘企业", "应聘城市", "应聘职位", "求职/推荐时间", "最新状态", "入职时间", "离职时间", "处理时间", "_opt" ],
             tid : "id",
             checkBox : "id"
@@ -103,19 +103,19 @@
             count : data.totalElements,
             inputSearch : false,
             onPageChange : function(currentPage) {
-                queryPage(currentPage);
+                queryJobApplications(currentPage);
             }
         });
     }
 
-	function updF(id) {
+	function updateJobApplication(id) {
         $.ajax({
             type : "GET",
             url : "jobApplication?id="+id,
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#addJobApplicationList").load(
+                $("#jobApplicationModal").load(
                     "WEB-ROOT/html/jobApplication.jsp",
                     function() {
                         $("#addModel").modal({
@@ -148,9 +148,9 @@
         });
     }
 
-    function delF(id) {
+    function deleteJobApplication(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#addJobApplicationAlert").load("WEB-ROOT/html/common/alert.jsp");
+            $("#jobApplicationsAlertModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "jobApplication?id="+id,
@@ -161,7 +161,7 @@
                     $("#alertModel").modal({
                         keyboard : true
                     });
-                    queryPage(1);
+                    queryJobApplications(1);
                 },
                 error : function(msg) {
                     $("#alertText").text("删除失败");
@@ -192,10 +192,10 @@
         }
     }).on(
         'success.form.bv',
-        onCreateOrUpdate
+        onCreateOrUpdateJobApplication
     );
 
-    function onCreateOrUpdate(e){
+    function onCreateOrUpdateJobApplication(e){
         e.preventDefault();
         var data = $('form#jobApplicationForm').serializeObject();
         data.jobId = $("#jobId").val();
@@ -210,18 +210,18 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
-                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                 $("#jobApplicationAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
                     });
                  });
                  if (method=="POST") {
-                    queryPage(1);
+                    queryJobApplications(1);
                  }
             },
             error : function(msg) {
-                $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                $("#jobApplicationAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true

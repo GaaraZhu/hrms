@@ -3,8 +3,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/user.js"></script>
-	<div id="alert"></div>
-	<div id="addUserList"></div>
+	<div id="usersAlertModal"></div>
+	<div id="userModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectUserVal">
@@ -36,11 +36,11 @@
                     </div>
                     <div class="form-group inputselect col-lg-4">
                         <button type="button" class="btn btn-success btn-sm "
-                            id="search" style="margin-left: 192px;">
+                            id="searchUsers" style="margin-left: 192px;">
                             <span class="glyphicon glyphicon-search"></span> 搜索
                         </button>
                         <button type="button" class="btn btn-success btn-sm "
-                            id="reset">
+                            id="resetUsers">
                             <span class="glyphicon glyphicon-refresh"></span> 重置
                         </button>
                     </div>
@@ -59,6 +59,6 @@
 		</div>
 	</div>
     <script type="text/javascript">
-        queryPage(1);
+        queryUsers(1);
     </script>
 </body>

@@ -1,5 +1,6 @@
     var pageSize = 8;
-	$("#reset").click(
+
+	$("#resetCandidates").click(
         function() {
             $("#searchName").val("");
             $("#searchPhone").val("");
@@ -7,13 +8,13 @@
         }
 	);
 
-	$("#search").click(
+	$("#searchCandidates").click(
         function() {
-            queryPage(1);
+            queryCandidates(1);
 	    }
 	);
 
-    function queryPage(cp) {
+    function queryCandidates(cp) {
         name = $("#searchName").val();
         phone = $("#searchPhone").val();
         city = $("#searchCity").val();
@@ -24,7 +25,7 @@
             data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&phone="+phone,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                initTable(data, cp);
+                initCandidateTable(data, cp);
             },
             error : function(e) {
                 if (e.status != 401) {
@@ -35,7 +36,7 @@
         });
     }
 
-    function initTable(data, currentPage) {
+    function initCandidateTable(data, currentPage) {
         $.lTable('#tableList',
         {
             data : data.results,
@@ -55,7 +56,7 @@
                     "emergencyContactName",
                     "emergencyContactPhone",
                     "emergencyContactRelationship",
-                    "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-remove'></span> 删除</button>" ] ,
+                    "<button  class='btn btn-info btn-sm editDepa'  ID='editCandidate' onclick='updateCandidate(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delCandidate' onclick='deleteCandidate(id)'><span class='glyphicon glyphicon-remove'></span> 删除</button>" ] ,
             name : ["ID", "姓名", "性别", "身份证号", "电话号码", "民族", "政治面貌", "学历", "户籍地址", "当前住址", "银行卡号", "开户银行", "紧急联系人", "联系人电话", "联系人关系", "_opt" ],
             tid : "id",
             checkBox : "id"
@@ -68,19 +69,19 @@
             count : data.totalElements,
             inputSearch : false,
             onPageChange : function(currentPage) {
-                queryPage(currentPage);
+                queryCandidates(currentPage);
             }
         });
     }
 
-	function updF(id) {
+	function updateCandidate(id) {
         $.ajax({
             type : "GET",
             url : "candidate?id="+id,
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#addCandidatePage").load(
+                $("#candidateModal").load(
                     "WEB-ROOT/html/candidate.jsp",
                     function() {
                         $("#addModel").modal({
@@ -115,12 +116,9 @@
         });
     }
 
-    function delF(id) {
+    function deleteCandidate(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#alert").load("WEB-ROOT/html/common/alert.jsp",
-                    function(response, status, xhr) {
-                        $('#alert').html(response);
-                    });
+            $("#candidatesAlertModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "candidate?id="+id,
@@ -131,7 +129,7 @@
                     $("#alertModel").modal({
                         keyboard : true
                     });
-                    queryPage(1);
+                    queryCandidates(1);
                 },
                 error : function(msg) {
                     $("#alertText").text("删除失败");
@@ -145,7 +143,7 @@
 
     $("#addCandidate").click(
         function(){
-             $("#addCandidatePage").load("WEB-ROOT/html/candidate.jsp", function(){
+             $("#candidateModal").load("WEB-ROOT/html/candidate.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });
@@ -155,7 +153,7 @@
 
     $("#uploadCandidates").click(
         function(){
-            $("#uploadCandidatesPage").load(
+            $("#candidateModal").load(
                 "WEB-ROOT/html/common/upload.jsp",
                 function() {
                     $("#addModel").modal({
@@ -210,10 +208,10 @@
         }
     }).on(
         'success.form.bv',
-        onCreateOrUpdate
+        onCreateOrUpdateCandidate
     );
 
-    function onCreateOrUpdate(e){
+    function onCreateOrUpdateCandidate(e){
         e.preventDefault();
         var data = $('form#candidateForm').serializeObject();
         var method = $("#submitType").val();
@@ -225,16 +223,16 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function(msg) {
-                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                 $("#candidateAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
                     });
                  });
-                queryPage(1);
+                queryCandidates(1);
             },
             error : function(msg) {
-                $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                $("#candidateAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true
@@ -243,4 +241,3 @@
             }
         });
     }
-

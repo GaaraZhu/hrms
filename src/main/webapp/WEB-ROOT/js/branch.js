@@ -1,18 +1,18 @@
     var pageSize = 8;
-	$("#reset").click(
+	$("#resetBranch").click(
         function() {
-            $("#searchNumber").val("");
             $("#searchName").val("");
+            $("#searchManager").val("");
         }
 	);
 
-	$("#search").click(
+	$("#searchBranches").click(
         function() {
-            queryPage(1);
+            queryBranches(1);
 	    }
 	);
 
-    function queryPage(cp) {
+    function queryBranches(cp) {
         name = $("#searchName").val();
         manager = $("#searchManager").val();
         $.ajax({
@@ -22,7 +22,7 @@
             data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&manager="+manager,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                initTable(data, cp);
+                initBranchTable(data, cp);
             },
             error : function(e) {
                 if (e.status != 401) {
@@ -33,7 +33,7 @@
         });
     }
 
-    function initTable(data, currentPage) {
+    function initBranchTable(data, currentPage) {
         $.lTable('#tableList',
         {
             data : data.results,
@@ -43,7 +43,7 @@
                     "address",
                     "manager",
                     "telephone",
-                    "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
+                    "<button  class='btn btn-info btn-sm editDepa'  ID='editBranch' onclick='updateBranch(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delBranch' onclick='deleteBranch(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
             name : ["ID", "门店名称", "门店地址", "门店主管", "门店电话", "_opt" ],
             tid : "id",
             checkBox : "id"
@@ -56,19 +56,19 @@
             count : data.totalElements,
             inputSearch : false,
             onPageChange : function(currentPage) {
-                queryPage(currentPage);
+                queryBranches(currentPage);
             }
         });
     }
 
-	function updF(id) {
+	function updateBranch(id) {
         $.ajax({
             type : "GET",
             url : "branch?id="+id,
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#addBranchList").load(
+                $("#branchModal").load(
                     "WEB-ROOT/html/branch.jsp",
                     function() {
                         $("#addModel").modal({
@@ -93,9 +93,9 @@
         });
     }
 
-    function delF(id) {
+    function deleteBranch(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#alert").load("WEB-ROOT/html/common/alert.jsp");
+            $("#branchesAlertModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "branch?id="+id,
@@ -106,7 +106,7 @@
                     $("#alertModel").modal({
                         keyboard : true
                     });
-                    queryPage(1);
+                    queryBranches(1);
                 },
                 error : function(msg) {
                     $("#alertText").text("删除失败");
@@ -120,7 +120,7 @@
 
     $("#addBranch").click(
         function(){
-             $("#addBranchList").load("WEB-ROOT/html/branch.jsp", function(){
+             $("#branchModal").load("WEB-ROOT/html/branch.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });
@@ -182,16 +182,16 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
-                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                 $("#branchAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
                     });
                  });
-                 queryPage(1);
+                 queryBranches(1);
             },
             error : function(msg) {
-                $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                $("#branchAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true

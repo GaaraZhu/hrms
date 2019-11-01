@@ -1,18 +1,18 @@
     var pageSize = 8;
-	$("#reset").click(
+	$("#resetUsers").click(
         function() {
             $("#name").val("");
             $("#authority").val("");
         }
 	);
 
-	$("#search").click(
+	$("#searchUsers").click(
         function() {
-            queryPage(1);
+            queryUsers(1);
 	    }
 	);
 
-    function queryPage(cp) {
+    function queryUsers(cp) {
         name = $("#searchName").val();
         account = $("#searchAccount").val();
         authority = $("#searchAuthority").val();
@@ -23,7 +23,7 @@
             data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&account=" + account+"&authority="+authority,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                initTable(data, cp);
+                initUserTable(data, cp);
             },
             error : function(e) {
                 if (e.status != 401) {
@@ -34,7 +34,7 @@
         });
     }
 
-    function initTable(data, currentPage) {
+    function initUserTable(data, currentPage) {
         $.lTable('#tableList',
         {
             data : data.results,
@@ -43,7 +43,7 @@
                     "name",
                     "account",
                     "authority",
-                    "<button  class='btn btn-info btn-sm editUser'  ID='editUser' onclick='updF(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delUser' ID='delUser' onclick='delF(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
+                    "<button  class='btn btn-info btn-sm editUser'  ID='editUser' onclick='updateUser(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delUser' ID='delUser' onclick='deleteUser(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
             name : ["ID", "用户姓名", "账号", "是否为管理员", "_opt" ],
             tid : "id",
             checkBox : "id"
@@ -56,19 +56,19 @@
             count : data.totalElements,
             inputSearch : false,
             onPageChange : function(currentPage) {
-                queryPage(currentPage);
+                queryUsers(currentPage);
             }
         });
     }
 
-	function updF(id) {
+	function updateUser(id) {
         $.ajax({
             type : "GET",
             url : "user?id="+id,
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#addUserList").load(
+                $("#userModal").load(
                     "WEB-ROOT/html/user.jsp",
                     function() {
                         $("#addModel").modal({
@@ -92,9 +92,9 @@
         });
     }
 
-    function delF(id) {
+    function deleteUser(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#alert").load("WEB-ROOT/html/common/alert.jsp");
+            $("#usersAlertModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "user?id="+id,
@@ -105,7 +105,7 @@
                     $("#alertModel").modal({
                         keyboard : true
                     });
-                    queryPage(1);
+                    queryUsers(1);
                 },
                 error : function(msg) {
                     $("#alertText").text("删除失败");
@@ -119,7 +119,7 @@
 
     $("#addUser").click(
         function(){
-             $("#addUserList").load("WEB-ROOT/html/user.jsp", function(){
+             $("#userModal").load("WEB-ROOT/html/user.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });
@@ -165,10 +165,10 @@
         }
     }).on(
         'success.form.bv',
-        onCreateOrUpdate
+        onCreateOrUpdateUser
     );
 
-    function onCreateOrUpdate(e){
+    function onCreateOrUpdateUser(e){
         e.preventDefault();
         var data = $('form#userForm').serializeObject();
         var method = $("#submitType").val();
@@ -180,16 +180,16 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
-                 $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                 $("#userAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
                     });
                  });
-                 queryPage(1);
+                 queryUsers(1);
             },
             error : function(msg) {
-                $( "#addAlert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                $("#userAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true

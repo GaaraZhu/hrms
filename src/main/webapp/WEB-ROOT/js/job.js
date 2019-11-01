@@ -1,22 +1,22 @@
     var pageSize = 8;
-    var resultTable;
-	$("#reset").click(
+    var jobsResultTable;
+	$("#resetJobs").click(
         function() {
-            console.log("select job id is : " + resultTable.getCheckboxIds());
             $("#searchCompany").val("");
             $("#searchCity").val("");
+            $("#searchDistrict").val("");
             $("#searchName").val("");
             $("#searchActive").val("true");
         }
 	);
 
-	$("#search").click(
+	$("#searchJobs").click(
         function() {
-            queryPage(1);
+            queryJobs(1);
 	    }
 	);
 
-    function queryPage(cp) {
+    function queryJobs(cp) {
         company = $("#searchCompany").val();
         city = $("#searchCity").val();
         district = $("#searchDistrict").val();
@@ -29,7 +29,7 @@
             data : "currentPage=" + cp + "&pageSize=" + pageSize + "&company=" +company+ "&city="+city + "&district="+district + "&name="+name+ "&active="+active,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                initTable(data, cp);
+                initJobTable(data, cp);
             },
             error : function(e) {
                 if (e.status != 401) {
@@ -40,8 +40,8 @@
         });
     }
 
-    function initTable(data, currentPage) {
-        resultTable = $.lTable('#tableList',
+    function initJobTable(data, currentPage) {
+        jobsResultTable = $.lTable('#tableList',
         {
             data : data.results,
             title : [
@@ -59,7 +59,7 @@
                     "creator",
                     "createdTime",
                     "active",
-                    "<button  class='btn btn-info btn-sm editDepa'  ID='editDepa' onclick='updF(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='delDepa' onclick='delF(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
+                    "<button  class='btn btn-info btn-sm editDepa'  ID='editJob' onclick='updateJob(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='deleteJob' onclick='deleteJob(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
             name : ["ID", "企业", "城市", "区域", "地址", "职位名称", "待遇", "工作性质", "招聘人数", "推荐有奖", "奖励金额", "发布人", "发布时间", "是否有效", "_opt" ],
             tid : "id",
             checkBox : "id"
@@ -72,19 +72,19 @@
             count : data.totalElements,
             inputSearch : false,
             onPageChange : function(currentPage) {
-                queryPage(currentPage);
+                queryJobs(currentPage);
             }
         });
     }
 
-	function updF(id) {
+	function updateJob(id) {
         $.ajax({
             type : "GET",
             url : "job?id="+id,
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#addJobList").load(
+                $("#jobModal").load(
                     "WEB-ROOT/html/job.jsp",
                     function() {
                         $("#addModel").modal({
@@ -116,9 +116,9 @@
         });
     }
 
-    function delF(id) {
+    function deleteJob(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#alert").load("WEB-ROOT/html/common/alert.jsp");
+            $("#jobsAlertModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "job?id="+id,
@@ -129,7 +129,7 @@
                     $("#alertModel").modal({
                         keyboard : true
                     });
-                    queryPage(1);
+                    queryJobs(1);
                 },
                 error : function(msg) {
                     $("#alertText").text("删除失败");
@@ -143,7 +143,7 @@
 
     $("#addJob").click(
         function(){
-             $("#addJobList").load("WEB-ROOT/html/job.jsp", function(){
+             $("#jobModal").load("WEB-ROOT/html/job.jsp", function(){
                 $("#addModel").modal({
                     keyboard: true
                 });
@@ -153,9 +153,9 @@
 
     $("#addJobApplication").click(
         function(){
-            var idsStr = resultTable.getCheckboxIds();
+            var idsStr = jobsResultTable.getCheckboxIds();
             if (idsStr=="" || idsStr.includes(",")) {
-                $( "#alert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                $("#jobsAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("请选择一个职位进行操作");
                     $("#alertModel").modal({
                         keyboard: true
@@ -169,7 +169,7 @@
                     data : "id=" + idsStr,
                     contentType : "application/json;charset=utf-8",
                     success : function(data) {
-                        $("#addJobList").load("WEB-ROOT/html/jobApplication.jsp", function(){
+                        $("#jobApplicationModal").load("WEB-ROOT/html/jobApplication.jsp", function(){
                             $("#jobId").val(data.id);
                             $("#jobName").val(data.name);
                             $("#company").val(data.company);
@@ -265,10 +265,10 @@
         }
     }).on(
         'success.form.bv',
-        onCreateOrUpdate
+        onCreateOrUpdateJob
     );
 
-    function onCreateOrUpdate(e){
+    function onCreateOrUpdateJob(e){
         e.preventDefault();
         var data = $('form#jobForm').serializeObject();
         var method = $("#submitType").val();
@@ -280,16 +280,16 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
-                 $( "#alert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                 $("#jobAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
                     });
                  });
-                 queryPage(1);
+                 queryJobs(1);
             },
             error : function(msg) {
-                $( "#alert" ).load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                $("#jobAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true

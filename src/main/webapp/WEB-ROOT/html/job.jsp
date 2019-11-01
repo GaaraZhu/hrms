@@ -7,8 +7,7 @@
 	<div class="modal fade" id="addModel" data-backdrop="static"
 		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 		aria-hidden="true">
-		<div id="addAlert">
-		</div>
+		<div id="jobAlertModal"></div>
 		<input type="hidden" id="submitType" value="PUT">
 		<div class="modal-dialog" style="width: 60%; ">
 			<div class="modal-content" style="background: #F5F5F5;">

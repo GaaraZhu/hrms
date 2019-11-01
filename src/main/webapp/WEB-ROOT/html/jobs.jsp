@@ -2,8 +2,9 @@
 	pageEncoding="UTF-8"%>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/job.js"></script>
-	<div id="alert"></div>
-	<div id="addJobList"></div>
+	<div id="jobsAlertModal"></div>
+	<div id="jobModal"></div>
+	<div id="jobApplicationModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectJobsVal">
@@ -47,11 +48,11 @@
                     </div>
                     <div class="form-group inputselect col-lg-4">
                         <button type="button" class="btn btn-success btn-sm"
-                            id="search" style="margin-left: 192px;">
+                            id="searchJobs" style="margin-left: 192px;">
                             <span class="glyphicon glyphicon-search"></span> 搜索
                         </button>
                         <button type="button" class="btn btn-success btn-sm"
-                            id="reset">
+                            id="resetJobs">
                             <span class="glyphicon glyphicon-refresh"></span> 重置
                         </button>
                     </div>
@@ -71,6 +72,6 @@
 	</div>
 
 	<script type="text/javascript">
-	    queryPage(1);
+	    queryJobs(1);
 	</script>
 </body>

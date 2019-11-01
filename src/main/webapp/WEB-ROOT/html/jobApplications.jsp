@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobApplication.js"></script>
-	<div id="alert"></div>
-	<div id="addJobApplicationList"></div>
+	<div id="jobApplicationsAlertModal"></div>
+	<div id="jobApplicationModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectJobApplicationsVal">
@@ -72,10 +72,10 @@
                     </div>
 
                     <div class="form-group inputselect" style="margin-left: 40px;">
-                        <button type="button" class="btn btn-success btn-sm" style="margin-left: 20px;" id="search">
+                        <button type="button" class="btn btn-success btn-sm" style="margin-left: 20px;" id="searchJobApplications">
                             <span class="glyphicon glyphicon-search"></span> 搜索
                         </button>
-                        <button type="button" class="btn btn-success btn-sm" id="reset">
+                        <button type="button" class="btn btn-success btn-sm" id="resetJobApplications">
                             <span class="glyphicon glyphicon-refresh"></span> 重置
                         </button>
                     </div>
@@ -95,7 +95,7 @@
 	</div>
 
 	<script type="text/javascript">
-	    queryPage(1);
+	    queryJobApplications(1);
 	    $(function () {
             $('#searchFromDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
             $('#searchToDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
