@@ -68,10 +68,10 @@
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#branchModal").load(
+                $("#innerModal").load(
                     "WEB-ROOT/html/branch.jsp",
                     function() {
-                        $("#addModel").modal({
+                        $("#originalBranchModal").modal({
                             keyboard : true
                         });
                         if (data != null) {
@@ -95,7 +95,7 @@
 
     function deleteBranch(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#branchesAlertModal").load("WEB-ROOT/html/common/alert.jsp");
+            $("#innerModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "branch?id="+id,
@@ -120,8 +120,8 @@
 
     $("#addBranch").click(
         function(){
-             $("#branchModal").load("WEB-ROOT/html/branch.jsp", function(){
-                $("#addModel").modal({
+             $("#innerModal").load("WEB-ROOT/html/branch.jsp", function(){
+                $("#originalBranchModal").modal({
                     keyboard: true
                 });
             });

@@ -81,10 +81,10 @@
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#candidateModal").load(
+                $("#innerModal").load(
                     "WEB-ROOT/html/candidate.jsp",
                     function() {
-                        $("#addModel").modal({
+                        $("#originalCandidateModal").modal({
                             keyboard : true
                         });
                         if (data != null) {
@@ -118,7 +118,7 @@
 
     function deleteCandidate(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#candidatesAlertModal").load("WEB-ROOT/html/common/alert.jsp");
+            $("#innerModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "candidate?id="+id,
@@ -143,8 +143,8 @@
 
     $("#addCandidate").click(
         function(){
-             $("#candidateModal").load("WEB-ROOT/html/candidate.jsp", function(){
-                $("#addModel").modal({
+             $("#innerModal").load("WEB-ROOT/html/candidate.jsp", function(){
+                $("#originalCandidateModal").modal({
                     keyboard: true
                 });
             });
@@ -153,7 +153,7 @@
 
     $("#uploadCandidates").click(
         function(){
-            $("#candidateModal").load(
+            $("#innerModal").load(
                 "WEB-ROOT/html/common/upload.jsp",
                 function() {
                     $("#addModel").modal({

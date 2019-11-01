@@ -6,8 +6,7 @@ HttpSession s = request.getSession();
 %>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/branch.js"></script>
-	<div id="branchesAlertModal"></div>
-	<div id="branchModal"></div>
+	<div id="innerModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectBranchVal">

@@ -6,9 +6,7 @@ HttpSession s = request.getSession();
 %>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/candidate.js"></script>
-	<div id="candidatesAlertModal"></div>
-	<div id="candidateModal"></div>
-<!-- 	<div id="uploadCandidatesModal"></div> -->
+	<div id="innerModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectCandidatesVal">

@@ -115,10 +115,10 @@
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#jobApplicationModal").load(
+                $("#innerModal").load(
                     "WEB-ROOT/html/jobApplication.jsp",
                     function() {
-                        $("#addModel").modal({
+                        $("#originalJobApplicationModal").modal({
                             keyboard : true
                         });
                         if (data != null) {
@@ -150,7 +150,7 @@
 
     function deleteJobApplication(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#jobApplicationsAlertModal").load("WEB-ROOT/html/common/alert.jsp");
+            $("#innerModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "jobApplication?id="+id,

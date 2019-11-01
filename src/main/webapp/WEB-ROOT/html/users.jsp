@@ -3,8 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/user.js"></script>
-	<div id="usersAlertModal"></div>
-	<div id="userModal"></div>
+	<div id="innerModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectUserVal">

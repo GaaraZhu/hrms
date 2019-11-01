@@ -4,7 +4,7 @@
 <html>
 <body>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<div class="modal fade" id="addModel" data-backdrop="static"
+	<div class="modal fade" id="originalJobApplicationModal" data-backdrop="static"
 		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 		aria-hidden="true">
 		<div id="jobApplicationAlertModal"></div>

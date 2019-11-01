@@ -68,10 +68,10 @@
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#userModal").load(
+                $("#innerModal").load(
                     "WEB-ROOT/html/user.jsp",
                     function() {
-                        $("#addModel").modal({
+                        $("#originalUserModal").modal({
                             keyboard : true
                         });
                         if (data != null) {
@@ -94,7 +94,7 @@
 
     function deleteUser(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#usersAlertModal").load("WEB-ROOT/html/common/alert.jsp");
+            $("#innerModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "user?id="+id,
@@ -119,8 +119,8 @@
 
     $("#addUser").click(
         function(){
-             $("#userModal").load("WEB-ROOT/html/user.jsp", function(){
-                $("#addModel").modal({
+             $("#innerModal").load("WEB-ROOT/html/user.jsp", function(){
+                $("#originalUserModal").modal({
                     keyboard: true
                 });
             });

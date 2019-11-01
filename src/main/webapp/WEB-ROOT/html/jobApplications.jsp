@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobApplication.js"></script>
-	<div id="jobApplicationsAlertModal"></div>
-	<div id="jobApplicationModal"></div>
+	<div id="innerModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
 		<form class="form-inline" role="form" id="selectJobApplicationsVal">

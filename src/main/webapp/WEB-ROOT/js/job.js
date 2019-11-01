@@ -84,10 +84,10 @@
             async : true,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
-                $("#jobModal").load(
+                $("#innerModal").load(
                     "WEB-ROOT/html/job.jsp",
                     function() {
-                        $("#addModel").modal({
+                        $("#originalJobModal").modal({
                             keyboard : true
                         });
                         if (data != null) {
@@ -118,7 +118,7 @@
 
     function deleteJob(id) {
         if (confirm("确定删除该记录？") == true) {
-            $("#jobsAlertModal").load("WEB-ROOT/html/common/alert.jsp");
+            $("#innerModal").load("WEB-ROOT/html/common/alert.jsp");
             $.ajax({
                 type : "DELETE",
                 url : "job?id="+id,
@@ -143,8 +143,8 @@
 
     $("#addJob").click(
         function(){
-             $("#jobModal").load("WEB-ROOT/html/job.jsp", function(){
-                $("#addModel").modal({
+             $("#innerModal").load("WEB-ROOT/html/job.jsp", function(){
+                $("#originalJobModal").modal({
                     keyboard: true
                 });
             });
@@ -155,7 +155,7 @@
         function(){
             var idsStr = jobsResultTable.getCheckboxIds();
             if (idsStr=="" || idsStr.includes(",")) {
-                $("#jobsAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                $("#innerModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("请选择一个职位进行操作");
                     $("#alertModel").modal({
                         keyboard: true
@@ -169,7 +169,7 @@
                     data : "id=" + idsStr,
                     contentType : "application/json;charset=utf-8",
                     success : function(data) {
-                        $("#jobApplicationModal").load("WEB-ROOT/html/jobApplication.jsp", function(){
+                        $("#innerModal").load("WEB-ROOT/html/jobApplication.jsp", function(){
                             $("#jobId").val(data.id);
                             $("#jobName").val(data.name);
                             $("#company").val(data.company);
@@ -177,7 +177,7 @@
                             $("#district").val(data.district);
                             $("#status").val("NEW").change();
                             $("#submitType").val("PUT");
-                            $("#addModel").modal({
+                            $("#originalJobApplicationModal").modal({
                                 keyboard: true
                             });
                         });
@@ -280,7 +280,7 @@
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
-                 $("#jobAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                 $("#innerModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
@@ -289,7 +289,7 @@
                  queryJobs(1);
             },
             error : function(msg) {
-                $("#jobAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                $("#innerModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true
