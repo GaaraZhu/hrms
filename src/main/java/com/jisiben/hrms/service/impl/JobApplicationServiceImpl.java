@@ -50,4 +50,9 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
         String createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
         return dao.findJobApplications(company, city, jobName, hasReferee, candidate, referee, status, fromTime, toTime, createdBy, new PageRequest(currentPage - 1, pageSize));
     }
+
+    @Override
+    public Long findActiveJobApplicationCount(String candidateIdNumber, Long jobId) {
+        return dao.countByCandidateIdNumber(candidateIdNumber, jobId);
+    }
 }

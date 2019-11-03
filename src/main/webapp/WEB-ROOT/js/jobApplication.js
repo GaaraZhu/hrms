@@ -19,6 +19,7 @@
         clearTimeout(wto);
         wto = setTimeout(function() {
             idNumber = $("#idNumber").val();
+            jobId = $("#jobId").val();
             $.ajax({
                 url : "candidate",
                 type : "GET",
@@ -28,9 +29,39 @@
                 success : function(data) {
                     $("#candidateId").val(data.id);
                     $("#candidateName").val(data.name);
+
+                    $.ajax({
+                        url : "activeJobApplicationCount",
+                        type : "GET",
+                        async: true,
+                        data : "candidateIdNumber=" + idNumber+"&jobId=" + jobId,
+                        contentType : "application/json;charset=utf-8",
+                        success : function(count) {
+                            if (count> 0) {
+                                $("#jobApplicationAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                                    $("#alertText").text("该候选人正在申请该职位，请去求职记录页面查看");
+                                    $("#alertModel").modal({
+                                        keyboard: true
+                                    });
+                                });
+                            }
+                        },
+                        error : function(e) {
+                            if (e.status != 401) {
+                                console.log(e);
+                                $("#jobApplicationAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                                    $("#alertText").text("查询用户求职记录失败，请联系管理员");
+                                    $("#alertModel").modal({
+                                        keyboard: true
+                                    });
+                                });
+                            }
+                        }
+                    });
                 },
                 error : function(e) {
                     if (e.status != 401) {
+                        console.log(e);
                         $("#jobApplicationAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                             $("#alertText").text("该候选人不存在，请先录入系统再进行操作");
                             $("#alertModel").modal({

@@ -62,6 +62,13 @@ public class JobApplicationController extends AbstractController<JobApplication,
         return doFind(id);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/activeJobApplicationCount", method = RequestMethod.GET)
+    public Long findActiveJobApplicationCount(@RequestParam("candidateIdNumber") String candidateIdNumber,
+                                              @RequestParam("jobId") Long jobId) {
+        return jobApplicationService.findActiveJobApplicationCount(candidateIdNumber, jobId);
+    }
+
     @RequestMapping(value = "/jobApplication", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void add(@RequestBody JobApplicationDTO dto) {

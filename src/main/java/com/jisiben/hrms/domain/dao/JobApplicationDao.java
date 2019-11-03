@@ -27,4 +27,8 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
             @Param("toTime")Date toTime,
             @Param("createdBy")String createdBy,
             Pageable pageable);
+
+    @Query("SELECT COUNT(ja) FROM JobApplication ja WHERE ja.candidate.idNumber = :candidateIdNumber and ja.job.id = :jobId and ja.status not in "
+            +"(com.jisiben.hrms.domain.entity.common.JobApplicationStatus.FAILED, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.INTERVIEW_FAILED, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.RESIGNED)")
+    Long countByCandidateIdNumber(@Param("candidateIdNumber")String candidateIdNumber, @Param("jobId")Long jobId);
 }
