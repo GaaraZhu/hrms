@@ -29,7 +29,8 @@ public class CandidateServiceImpl extends AbstractService<Candidate> implements 
     public Page<Candidate> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
         String name = criteria.get("name").map(Object::toString).orElse(null);
         String phone = criteria.get("phone").map(Object::toString).orElse(null);
-        return candidateDao.findByNameAndPhone(name, phone, new PageRequest(currentPage-1, pageSize));
+        String createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
+        return candidateDao.findByNameAndPhone(name, phone, createdBy, new PageRequest(currentPage-1, pageSize));
     }
 
     @Override
