@@ -47,8 +47,7 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
         JobApplicationStatus status = StringUtils.isEmpty(statusString)?null:JobApplicationStatus.valueOf(statusString);
         Date fromTime = criteria.get("fromTime").map(Date.class::cast).orElse(null);
         Date toTime = criteria.get("toTime").map(Date.class::cast).orElse(null);
-        String createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
-        return dao.findJobApplications(company, city, jobName, hasReferee, candidate, referee, status, fromTime, toTime, createdBy, new PageRequest(currentPage - 1, pageSize));
+        return dao.findJobApplications(company, city, jobName, hasReferee, candidate, referee, status, fromTime, toTime, new PageRequest(currentPage - 1, pageSize));
     }
 
     @Override

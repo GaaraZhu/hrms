@@ -9,13 +9,12 @@ import org.springframework.data.repository.query.Param;
 
 public interface JobDao extends Dao<Job, Long> {
     @Query("FROM Job j WHERE (:company is null or j.company = :company) and (:city is null or j.city = :city) and (:district is null or j.district like CONCAT('%',:district,'%')) "
-            + " and (:createdBy = 'admin' or j.createdBy = :createdBy) and (:name is null or j.name = :name) and (:active is null or j.active = :active)")
+            + " and (:name is null or j.name = :name) and (:active is null or j.active = :active)")
     Page<Job> findByCompanyAndCityAndNameAndActive(
             @Param("company")String company,
             @Param("city")String city,
             @Param("district")String district,
             @Param("name")String name,
             @Param("active")Boolean active,
-            @Param("createdBy")String createdBy,
             Pageable pageable);
 }

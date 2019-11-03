@@ -39,7 +39,7 @@ public class JobServiceImpl extends AbstractService<Job> implements JobService {
         String district = criteria.get("district").map(Object::toString).orElse(null);
         String name = criteria.get("name").map(Object::toString).orElse(null);
         Boolean active = criteria.get("active").map(Boolean.class::cast).orElse(null);
-        String createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
-        return jobDao.findByCompanyAndCityAndNameAndActive(company, city, district, name, active, createdBy, new PageRequest(currentPage-1, pageSize));
+        return jobDao.findByCompanyAndCityAndNameAndActive(company, city, district, name, active, new PageRequest(currentPage-1, pageSize));
     }
+
 }
