@@ -6,7 +6,7 @@ public class UserDTO extends DTORoot<UserDTO> {
     private String name;
     private String account;
     private String password;
-    private int authority;
+    private String authority;
 
     public UserDTO() {
     }
@@ -31,7 +31,7 @@ public class UserDTO extends DTORoot<UserDTO> {
         return password;
     }
 
-    public int getAuthority() {
+    public String getAuthority() {
         return authority;
     }
 
@@ -39,7 +39,7 @@ public class UserDTO extends DTORoot<UserDTO> {
         private String name;
         private String account;
         private String password;
-        private int authority;
+        private String authority;
 
         public Builder setName(String name) {
             this.name = name;
@@ -56,7 +56,7 @@ public class UserDTO extends DTORoot<UserDTO> {
             return this;
         }
 
-        public Builder setAuthority(int authority) {
+        public Builder setAuthority(String authority) {
             this.authority = authority;
             return this;
         }

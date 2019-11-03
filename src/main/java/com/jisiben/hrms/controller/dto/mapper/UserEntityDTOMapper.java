@@ -19,7 +19,7 @@ public class UserEntityDTOMapper implements Mapper<User, UserDTO> {
                 .id(entity.getId())
                 .setAccount(entity.getAccount())
                 .setName(entity.getName())
-                .setAuthority(entity.getAuthority())
+                .setAuthority(1==entity.getAuthority()?"是":"否")
                 .build();
     }
 
@@ -29,6 +29,6 @@ public class UserEntityDTOMapper implements Mapper<User, UserDTO> {
         return entity.name(dto.getName())
                 .account(dto.getAccount())
                 .password(EncryptUtil.encrypt(presentedPassword, dto.getAccount()))
-                .authority(dto.getAuthority());
+                .authority("是".equals(dto.getAuthority())?1:0);
     }
 }
