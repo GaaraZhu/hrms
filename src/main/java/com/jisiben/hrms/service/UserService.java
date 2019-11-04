@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface UserService extends Service<User> {
     void updatePassword(String account, String password);
+
+    User findByAccount(String account);
 }

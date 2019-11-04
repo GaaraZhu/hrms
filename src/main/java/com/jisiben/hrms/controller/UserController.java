@@ -50,9 +50,15 @@ public class UserController extends AbstractController<User, UserDTO, User.Build
     }
 
     @ResponseBody
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public UserDTO find(Long id) { //TODO: optional serialization
+    @RequestMapping(value = "/user", params = "id", method = RequestMethod.GET)
+    public UserDTO find(@RequestParam Long id) { //TODO: optional serialization
         return doFind(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/user", params = "account", method = RequestMethod.GET)
+    public UserDTO findByAccount(@RequestParam String account) {
+        return getMapper().toDTO(service.findByAccount(account));
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)

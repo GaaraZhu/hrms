@@ -44,4 +44,9 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         Integer authority = criteria.get("authority").map(Integer.class::cast).orElse(null);
         return userDao.findByAccountAndNameAndAuthority(account, name, authority, new PageRequest(currentPage-1, pageSize));
     }
+
+    @Override
+    public User findByAccount(String account) {
+        return userDao.findByAccount(account);
+    }
 }
