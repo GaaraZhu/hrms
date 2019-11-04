@@ -28,4 +28,8 @@ public interface UserDao extends Dao<User, Long> {
             @Param("name")String name,
             @Param("authority")Integer authority,
             Pageable pageable);
+
+    @Modifying(clearAutomatically = true)
+    @Query("update Candidate c set c.createdBy = :targetUserId where c.createdBy = :originalUserId")
+    void dataImport(@Param("originalUserId") long originalUserId, @Param("targetUserId") long targetUserId);
 }
