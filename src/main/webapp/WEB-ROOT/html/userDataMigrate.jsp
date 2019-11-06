@@ -41,16 +41,6 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <label for="dataScope" class="col-lg-2 control-label" style="padding-top: 30px;">导入数据范围</label>
-                                    <div class="col-lg-35" style="padding-top: 25px;">
-                                    <select id="dataScope" name="dataScope" style="width: 85px;height: 32px;">
-                                        <option value="否">有效数据</option>
-                                        <option value="是">全部数据</option>
-                                    </select>
-                                    </div>
-                                </div>
-
                                 <div style="display:none">
                                     <input type="text" id="originalUserId" value="">
                                     <input type="text" id="targetUserId" value="">

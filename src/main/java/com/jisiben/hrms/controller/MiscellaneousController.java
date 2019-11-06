@@ -9,11 +9,13 @@ import com.jisiben.hrms.service.JobApplicationService;
 import com.poiji.bind.Poiji;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -66,7 +68,9 @@ public class MiscellaneousController {
     }
 
     @RequestMapping(value = "/userDataMigrate", method = RequestMethod.POST)
-    public void migrateUserData(@RequestParam Long originalUserId, @RequestParam Long targetUserId, @RequestParam Boolean onlyActiveData) {
-
+    @ResponseStatus(value = HttpStatus.OK)
+    public void migrateUserData(@RequestParam String originalUserId, @RequestParam String targetUserId) {
+        candidateService.migrateCandidates(Long.parseLong(originalUserId), Long.parseLong(targetUserId));
+        jobApplicationService.migrateJobApplications(Long.parseLong(originalUserId), Long.parseLong(targetUserId));
     }
 }

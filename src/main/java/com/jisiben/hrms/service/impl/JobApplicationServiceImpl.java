@@ -13,12 +13,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class JobApplicationServiceImpl extends AbstractService<JobApplication> implements JobApplicationService {
     @Autowired
     private JobApplicationDao dao;
@@ -55,5 +57,10 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
     @Override
     public Long findActiveJobApplicationCount(String candidateIdNumber, Long jobId) {
         return dao.countByCandidateIdNumber(candidateIdNumber, jobId);
+    }
+
+    @Override
+    public void migrateJobApplications(Long originalUserId, Long targetUserId) {
+        dao.migrateJobApplications(originalUserId, targetUserId);
     }
 }

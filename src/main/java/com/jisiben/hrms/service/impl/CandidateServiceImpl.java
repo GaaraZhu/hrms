@@ -15,8 +15,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class CandidateServiceImpl extends AbstractService<Candidate> implements CandidateService {
     @Autowired
     private CandidateDao candidateDao;
@@ -37,5 +39,10 @@ public class CandidateServiceImpl extends AbstractService<Candidate> implements 
     @Override
     public Candidate findByIdNumber(String idNumber) {
         return candidateDao.findByIdNumber(idNumber);
+    }
+
+    @Override
+    public void migrateCandidates(Long originalUserId, Long targetUserId) {
+        candidateDao.migrateCandidates(originalUserId, targetUserId);
     }
 }

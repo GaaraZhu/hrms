@@ -5,6 +5,7 @@ import com.jisiben.hrms.domain.entity.JobApplication;
 import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -31,4 +32,8 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
     @Query("SELECT COUNT(ja) FROM JobApplication ja WHERE ja.candidate.idNumber = :candidateIdNumber and ja.job.id = :jobId and ja.status not in "
             +"(com.jisiben.hrms.domain.entity.common.JobApplicationStatus.FAILED, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.INTERVIEW_FAILED, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.RESIGNED)")
     Long countByCandidateIdNumber(@Param("candidateIdNumber")String candidateIdNumber, @Param("jobId")Long jobId);
+
+    @Modifying
+    @Query(value = "update jobApplication set creatorId = ?2 where creatorId = ?1", nativeQuery = true)
+    void migrateJobApplications(Long originalUserId, Long targetUserId);
 }

@@ -207,12 +207,13 @@
 
     function onMigrateUserData(e){
         e.preventDefault();
-        var data = $('form#userDataMigrateForm').serializeObject();
-        var url = "userDataMigrate";
+        originalUserId = $("#originalUserId").val();
+        targetUserId = $("#targetUserId").val();
+        var url = "userDataMigrate?originalUserId="+originalUserId+"&targetUserId="+targetUserId;
         $.ajax({
             type : "POST",
             url : url,
-            data: JSON.stringify(data),
+            data: {},
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
