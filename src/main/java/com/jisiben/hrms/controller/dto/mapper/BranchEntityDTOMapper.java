@@ -1,15 +1,16 @@
 package com.jisiben.hrms.controller.dto.mapper;
 
 import com.jisiben.hrms.controller.dto.BranchDTO;
-import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
+import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.Branch;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BranchEntityDTOMapper implements Mapper<Branch, BranchDTO> {
+public class BranchEntityDTOMapper extends AbstractMapper<Branch, BranchDTO> {
     @Override
     public BranchDTO toDTO(Branch entity) {
-        return new BranchDTO.Builder()
+        BranchDTO.Builder builder = (BranchDTO.Builder)super.entityToDTO(entity, new BranchDTO.Builder());
+        return builder
                 .id(entity.getId())
                 .name(entity.getName())
                 .manager(entity.getManager())

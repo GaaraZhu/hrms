@@ -16,7 +16,6 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
     private String city;
     private String district;
     private String jobName;
-    private String applicationDate;
     private String status;
     private String onBoardedTime;
     private String resignedTime;
@@ -38,7 +37,6 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         this.city=builder.city;
         this.district=builder.district;
         this.jobName=builder.jobName;
-        this.applicationDate=builder.applicationDate;
         this.status=builder.status;
         this.onBoardedTime=builder.onBoardedTime;
         this.resignedTime=builder.resignedTime;
@@ -75,10 +73,6 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
 
     public String getJobName() {
         return jobName;
-    }
-
-    public String getApplicationDate() {
-        return applicationDate;
     }
 
     public String getStatus() {
@@ -121,7 +115,6 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         private String city;
         private String district;
         private String jobName;
-        private String applicationDate;
         private String status;
         private String onBoardedTime;
         private String resignedTime;
@@ -179,11 +172,6 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
 
         public Builder jobName(String jobName) {
             this.jobName = jobName;
-            return this;
-        }
-
-        public Builder applicationDate(String applicationDate) {
-            this.applicationDate = applicationDate;
             return this;
         }
 

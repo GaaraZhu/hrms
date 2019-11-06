@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.jisiben.hrms.domain.dao.CandidateDao;
 import com.jisiben.hrms.domain.dao.common.Dao;
 import com.jisiben.hrms.domain.entity.Candidate;
+import com.jisiben.hrms.domain.entity.User;
 import com.jisiben.hrms.service.CandidateService;
 import com.jisiben.hrms.service.common.impl.AbstractService;
 

@@ -1,20 +1,18 @@
 package com.jisiben.hrms.controller.dto.mapper;
 
 import com.jisiben.hrms.controller.dto.JobDTO;
-import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
+import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.Job;
 import com.jisiben.hrms.domain.entity.common.JobType;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
-
 @Component
-public class JobEntityDTOMapper implements Mapper<Job, JobDTO> {
-    SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+public class JobEntityDTOMapper extends AbstractMapper<Job, JobDTO> {
 
     @Override
     public JobDTO toDTO(Job entity) {
-        return new JobDTO.Builder()
+        JobDTO.Builder builder = (JobDTO.Builder)super.entityToDTO(entity, new JobDTO.Builder());
+        return builder
                 .id(entity.getId())
                 .company(entity.getCompany())
                 .city(entity.getCity())
@@ -28,10 +26,6 @@ public class JobEntityDTOMapper implements Mapper<Job, JobDTO> {
                 .referralBonusAmount(entity.getReferralBonusAmount())
                 .active(entity.isActive()?"有效":"无效")
                 .note(entity.getNote())
-                .creator(entity.getCreatedBy())
-                .createdTime(sm.format(entity.getCreatedTime()))
-                .updater(entity.getLastUpdatedBy())
-                .updatedTime(sm.format(entity.getLastUpdatedTime()))
                 .build();
     }
 

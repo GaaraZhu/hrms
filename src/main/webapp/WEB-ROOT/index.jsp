@@ -151,7 +151,7 @@
 
         <script>
              $("#frame").load( "WEB-ROOT/html/candidates.jsp", function( response, status, xhr ) {
-                $("#headTitle").text(" 首页/ 系统管理/ 部门管理");
+                $("#headTitle").text(" 首页/ 系统管理/ 简历管理");
              });
 
              htmlDispatcher=function(url, title){

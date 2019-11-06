@@ -1,21 +1,19 @@
 package com.jisiben.hrms.controller.dto.mapper;
 
 import com.jisiben.hrms.controller.dto.UserDTO;
-import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
+import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.User;
 import com.jisiben.hrms.util.EncryptUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
-
 @Component
-public class UserEntityDTOMapper implements Mapper<User, UserDTO> {
-    SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+public class UserEntityDTOMapper extends AbstractMapper<User, UserDTO> {
 
     @Override
     public UserDTO toDTO(User entity) {
-        return new UserDTO.Builder()
+        UserDTO.Builder builder = (UserDTO.Builder)super.entityToDTO(entity, new UserDTO.Builder());
+        return builder
                 .id(entity.getId())
                 .setAccount(entity.getAccount())
                 .setName(entity.getName())

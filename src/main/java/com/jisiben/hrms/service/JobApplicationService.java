@@ -5,4 +5,5 @@ import com.jisiben.hrms.service.common.Service;
 
 public interface JobApplicationService extends Service<JobApplication> {
     Long findActiveJobApplicationCount(String candidateIdNumber, Long jobId);
+
 }

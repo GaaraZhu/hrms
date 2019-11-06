@@ -1,7 +1,7 @@
 package com.jisiben.hrms.controller.dto.mapper;
 
 import com.jisiben.hrms.controller.dto.JobApplicationDTO;
-import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
+import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.domain.entity.Job;
 import com.jisiben.hrms.domain.entity.JobApplication;
@@ -13,14 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Logger;
 
 @Component
-public class JobApplicationDTOMapper implements Mapper<JobApplication, JobApplicationDTO> {
-    private Logger logger = Logger.getLogger(this.getClass().getSimpleName());
-    SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobApplicationDTO> {
 
     @Autowired
     private JobService jobService;
@@ -30,7 +26,8 @@ public class JobApplicationDTOMapper implements Mapper<JobApplication, JobApplic
 
     @Override
     public JobApplicationDTO toDTO(JobApplication entity) {
-        return new JobApplicationDTO.Builder()
+        JobApplicationDTO.Builder builder = (JobApplicationDTO.Builder)super.entityToDTO(entity, new JobApplicationDTO.Builder());
+        return builder
                 .id(entity.getId())
                 .jobId(entity.getJob().getId())
                 .candidateId(entity.getCandidate().getId())
@@ -43,11 +40,9 @@ public class JobApplicationDTOMapper implements Mapper<JobApplication, JobApplic
                 .city(entity.getJob().getCity())
                 .district(entity.getJob().getDistrict())
                 .jobName(entity.getJob().getName())
-                .applicationDate(sm.format(entity.getApplicationDate()))
                 .status(entity.getStatus().getValue())
                 .onBoardedTime(entity.getOnBoardedTime()!=null?sm.format(entity.getOnBoardedTime()):"")
                 .resignedTime(entity.getResignedDate()!=null?sm.format(entity.getResignedDate()):"")
-                .lastUpdatedTime(sm.format(entity.getLastUpdatedTime()))
                 .build();
     }
 
@@ -57,13 +52,13 @@ public class JobApplicationDTOMapper implements Mapper<JobApplication, JobApplic
         Date resignedTime = null;
         Date applicationDate = null;
         try{
-            applicationDate=sm.parse(dto.getApplicationDate());
             if(!StringUtils.isEmpty(dto.getOnBoardedTime())) {
                 onboardedTime=sm.parse(dto.getOnBoardedTime());
             }
             if(!StringUtils.isEmpty(dto.getResignedTime())) {
                 resignedTime=sm.parse(dto.getResignedTime());
             }
+            applicationDate=sm.parse(dto.getCreatedTime());
         } catch (ParseException e) {
             logger.warning(String.format("failed to parse date: {} {}", dto.getOnBoardedTime(), dto.getResignedTime()));
         }

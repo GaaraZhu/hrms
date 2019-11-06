@@ -3,7 +3,9 @@ package com.jisiben.hrms.controller;
 import com.jisiben.hrms.controller.dto.CandidateDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.entity.Candidate;
+import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
 import com.jisiben.hrms.service.CandidateService;
+import com.jisiben.hrms.service.JobApplicationService;
 import com.poiji.bind.Poiji;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -22,12 +25,15 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Controller
-public class UploadController {
+public class MiscellaneousController {
 
     protected Logger logger = Logger.getLogger(this.getClass().getSimpleName());
 
     @Autowired
     private CandidateService candidateService;
+
+    @Autowired
+    private JobApplicationService jobApplicationService;
 
     @Autowired
     @Qualifier("candidateEntityDTOMapper")
@@ -57,5 +63,10 @@ public class UploadController {
         logger.info("Total candidate count: "+ candidateDTOs.size());
 
         return "redirect:/index";
+    }
+
+    @RequestMapping(value = "/userDataMigrate", method = RequestMethod.POST)
+    public void migrateUserData(@RequestParam Long originalUserId, @RequestParam Long targetUserId, @RequestParam Boolean onlyActiveData) {
+
     }
 }

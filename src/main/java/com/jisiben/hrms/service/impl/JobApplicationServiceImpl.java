@@ -3,6 +3,7 @@ package com.jisiben.hrms.service.impl;
 import com.jisiben.hrms.domain.dao.JobApplicationDao;
 import com.jisiben.hrms.domain.dao.common.Dao;
 import com.jisiben.hrms.domain.entity.JobApplication;
+import com.jisiben.hrms.domain.entity.User;
 import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
 import com.jisiben.hrms.service.JobApplicationService;
 import com.jisiben.hrms.service.common.impl.AbstractService;

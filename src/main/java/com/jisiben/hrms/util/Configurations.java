@@ -2,6 +2,9 @@ package com.jisiben.hrms.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.jisiben.hrms.domain.dao.UserDao;
+import com.jisiben.hrms.domain.entity.User;
+import com.jisiben.hrms.service.UserService;
 import com.jisiben.hrms.service.impl.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +22,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 @EnableJpaRepositories(basePackages="com.jisiben.hrms.domain.dao")
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
 public class Configurations {
+
+    @Autowired
+    private UserService userService;
+
     @Bean
     public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
@@ -27,8 +34,8 @@ public class Configurations {
     }
 
     @Bean
-    public AuditorAware<String> auditorProvider() {
-        return ()->SecurityContextHolder.getContext().getAuthentication().getName();
+    public AuditorAware<User> auditorProvider() {
+        return ()->userService.findByAccount(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     @Bean

@@ -37,6 +37,31 @@ public abstract class DTORoot<T extends DTORoot> {
         return updatedTime;
     }
 
+    public T id(Long id) {
+        this.id = id;
+        return (T)this;
+    }
+
+    public T creator(String creator) {
+        this.creator = creator;
+        return (T)this;
+    }
+
+    public T createdTime(String createdTime) {
+        this.createdTime = createdTime;
+        return (T)this;
+    }
+
+    public T updater(String updater) {
+        this.updater = updater;
+        return (T)this;
+    }
+
+    public T updatedTime(String updatedTime) {
+        this.updatedTime = updatedTime;
+        return (T)this;
+    }
+
     public static abstract class Builder<T extends DTORoot.Builder, D extends DTORoot> {
         private Long id;
         private String creator;

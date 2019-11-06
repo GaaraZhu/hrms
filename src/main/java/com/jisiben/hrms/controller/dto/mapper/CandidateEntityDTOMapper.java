@@ -1,16 +1,17 @@
 package com.jisiben.hrms.controller.dto.mapper;
 
 import com.jisiben.hrms.controller.dto.CandidateDTO;
-import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
+import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.domain.entity.common.Gender;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CandidateEntityDTOMapper implements Mapper<Candidate, CandidateDTO> {
+public class CandidateEntityDTOMapper extends AbstractMapper<Candidate, CandidateDTO> {
     @Override
     public CandidateDTO toDTO(Candidate entity) {
-        return new CandidateDTO.Builder()
+        CandidateDTO.Builder builder = (CandidateDTO.Builder)super.entityToDTO(entity, new CandidateDTO.Builder());
+        return builder
                 .id(entity.getId())
                 .name(entity.getName())
                 .gender(entity.getGender().equals(Gender.MALE)?"男":"女")

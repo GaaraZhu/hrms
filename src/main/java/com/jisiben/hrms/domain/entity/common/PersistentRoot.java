@@ -3,6 +3,7 @@ package com.jisiben.hrms.domain.entity.common;
 import java.util.Date;
 import javax.persistence.*;
 
+import com.jisiben.hrms.domain.entity.User;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -18,9 +19,9 @@ public abstract class PersistentRoot<T extends PersistentRoot> {
 
     protected PersistentRoot(PersistentRoot.Builder builder) {
         this.jpaVersion = builder.jpaVersion;
-        this.createdBy = builder.createdBy;
+        this.creator = builder.creator;
         this.createdTime = builder.createdTime;
-        this.lastUpdatedBy = builder.lastUpdatedBy;
+        this.lastUpdater = builder.lastUpdater;
         this.lastUpdatedTime = builder.lastUpdatedTime;
     }
 
@@ -32,14 +33,18 @@ public abstract class PersistentRoot<T extends PersistentRoot> {
     private int jpaVersion;
 
     @CreatedBy
-    private String createdBy;
+    @ManyToOne(targetEntity=User.class)
+    @JoinColumn(name = "creatorId")
+    private User creator;
 
     @CreatedDate
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date createdTime;
 
     @LastModifiedBy
-    private String lastUpdatedBy;
+    @ManyToOne(targetEntity=User.class)
+    @JoinColumn(name = "lastUpdaterId")
+    private User lastUpdater;
 
     @LastModifiedDate
     @Temporal(value = TemporalType.TIMESTAMP)
@@ -53,12 +58,12 @@ public abstract class PersistentRoot<T extends PersistentRoot> {
         return jpaVersion;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public User getCreator() {
+        return creator;
     }
 
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
+    public User getLastUpdater() {
+        return lastUpdater;
     }
 
     public Date getCreatedTime() {
@@ -74,8 +79,8 @@ public abstract class PersistentRoot<T extends PersistentRoot> {
         return (T) this;
     }
 
-    public T createdBy(String createdBy) {
-        this.createdBy = createdBy;
+    public T creator(User creator) {
+        this.creator = creator;
         return (T) this;
     }
 
@@ -84,8 +89,8 @@ public abstract class PersistentRoot<T extends PersistentRoot> {
         return (T)this;
     }
 
-    public T lastUpdatedBy(String lastUpdateBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
+    public T lastUpdater(User lastUpdater) {
+        this.lastUpdater = lastUpdater;
         return (T)this;
     }
 
@@ -97,32 +102,32 @@ public abstract class PersistentRoot<T extends PersistentRoot> {
     public static abstract class Builder<T extends PersistentRoot.Builder, D extends PersistentRoot> {
 
         private int jpaVersion;
-        private String createdBy;
+        private User creator;
         private Date createdTime;
-        private String lastUpdatedBy;
+        private User lastUpdater;
         private Date lastUpdatedTime;
 
-        public T setCreatedBy(String createdBy) {
-            this.createdBy = createdBy;
+        public T creator(User creator) {
+            this.creator = creator;
             return (T)this;
         }
 
-        public T setCreatedTime(Date createdTime) {
+        public T createdTime(Date createdTime) {
             this.createdTime = createdTime;
             return (T)this;
         }
 
-        public T setLastUpdatedBy(String lastUpdatedBy) {
-            this.lastUpdatedBy = lastUpdatedBy;
+        public T lastUpdater(User lastUpdater) {
+            this.lastUpdater = lastUpdater;
             return (T)this;
         }
 
-        public T setLastUpdatedTime(Date lastUpdatedTime) {
+        public T lastUpdatedTime(Date lastUpdatedTime) {
             this.lastUpdatedTime = lastUpdatedTime;
             return (T)this;
         }
 
-        public T setJpaVersion(int jpaVersion) {
+        public T jpaVersion(int jpaVersion) {
             this.jpaVersion = jpaVersion;
             return (T)this;
         }
