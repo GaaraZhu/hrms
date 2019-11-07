@@ -4,6 +4,8 @@ import com.jisiben.hrms.domain.entity.common.JobType;
 import com.jisiben.hrms.domain.entity.common.PersistentRoot;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +24,7 @@ public class Job extends PersistentRoot<Job> {
 
     private String salaryRange;
 
+    @Enumerated(EnumType.STRING)
     private JobType type;
 
     private int quota;

@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
+import java.util.List;
 
 public interface JobApplicationDao extends Dao<JobApplication, Long> {
     @Query("FROM JobApplication ja WHERE (:company is null or ja.job.company = :company) and (:city is null or ja.job.city = :city)"
@@ -36,4 +37,13 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
     @Modifying
     @Query(value = "update jobApplication set creatorId = ?2 where creatorId = ?1", nativeQuery = true)
     void migrateJobApplications(Long originalUserId, Long targetUserId);
+
+    @Query("FROM JobApplication ja WHERE ja.applicationDate >= :fromTime and ja.applicationDate < :toTime")
+    List<JobApplication> findNewlyApplied(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
+
+    @Query("FROM JobApplication ja WHERE ja.interviewedDate >= :fromTime and ja.interviewedDate < :toTime")
+    List<JobApplication> findNewlyInterviewed(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
+
+    @Query("FROM JobApplication ja WHERE ja.onBoardedTime >= :fromTime and ja.onBoardedTime < :toTime")
+    List<JobApplication> findNewlyOnboarded(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
 }

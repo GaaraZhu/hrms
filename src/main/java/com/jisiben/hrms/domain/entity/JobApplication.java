@@ -29,6 +29,9 @@ public class JobApplication extends PersistentRoot<JobApplication> {
     private Date applicationDate;
 
     @Temporal(value = TemporalType.TIMESTAMP)
+    private Date interviewedDate;
+
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date onBoardedTime;
 
     @Temporal(value = TemporalType.TIMESTAMP)
@@ -45,6 +48,7 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         this.refereePhone=builder.refereePhone;
         this.status=builder.status;
         this.applicationDate=builder.applicationDate;
+        this.interviewedDate=builder.interviewedDate;
         this.onBoardedTime=builder.onBoardedTime;
         this.resignedTime=builder.resignedTime;
     }
@@ -58,12 +62,12 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         return this;
     }
 
-    public Date getApplicationDate() {
-        return applicationDate;
+    public Date getInterviewedDate() {
+        return interviewedDate;
     }
 
-    public JobApplication applicationDate(Date applicationDate) {
-        this.applicationDate = applicationDate;
+    public JobApplication interviewedDate(Date interviewedDate) {
+        this.interviewedDate = interviewedDate;
         return this;
     }
 
@@ -103,6 +107,15 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         return this;
     }
 
+    public Date getApplicationDate() {
+        return applicationDate;
+    }
+
+    public JobApplication applicationDate(Date applicationDate) {
+        this.applicationDate = applicationDate;
+        return this;
+    }
+
     public Date getOnBoardedTime() {
         return onBoardedTime;
     }
@@ -129,6 +142,7 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         private String refereePhone;
         private JobApplicationStatus status;
         private Date applicationDate;
+        private Date interviewedDate;
         private Date onBoardedTime;
         private Date resignedTime;
 
@@ -152,6 +166,11 @@ public class JobApplication extends PersistentRoot<JobApplication> {
             return this;
         }
 
+        public Builder applicationDate(Date applicationDate) {
+            this.applicationDate = applicationDate;
+            return this;
+        }
+
         public Builder status(JobApplicationStatus status) {
             this.status = status;
             return this;
@@ -162,8 +181,8 @@ public class JobApplication extends PersistentRoot<JobApplication> {
             return this;
         }
 
-        public Builder applicationDate(Date applicationDate) {
-            this.applicationDate = applicationDate;
+        public Builder interviewedDate(Date interviewedDate) {
+            this.interviewedDate = interviewedDate;
             return this;
         }
 
