@@ -209,7 +209,7 @@
         e.preventDefault();
         originalUserId = $("#originalUserId").val();
         targetUserId = $("#targetUserId").val();
-        var url = "userDataMigrate?originalUserId="+originalUserId+"&targetUserId="+targetUserId;
+        var url = "migrateData?originalUserId="+originalUserId+"&targetUserId="+targetUserId;
         $.ajax({
             type : "POST",
             url : url,

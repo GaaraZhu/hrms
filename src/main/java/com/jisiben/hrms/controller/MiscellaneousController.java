@@ -42,7 +42,8 @@ public class MiscellaneousController {
     private Mapper<Candidate, CandidateDTO> mapper;
 
     @RequestMapping(value = "/uploadData", method = RequestMethod.POST)
-    public String uploadFile(Model model, String uploadDataType, MultipartFile file) throws IOException {
+    @ResponseStatus(value = HttpStatus.OK)
+    public void uploadFile(Model model, String uploadDataType, MultipartFile file) throws IOException {
         InputStream in = file.getInputStream();
         File currDir = new File(".");
         String path = currDir.getAbsolutePath();
@@ -63,11 +64,9 @@ public class MiscellaneousController {
         candidateService.saveAll(candidates);
 
         logger.info("Total candidate count: "+ candidateDTOs.size());
-
-        return "redirect:/index";
     }
 
-    @RequestMapping(value = "/userDataMigrate", method = RequestMethod.POST)
+    @RequestMapping(value = "/migrateData", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void migrateUserData(@RequestParam String originalUserId, @RequestParam String targetUserId) {
         candidateService.migrateCandidates(Long.parseLong(originalUserId), Long.parseLong(targetUserId));
