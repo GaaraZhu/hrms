@@ -24,6 +24,34 @@ public class ApplicationReportDTO extends DTORoot<ApplicationReportDTO> {
         this.type = builder.type;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Long getNewApplied() {
+        return newApplied;
+    }
+
+    public Long getNewInterviewed() {
+        return newInterviewed;
+    }
+
+    public Long getNewOnboarded() {
+        return newOnboarded;
+    }
+
+    public String getFromDate() {
+        return fromDate;
+    }
+
+    public String getToDate() {
+        return toDate;
+    }
+
+    public String getType() {
+        return type;
+    }
+
     public static class Builder extends DTORoot.Builder<ApplicationReportDTO.Builder, ApplicationReportDTO> {
         private String name;
         private Long newApplied;
@@ -63,14 +91,14 @@ public class ApplicationReportDTO extends DTORoot<ApplicationReportDTO> {
             return this;
         }
 
-        public Builder setType(String type) {
+        public Builder type(String type) {
             this.type = type;
             return this;
         }
 
         @Override
         public ApplicationReportDTO build() {
-            return null;
+            return new ApplicationReportDTO(this);
         }
     }
 }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "ApplicationReport")
+@Table(name = "applicationReport")
 public class ApplicationReport extends PersistentRoot<ApplicationReport> {
     @ManyToOne(targetEntity=User.class)
     @JoinColumn(name = "userId")

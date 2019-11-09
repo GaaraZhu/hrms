@@ -45,7 +45,6 @@
                     </div>
                 </div>
 			</form>
-			<form class="form-inline" role="form"></form>
 			<div class="table-responsive " style="margin-left: 3%;">
 				<table class="table table-hover tablefont">
 					<tbody id="tableList"/>

@@ -56,25 +56,18 @@
                         </span>
                     </li>
                     <li>
-                        <a href="#">
+                        <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/jobApplications.jsp',' 首页/ 求职管理','求职管理')">
                             <i class="fas fa-user-tie"></i>
                             求职管理
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)"
-                                    onclick="htmlDispatcher('WEB-ROOT/html/jobApplications.jsp',' 首页/ 求职管理/ 求职信息','求职信息')">
-                                    求职信息
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    求职统计
-                                </a>
-                            </li>
-                        </ul>
+                        </span>
                     </li>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li>
+                            <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/applicationReports.jsp',' 首页/ 业绩报表','业绩报表')">
+                                <i class="fas fa-chart-pie"></i>
+                                业绩报表
+                            </span>
+                        </li>
                         <li>
                             <a href="#">
                                 <i class="fab fa-alipay"></i>

@@ -3,18 +3,21 @@ package com.jisiben.hrms.controller.dto.mapper;
 import com.jisiben.hrms.controller.dto.ApplicationReportDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.ApplicationReport;
+import org.springframework.stereotype.Component;
 
-public class ApplicationReportDTOMapper extends AbstractMapper<ApplicationReport, ApplicationReportDTO> {
+@Component
+public class ApplicationReportEntityDTOMapper extends AbstractMapper<ApplicationReport, ApplicationReportDTO> {
     @Override
     public ApplicationReportDTO toDTO(ApplicationReport entity) {
-        return new ApplicationReportDTO.Builder()
+        ApplicationReportDTO.Builder builder = (ApplicationReportDTO.Builder)super.entityToDTO(entity, new ApplicationReportDTO.Builder());
+        return builder
                 .name(entity.getUser().getName())
                 .newApplied(entity.getNewApplied())
                 .newInterviewed(entity.getNewInterviewed())
                 .newOnboarded(entity.getNewOnboarded())
                 .fromDate(sm.format(entity.getStart()))
                 .toDate(sm.format(entity.getEnd()))
-                .setType(entity.getType().toString())
+                .type(entity.getType().toString())
                 .build();
     }
 

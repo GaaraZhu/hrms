@@ -11,7 +11,6 @@ import javax.annotation.PostConstruct;
 
 public class DateConverter implements Converter<String, Date>{
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
 	@PostConstruct
 	public void init() {
 		dateFormat.setLenient(false);
