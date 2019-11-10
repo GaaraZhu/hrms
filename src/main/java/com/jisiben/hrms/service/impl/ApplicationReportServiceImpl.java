@@ -11,6 +11,7 @@ import com.jisiben.hrms.domain.entity.common.ApplicationReportType;
 import com.jisiben.hrms.service.ApplicationReportService;
 import com.jisiben.hrms.service.common.impl.AbstractService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +22,7 @@ import javax.transaction.Transactional;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
@@ -45,8 +47,8 @@ public class ApplicationReportServiceImpl extends AbstractService<ApplicationRep
 
     @Override
     public Page<ApplicationReport> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
-        Date fromDate = criteria.get("fromDate").map(Date.class::cast).orElse(null);
-        Date toDate = criteria.get("toDate").map(Date.class::cast).orElse(null);
+        Date fromDate = criteria.get("fromDate").map(Date.class::cast).map(date-> DateUtils.truncate(date, Calendar.DATE)).orElse(null);
+        Date toDate = criteria.get("toDate").map(Date.class::cast).map(date-> DateUtils.addDays(date, 1)).map(date-> DateUtils.truncate(date, Calendar.DATE)).orElse(null);
         String name = criteria.get("name").map(Object::toString).orElse(null);
         String typeString = criteria.get("type").map(Object::toString).orElse(null);
         ApplicationReportType type = StringUtils.isEmpty(typeString)?null:ApplicationReportType.valueOf(typeString);

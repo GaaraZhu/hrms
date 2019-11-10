@@ -11,8 +11,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.Date;
 
 public interface ApplicationReportDao extends Dao<ApplicationReport, Long> {
-    @Query("FROM ApplicationReport r WHERE (:fromDate is null or r.createdTime > :fromDate) and (:toDate is null or r.createdTime < :toDate)"
-            + "and (:name is null or r.user.name like CONCAT('%',:name,'%')) and (:type is null or r.type = :type)")
+    @Query("FROM ApplicationReport r WHERE (:fromDate is null or r.start > :fromDate) and (:toDate is null or r.end < :toDate)"
+            + " and (:name is null or r.user.name like CONCAT('%',:name,'%')) and (:type is null or r.type = :type)")
     Page<ApplicationReport> findJobApplicationReports(
             @Param("fromDate") Date fromDate,
             @Param("toDate") Date toDate,
