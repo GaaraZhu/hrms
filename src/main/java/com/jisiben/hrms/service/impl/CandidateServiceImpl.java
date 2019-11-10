@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.jisiben.hrms.domain.dao.CandidateDao;
+import com.jisiben.hrms.domain.dao.UserDao;
 import com.jisiben.hrms.domain.dao.common.Dao;
 import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.domain.entity.User;
@@ -23,8 +24,11 @@ public class CandidateServiceImpl extends AbstractService<Candidate> implements 
     @Autowired
     private CandidateDao candidateDao;
 
+    @Autowired
+    private UserDao userDao;
+
     @Override
-    public Dao<Candidate, Long> getDao() {
+    protected Dao<Candidate, Long> getDao() {
         return candidateDao;
     }
 
@@ -43,6 +47,8 @@ public class CandidateServiceImpl extends AbstractService<Candidate> implements 
 
     @Override
     public void migrateCandidates(Long originalUserId, Long targetUserId) {
-        candidateDao.migrateCandidates(originalUserId, targetUserId);
+        User target = userDao.findOne(targetUserId);
+        User original = userDao.findOne(originalUserId);
+        candidateDao.migrateCandidates(original.getAccount(), target.getAccount());
     }
 }

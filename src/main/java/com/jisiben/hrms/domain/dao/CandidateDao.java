@@ -11,13 +11,13 @@ import org.springframework.data.repository.query.Param;
 
 public interface CandidateDao extends Dao<Candidate, Long> {
     @Query("FROM Candidate c WHERE (:name is null or c.name = :name) and (:phone is null"
-            + " or c.phone = :phone) and (:createdBy = 'admin' or c.creator.account = :createdBy) ")
+            + " or c.phone = :phone) and (:createdBy = 'admin' or c.creator = :createdBy) ")
     Page<Candidate> findByNameAndPhone(
             @Param("name")String name, @Param("phone")String phone, @Param("createdBy")String createdBy, Pageable pageable);
 
     Candidate findByIdNumber(String idNumber);
 
     @Modifying
-    @Query(value = "update candidate set creatorId = ?2 where creatorId = ?1", nativeQuery = true)
-    void migrateCandidates(Long originalUserId, Long targetUserId);
+    @Query(value = "update candidate set creator = ?2 where creator = ?1", nativeQuery = true)
+    void migrateCandidates(String originalUserAccount, String targetUserAccount);
 }

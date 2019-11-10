@@ -11,16 +11,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class JobServiceImpl extends AbstractService<Job> implements JobService {
     @Autowired
     private JobDao jobDao;
 
     @Override
-    public Dao<Job, Long> getDao() {
+    protected Dao<Job, Long> getDao() {
         return jobDao;
     }
 

@@ -12,9 +12,9 @@ public abstract class AbstractMapper<T extends PersistentRoot, D extends DTORoot
     protected SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
 
     protected D.Builder entityToDTO(T entity, D.Builder builder) {
-        return builder.creator(entity.getCreator().getName())
+        return builder.creator(entity.getCreator())
                 .createdTime(sm.format(entity.getCreatedTime()))
-                .updater(entity.getLastUpdater().getName())
+                .updater(entity.getLastUpdater())
                 .updatedTime(sm.format(entity.getLastUpdatedTime()));
     }
 

@@ -6,8 +6,10 @@ import com.jisiben.hrms.domain.dao.UserDao;
 import com.jisiben.hrms.domain.entity.User;
 import com.jisiben.hrms.service.UserService;
 import com.jisiben.hrms.service.impl.UserDetailsService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -21,7 +23,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Configuration
 @EnableJpaRepositories(basePackages="com.jisiben.hrms.domain.dao")
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
+@ComponentScan(value = "com.jisiben.hrms.service.impl")
 public class Configurations {
+
+    protected Logger logger = Logger.getLogger(this.getClass().getSimpleName());
 
     @Autowired
     private UserService userService;
@@ -34,8 +39,8 @@ public class Configurations {
     }
 
     @Bean
-    public AuditorAware<User> auditorProvider() {
-        return ()->userService.findByAccount(SecurityContextHolder.getContext().getAuthentication().getName());
+    public AuditorAware<String> auditorProvider() {
+        return ()->SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
     @Bean

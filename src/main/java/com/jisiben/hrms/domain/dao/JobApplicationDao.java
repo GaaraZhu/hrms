@@ -16,7 +16,7 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
     @Query("FROM JobApplication ja WHERE (:company is null or ja.job.company = :company) and (:city is null or ja.job.city = :city)"
             + "and (:jobName is null or ja.job.name like CONCAT('%',:jobName,'%')) and (:hasReferee is null or (:hasReferee=true and ja.referee is not null) or (:hasReferee=false and ja.referee is null))"
             + "and (:candidate is null or ja.candidate.name = :candidate or ja.candidate.phone = :candidate) and (:referee is null or ja.referee = :referee or ja.refereePhone = :referee) and (:status is null or ja.status = :status)"
-            + "and (:createdBy = 'admin' or ja.creator.account = :createdBy) and (:fromTime is null or ja.createdTime >= :fromTime) and (:toTime is null or ja.createdTime <= :toTime)")
+            + "and (:createdBy = 'admin' or ja.creator = :createdBy) and (:fromTime is null or ja.createdTime >= :fromTime) and (:toTime is null or ja.createdTime <= :toTime)")
     Page<JobApplication> findJobApplications(
             @Param("company")String company,
             @Param("city")String city,
@@ -35,8 +35,8 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
     Long countByCandidateIdNumber(@Param("candidateIdNumber")String candidateIdNumber, @Param("jobId")Long jobId);
 
     @Modifying
-    @Query(value = "update jobApplication set creatorId = ?2 where creatorId = ?1", nativeQuery = true)
-    void migrateJobApplications(Long originalUserId, Long targetUserId);
+    @Query(value = "update jobApplication set creator = ?2 where creator = ?1", nativeQuery = true)
+    void migrateJobApplications(String originalUserAccount, String targetUserAccount);
 
     @Query("FROM JobApplication ja WHERE ja.applicationDate >= :fromTime and ja.applicationDate < :toTime")
     List<JobApplication> findNewlyApplied(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);

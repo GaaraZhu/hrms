@@ -25,7 +25,7 @@ public abstract class AbstractService<T extends PersistentRoot<T>> implements
 
     public Page<T> findAll(Pageable pageable) { return getDao().findAll(pageable); }
 
-    public abstract Dao<T, Long> getDao();
+    protected abstract Dao<T, Long> getDao();
 
     public void delete(Long id) { getDao().delete(id); }
 

@@ -10,17 +10,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class BranchServiceImpl extends AbstractService<Branch> implements BranchService {
 
     @Autowired
     private BranchDao branchDao;
 
     @Override
-    public Dao<Branch, Long> getDao() {
+    protected Dao<Branch, Long> getDao() {
         return branchDao;
     }
 

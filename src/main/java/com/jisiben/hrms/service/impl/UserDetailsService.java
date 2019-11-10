@@ -13,7 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
     @Autowired
     private UserDao userDao;
@@ -41,7 +44,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         return authorities;
     }
 
-    public UserDao getUserDao() {
+    protected UserDao getUserDao() {
         return userDao;
     }
 }

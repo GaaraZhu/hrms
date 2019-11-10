@@ -10,17 +10,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
     @Autowired
     private UserDao userDao;
 
     @Override
-    public Dao<User, Long> getDao() {
+    protected Dao<User, Long> getDao() {
         return userDao;
     }
 
