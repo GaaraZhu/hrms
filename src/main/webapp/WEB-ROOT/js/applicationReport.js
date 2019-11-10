@@ -16,8 +16,8 @@
 	);
 
     function queryApplicationReport(cp) {
-        fromDate = $("#searchFromDate").datepicker('getDate');
-        toDate = $("#searchToDate").datepicker('getDate');
+        fromDate = $("#searchFromDate").val();
+        toDate = $("#searchToDate").val();
         name = $("#searchName").val();
         type = $("#searchType").val();
         $.ajax({
