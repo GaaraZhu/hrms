@@ -54,6 +54,7 @@
 	</div>
 
 	<script type="text/javascript">
+	    queryApplicationReport(1);
 	    $(function () {
             $('#searchFromDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
             $('#searchToDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
