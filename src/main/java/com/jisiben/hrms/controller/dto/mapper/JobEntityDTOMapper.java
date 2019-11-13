@@ -13,7 +13,6 @@ public class JobEntityDTOMapper extends AbstractMapper<Job, JobDTO> {
     public JobDTO toDTO(Job entity) {
         JobDTO.Builder builder = (JobDTO.Builder)super.entityToDTO(entity, new JobDTO.Builder());
         return builder
-                .id(entity.getId())
                 .company(entity.getCompany())
                 .city(entity.getCity())
                 .district(entity.getDistrict())

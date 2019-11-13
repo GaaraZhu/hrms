@@ -15,6 +15,7 @@ public class ApplicationReportDTO extends DTORoot<ApplicationReportDTO> {
     }
 
     public ApplicationReportDTO(Builder builder) {
+        super(builder);
         this.name = builder.name;
         this.newApplied = builder.newApplied;
         this.newInterviewed = builder.newInterviewed;

@@ -14,7 +14,6 @@ public class UserEntityDTOMapper extends AbstractMapper<User, UserDTO> {
     public UserDTO toDTO(User entity) {
         UserDTO.Builder builder = (UserDTO.Builder)super.entityToDTO(entity, new UserDTO.Builder());
         return builder
-                .id(entity.getId())
                 .setAccount(entity.getAccount())
                 .setName(entity.getName())
                 .setAuthority(1==entity.getAuthority()?"是":"否")

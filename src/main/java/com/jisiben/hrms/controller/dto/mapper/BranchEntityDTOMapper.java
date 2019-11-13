@@ -11,7 +11,6 @@ public class BranchEntityDTOMapper extends AbstractMapper<Branch, BranchDTO> {
     public BranchDTO toDTO(Branch entity) {
         BranchDTO.Builder builder = (BranchDTO.Builder)super.entityToDTO(entity, new BranchDTO.Builder());
         return builder
-                .id(entity.getId())
                 .name(entity.getName())
                 .manager(entity.getManager())
                 .address(entity.getAddress())

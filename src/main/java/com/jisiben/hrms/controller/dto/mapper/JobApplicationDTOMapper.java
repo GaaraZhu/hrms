@@ -28,7 +28,6 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
     public JobApplicationDTO toDTO(JobApplication entity) {
         JobApplicationDTO.Builder builder = (JobApplicationDTO.Builder)super.entityToDTO(entity, new JobApplicationDTO.Builder());
         return builder
-                .id(entity.getId())
                 .jobId(entity.getJob().getId())
                 .candidateId(entity.getCandidate().getId())
                 .candidateName(entity.getCandidate().getName())

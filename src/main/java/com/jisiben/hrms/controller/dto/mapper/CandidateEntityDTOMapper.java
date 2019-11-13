@@ -12,7 +12,6 @@ public class CandidateEntityDTOMapper extends AbstractMapper<Candidate, Candidat
     public CandidateDTO toDTO(Candidate entity) {
         CandidateDTO.Builder builder = (CandidateDTO.Builder)super.entityToDTO(entity, new CandidateDTO.Builder());
         return builder
-                .id(entity.getId())
                 .name(entity.getName())
                 .gender(entity.getGender().equals(Gender.MALE)?"男":"女")
                 .idNumber(entity.getIdNumber())
