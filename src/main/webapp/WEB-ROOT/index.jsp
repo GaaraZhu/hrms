@@ -148,9 +148,7 @@
              });
 
              htmlDispatcher=function(url, title){
-                $("#frame").load(url, function(response, status, xhr) {
-                    $("#frame").html(response);
-                });
+                $("#frame").load(url);
                 $("#headTitle").text(title);
             };
 
