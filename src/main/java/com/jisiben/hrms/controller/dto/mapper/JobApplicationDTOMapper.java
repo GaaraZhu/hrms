@@ -47,12 +47,12 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
 
     @Override
     public JobApplication toEntity(JobApplicationDTO dto, JobApplication entity) {
-        Date onboardedTime = null;
+        Date onboardedTime = entity.getOnBoardedTime();
         Date resignedTime = null;
         Date applicationDate = null;
         try{
-            if(!StringUtils.isEmpty(dto.getOnBoardedTime())) {
-                onboardedTime=sm.parse(dto.getOnBoardedTime());
+            if("入职".equals(dto.getStatus())) {
+                onboardedTime=new Date();
             }
             if(!StringUtils.isEmpty(dto.getResignedTime())) {
                 resignedTime=sm.parse(dto.getResignedTime());
