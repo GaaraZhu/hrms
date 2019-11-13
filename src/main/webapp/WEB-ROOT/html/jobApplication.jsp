@@ -52,10 +52,6 @@
                                 <div class="col-lg-35" style="padding-top: 25px;">
                                     <input id="refereePhone" type="text" class="form-control col-lg-35" name="refereePhone" placeholder="推荐人电话">
                                 </div>
-                                <label for="createdTime" class="col-lg-2 control-label" style="padding-top: 30px;">申请日期</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="createdTime" type="text" class="form-control col-lg-35" name="createdTime" readonly="readonly">
-                                </div>
 
                                 <label for="status" class="col-lg-2 control-label" style="padding-top: 30px;">当前状态</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
@@ -92,10 +88,4 @@
 		</div>
 	</div>
 	<script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobApplication.js"></script>
-	<script type="text/javascript">
-        $(function () {
-            $('#applicationDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true}).datepicker("setDate", new Date());
-        });
-    </script>
-
 </body>

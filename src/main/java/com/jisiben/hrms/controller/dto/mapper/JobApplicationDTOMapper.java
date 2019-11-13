@@ -48,19 +48,17 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
     @Override
     public JobApplication toEntity(JobApplicationDTO dto, JobApplication entity) {
         Date onboardedTime = entity.getOnBoardedTime();
-        Date resignedTime = null;
-        Date applicationDate = null;
-        try{
-            if("入职".equals(dto.getStatus())) {
-                onboardedTime=new Date();
-            }
-            if(!StringUtils.isEmpty(dto.getResignedTime())) {
-                resignedTime=sm.parse(dto.getResignedTime());
-            }
-            applicationDate=sm.parse(dto.getCreatedTime());
-        } catch (ParseException e) {
-            logger.warning(String.format("failed to parse date: {} {}", dto.getOnBoardedTime(), dto.getResignedTime()));
+        Date resignedTime = entity.getResignedDate();
+        Date applicationDate = entity.getApplicationDate();
+        if (entity.getId() == 0) {
+            applicationDate = new Date();
         }
+        if("入职".equals(dto.getStatus())) {
+            onboardedTime = new Date();
+        } else if ("离职".equals(dto.getStatus())) {
+            resignedTime = new Date();
+        }
+
         Job job = jobService.findById(dto.getJobId()).get();
         Candidate candidate = candidateService.findById(dto.getCandidateId()).get();
         return entity
