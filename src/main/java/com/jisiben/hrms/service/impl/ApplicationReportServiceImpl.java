@@ -6,7 +6,6 @@ import com.jisiben.hrms.domain.dao.UserDao;
 import com.jisiben.hrms.domain.dao.common.Dao;
 import com.jisiben.hrms.domain.entity.ApplicationReport;
 import com.jisiben.hrms.domain.entity.JobApplication;
-import com.jisiben.hrms.domain.entity.User;
 import com.jisiben.hrms.domain.entity.common.ApplicationReportType;
 import com.jisiben.hrms.service.ApplicationReportService;
 import com.jisiben.hrms.service.common.impl.AbstractService;

@@ -2,8 +2,6 @@ package com.jisiben.hrms.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.jisiben.hrms.domain.dao.UserDao;
-import com.jisiben.hrms.domain.entity.User;
 import com.jisiben.hrms.service.UserService;
 import com.jisiben.hrms.service.impl.UserDetailsService;
 import org.apache.log4j.Logger;

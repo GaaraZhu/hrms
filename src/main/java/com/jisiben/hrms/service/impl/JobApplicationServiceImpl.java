@@ -1,9 +1,9 @@
 package com.jisiben.hrms.service.impl;
 
-import com.jisiben.hrms.domain.dao.ApplicationReportDao;
 import com.jisiben.hrms.domain.dao.JobApplicationDao;
 import com.jisiben.hrms.domain.dao.UserDao;
 import com.jisiben.hrms.domain.dao.common.Dao;
+import com.jisiben.hrms.domain.dao.bean.Pair;
 import com.jisiben.hrms.domain.entity.JobApplication;
 import com.jisiben.hrms.domain.entity.User;
 import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
@@ -24,9 +24,6 @@ import java.util.*;
 public class JobApplicationServiceImpl extends AbstractService<JobApplication> implements JobApplicationService {
     @Autowired
     private JobApplicationDao dao;
-
-    @Autowired
-    private ApplicationReportDao reportDao;
 
     @Autowired
     private UserDao userDao;
@@ -72,5 +69,8 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
         dao.migrateJobApplications(original.getAccount(), target.getAccount());
     }
 
-
+    @Override
+    public List<Pair> findSuccessApplicantsByCompany(Date fromTime, Date toTime) {
+        return dao.findSuccessApplicantsByCompany(fromTime, toTime);
+    }
 }

@@ -3,17 +3,20 @@ package com.jisiben.hrms.service.impl;
 import com.jisiben.hrms.domain.dao.JobDao;
 import com.jisiben.hrms.domain.dao.common.Dao;
 import com.jisiben.hrms.domain.entity.Job;
+import com.jisiben.hrms.domain.dao.bean.Pair;
 import com.jisiben.hrms.service.JobService;
 import com.jisiben.hrms.service.common.impl.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.Optional;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -42,5 +45,10 @@ public class JobServiceImpl extends AbstractService<Job> implements JobService {
         String name = criteria.get("name").map(Object::toString).orElse(null);
         Boolean active = criteria.get("active").map(Boolean.class::cast).orElse(null);
         return jobDao.findByCompanyAndCityAndNameAndActive(company, city, district, name, active, new PageRequest(currentPage-1, pageSize));
+    }
+
+    @Override
+    public List<Pair> findTotalQuotaByCompany(Date fromTime, Date toTime) {
+        return jobDao.findTotalQuotaByCompany(fromTime, toTime);
     }
 }
