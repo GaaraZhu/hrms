@@ -80,7 +80,7 @@ public class ApplicationReport extends PersistentRoot<ApplicationReport> {
         return newInterviewed;
     }
 
-    public ApplicationReport newlyInterviewed(Long newlyInterviewed) {
+    public ApplicationReport newlyInterviewed(Long newInterviewed) {
         this.newInterviewed = newInterviewed;
         return this;
     }
