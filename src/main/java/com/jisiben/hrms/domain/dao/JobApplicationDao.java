@@ -48,8 +48,8 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
     @Query("FROM JobApplication ja WHERE ja.onBoardedTime >= :fromTime and ja.onBoardedTime < :toTime")
     List<JobApplication> findNewlyOnboarded(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
 
-    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company, SUM(*)) FROM JobApplication ja WHERE ja.status in (com.jisiben.hrms.domain.entity.common.JobApplicationStatus.INTERVIEW_PASSED, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED,"
-        +" com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_ONE_ONE_MONTH, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_ONE_THREE_MONTH, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_ONE_SIX_MONTH,"
+    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company, COUNT(ja)) FROM JobApplication ja WHERE ja.status in (com.jisiben.hrms.domain.entity.common.JobApplicationStatus.INTERVIEW_PASSED, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED,"
+        +" com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_ONE_MONTH, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_THREE_MONTHS, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_SIX_MONTHS,"
         +" com.jisiben.hrms.domain.entity.common.JobApplicationStatus.RESIGNED) and (:fromTime is null or ja.applicationDate >= :fromTime) and (:toTime is null or ja.applicationDate <= :toTime) GROUP BY ja.job.company")
     List<Pair> findSuccessApplicantsByCompany(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
 }

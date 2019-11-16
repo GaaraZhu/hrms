@@ -75,8 +75,8 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="#">
-                                        推荐费信息
+                                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/reports/successApplicants.jsp',' 首页/ 业绩报表','求职分布')">
+                                        求职分布
                                     </a>
                                 </li>
                                 <li>

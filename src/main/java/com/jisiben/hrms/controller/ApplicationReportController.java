@@ -21,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.ws.rs.Produces;
-import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class ApplicationReportController extends AbstractController<ApplicationReport, ApplicationReportDTO, ApplicationReport.Builder> {
@@ -79,6 +77,19 @@ public class ApplicationReportController extends AbstractController<ApplicationR
             }
         });
         return results;
+    }
+
+    @ResponseBody
+    @Produces("application/json")
+    @RequestMapping(value = "/applicationReports/successApplicantsDistribution", method = RequestMethod.GET)
+    public List<PairDTO> findSuccessApplicantsDistribution(
+            @RequestParam("fromDate") Date fromDate,
+            @RequestParam("toDate") Date toDate) {
+        List<Pair> result = jobApplicationService.findSuccessApplicantsByCompany(fromDate, toDate);
+        return result.stream()
+                .collect(Collectors.groupingBy(Pair::getKey, Collectors.counting()))
+                .entrySet().stream().map(entry->new PairDTO(entry.getKey(), (double) Math.round((double)entry.getValue()/result.size() * 100) / 100))
+                .collect(Collectors.toList());
     }
 
     @Override

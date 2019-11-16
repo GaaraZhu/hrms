@@ -13,7 +13,7 @@ public class PairDTO {
         return key;
     }
 
-    public Double getVaue() {
+    public Double getValue() {
         return value;
     }
 

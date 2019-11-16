@@ -50,7 +50,7 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
         Date onboardedTime = entity.getOnBoardedTime();
         Date resignedTime = entity.getResignedDate();
         Date applicationDate = entity.getApplicationDate();
-        if (entity.getId() == 0) {
+        if (entity.getId() == null || entity.getId() == 0) {
             applicationDate = new Date();
         }
         if("入职".equals(dto.getStatus())) {
