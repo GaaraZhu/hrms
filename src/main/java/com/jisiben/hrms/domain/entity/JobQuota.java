@@ -28,6 +28,33 @@ public class JobQuota extends PersistentRoot<JobQuota> {
         this.quota=builder.quota;
     }
 
+    public Job getJob() {
+        return job;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public int getQuota() {
+        return quota;
+    }
+
+    public JobQuota job(Job job) {
+        this.job = job;
+        return this;
+    }
+
+    public JobQuota month(String month) {
+        this.month = month;
+        return this;
+    }
+
+    public JobQuota quota(int quota) {
+        this.quota = quota;
+        return this;
+    }
+
     public static class Builder extends PersistentRoot.Builder<JobQuota.Builder, JobQuota> {
 
         private Job job;
