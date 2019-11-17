@@ -51,19 +51,19 @@ public class JobQuotaController extends AbstractController<JobQuota, JobQuotaDTO
         return doFind(id);
     }
 
-    @RequestMapping(value = "/jobApplication", method = RequestMethod.PUT)
+    @RequestMapping(value = "/jobQuota", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void add(@RequestBody JobQuotaDTO dto) {
         doAdd(dto);
     }
 
-    @RequestMapping(value = "/jobApplication", method = RequestMethod.POST)
+    @RequestMapping(value = "/jobQuota", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void update(Long id, @RequestBody JobQuotaDTO dto) {
         doUpdate(id, dto);
     }
 
-    @RequestMapping(value = "/jobApplication", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/jobQuota", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@RequestParam Long id, ModelMap model) {
         doDelete(id);
