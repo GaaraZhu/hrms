@@ -41,7 +41,7 @@
         <sec:authentication property="principal.authorities" scope="session" var="authority"/>
         <sec:authentication property="principal.username" scope="session" var="username"/>
         <div id="homepage" style="display:none;">
-            <nav id="navbar" class="">
+            <nav id="navbar" class="" style="width: 180px;">
                 <ul>
                     <li>
                         <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/candidates.jsp',' 首页/ 简历管理','简历管理')">
