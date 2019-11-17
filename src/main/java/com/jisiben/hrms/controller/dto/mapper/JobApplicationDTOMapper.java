@@ -49,12 +49,24 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
 
     @Override
     public JobApplication toEntity(JobApplicationDTO dto, JobApplication entity) {
-        Date onboardDate = entity.getOnboardDate();
-        Date resignDate = entity.getResignDate();
-        Date interviewDate = entity.getInterviewDate();
-        Date applicationDate = entity.getApplicationDate();
         Job job = jobService.findById(dto.getJobId()).get();
         Candidate candidate = candidateService.findById(dto.getCandidateId()).get();
+        Date applicationDate = entity.getApplicationDate();
+        Date interviewDate = entity.getInterviewDate();
+        Date onboardDate = entity.getOnboardDate();
+        Date resignDate = entity.getResignDate();
+        try {
+            applicationDate = sm.parse(dto.getApplicationDate());
+            interviewDate = sm.parse(dto.getInterviewDate());
+            onboardDate = sm.parse(dto.getOnboardDate());
+            resignDate = sm.parse(dto.getResignDate());
+        } catch (ParseException e) {
+            logger.warning("Failed to parse input one of these dates: "
+                    + dto.getApplicationDate()
+                    + ", " + dto.getInterviewDate()
+                    + ", " + dto.getOnboardDate()
+                    + ", " + dto.getResignDate());
+        }
         return entity
                 .job(job)
                 .candidate(candidate)

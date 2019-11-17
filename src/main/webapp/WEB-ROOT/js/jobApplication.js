@@ -116,7 +116,7 @@
                     "company",
                     "city",
                     "jobName",
-                    "createdTime",
+                    "applicationDate",
                     "status",
                     "onboardDate",
                     "resignDate",

@@ -55,7 +55,7 @@
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 var chart = new CanvasJS.Chart("chartContainer", {
-                	theme: "light2"
+                	theme: "light2",
                 	exportEnabled: true,
                 	animationEnabled: true,
                 	title: {
