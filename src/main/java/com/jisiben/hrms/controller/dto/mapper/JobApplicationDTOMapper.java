@@ -40,35 +40,30 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
                 .district(entity.getJob().getDistrict())
                 .jobName(entity.getJob().getName())
                 .status(entity.getStatus().getValue())
-                .onBoardedTime(entity.getOnBoardedTime()!=null?sm.format(entity.getOnBoardedTime()):"")
-                .resignedTime(entity.getResignedDate()!=null?sm.format(entity.getResignedDate()):"")
+                .applicationDate(entity.getApplicationDate()!=null?sm.format(entity.getApplicationDate()):"")
+                .interviewDate(entity.getInterviewDate()!=null?sm.format(entity.getInterviewDate()):"")
+                .onboardDate(entity.getOnboardDate()!=null?sm.format(entity.getOnboardDate()):"")
+                .resignDate(entity.getResignDate()!=null?sm.format(entity.getResignDate()):"")
                 .build();
     }
 
     @Override
     public JobApplication toEntity(JobApplicationDTO dto, JobApplication entity) {
-        Date onboardedTime = entity.getOnBoardedTime();
-        Date resignedTime = entity.getResignedDate();
+        Date onboardDate = entity.getOnboardDate();
+        Date resignDate = entity.getResignDate();
+        Date interviewDate = entity.getInterviewDate();
         Date applicationDate = entity.getApplicationDate();
-        if (entity.getId() == null || entity.getId() == 0) {
-            applicationDate = new Date();
-        }
-        if("入职".equals(dto.getStatus())) {
-            onboardedTime = new Date();
-        } else if ("离职".equals(dto.getStatus())) {
-            resignedTime = new Date();
-        }
-
         Job job = jobService.findById(dto.getJobId()).get();
         Candidate candidate = candidateService.findById(dto.getCandidateId()).get();
         return entity
                 .job(job)
                 .candidate(candidate)
-                .applicationDate(applicationDate)
                 .referee(dto.getReferee())
                 .refereePhone(dto.getRefereePhone())
                 .status(JobApplicationStatus.get(dto.getStatus()))
-                .onBoardedTime(onboardedTime)
-                .resignedTime(resignedTime);
+                .applicationDate(applicationDate)
+                .interviewDate(interviewDate)
+                .onboardDate(onboardDate)
+                .resignDate(resignDate);
     }
 }

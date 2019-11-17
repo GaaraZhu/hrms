@@ -42,10 +42,10 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
     @Query("FROM JobApplication ja WHERE ja.applicationDate >= :fromTime and ja.applicationDate < :toTime")
     List<JobApplication> findNewlyApplied(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
 
-    @Query("FROM JobApplication ja WHERE ja.interviewedDate >= :fromTime and ja.interviewedDate < :toTime")
+    @Query("FROM JobApplication ja WHERE ja.interviewDate >= :fromTime and ja.interviewDate < :toTime")
     List<JobApplication> findNewlyInterviewed(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
 
-    @Query("FROM JobApplication ja WHERE ja.onBoardedTime >= :fromTime and ja.onBoardedTime < :toTime")
+    @Query("FROM JobApplication ja WHERE ja.onboardDate >= :fromTime and ja.onboardDate < :toTime")
     List<JobApplication> findNewlyOnboarded(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
 
     @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company, COUNT(ja)) FROM JobApplication ja WHERE ja.status in (com.jisiben.hrms.domain.entity.common.JobApplicationStatus.INTERVIEW_PASSED, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED,"

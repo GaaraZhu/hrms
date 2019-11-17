@@ -174,13 +174,13 @@
                                 $("#referee").attr("disabled","disabled")
                                 $("#refereePhone").attr("disabled","disabled")
                             }
+                            $("#submitType").val("PUT");
                             $("#jobId").val(data.id);
                             $("#jobName").val(data.name);
                             $("#company").val(data.company);
                             $("#city").val(data.city);
                             $("#district").val(data.district);
                             $("#status").val("未处理").change();
-                            $("#submitType").val("PUT");
                             $("#originalJobApplicationModal").modal({
                                 keyboard: true
                             });

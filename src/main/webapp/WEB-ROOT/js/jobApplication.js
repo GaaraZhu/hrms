@@ -166,6 +166,9 @@
                             $("#refereePhone").val(data.refereePhone);
                             $("#status").val(data.status).change();
                             $("#applicationDate").datepicker("setDate", data.applicationDate);
+                            $("#interviewDate").datepicker("setDate", data.interviewDate);
+                            $("#onboardDate").datepicker("setDate", data.onboardDate);
+                            $("#resignDate").datepicker("setDate", data.resignDate);
                             $("#submitType").val("POST");
                         }
                     });

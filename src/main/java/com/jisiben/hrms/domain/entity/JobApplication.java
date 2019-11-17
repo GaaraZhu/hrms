@@ -29,13 +29,13 @@ public class JobApplication extends PersistentRoot<JobApplication> {
     private Date applicationDate;
 
     @Temporal(value = TemporalType.TIMESTAMP)
-    private Date interviewedDate;
+    private Date interviewDate;
 
     @Temporal(value = TemporalType.TIMESTAMP)
-    private Date onBoardedTime;
+    private Date onboardDate;
 
     @Temporal(value = TemporalType.TIMESTAMP)
-    private Date resignedTime;
+    private Date resignDate;
 
     public JobApplication() {
     }
@@ -48,9 +48,9 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         this.refereePhone=builder.refereePhone;
         this.status=builder.status;
         this.applicationDate=builder.applicationDate;
-        this.interviewedDate=builder.interviewedDate;
-        this.onBoardedTime=builder.onBoardedTime;
-        this.resignedTime=builder.resignedTime;
+        this.interviewDate=builder.interviewDate;
+        this.onboardDate=builder.onboardDate;
+        this.resignDate=builder.resignDate;
     }
 
     public Job getJob() {
@@ -62,12 +62,12 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         return this;
     }
 
-    public Date getInterviewedDate() {
-        return interviewedDate;
+    public Date getInterviewDate() {
+        return interviewDate;
     }
 
-    public JobApplication interviewedDate(Date interviewedDate) {
-        this.interviewedDate = interviewedDate;
+    public JobApplication interviewDate(Date interviewDate) {
+        this.interviewDate = interviewDate;
         return this;
     }
 
@@ -116,21 +116,21 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         return this;
     }
 
-    public Date getOnBoardedTime() {
-        return onBoardedTime;
+    public Date getOnboardDate() {
+        return onboardDate;
     }
 
-    public JobApplication onBoardedTime(Date onBoardedTime) {
-        this.onBoardedTime = onBoardedTime;
+    public JobApplication onboardDate(Date onboardDate) {
+        this.onboardDate = onboardDate;
         return this;
     }
 
-    public Date getResignedDate() {
-        return resignedTime;
+    public Date getResignDate() {
+        return resignDate;
     }
 
-    public JobApplication resignedTime(Date resignedTime) {
-        this.resignedTime = resignedTime;
+    public JobApplication resignDate(Date resignDate) {
+        this.resignDate = resignDate;
         return this;
     }
 
@@ -142,9 +142,9 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         private String refereePhone;
         private JobApplicationStatus status;
         private Date applicationDate;
-        private Date interviewedDate;
-        private Date onBoardedTime;
-        private Date resignedTime;
+        private Date interviewDate;
+        private Date onboardDate;
+        private Date resignDate;
 
         public Builder job(Job job) {
             this.job = job;
@@ -176,18 +176,18 @@ public class JobApplication extends PersistentRoot<JobApplication> {
             return this;
         }
 
-        public Builder onBoardedTime(Date onBoardedTime) {
-            this.onBoardedTime = onBoardedTime;
+        public Builder onboardDate(Date onboardDate) {
+            this.onboardDate = onboardDate;
             return this;
         }
 
-        public Builder interviewedDate(Date interviewedDate) {
-            this.interviewedDate = interviewedDate;
+        public Builder interviewDate(Date interviewDate) {
+            this.interviewDate = interviewDate;
             return this;
         }
 
-        public Builder resignedTime(Date resignedTime) {
-            this.resignedTime = resignedTime;
+        public Builder resignDate(Date resignDate) {
+            this.resignDate = resignDate;
             return this;
         }
 

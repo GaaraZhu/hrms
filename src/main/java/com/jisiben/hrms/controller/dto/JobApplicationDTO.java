@@ -17,8 +17,10 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
     private String district;
     private String jobName;
     private String status;
-    private String onBoardedTime;
-    private String resignedTime;
+    private String applicationDate;
+    private String interviewDate;
+    private String onboardDate;
+    private String resignDate;
     private String lastUpdatedTime;
 
     public JobApplicationDTO() {
@@ -38,8 +40,10 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         this.district=builder.district;
         this.jobName=builder.jobName;
         this.status=builder.status;
-        this.onBoardedTime=builder.onBoardedTime;
-        this.resignedTime=builder.resignedTime;
+        this.applicationDate=builder.applicationDate;
+        this.interviewDate=builder.interviewDate;
+        this.onboardDate=builder.onboardDate;
+        this.resignDate=builder.resignDate;
         this.lastUpdatedTime=builder.lastUpdatedTime;
     }
 
@@ -79,12 +83,20 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         return status;
     }
 
-    public String getOnBoardedTime() {
-        return onBoardedTime;
+    public String getOnboardDate() {
+        return onboardDate;
     }
 
-    public String getResignedTime() {
-        return resignedTime;
+    public String getApplicationDate() {
+        return applicationDate;
+    }
+
+    public String getInterviewDate() {
+        return interviewDate;
+    }
+
+    public String getResignDate() {
+        return resignDate;
     }
 
     public String getLastUpdatedTime() {
@@ -116,9 +128,22 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
         private String district;
         private String jobName;
         private String status;
-        private String onBoardedTime;
-        private String resignedTime;
+        private String applicationDate;
+        private String interviewDate;
+        private String onboardDate;
+        private String resignDate;
         private String lastUpdatedTime;
+
+
+        public Builder applicationDate(String applicationDate) {
+            this.applicationDate = applicationDate;
+            return this;
+        }
+
+        public Builder interviewDate(String interviewDate) {
+            this.interviewDate = interviewDate;
+            return this;
+        }
 
         public Builder candidateId(long candidateId) {
             this.candidateId = candidateId;
@@ -180,13 +205,13 @@ public class JobApplicationDTO extends DTORoot<JobApplicationDTO> {
             return this;
         }
 
-        public Builder onBoardedTime(String onBoardedTime) {
-            this.onBoardedTime = onBoardedTime;
+        public Builder onboardDate(String onboardDate) {
+            this.onboardDate = onboardDate;
             return this;
         }
 
-        public Builder resignedTime(String resignedTime) {
-            this.resignedTime = resignedTime;
+        public Builder resignDate(String resignDate) {
+            this.resignDate = resignDate;
             return this;
         }
 

@@ -69,6 +69,22 @@
                                          <option value="离职">离职</option>
                                      </select>
                                 </div>
+                                <label for="applicationDate" class="col-lg-2 control-label" style="padding-top: 30px;">申请时间</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                    <input type="text" class="form-control" id="applicationDate" name="applicationDate" placeholder="请选择日期" readonly="readonly">
+                                </div>
+                                <label for="interviewDate" class="col-lg-2 control-label" style="padding-top: 30px;">面试时间</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                    <input type="text" class="form-control" id="interviewDate" name="interviewDate" placeholder="请选择日期" readonly="readonly">
+                                </div>
+                                <label for="onboardDate" class="col-lg-2 control-label" style="padding-top: 30px;">入职时间</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                    <input type="text" class="form-control" id="onboardDate" name="onboardDate" placeholder="请选择日期" readonly="readonly">
+                                </div>
+                                <label for="resignDate" class="col-lg-2 control-label" style="padding-top: 30px;">离职时间</label>
+                                <div class="col-lg-35" style="padding-top: 25px;">
+                                    <input type="text" class="form-control" id="resignDate" name="resignDate" placeholder="请选择日期" readonly="readonly">
+                                </div>
                                 <div style="display:none">
                                     <input type="text" id="id" value="">
                                     <input type="text" id="jobId" value="">
@@ -88,4 +104,12 @@
 		</div>
 	</div>
 	<script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobApplication.js"></script>
+	<script type="text/javascript">
+        $(function () {
+            $('#applicationDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
+            $('#interviewDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
+            $('#onboardDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
+            $('#resignDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
+        });
+    </script>
 </body>
