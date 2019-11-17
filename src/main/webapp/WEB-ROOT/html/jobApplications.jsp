@@ -39,9 +39,9 @@
                             <option value="INTERVIEW_PASSED">面试通过</option>
                             <option value="INTERVIEW_FAILED">面试失败</option>
                             <option value="ON_BOARDED">入职</option>
-                            <option value="ON_BOARDED_ONE_ONE_MONTH">入职满1月</option>
-                            <option value="ON_BOARDED_ONE_THREE_MONTH">入职满3月</option>
-                            <option value="ON_BOARDED_ONE_SIX_MONTH">入职满6月</option>
+                            <option value="ON_BOARDED_ONE_MONTH">入职满1月</option>
+                            <option value="ON_BOARDED_THREE_MONTHS">入职满3月</option>
+                            <option value="ON_BOARDED_SIX_MONTHS">入职满6月</option>
                             <option value="RESIGNED">离职</option>
                         </select>
                     </div>
