@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "JobTargetQuota")
+@Table(name = "JobQuota")
 public class JobQuota extends PersistentRoot<JobQuota> {
 
     @ManyToOne(targetEntity=Job.class)
