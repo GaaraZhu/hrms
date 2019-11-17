@@ -31,7 +31,7 @@
                     <div class="form-group inputselect">
                         <label for="searchStatus">处理状态</label>
                         <select id="searchStatus" name="searchStatus" style="width: 170px;height: 32px;">
-                            <option value=""></option>
+                            <option value="">所有</option>
                             <option value="NEW">未处理</option>
                             <option value="FAILED">申请失败</option>
                             <option value="WAITING_INTERVIEW">等待面试</option>
@@ -49,7 +49,7 @@
                     <div class="form-group inputselect" style="margin-left: 41px;">
                         <label for="searchHasReferee">有无推荐人</label>
                         <select id="searchHasReferee" name="searchHasReferee" style="width: 170px;height: 32px;">
-                            <option value=""></option>
+                            <option value="">所有</option>
                             <option value="1">有</option>
                             <option value="0">无</option>
                         </select>
