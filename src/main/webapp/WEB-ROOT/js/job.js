@@ -179,7 +179,7 @@
                             $("#company").val(data.company);
                             $("#city").val(data.city);
                             $("#district").val(data.district);
-                            $("#status").val("NEW").change();
+                            $("#status").val("未处理").change();
                             $("#submitType").val("PUT");
                             $("#originalJobApplicationModal").modal({
                                 keyboard: true
