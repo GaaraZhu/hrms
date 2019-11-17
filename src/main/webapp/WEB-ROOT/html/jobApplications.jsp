@@ -86,7 +86,7 @@
 				</table>
 			</div>
             <div style="bottom: 10%">
-                <div id="paging" style="text-align: center; margin-left: 25%;">
+                <div id="paging" style="text-align: center; margin-left: 32%;">
                 </div>
             </div>
 		</div>
