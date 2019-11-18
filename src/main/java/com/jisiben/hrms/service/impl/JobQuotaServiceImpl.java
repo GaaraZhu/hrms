@@ -33,4 +33,9 @@ public class JobQuotaServiceImpl extends AbstractService<JobQuota> implements Jo
         String month = criteria.get("month").map(Object::toString).orElse(null);
         return jobQuotaDao.findJobQuotas(company, city, jobName, month, new PageRequest(currentPage - 1, pageSize));
     }
+
+    @Override
+    public Long countJobQuota(Long jobId, String month) {
+        return jobQuotaDao.countByJobIdAndMonth(jobId, month);
+    }
 }

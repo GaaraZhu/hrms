@@ -15,4 +15,8 @@ public interface JobQuotaDao extends Dao<JobQuota, Long> {
             @Param("jobName")String jobName,
             @Param("month")String month,
             Pageable pageable);
+
+    @Query("SELECT COUNT(jq) FROM JobQuota jq WHERE jq.job.id = :jobId and jq.month = :month")
+    Long countByJobIdAndMonth(@Param("jobId")Long jobId, @Param("month")String month);
+
 }
