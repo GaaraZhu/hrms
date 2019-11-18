@@ -170,10 +170,6 @@
                     contentType : "application/json;charset=utf-8",
                     success : function(data) {
                         $("#innerModal").load("WEB-ROOT/html/jobQuota.jsp", function(){
-                            if (data.referralBonus=='无') {
-                                $("#referee").attr("disabled","disabled")
-                                $("#refereePhone").attr("disabled","disabled")
-                            }
                             $("#submitType").val("PUT");
                             $("#jobId").val(data.id);
                             $("#jobName").val(data.name);
