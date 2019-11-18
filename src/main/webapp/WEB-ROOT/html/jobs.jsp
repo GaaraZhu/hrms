@@ -43,6 +43,9 @@
                         <button type="button" class="btn btn-info btn-sm" id="addJobApplication">
                             <span class="glyphicon glyphicon-user"></span> 新增求职
                         </button>
+                        <button type="button" class="btn btn-info btn-sm" id="addJobQuota">
+                            <span class="glyphicon glyphicon-user"></span> 新增指标
+                        </button>
                     </div>
                     <div class="form-group inputselect col-lg-4">
                         <button type="button" class="btn btn-success btn-sm"

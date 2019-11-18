@@ -151,6 +151,51 @@
         }
     );
 
+    $("#addJobQuota").click(
+        function(){
+            var idsStr = jobsResultTable.getCheckboxIds();
+            if (idsStr=="" || idsStr.includes(",")) {
+                $("#innerModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                    $("#alertText").text("请选择一个职位进行操作");
+                    $("#alertModel").modal({
+                        keyboard: true
+                    });
+                 });
+            } else {
+                $.ajax({
+                    url : "job",
+                    type : "GET",
+                    async: true,
+                    data : "id=" + idsStr,
+                    contentType : "application/json;charset=utf-8",
+                    success : function(data) {
+                        $("#innerModal").load("WEB-ROOT/html/jobQuota.jsp", function(){
+                            if (data.referralBonus=='无') {
+                                $("#referee").attr("disabled","disabled")
+                                $("#refereePhone").attr("disabled","disabled")
+                            }
+                            $("#submitType").val("PUT");
+                            $("#jobId").val(data.id);
+                            $("#jobName").val(data.name);
+                            $("#company").val(data.company);
+                            $("#city").val(data.city);
+                            $("#district").val(data.district);
+                            $("#originalJobQuotaModal").modal({
+                                keyboard: true
+                            });
+                        });
+                    },
+                    error : function(e) {
+                        if (e.status != 401) {
+                            console.log(e);
+                            alert("操作失败，请查看控制台日志");
+                        }
+                    }
+                });
+            }
+        }
+    );
+
     $("#addJobApplication").click(
         function(){
             var idsStr = jobsResultTable.getCheckboxIds();
