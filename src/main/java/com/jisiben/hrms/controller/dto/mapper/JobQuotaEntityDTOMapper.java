@@ -23,6 +23,10 @@ public class JobQuotaEntityDTOMapper extends AbstractMapper<JobQuota, JobQuotaDT
         JobQuotaDTO.Builder builder = (JobQuotaDTO.Builder)super.entityToDTO(entity, new JobQuotaDTO.Builder());
         return builder
                 .jobId(entity.getJob().getId())
+                .jobName(entity.getJob().getName())
+                .company(entity.getJob().getCompany())
+                .city(entity.getJob().getCity())
+                .district(entity.getJob().getDistrict())
                 .month(entity.getMonth())
                 .quota(entity.getQuota())
                 .build();

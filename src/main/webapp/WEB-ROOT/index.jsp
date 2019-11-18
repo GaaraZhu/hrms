@@ -49,12 +49,36 @@
                             简历管理
                         </span>
                     </li>
-                    <li>
-                        <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/jobs.jsp',' 首页/ 职位管理','职位管理')">
-                            <i class="fas fa-briefcase"></i>
-                            职位管理
-                        </span>
-                    </li>
+
+                    <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                        <li>
+                            <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/jobs.jsp',' 首页/ 职位管理','职位管理')">
+                                <i class="fas fa-briefcase"></i>
+                                职位管理
+                            </span>
+                        </li>
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-briefcase"></i>
+                                职位管理
+                            </a>
+                            <ul>
+                                <li>
+                                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/jobs.jsp',' 首页/ 职位管理/ 职位管理','职位管理')">
+                                        职位管理
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/jobQuotas.jsp',' 首页/ 职位管理/ 指标管理','指标管理')">
+                                        指标管理
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                    </sec:authorize>
+
                     <li>
                         <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/jobApplications.jsp',' 首页/ 求职管理','求职管理')">
                             <i class="fas fa-user-tie"></i>
@@ -63,26 +87,20 @@
                     </li>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <li>
-                            <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/applicationReports.jsp',' 首页/ 业绩报表','业绩报表')">
-                                <i class="fas fa-chart-pie"></i>
-                                业绩报表
-                            </span>
-                        </li>
-                        <li>
                             <a href="#">
-                                <i class="fab fa-alipay"></i>
-                                推荐费管理
+                                <i class="fas fa-chart-pie"></i>
+                                数据报表
                             </a>
                             <ul>
                                 <li>
-                                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/reports/successApplicants.jsp',' 首页/ 业绩报表','求职分布')">
-                                        求职分布
-                                    </a>
+                                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/applicationReports.jsp',' 首页/ 数据报表/ 业绩报表','业绩报表')">
+                                        业绩报表
+                                    </span>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        推荐费审批
-                                    </a>
+                                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/reports/successApplicants.jsp',' 首页/ 数据报表/ 求职分布','求职分布')">
+                                        求职分布
+                                    </span>
                                 </li>
                             </ul>
                         </li>

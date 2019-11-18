@@ -63,7 +63,7 @@
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobQuota.js"></script>
     <script type="text/javascript">
         $(function () {
-            $('#month').datepicker({dateFormat: 'yy-mm-dd', changeYear: true, changeMonth: true, dateFormat: 'yy-mm'});
+            $('#month').datepicker({dateFormat: 'yy-mm', changeYear: true, changeMonth: true});
         });
     </script>
 

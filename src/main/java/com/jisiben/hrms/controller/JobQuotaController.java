@@ -33,6 +33,7 @@ public class JobQuotaController extends AbstractController<JobQuota, JobQuotaDTO
     public PageableSearchResultDTO<JobQuotaDTO> findAll(
             @RequestParam("company")String company,
             @RequestParam("city")String city,
+            @RequestParam("district")String district,
             @RequestParam("jobName")String jobName,
             @RequestParam("month") String month,
             @RequestParam("currentPage") int currentPage,
@@ -41,6 +42,7 @@ public class JobQuotaController extends AbstractController<JobQuota, JobQuotaDTO
                 ImmutableMap.<String, Optional<Object>>builder()
                         .put("company", Optional.ofNullable(company))
                         .put("city", Optional.ofNullable(city))
+                        .put("district", Optional.ofNullable(district))
                         .put("jobName", Optional.ofNullable(jobName))
                         .put("month", Optional.ofNullable(month)).build(), currentPage, pageSize);
     }

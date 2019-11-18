@@ -29,9 +29,10 @@ public class JobQuotaServiceImpl extends AbstractService<JobQuota> implements Jo
     public Page<JobQuota> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
         String company = criteria.get("company").map(Object::toString).orElse(null);
         String city = criteria.get("city").map(Object::toString).orElse(null);
+        String district = criteria.get("district").map(Object::toString).orElse(null);
         String jobName = criteria.get("jobName").map(Object::toString).orElse(null);
         String month = criteria.get("month").map(Object::toString).orElse(null);
-        return jobQuotaDao.findJobQuotas(company, city, jobName, month, new PageRequest(currentPage - 1, pageSize));
+        return jobQuotaDao.findJobQuotas(company, city, district, jobName, month, new PageRequest(currentPage - 1, pageSize));
     }
 
     @Override
