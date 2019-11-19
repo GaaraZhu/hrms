@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/applicationReport.js"></script>
     <script src="<%=request.getContextPath()%>/WEB-ROOT/bootstrap/js/jquery.canvasjs.min.js"></script>

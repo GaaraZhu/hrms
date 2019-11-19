@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <body class="full" id="content">
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/applicationReport.js"></script>
 	<div id="innerModal"></div>
 	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 ">
-		<form class="form-inline" role="form" id="selectApplicationReportVal">
+		<div class="col-lg-12 col-md-12 col-sm-12">
+		<form class="form-inline" role="form" id="selectPersonalReportVal">
                 <div class="row">
                     <div class="form-group inputselect col-lg-4">
                         <label for="searchFromDate">开始日期</label>
@@ -32,10 +31,10 @@
                 <div class="row">
                     <div class="form-group inputselect col-lg-4"></div>
                     <div class="form-group inputselect">
-                        <button type="button" class="btn btn-success btn-sm " id="searchApplicationReport" style="margin-left: 192px;">
+                        <button type="button" class="btn btn-success btn-sm " id="searchPersonalReport" style="margin-left: 192px;">
                             <span class="glyphicon glyphicon-search"></span> 搜索
                         </button>
-                        <button type="button" class="btn btn-success btn-sm " id="resetApplicationReport">
+                        <button type="button" class="btn btn-success btn-sm " id="resetPersonalReport">
                             <span class="glyphicon glyphicon-refresh"></span> 重置
                         </button>
                     </div>
@@ -43,7 +42,7 @@
             </form>
 			<div class="table-responsive " style="margin-left: 3%;">
 				<table class="table table-hover tablefont">
-					<tbody id="tableList"/>
+					<tbody id="personalReportTableList"/>
 				</table>
 				<div style="bottom: 10%">
 					<div id="paging" style="text-align: center; margin-left: 32%;">
@@ -54,7 +53,7 @@
 	</div>
 
 	<script type="text/javascript">
-	    queryApplicationReport(1);
+	    queryPersonalReport(1);
 	    $(function () {
             $('#searchFromDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});
             $('#searchToDate').datepicker({dateFormat: 'yy-mm-dd', changeYear: true});

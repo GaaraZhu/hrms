@@ -1,15 +1,15 @@
 package com.jisiben.hrms.controller.dto.mapper;
 
-import com.jisiben.hrms.controller.dto.ApplicationReportDTO;
+import com.jisiben.hrms.controller.dto.PersonalReportDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
-import com.jisiben.hrms.domain.entity.ApplicationReport;
+import com.jisiben.hrms.domain.entity.PersonalReport;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ApplicationReportEntityDTOMapper extends AbstractMapper<ApplicationReport, ApplicationReportDTO> {
+public class PersonalReportEntityDTOMapper extends AbstractMapper<PersonalReport, PersonalReportDTO> {
     @Override
-    public ApplicationReportDTO toDTO(ApplicationReport entity) {
-        ApplicationReportDTO.Builder builder = (ApplicationReportDTO.Builder)super.entityToDTO(entity, new ApplicationReportDTO.Builder());
+    public PersonalReportDTO toDTO(PersonalReport entity) {
+        PersonalReportDTO.Builder builder = (PersonalReportDTO.Builder)super.entityToDTO(entity, new PersonalReportDTO.Builder());
         return builder
                 .name(entity.getUser().getName())
                 .newApplied(entity.getNewApplied())
@@ -22,7 +22,7 @@ public class ApplicationReportEntityDTOMapper extends AbstractMapper<Application
     }
 
     @Override
-    public ApplicationReport toEntity(ApplicationReportDTO dto, ApplicationReport entity) {
+    public PersonalReport toEntity(PersonalReportDTO dto, PersonalReport entity) {
         throw new UnsupportedOperationException("Application Report is supposed to be generated automatically by system");
     }
 }

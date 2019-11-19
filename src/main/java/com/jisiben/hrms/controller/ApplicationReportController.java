@@ -2,13 +2,14 @@ package com.jisiben.hrms.controller;
 
 import com.google.common.collect.ImmutableMap;
 import com.jisiben.hrms.controller.common.AbstractController;
-import com.jisiben.hrms.controller.dto.ApplicationReportDTO;
+import com.jisiben.hrms.controller.dto.CompanyReportDTO;
+import com.jisiben.hrms.controller.dto.PersonalReportDTO;
 import com.jisiben.hrms.controller.dto.PageableSearchResultDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.controller.dto.PairDTO;
-import com.jisiben.hrms.domain.entity.ApplicationReport;
 import com.jisiben.hrms.domain.dao.bean.Pair;
-import com.jisiben.hrms.service.ApplicationReportService;
+import com.jisiben.hrms.domain.entity.PersonalReport;
+import com.jisiben.hrms.service.PersonalReportService;
 import com.jisiben.hrms.service.JobService;
 import com.jisiben.hrms.service.common.Service;
 import com.jisiben.hrms.service.JobApplicationService;
@@ -25,10 +26,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
-public class ApplicationReportController extends AbstractController<ApplicationReport, ApplicationReportDTO, ApplicationReport.Builder> {
+public class ApplicationReportController extends AbstractController<PersonalReport, PersonalReportDTO, PersonalReport.Builder> {
 
     @Autowired
-    private ApplicationReportService service;
+    private PersonalReportService service;
 
     @Autowired
     private JobService jobService;
@@ -37,13 +38,13 @@ public class ApplicationReportController extends AbstractController<ApplicationR
     private JobApplicationService jobApplicationService;
 
     @Autowired
-    @Qualifier("applicationReportEntityDTOMapper")
-    private Mapper<ApplicationReport, ApplicationReportDTO> mapper;
+    @Qualifier("personalReportEntityDTOMapper")
+    private Mapper<PersonalReport, PersonalReportDTO> mapper;
 
     @ResponseBody
     @Produces("application/json")
-    @RequestMapping(value = "/applicationReports", method = RequestMethod.GET)
-    public PageableSearchResultDTO<ApplicationReportDTO> findAll(
+    @RequestMapping(value = "/applicationReports/personalReport", method = RequestMethod.GET)
+    public PageableSearchResultDTO<PersonalReportDTO> findPersonalReports(
             @RequestParam("fromDate") Date fromDate,
             @RequestParam("toDate") Date toDate,
             @RequestParam("name") String name,
@@ -60,11 +61,32 @@ public class ApplicationReportController extends AbstractController<ApplicationR
 
     @ResponseBody
     @Produces("application/json")
+    @RequestMapping(value = "/applicationReports/companyReport", method = RequestMethod.GET)
+    public List<CompanyReportDTO> findCompanyReports(
+            @RequestParam("company") String company,
+            @RequestParam("month") String month) {
+        List<CompanyReportDTO> results = new ArrayList<>();
+        CompanyReportDTO dto = new CompanyReportDTO.Builder().company("盒马")
+                .month("2019-11")
+                .quota(120L)
+                .completePercentage("30%")
+                .dailyQuota(4L)
+                .dailyCompletePercentage("25%")
+                .totalOnboarded(36L)
+                .totalResigned(20L)
+                .netOnboarded(16L)
+                .build();
+        results.add(dto);
+        return results;
+    }
+
+    @ResponseBody
+    @Produces("application/json")
     @RequestMapping(value = "/applicationReports/successApplicantsByCompany", method = RequestMethod.GET)
     public List<PairDTO> findSuccessApplicantsByCompany(
             @RequestParam("fromDate") Date fromDate,
             @RequestParam("toDate") Date toDate) {
-                
+
         List<Pair> totalQuatoByCompany = jobService.findTotalQuotaByCompany(fromDate, toDate);
         List<Pair> successApplicantsByCompany = jobApplicationService.findSuccessApplicantsByCompany(fromDate, toDate);
 
@@ -93,17 +115,17 @@ public class ApplicationReportController extends AbstractController<ApplicationR
     }
 
     @Override
-    protected Service<ApplicationReport> getService() {
+    protected Service<PersonalReport> getService() {
         return service;
     }
 
     @Override
-    protected Mapper<ApplicationReport, ApplicationReportDTO> getMapper() {
+    protected Mapper<PersonalReport, PersonalReportDTO> getMapper() {
         return mapper;
     }
 
     @Override
-    protected ApplicationReport.Builder getEntityBuilder() {
-        return new ApplicationReport.Builder();
+    protected PersonalReport.Builder getEntityBuilder() {
+        return new PersonalReport.Builder();
     }
 }

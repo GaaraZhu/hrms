@@ -1,14 +1,14 @@
 package com.jisiben.hrms.domain.entity;
 
-import com.jisiben.hrms.domain.entity.common.ApplicationReportType;
 import com.jisiben.hrms.domain.entity.common.PersistentRoot;
+import com.jisiben.hrms.domain.entity.common.PersonalReportType;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "applicationReport")
-public class ApplicationReport extends PersistentRoot<ApplicationReport> {
+@Table(name = "personalReport")
+public class PersonalReport extends PersistentRoot<PersonalReport> {
     @ManyToOne(targetEntity=User.class)
     @JoinColumn(name = "userId")
     private User user;
@@ -26,11 +26,11 @@ public class ApplicationReport extends PersistentRoot<ApplicationReport> {
     private Long newOnboarded;
 
     @Enumerated(EnumType.STRING)
-    private ApplicationReportType type;
+    private PersonalReportType type;
 
-    public ApplicationReport() {}
+    public PersonalReport() {}
 
-    public ApplicationReport(Builder builder) {
+    public PersonalReport(Builder builder) {
         this.user = builder.user;
         this.start = builder.start;
         this.end = builder.end;
@@ -44,7 +44,7 @@ public class ApplicationReport extends PersistentRoot<ApplicationReport> {
         return user;
     }
 
-    public ApplicationReport user(User user) {
+    public PersonalReport user(User user) {
         this.user = user;
         return this;
     }
@@ -53,7 +53,7 @@ public class ApplicationReport extends PersistentRoot<ApplicationReport> {
         return start;
     }
 
-    public ApplicationReport start(Date start) {
+    public PersonalReport start(Date start) {
         this.start = start;
         return this;
     }
@@ -62,7 +62,7 @@ public class ApplicationReport extends PersistentRoot<ApplicationReport> {
         return end;
     }
 
-    public ApplicationReport end(Date end) {
+    public PersonalReport end(Date end) {
         this.end = end;
         return this;
     }
@@ -71,7 +71,7 @@ public class ApplicationReport extends PersistentRoot<ApplicationReport> {
         return newApplied;
     }
 
-    public ApplicationReport newApplied(Long newApplied) {
+    public PersonalReport newApplied(Long newApplied) {
         this.newApplied = newApplied;
         return this;
     }
@@ -80,7 +80,7 @@ public class ApplicationReport extends PersistentRoot<ApplicationReport> {
         return newInterviewed;
     }
 
-    public ApplicationReport newlyInterviewed(Long newInterviewed) {
+    public PersonalReport newlyInterviewed(Long newInterviewed) {
         this.newInterviewed = newInterviewed;
         return this;
     }
@@ -89,28 +89,28 @@ public class ApplicationReport extends PersistentRoot<ApplicationReport> {
         return newOnboarded;
     }
 
-    public ApplicationReport newOnboarded(Long newOnboarded) {
+    public PersonalReport newOnboarded(Long newOnboarded) {
         this.newOnboarded = newOnboarded;
         return this;
     }
 
-    public ApplicationReportType getType() {
+    public PersonalReportType getType() {
         return type;
     }
 
-    public ApplicationReport type(ApplicationReportType type) {
+    public PersonalReport type(PersonalReportType type) {
         this.type = type;
         return this;
     }
 
-    public static class Builder extends PersistentRoot.Builder<Builder, ApplicationReport> {
+    public static class Builder extends PersistentRoot.Builder<Builder, PersonalReport> {
         private User user;
         private Date start;
         private Date end;
         private Long newApplied;
         private Long newInterviewed;
         private Long newOnboarded;
-        private ApplicationReportType type;
+        private PersonalReportType type;
 
         public Builder user(User user) {
             this.user = user;
@@ -143,14 +143,14 @@ public class ApplicationReport extends PersistentRoot<ApplicationReport> {
             return this;
         }
 
-        public Builder type(ApplicationReportType type) {
+        public Builder type(PersonalReportType type) {
             this.type = type;
             return this;
         }
 
         @Override
-        public ApplicationReport build() {
-            return new ApplicationReport(this);
+        public PersonalReport build() {
+            return new PersonalReport(this);
         }
     }
 

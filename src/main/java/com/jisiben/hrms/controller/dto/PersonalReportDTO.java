@@ -2,7 +2,7 @@ package com.jisiben.hrms.controller.dto;
 
 import com.jisiben.hrms.controller.dto.common.DTORoot;
 
-public class ApplicationReportDTO extends DTORoot<ApplicationReportDTO> {
+public class PersonalReportDTO extends DTORoot<PersonalReportDTO> {
     private String name;
     private Long newApplied;
     private Long newInterviewed;
@@ -11,10 +11,10 @@ public class ApplicationReportDTO extends DTORoot<ApplicationReportDTO> {
     private String toDate;
     private String type;
 
-    public ApplicationReportDTO() {
+    public PersonalReportDTO() {
     }
 
-    public ApplicationReportDTO(Builder builder) {
+    public PersonalReportDTO(Builder builder) {
         super(builder);
         this.name = builder.name;
         this.newApplied = builder.newApplied;
@@ -53,7 +53,7 @@ public class ApplicationReportDTO extends DTORoot<ApplicationReportDTO> {
         return type;
     }
 
-    public static class Builder extends DTORoot.Builder<ApplicationReportDTO.Builder, ApplicationReportDTO> {
+    public static class Builder extends DTORoot.Builder<PersonalReportDTO.Builder, PersonalReportDTO> {
         private String name;
         private Long newApplied;
         private Long newInterviewed;
@@ -98,8 +98,8 @@ public class ApplicationReportDTO extends DTORoot<ApplicationReportDTO> {
         }
 
         @Override
-        public ApplicationReportDTO build() {
-            return new ApplicationReportDTO(this);
+        public PersonalReportDTO build() {
+            return new PersonalReportDTO(this);
         }
     }
 }

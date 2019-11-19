@@ -1,5 +1,5 @@
 package com.jisiben.hrms.domain.entity.common;
 
-public enum ApplicationReportType {
+public enum PersonalReportType {
     WEEKLY, MONTHLY
 }
