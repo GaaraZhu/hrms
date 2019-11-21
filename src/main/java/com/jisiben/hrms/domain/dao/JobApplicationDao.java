@@ -52,4 +52,10 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
         +" com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_ONE_MONTH, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_THREE_MONTHS, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_SIX_MONTHS,"
         +" com.jisiben.hrms.domain.entity.common.JobApplicationStatus.RESIGNED) and (:fromTime is null or ja.applicationDate >= :fromTime) and (:toTime is null or ja.applicationDate <= :toTime) GROUP BY ja.job.company")
     List<Pair> findSuccessApplicantsByCompany(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
+
+    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company, COUNT(ja)) FROM JobApplication ja WHERE SUBSTRING(ja.onboardDate, 1, 7) = :month and (:company is null or ja.job.company = :company)")
+    List<Pair> findOnboardCountByCompany(@Param("company") String company, @Param("month") String month);
+
+    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company, COUNT(ja)) FROM JobApplication ja WHERE SUBSTRING(ja.resignDate, 1, 7) = :month and (:company is null or ja.job.company = :company)")
+    List<Pair> findResignCountByCompany(@Param("company") String company, @Param("month") String month);
 }

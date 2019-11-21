@@ -13,4 +13,8 @@ public interface JobApplicationService extends Service<JobApplication> {
     void migrateJobApplications(Long originalUserId, Long targetUserId);
 
     List<Pair> findSuccessApplicantsByCompany(Date fromTime, Date toTime);
+
+    List<Pair> findOnboardCountByCompany(String company, String month);
+
+    List<Pair> findResignCountByCompany(String company, String month);
 }

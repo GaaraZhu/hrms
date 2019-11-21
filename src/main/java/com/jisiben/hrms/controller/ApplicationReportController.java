@@ -9,6 +9,7 @@ import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.controller.dto.PairDTO;
 import com.jisiben.hrms.domain.dao.bean.Pair;
 import com.jisiben.hrms.domain.entity.PersonalReport;
+import com.jisiben.hrms.service.JobQuotaService;
 import com.jisiben.hrms.service.PersonalReportService;
 import com.jisiben.hrms.service.JobService;
 import com.jisiben.hrms.service.common.Service;
@@ -33,6 +34,9 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
 
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private JobQuotaService jobQuotaService;
 
     @Autowired
     private JobApplicationService jobApplicationService;
@@ -65,7 +69,20 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
     public List<CompanyReportDTO> findCompanyReports(
             @RequestParam("company") String company,
             @RequestParam("month") String month) {
+        List<Pair> quotas = jobQuotaService.getMonthlyQuota(company, month);
+        List<Pair> onboards = jobApplicationService.findOnboardCountByCompany(company, month);
+        List<Pair> resigns = jobApplicationService.findResignCountByCompany(company, month);
+
+        Map<String, Long> onboardsMap = onboards.stream().collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+        Map<String, Long> resignsMap = resigns.stream().collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+
         List<CompanyReportDTO> results = new ArrayList<>();
+        quotas.forEach(quota->{
+            Long totalOnboards = onboardsMap.get(quota.getKey());
+            Long totalResigns = resignsMap.get(quota.getKey());
+            Double completePercentage = (double)totalOnboards/quota.getValue();
+
+        });
         CompanyReportDTO dto = new CompanyReportDTO.Builder().company("盒马")
                 .month("2019-11")
                 .quota(120L)

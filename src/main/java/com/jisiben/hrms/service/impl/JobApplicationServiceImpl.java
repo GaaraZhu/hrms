@@ -73,4 +73,14 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
     public List<Pair> findSuccessApplicantsByCompany(Date fromTime, Date toTime) {
         return dao.findSuccessApplicantsByCompany(fromTime, toTime);
     }
+
+    @Override
+    public List<Pair> findOnboardCountByCompany(String company, String month) {
+        return dao.findOnboardCountByCompany(company, month);
+    }
+
+    @Override
+    public List<Pair> findResignCountByCompany(String company, String month) {
+        return dao.findResignCountByCompany(company, month);
+    }
 }

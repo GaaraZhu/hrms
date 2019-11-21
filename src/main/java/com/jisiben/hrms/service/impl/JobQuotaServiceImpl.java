@@ -1,6 +1,7 @@
 package com.jisiben.hrms.service.impl;
 
 import com.jisiben.hrms.domain.dao.JobQuotaDao;
+import com.jisiben.hrms.domain.dao.bean.Pair;
 import com.jisiben.hrms.domain.dao.common.Dao;
 import com.jisiben.hrms.domain.entity.JobQuota;
 import com.jisiben.hrms.service.JobQuotaService;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -38,5 +40,10 @@ public class JobQuotaServiceImpl extends AbstractService<JobQuota> implements Jo
     @Override
     public Long countJobQuota(Long jobId, String month) {
         return jobQuotaDao.countByJobIdAndMonth(jobId, month);
+    }
+
+    @Override
+    public List<Pair> getMonthlyQuota(String company, String month) {
+        return jobQuotaDao.getMonthlyQuota(company, month);
     }
 }
