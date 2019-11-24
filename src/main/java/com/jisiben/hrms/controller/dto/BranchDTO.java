@@ -4,9 +4,13 @@ import com.jisiben.hrms.controller.dto.common.DTORoot;
 
 public class BranchDTO extends DTORoot<BranchDTO> {
     private String name;
+    private String company;
+    private String city;
+    private String district;
     private String address;
     private String manager;
-    private String telephone;
+    private String phone;
+    private long companyId;
 
     public BranchDTO() {
     }
@@ -16,7 +20,11 @@ public class BranchDTO extends DTORoot<BranchDTO> {
         this.name = builder.name;
         this.address = builder.address;
         this.manager = builder.manager;
-        this.telephone = builder.telephone;
+        this.phone = builder.phone;
+        this.district = builder.district;
+        this.company = builder.company;
+        this.city = builder.city;
+        this.companyId = builder.companyId;
     }
 
     public String getName() {
@@ -27,22 +35,52 @@ public class BranchDTO extends DTORoot<BranchDTO> {
         return address;
     }
 
+    public long getCompanyId() {
+        return companyId;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
     public String getManager() {
         return manager;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getPhone() {
+        return phone;
     }
 
     public static class Builder extends DTORoot.Builder<Builder, BranchDTO> {
         private String name;
         private String address;
         private String manager;
-        private String telephone;
+        private String phone;
+        private String district;
+        private String company;
+        private String city;
+        private long companyId;
+
+        public Builder companyId(long companyId) {
+            this.companyId = companyId;
+            return this;
+        }
 
         public Builder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public Builder district(String district) {
+            this.district = district;
             return this;
         }
 
@@ -56,8 +94,18 @@ public class BranchDTO extends DTORoot<BranchDTO> {
             return this;
         }
 
-        public Builder telephone(String telephone) {
-            this.telephone = telephone;
+        public Builder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public Builder company(String company) {
+            this.company = company;
+            return this;
+        }
+
+        public Builder city(String city) {
+            this.city = city;
             return this;
         }
 

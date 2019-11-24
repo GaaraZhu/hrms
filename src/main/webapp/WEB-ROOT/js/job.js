@@ -169,6 +169,33 @@
                     data : "id=" + idsStr,
                     contentType : "application/json;charset=utf-8",
                     success : function(data) {
+                        $.ajax({
+                            url : "company",
+                            type : "GET",
+                            async: true,
+                            data : "id=" + idsStr,
+                            contentType : "application/json;charset=utf-8",
+                            success : function(data) {
+                                $("#innerModal").load("WEB-ROOT/html/jobQuota.jsp", function(){
+                                    $("#submitType").val("PUT");
+                                    $("#jobId").val(data.id);
+                                    $("#jobName").val(data.name);
+                                    $("#company").val(data.company);
+                                    $("#city").val(data.city);
+                                    $("#district").val(data.district);
+                                    $("#originalJobQuotaModal").modal({
+                                        keyboard: true
+                                    });
+                                });
+                            },
+                            error : function(e) {
+                                if (e.status != 401) {
+                                    console.log(e);
+                                    alert("操作失败，请查看控制台日志");
+                                }
+                            }
+                        });
+
                         $("#innerModal").load("WEB-ROOT/html/jobQuota.jsp", function(){
                             $("#submitType").val("PUT");
                             $("#jobId").val(data.id);

@@ -2,21 +2,25 @@ package com.jisiben.hrms.controller.dto.mapper;
 
 import com.jisiben.hrms.controller.dto.JobDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
+import com.jisiben.hrms.domain.entity.Company;
 import com.jisiben.hrms.domain.entity.Job;
 import com.jisiben.hrms.domain.entity.common.JobType;
+import com.jisiben.hrms.service.CompanyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JobEntityDTOMapper extends AbstractMapper<Job, JobDTO> {
 
+    @Autowired
+    private CompanyService companyService;
+
     @Override
     public JobDTO toDTO(Job entity) {
         JobDTO.Builder builder = (JobDTO.Builder)super.entityToDTO(entity, new JobDTO.Builder());
         return builder
-                .company(entity.getCompany())
-                .city(entity.getCity())
-                .district(entity.getDistrict())
-                .address(entity.getAddress())
+                .company(entity.getCompany().getName())
+                .companyId(entity.getCompany().getId())
                 .name(entity.getName())
                 .salaryRange(entity.getSalaryRange())
                 .type(entity.getType().getValue())
@@ -30,10 +34,11 @@ public class JobEntityDTOMapper extends AbstractMapper<Job, JobDTO> {
 
     @Override
     public Job toEntity(JobDTO dto, Job entity) {
-        return entity.company(dto.getCompany())
-                .city(dto.getCity())
-                .district(dto.getDistrict())
-                .address(dto.getAddress())
+        Company company = entity.getCompany();
+        if (dto.getCompanyId()!=0) {
+            company = companyService.findById(dto.getCompanyId()).get();
+        }
+        return entity.company(company)
                 .name(dto.getName())
                 .salaryRange(dto.getSalaryRange())
                 .type(JobType.get(dto.getType()))

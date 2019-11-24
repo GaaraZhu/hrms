@@ -3,22 +3,15 @@ package com.jisiben.hrms.domain.entity;
 import com.jisiben.hrms.domain.entity.common.JobType;
 import com.jisiben.hrms.domain.entity.common.PersistentRoot;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Job")
 public class Job extends PersistentRoot<Job> {
 
-    private String company;
-
-    private String city;
-
-    private String district;
-
-    private String address;
+    @ManyToOne(targetEntity=Company.class)
+    @JoinColumn(name = "companyId")
+    private Company company;
 
     private String name;
 
@@ -43,9 +36,6 @@ public class Job extends PersistentRoot<Job> {
     private Job(Builder builder){
         super(builder);
         this.company=builder.company;
-        this.city=builder.city;
-        this.district=builder.district;
-        this.address=builder.address;
         this.name=builder.name;
         this.salaryRange=builder.salaryRange;
         this.type=builder.type;
@@ -56,12 +46,8 @@ public class Job extends PersistentRoot<Job> {
         this.active=builder.active;
     }
 
-    public String getCompany() {
+    public Company getCompany() {
         return company;
-    }
-
-    public String getCity() {
-        return city;
     }
 
     public String getName() {
@@ -96,13 +82,8 @@ public class Job extends PersistentRoot<Job> {
         return note;
     }
 
-    public Job company(String company) {
+    public Job company(Company company) {
         this.company = company;
-        return this;
-    }
-
-    public Job city(String city) {
-        this.city = city;
         return this;
     }
 
@@ -146,30 +127,9 @@ public class Job extends PersistentRoot<Job> {
         return this;
     }
 
-    public String getDistrict() {
-        return district;
-    }
-
-    public Job district(String district) {
-        this.district = district;
-        return this;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public Job address(String address) {
-        this.address = address;
-        return this;
-    }
-
     public static class Builder extends PersistentRoot.Builder<Builder, Job> {
-        private String company;
-        private String city;
+        private Company company;
         private String name;
-        private String district;
-        private String address;
         private String salaryRange;
         private JobType type;
         private int quota;
@@ -178,28 +138,13 @@ public class Job extends PersistentRoot<Job> {
         private String note;
         private boolean active;
 
-        public Builder company(String company) {
+        public Builder company(Company company) {
             this.company = company;
-            return this;
-        }
-
-        public Builder city(String city) {
-            this.city = city;
             return this;
         }
 
         public Builder name(String name) {
             this.name = name;
-            return this;
-        }
-
-        public Builder district(String district) {
-            this.district = district;
-            return this;
-        }
-
-        public Builder address(String address) {
-            this.address = address;
             return this;
         }
 

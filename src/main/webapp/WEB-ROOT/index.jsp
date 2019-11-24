@@ -127,6 +127,14 @@
                             <ul>
                                 <li>
                                     <a href="javascript:void(0)"
+                                        onclick="htmlDispatcher('WEB-ROOT/html/companies.jsp',' 首页/ 系统管理/ 公司管理','公司管理')">
+                                        公司管理
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)"
                                         onclick="htmlDispatcher('WEB-ROOT/html/branches.jsp',' 首页/ 系统管理/ 门店管理','门店管理')">
                                         门店管理
                                     </a>

@@ -15,6 +15,7 @@ public class JobDTO extends DTORoot<JobDTO>{
     private int referralBonusAmount;
     private String active;
     private String note;
+    private long companyId;
 
     public JobDTO() {
     }
@@ -33,6 +34,7 @@ public class JobDTO extends DTORoot<JobDTO>{
         this.referralBonusAmount=builder.referralBonusAmount;
         this.active=builder.active;
         this.note=builder.note;
+        this.companyId=builder.companyId;
     }
 
     public String getCompany() {
@@ -81,6 +83,10 @@ public class JobDTO extends DTORoot<JobDTO>{
         return address;
     }
 
+    public long getCompanyId() {
+        return companyId;
+    }
+
     public static class Builder extends DTORoot.Builder<Builder, JobDTO> {
         private String company;
         private String city;
@@ -94,6 +100,7 @@ public class JobDTO extends DTORoot<JobDTO>{
         private int referralBonusAmount;
         private String active;
         private String note;
+        private long companyId;
 
         public Builder(){}
 
@@ -129,6 +136,11 @@ public class JobDTO extends DTORoot<JobDTO>{
 
         public Builder referralBonus(String referralBonus) {
             this.referralBonus = referralBonus;
+            return this;
+        }
+
+        public Builder companyId(long companyId) {
+            this.companyId = companyId;
             return this;
         }
 
