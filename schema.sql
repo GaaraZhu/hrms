@@ -28,14 +28,14 @@ CREATE TABLE `JobQuota` (
   `month` varchar(20) NOT NULL,
   `quota` int(11) NOT NULL,
   `jpaVersion` int(11) NOT NULL,
-  `creator` varchar(20) DEFAULT NULL,
+  `creator` varchar(20) NOT NULL,
   `createdTime` datetime NOT NULL,
-  `lastUpdater` varchar(20) DEFAULT NULL,
+  `lastUpdater` varchar(20) NOT NULL,
   `lastUpdatedTime` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `jobId` (`jobId`),
   CONSTRAINT `jobquota_ibfk_1` FOREIGN KEY (`jobId`) REFERENCES `job` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='职位指标';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='职位指标';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,44 +44,8 @@ CREATE TABLE `JobQuota` (
 
 LOCK TABLES `JobQuota` WRITE;
 /*!40000 ALTER TABLE `JobQuota` DISABLE KEYS */;
+INSERT INTO `JobQuota` VALUES (11,1,'2019-11',30,2,'admin','2019-11-18 19:50:50','admin','2019-11-18 21:24:37');
 /*!40000 ALTER TABLE `JobQuota` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `applicationReport`
---
-
-DROP TABLE IF EXISTS `applicationReport`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `applicationReport` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL,
-  `start` datetime NOT NULL,
-  `end` datetime NOT NULL,
-  `newApplied` int(11) NOT NULL,
-  `newInterviewed` int(11) NOT NULL,
-  `newOnboarded` int(11) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  `jpaVersion` int(11) NOT NULL,
-  `creator` varchar(20) DEFAULT NULL,
-  `createdTime` datetime NOT NULL,
-  `lastUpdater` varchar(20) DEFAULT NULL,
-  `lastUpdatedTime` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `userId` (`userId`),
-  CONSTRAINT `applicationReport_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='求职报表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `applicationReport`
---
-
-LOCK TABLES `applicationReport` WRITE;
-/*!40000 ALTER TABLE `applicationReport` DISABLE KEYS */;
-INSERT INTO `applicationReport` VALUES (1,2,'2019-11-04 21:11:43','2019-11-10 21:11:43',20,5,3,'WEEKLY',1,NULL,'2019-08-28 21:11:43',NULL,'2019-11-01 22:27:25'),(2,2,'2019-10-28 21:11:43','2019-11-03 21:11:43',15,7,6,'WEEKLY',1,'1','2019-08-28 21:11:43','1','2019-11-01 22:27:25');
-/*!40000 ALTER TABLE `applicationReport` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -93,17 +57,21 @@ DROP TABLE IF EXISTS `branch`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `branch` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyId` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
+  `district` varchar(20) NOT NULL,
   `address` varchar(200) NOT NULL,
-  `manager` varchar(20) NOT NULL,
-  `telephone` varchar(20) NOT NULL,
+  `manager` varchar(20) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
   `jpaVersion` int(11) NOT NULL,
   `creator` varchar(20) DEFAULT NULL,
   `createdTime` datetime NOT NULL,
   `lastUpdater` varchar(20) DEFAULT NULL,
   `lastUpdatedTime` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='公司部门表';
+  PRIMARY KEY (`id`),
+  KEY `companyId` (`companyId`),
+  CONSTRAINT `company_ibfk_1` FOREIGN KEY (`companyId`) REFERENCES `company` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='门店表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +80,7 @@ CREATE TABLE `branch` (
 
 LOCK TABLES `branch` WRITE;
 /*!40000 ALTER TABLE `branch` DISABLE KEYS */;
-INSERT INTO `branch` VALUES (8,'康兰劳务浦西店','上海市长宁区江苏路209号','刘春燕','12345678912',3,NULL,'2019-10-29 21:41:35',NULL,'2019-11-01 21:59:07'),(9,'康兰劳务张江店','上海浦东新区张江露1号','张婕','14223894872',1,NULL,'2019-11-01 19:38:57',NULL,'2019-11-01 19:38:57');
+INSERT INTO `branch` VALUES (10,8,'上海盒马小站花山站配送站','','xx路xxxx号','张飞','',2,'admin','2019-11-24 22:33:03','admin','2019-11-24 22:34:50'),(11,8,'上海盒马小站九亭站配送站','闵行','xxx','张某','021-68778388',2,'admin','2019-11-24 22:37:09','admin','2019-11-24 22:41:38');
 /*!40000 ALTER TABLE `branch` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,6 +127,38 @@ INSERT INTO `candidate` VALUES (3,'刘云飞','MALE','15128903892','321283193009
 UNLOCK TABLES;
 
 --
+-- Table structure for table `company`
+--
+
+DROP TABLE IF EXISTS `company`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `jpaVersion` int(11) NOT NULL,
+  `creator` varchar(20) DEFAULT NULL,
+  `createdTime` datetime NOT NULL,
+  `lastUpdater` varchar(20) DEFAULT NULL,
+  `lastUpdatedTime` datetime NOT NULL,
+  `city` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='公司表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `company`
+--
+
+LOCK TABLES `company` WRITE;
+/*!40000 ALTER TABLE `company` DISABLE KEYS */;
+INSERT INTO `company` VALUES (8,'盒马上海有限公司','上海市长宁区江苏路219号','12345678912',4,NULL,'2019-10-29 21:41:35','admin','2019-11-24 22:09:25','上海'),(9,'海底捞上海有限公司','上海浦东新区张江露1号','14223894872',2,NULL,'2019-11-01 19:38:57','admin','2019-11-24 22:58:40','上海');
+/*!40000 ALTER TABLE `company` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `job`
 --
 
@@ -167,10 +167,7 @@ DROP TABLE IF EXISTS `job`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `job` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `company` varchar(50) NOT NULL,
-  `city` varchar(20) NOT NULL,
-  `district` varchar(40) DEFAULT NULL,
-  `address` varchar(200) DEFAULT NULL,
+  `companyId` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `type` varchar(20) NOT NULL,
   `salaryRange` varchar(50) NOT NULL,
@@ -194,7 +191,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
-INSERT INTO `job` VALUES (1,'盒马生鲜','上海','浦东新区','张江路2000号','骑手','FULL_TIME','8000-9000',90,1,1,1000,'',8,NULL,'2019-08-28 21:11:43',NULL,'2019-11-01 22:27:25'),(2,'盒马生鲜','上海','长宁','长宁区江苏路108号','仓库管理员','FULL_TIME','6000-6500',10,1,0,0,'',1,NULL,'2019-11-03 14:26:56',NULL,'2019-11-03 14:26:56'),(3,'海底捞','上海','浦东新区','高科西路108号','服务员','FULL_TIME','6000-9000',30,1,1,1000,'',1,'admin','2019-11-16 21:20:49','admin','2019-11-16 21:20:49');
+INSERT INTO `job` VALUES (1,8,'骑手','FULL_TIME','8000-9000',90,1,1,1000,'',8,NULL,'2019-08-28 21:11:43',NULL,'2019-11-01 22:27:25'),(2,8,'仓库管理员','FULL_TIME','6000-6500',10,1,0,0,'',1,NULL,'2019-11-03 14:26:56',NULL,'2019-11-03 14:26:56'),(3,9,'服务员','FULL_TIME','6000-9000',30,1,1,1000,'',1,'admin','2019-11-16 21:20:49','admin','2019-11-16 21:20:49');
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,6 +234,43 @@ LOCK TABLES `jobApplication` WRITE;
 /*!40000 ALTER TABLE `jobApplication` DISABLE KEYS */;
 INSERT INTO `jobApplication` VALUES (1,1,3,'张群2','15790476239','RESIGNED','2019-10-16 21:28:29','2019-10-20 21:28:29','2019-10-28 21:28:29','2019-11-13 23:22:55',6,NULL,'2019-10-14 22:49:32','admin','2019-11-13 23:22:55'),(4,1,19,'王力宏','134578932556','ON_BOARDED_ONE_MONTH','2019-10-15 21:28:29','2019-10-16 21:28:29','2019-10-20 21:28:29',NULL,4,NULL,'2019-11-01 19:43:11','admin','2019-11-16 21:21:08'),(9,1,19,'刘四','123563546346','ON_BOARDED','2019-10-13 21:28:29','2019-10-15 21:28:29','2019-10-20 21:28:29',NULL,2,NULL,'2019-11-01 22:27:15','admin','2019-11-16 21:21:25'),(10,2,19,'张亮','19803887745','WAITING_INTERVIEW','2019-10-29 21:28:29','2019-11-22 21:28:29',NULL,NULL,1,NULL,'2019-11-03 14:27:41',NULL,'2019-11-03 14:27:41'),(13,3,18,'','','WAITING_INTERVIEW','2019-11-15 00:00:00',NULL,NULL,NULL,2,'admin','2019-11-17 22:05:45','admin','2019-11-17 22:20:05');
 /*!40000 ALTER TABLE `jobApplication` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `personalReport`
+--
+
+DROP TABLE IF EXISTS `personalReport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `personalReport` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `start` datetime NOT NULL,
+  `end` datetime NOT NULL,
+  `newApplied` int(11) NOT NULL,
+  `newInterviewed` int(11) NOT NULL,
+  `newOnboarded` int(11) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `jpaVersion` int(11) NOT NULL,
+  `creator` varchar(20) DEFAULT NULL,
+  `createdTime` datetime NOT NULL,
+  `lastUpdater` varchar(20) DEFAULT NULL,
+  `lastUpdatedTime` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `applicationReport_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='求职报表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personalReport`
+--
+
+LOCK TABLES `personalReport` WRITE;
+/*!40000 ALTER TABLE `personalReport` DISABLE KEYS */;
+INSERT INTO `personalReport` VALUES (1,2,'2019-11-04 21:11:43','2019-11-10 21:11:43',20,5,3,'WEEKLY',1,NULL,'2019-08-28 21:11:43',NULL,'2019-11-01 22:27:25'),(2,2,'2019-10-28 21:11:43','2019-11-03 21:11:43',15,7,6,'WEEKLY',1,'1','2019-08-28 21:11:43','1','2019-11-01 22:27:25');
+/*!40000 ALTER TABLE `personalReport` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -311,4 +345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-17 23:23:18
+-- Dump completed on 2019-11-24 23:05:41
