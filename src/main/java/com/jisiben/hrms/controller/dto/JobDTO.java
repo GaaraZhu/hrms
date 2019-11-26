@@ -5,12 +5,10 @@ import com.jisiben.hrms.controller.dto.common.DTORoot;
 public class JobDTO extends DTORoot<JobDTO>{
     private String company;
     private String city;
-    private String district;
     private String address;
     private String name;
     private String salaryRange;
     private String type;
-    private int quota;
     private String referralBonus;
     private int referralBonusAmount;
     private String active;
@@ -24,12 +22,10 @@ public class JobDTO extends DTORoot<JobDTO>{
         super(builder);
         this.company=builder.company;
         this.city=builder.city;
-        this.district=builder.district;
         this.address=builder.address;
         this.name=builder.name;
         this.salaryRange=builder.salaryRange;
         this.type=builder.type;
-        this.quota=builder.quota;
         this.referralBonus=builder.referralBonus;
         this.referralBonusAmount=builder.referralBonusAmount;
         this.active=builder.active;
@@ -57,10 +53,6 @@ public class JobDTO extends DTORoot<JobDTO>{
         return type;
     }
 
-    public int getQuota() {
-        return quota;
-    }
-
     public String getActive() {
         return active;
     }
@@ -75,10 +67,6 @@ public class JobDTO extends DTORoot<JobDTO>{
         return referralBonusAmount;
     }
 
-    public String getDistrict() {
-        return district;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -90,12 +78,10 @@ public class JobDTO extends DTORoot<JobDTO>{
     public static class Builder extends DTORoot.Builder<Builder, JobDTO> {
         private String company;
         private String city;
-        private String district;
         private String address;
         private String name;
         private String salaryRange;
         private String type;
-        private int quota;
         private String referralBonus;
         private int referralBonusAmount;
         private String active;
@@ -129,11 +115,6 @@ public class JobDTO extends DTORoot<JobDTO>{
             return this;
         }
 
-        public Builder quota(int quota) {
-            this.quota = quota;
-            return this;
-        }
-
         public Builder referralBonus(String referralBonus) {
             this.referralBonus = referralBonus;
             return this;
@@ -156,11 +137,6 @@ public class JobDTO extends DTORoot<JobDTO>{
 
         public Builder note(String note) {
             this.note = note;
-            return this;
-        }
-
-        public Builder district(String district) {
-            this.district = district;
             return this;
         }
 

@@ -2,10 +2,12 @@ package com.jisiben.hrms.controller.dto.mapper;
 
 import com.jisiben.hrms.controller.dto.JobApplicationDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
+import com.jisiben.hrms.domain.entity.Branch;
 import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.domain.entity.Job;
 import com.jisiben.hrms.domain.entity.JobApplication;
 import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
+import com.jisiben.hrms.service.BranchService;
 import com.jisiben.hrms.service.CandidateService;
 import com.jisiben.hrms.service.JobService;
 import org.apache.commons.lang3.StringUtils;
@@ -20,6 +22,9 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
 
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private BranchService branchService;
 
     @Autowired
     private CandidateService candidateService;
@@ -37,6 +42,8 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
                 .refereePhone(entity.getRefereePhone())
                 .company(entity.getJob().getCompany().getName())
                 .city(entity.getJob().getCompany().getCity())
+                .branchId(entity.getBranch()!=null?entity.getBranch().getId():0l)
+                .branchName(entity.getBranch()!=null?entity.getBranch().getName():"")
                 .jobName(entity.getJob().getName())
                 .status(entity.getStatus().getValue())
                 .applicationDate(entity.getApplicationDate()!=null?sm.format(entity.getApplicationDate()):"")
@@ -50,6 +57,7 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
     public JobApplication toEntity(JobApplicationDTO dto, JobApplication entity) {
         Job job = jobService.findById(dto.getJobId()).get();
         Candidate candidate = candidateService.findById(dto.getCandidateId()).get();
+        Branch branch = dto.getBranchId()!=0?branchService.findById(dto.getBranchId()).get():null;
         Date applicationDate = entity.getApplicationDate();
         Date interviewDate = entity.getInterviewDate();
         Date onboardDate = entity.getOnboardDate();
@@ -69,6 +77,7 @@ public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobA
         return entity
                 .job(job)
                 .candidate(candidate)
+                .branch(branch)
                 .referee(dto.getReferee())
                 .refereePhone(dto.getRefereePhone())
                 .status(JobApplicationStatus.get(dto.getStatus()))

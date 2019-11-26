@@ -22,8 +22,8 @@
 							<div class="form-group " >
 								<label for="company" class="col-lg-2 control-label" style="padding-top: 30px;">所属企业</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
-									<input type="text" class="form-control" name="company"
-										id="company" placeholder="请输入所属企业">
+                                     <select id="companyId" name="companyId" style="width: 202px;height: 32px;">
+                                     </select>
 								</div>
 								<label for="city" class="col-lg-2 control-label" style="padding-top: 30px;">所在城市</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
@@ -31,17 +31,6 @@
 									type="text" class="form-control col-lg-35" name="city"
 									id="city" placeholder="请输入所在城市">
 								</div>
-								<label for="district" class="col-lg-2 control-label" style="padding-top: 30px;">城市区域</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input type="text" class="form-control" name="district"
-                                        id="district" placeholder="请输入城市区域">
-                                </div>
-                                <label for="address" class="col-lg-2 control-label" style="padding-top: 30px;">门店地址</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                 <input
-                                    type="text" class="form-control col-lg-35" name="address"
-                                    id="address" placeholder="请输入门店地址">
-                                </div>
 								<label for="name" class="col-lg-2 control-label" style="padding-top: 30px;">职位名称</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
 								 <input
@@ -56,21 +45,15 @@
 								</div>
 								<label for="type" class="col-lg-2 control-label" style="padding-top: 30px;">工作性质</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
-                                <select id="type" name="type" style="width: 62px;height: 32px;">
+                                <select id="type" name="type" style="width: 200px;height: 32px;">
                                      <option value="全职">全职</option>
                                      <option value="兼职">兼职</option>
                                      <option value="小时工">小时工</option>
                                 </select>
                                 </div>
-                                <label for="quota" class="col-lg-2 control-label" style="padding-top: 30px;">招聘人数</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                 <input
-                                    type="text" class="form-control col-lg-35" name="quota"
-                                    id="quota" placeholder="请输入招聘人数">
-                                </div>
                                 <label for="referralBonus" class="col-lg-2 control-label" style="padding-top: 30px;">推荐有奖</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
-                                 <select id="referralBonus" name="referralBonus" style="width: 62px; height: 32px;">
+                                 <select id="referralBonus" name="referralBonus" style="width: 200px; height: 32px;">
                                          <option value="有">有奖</option>
                                          <option value="无">无奖</option>
                                  </select>
@@ -83,7 +66,7 @@
                                 </div>
                                 <label for="active" class="col-lg-2 control-label" style="padding-top: 30px;">是否有效</label>
                                 <div class="col-lg-35" style="padding-top: 25px;">
-                                     <select id="active" name="active" style="width: 62px; height: 32px;">
+                                     <select id="active" name="active" style="width: 200px; height: 32px;">
                                          <option value="有效">有效</option>
                                          <option value="无效">无效</option>
                                      </select>

@@ -28,8 +28,8 @@ public class BranchServiceImpl extends AbstractService<Branch> implements Branch
 
     @Override
     public Page<Branch> search(Map<String, Optional<Object>> criteria, int currentPage, int pageSize) {
-        String manager = criteria.get("manager").map(Object::toString).orElse(null);
-        String name = criteria.get("name").map(Object::toString).orElse(null);
-        return branchDao.findByManagerAndName(manager, name, new PageRequest(currentPage-1, pageSize));
+        String company = criteria.get("company").map(Object::toString).orElse(null);
+        String branch = criteria.get("branch").map(Object::toString).orElse(null);
+        return branchDao.findByManagerAndName(company, branch, new PageRequest(currentPage-1, pageSize));
     }
 }

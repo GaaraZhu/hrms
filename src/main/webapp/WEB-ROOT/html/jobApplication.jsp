@@ -20,70 +20,85 @@
 					<div class="modal-body" style="height: 60%;">
 						<div class="col-lg-10 col-md-9 col-sm-9">
 							<div class="form-group " >
-								<label for="jobName" class="col-lg-2 control-label" style="padding-top: 30px;">职位名称</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="jobName" type="text" class="form-control" name="jobName" readonly="readonly">
-                                </div>
-                                <label for="company" class="col-lg-2 control-label" style="padding-top: 30px;">所属企业</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="company" type="text" class="form-control col-lg-35" name="company" readonly="readonly">
-                                </div>
-								<label for="city" class="col-lg-2 control-label" style="padding-top: 30px;">所在城市</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="city" type="text" class="form-control col-lg-35" name="city" readonly="readonly">
-								</div>
-								<label for="district" class="col-lg-2 control-label" style="padding-top: 30px;">所在区域</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="district" type="text" class="form-control col-lg-35" name="district" readonly="readonly">
-								</div>
-								<label for="idNumber" class="col-lg-2 control-label" style="padding-top: 30px;">身份证号</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="idNumber" type="text" class="form-control col-lg-35" name="idNumber" placeholder="申请人身份证号">
-								</div>
-								<label for="candidateName" class="col-lg-2 control-label" style="padding-top: 30px;">姓名</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="candidateName" type="text" class="form-control col-lg-35" name="candidateName" readonly="readonly">
-                                </div>
-								<label for="referee" class="col-lg-2 control-label" style="padding-top: 30px;">推荐人</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="referee" type="text" class="form-control col-lg-35" name="referee" placeholder="推荐人姓名">
-                                </div>
-                                <label for="refereePhone" class="col-lg-2 control-label" style="padding-top: 30px;">推荐人电话</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="refereePhone" type="text" class="form-control col-lg-35" name="refereePhone" placeholder="推荐人电话">
+							    <div class="row">
+                                    <label for="jobName" class="col-lg-2 control-label" style="padding-top: 30px;">职位名称</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input id="jobName" type="text" class="form-control" name="jobName" readonly="readonly">
+                                    </div>
+                                    <label for="company" class="col-lg-2 control-label" style="padding-top: 30px;">所属企业</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input id="company" type="text" class="form-control col-lg-35" name="company" readonly="readonly">
+                                    </div>
                                 </div>
 
-                                <label for="status" class="col-lg-2 control-label" style="padding-top: 30px;">当前状态</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                     <select id="status" name="status" style="width: 202px;height: 32px;">
-                                         <option value="未处理">未处理</option>
-                                         <option value="申请失败">申请失败</option>
-                                         <option value="等待面试">等待面试</option>
-                                         <option value="完成面试">完成面试</option>
-                                         <option value="面试通过">面试通过</option>
-                                         <option value="面试失败">面试失败</option>
-                                         <option value="入职">入职</option>
-                                         <option value="入职满1月">入职满1月</option>
-                                         <option value="入职满3月">入职满3月</option>
-                                         <option value="入职满6月">入职满6月</option>
-                                         <option value="离职">离职</option>
-                                     </select>
+                                <div class="row">
+                                    <label for="branchDropdown" class="col-lg-2 control-label" style="padding-top: 30px;">求职门店</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <select id="branchDropdown" name="branchDropdown" style="width: 212px;height: 32px;"></select>
+                                    </div>
                                 </div>
-                                <label for="applicationDate" class="col-lg-2 control-label" style="padding-top: 30px;">申请时间</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input type="text" class="form-control" id="applicationDate" name="applicationDate" placeholder="请选择日期" readonly="readonly">
+
+                               <div class="row">
+                                    <label for="idNumber" class="col-lg-2 control-label" style="padding-top: 30px;">身份证号</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input id="idNumber" type="text" class="form-control col-lg-35" name="idNumber" placeholder="申请人身份证号">
+                                    </div>
+                                    <label for="candidateName" class="col-lg-2 control-label" style="padding-top: 30px;">姓名</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input id="candidateName" type="text" class="form-control col-lg-35" name="candidateName" readonly="readonly">
+                                    </div>
                                 </div>
-                                <label for="interviewDate" class="col-lg-2 control-label" style="padding-top: 30px;">面试时间</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input type="text" class="form-control" id="interviewDate" name="interviewDate" placeholder="请选择日期" readonly="readonly">
+
+                                <div class="row">
+                                    <label for="referee" class="col-lg-2 control-label" style="padding-top: 30px;">推荐人姓名</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input id="referee" type="text" class="form-control col-lg-35" name="referee" placeholder="推荐人姓名">
+                                    </div>
+                                    <label for="refereePhone" class="col-lg-2 control-label" style="padding-top: 30px;">推荐人电话</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input id="refereePhone" type="text" class="form-control col-lg-35" name="refereePhone" placeholder="推荐人电话">
+                                    </div>
                                 </div>
-                                <label for="onboardDate" class="col-lg-2 control-label" style="padding-top: 30px;">入职时间</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input type="text" class="form-control" id="onboardDate" name="onboardDate" placeholder="请选择日期" readonly="readonly">
+
+                                <div class="row">
+                                    <label for="status" class="col-lg-2 control-label" style="padding-top: 30px;">当前状态</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                         <select id="status" name="status" style="width: 212px;height: 32px;">
+                                             <option value="未处理">未处理</option>
+                                             <option value="申请失败">申请失败</option>
+                                             <option value="等待面试">等待面试</option>
+                                             <option value="完成面试">完成面试</option>
+                                             <option value="面试通过">面试通过</option>
+                                             <option value="面试失败">面试失败</option>
+                                             <option value="入职">入职</option>
+                                             <option value="入职满1月">入职满1月</option>
+                                             <option value="入职满3月">入职满3月</option>
+                                             <option value="入职满6月">入职满6月</option>
+                                             <option value="离职">离职</option>
+                                         </select>
+                                    </div>
                                 </div>
-                                <label for="resignDate" class="col-lg-2 control-label" style="padding-top: 30px;">离职时间</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input type="text" class="form-control" id="resignDate" name="resignDate" placeholder="请选择日期" readonly="readonly">
+
+                                <div class="row">
+                                    <label for="applicationDate" class="col-lg-2 control-label" style="padding-top: 30px;">申请时间</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input type="text" class="form-control" id="applicationDate" name="applicationDate" placeholder="请选择日期" readonly="readonly">
+                                    </div>
+                                    <label for="interviewDate" class="col-lg-2 control-label" style="padding-top: 30px;">面试时间</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input type="text" class="form-control" id="interviewDate" name="interviewDate" placeholder="请选择日期" readonly="readonly">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="onboardDate" class="col-lg-2 control-label" style="padding-top: 30px;">入职时间</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input type="text" class="form-control" id="onboardDate" name="onboardDate" placeholder="请选择日期" readonly="readonly">
+                                    </div>
+                                    <label for="resignDate" class="col-lg-2 control-label" style="padding-top: 30px;">离职时间</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input type="text" class="form-control" id="resignDate" name="resignDate" placeholder="请选择日期" readonly="readonly">
+                                    </div>
                                 </div>
                                 <div style="display:none">
                                     <input type="text" id="id" value="">

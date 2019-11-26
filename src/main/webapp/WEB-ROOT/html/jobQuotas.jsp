@@ -13,15 +13,10 @@
 						    placeholder="所属企业">
 					</div>
 					<div class="form-group inputselect">
-						<label for="searchCity">应在城市</label> <input type="text"
+						<label for="searchCity">所在城市</label> <input type="text"
 							class=" form-control" id="searchCity" name="searchCity"
 							placeholder="所在城市">
 					</div>
-					<div class="form-group inputselect">
-                        <label for="searchDistrict">应在城市</label> <input type="text"
-                            class=" form-control" id="searchDistrict" name="searchDistrict"
-                            placeholder="所在区域">
-                    </div>
 					<div class="form-group inputselect">
                         <label for="searchJobName">职位名称</label> <input type="text"
                             class="form-control" id="searchJobName" name="searchJobName"

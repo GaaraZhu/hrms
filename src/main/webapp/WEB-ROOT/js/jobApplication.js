@@ -111,18 +111,19 @@
                     "candidateName",
                     "phone",
                     "idNumber",
+                    "company",
+                    "branchName",
+                    "jobName",
                     "referee",
                     "refereePhone",
-                    "company",
-                    "city",
-                    "jobName",
                     "applicationDate",
                     "status",
+                    "interviewDate",
                     "onboardDate",
                     "resignDate",
                     "updatedTime",
                     "<button  class='btn btn-info btn-sm editJobA'  ID='editJobA' onclick='updateJobApplication(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delJobA' ID='delJobA' onclick='deleteJobApplication(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
-            name : ["ID", "姓名", "电话", "身份证号", "推荐人", "推荐人电话", "应聘企业", "应聘城市", "应聘职位", "求职/推荐时间", "最新状态", "入职时间", "离职时间", "处理时间", "_opt" ],
+            name : ["ID", "姓名", "电话", "身份证号", "应聘企业", "应聘门店", "应聘职位", "推荐人", "推荐人电话", "求职/推荐时间", "最新状态", "面试时间", "入职时间", "离职时间", "处理时间", "_opt" ],
             tid : "id",
             checkBox : "id"
         });
@@ -145,32 +146,52 @@
             url : "jobApplication?id="+id,
             async : true,
             contentType : "application/json;charset=utf-8",
-            success : function(data) {
+            success : function(jobData) {
                 $("#innerModal").load(
                     "WEB-ROOT/html/jobApplication.jsp",
                     function() {
-                        $("#originalJobApplicationModal").modal({
-                            keyboard : true
+
+                        $.ajax({
+                            url : "branches",
+                            type : "GET",
+                            async: true,
+                            data : "currentPage=1&pageSize=500&company=" +jobData.company+ "&branch=",
+                            contentType : "application/json;charset=utf-8",
+                            success : function(branchData) {
+                                var branches = branchData.results;
+                                var branchDropdown = $("#branchDropdown");
+                                branches.forEach(function(c){
+                                    branchDropdown.append($("<option />").val(c.id).text(c.name));
+                                });
+                                branchDropdown.val(jobData.branchId);
+
+                                $("#id").val(jobData.id);
+                                $("#jobId").val(jobData.jobId);
+                                $("#candidateId").val(jobData.candidateId);
+                                $("#jobName").val(jobData.jobName);
+                                $("#company").val(jobData.company);
+                                $("#idNumber").val(jobData.idNumber);
+                                $("#candidateName").val(jobData.candidateName);
+                                $("#referee").val(jobData.referee);
+                                $("#refereePhone").val(jobData.refereePhone);
+                                $("#status").val(jobData.status).change();
+                                $("#applicationDate").datepicker("setDate", jobData.applicationDate);
+                                $("#interviewDate").datepicker("setDate", jobData.interviewDate);
+                                $("#onboardDate").datepicker("setDate", jobData.onboardDate);
+                                $("#resignDate").datepicker("setDate", jobData.resignDate);
+                                $("#submitType").val("POST");
+
+                                $("#originalJobApplicationModal").modal({
+                                    keyboard : true
+                                });
+                            },
+                            error : function(e) {
+                                if (e.status != 401) {
+                                    console.log(e);
+                                    alert("搜索失败，请查看控制台日志");
+                                }
+                            }
                         });
-                        if (data != null) {
-                            $("#id").val(data.id);
-                            $("#jobId").val(data.jobId);
-                            $("#candidateId").val(data.candidateId);
-                            $("#jobName").val(data.jobName);
-                            $("#company").val(data.company);
-                            $("#city").val(data.city);
-                            $("#district").val(data.district);
-                            $("#idNumber").val(data.idNumber);
-                            $("#candidateName").val(data.candidateName);
-                            $("#referee").val(data.referee);
-                            $("#refereePhone").val(data.refereePhone);
-                            $("#status").val(data.status).change();
-                            $("#applicationDate").datepicker("setDate", data.applicationDate);
-                            $("#interviewDate").datepicker("setDate", data.interviewDate);
-                            $("#onboardDate").datepicker("setDate", data.onboardDate);
-                            $("#resignDate").datepicker("setDate", data.resignDate);
-                            $("#submitType").val("POST");
-                        }
                     });
             },
             error : function(e) {
@@ -234,7 +255,7 @@
         var data = $('form#jobApplicationForm').serializeObject();
         data.jobId = $("#jobId").val();
         data.candidateId = $("#candidateId").val();
-        console.log(data);
+        data.branchId = $("#branchDropdown").val();
         var method = $("#submitType").val();
         var url = method=="POST"?"jobApplication?id="+$("#id").val():"jobApplication";
         $.ajax({

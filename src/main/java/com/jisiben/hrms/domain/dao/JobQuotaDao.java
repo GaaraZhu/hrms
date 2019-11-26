@@ -11,12 +11,11 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface JobQuotaDao extends Dao<JobQuota, Long> {
-    @Query("FROM JobQuota jq WHERE (:company is null or jq.job.company = :company) and (:city is null or jq.job.city = :city) and (:district is null or jq.job.district = :district)"
+    @Query("FROM JobQuota jq WHERE (:company is null or jq.job.company.name = :company) and (:city is null or jq.job.company.city = :city) "
             + " and (:jobName is null or jq.job.name like CONCAT('%',:jobName,'%')) and (:month is null or jq.month = :month)")
     Page<JobQuota> findJobQuotas(
             @Param("company")String company,
             @Param("city")String city,
-            @Param("district")String district,
             @Param("jobName")String jobName,
             @Param("month")String month,
             Pageable pageable);

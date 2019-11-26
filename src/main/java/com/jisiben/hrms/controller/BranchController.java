@@ -32,14 +32,14 @@ public class BranchController extends AbstractController<Branch, BranchDTO, Bran
     @Produces("application/json")
     @RequestMapping(value = "/branches", method = RequestMethod.GET)
     public PageableSearchResultDTO<BranchDTO> findAll(
-            @RequestParam("manager") String manager,
-            @RequestParam("name") String name,
+            @RequestParam("company") String company,
+            @RequestParam("branch") String branch,
             @RequestParam("currentPage") int currentPage,
             @RequestParam("pageSize") int pageSize) {
         return doFindAll(
                 ImmutableMap.of(
-                        "manager", Optional.ofNullable(manager),
-                        "name", Optional.ofNullable(name)), currentPage, pageSize);
+                        "company", Optional.ofNullable(company),
+                        "branch", Optional.ofNullable(branch)), currentPage, pageSize);
     }
 
     @ResponseBody

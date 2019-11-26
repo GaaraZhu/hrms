@@ -18,6 +18,10 @@ public class JobApplication extends PersistentRoot<JobApplication> {
     @JoinColumn(name = "candidateId")
     private Candidate candidate;
 
+    @ManyToOne(targetEntity=Branch.class)
+    @JoinColumn(name = "branchId")
+    private Branch branch;
+
     private String referee;
 
     private String refereePhone;
@@ -45,6 +49,7 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         this.job=builder.job;
         this.candidate=builder.candidate;
         this.referee=builder.referee;
+        this.branch=builder.branch;
         this.refereePhone=builder.refereePhone;
         this.status=builder.status;
         this.applicationDate=builder.applicationDate;
@@ -98,6 +103,15 @@ public class JobApplication extends PersistentRoot<JobApplication> {
         return this;
     }
 
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public JobApplication branch(Branch branch) {
+        this.branch = branch;
+        return this;
+    }
+
     public JobApplicationStatus getStatus() {
         return status;
     }
@@ -138,6 +152,7 @@ public class JobApplication extends PersistentRoot<JobApplication> {
 
         private Job job;
         private Candidate candidate;
+        private Branch branch;
         private String referee;
         private String refereePhone;
         private JobApplicationStatus status;
@@ -148,6 +163,11 @@ public class JobApplication extends PersistentRoot<JobApplication> {
 
         public Builder job(Job job) {
             this.job = job;
+            return this;
+        }
+
+        public Builder setBranch(Branch branch) {
+            this.branch = branch;
             return this;
         }
 

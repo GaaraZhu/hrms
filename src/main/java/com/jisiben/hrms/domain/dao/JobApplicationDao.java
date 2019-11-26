@@ -14,10 +14,10 @@ import java.util.Date;
 import java.util.List;
 
 public interface JobApplicationDao extends Dao<JobApplication, Long> {
-    @Query("FROM JobApplication ja WHERE (:company is null or ja.job.company = :company) and (:city is null or ja.job.city = :city)"
+    @Query("FROM JobApplication ja WHERE (:company is null or ja.job.company = :company) and (:city is null or ja.job.company.city = :city)"
             + "and (:jobName is null or ja.job.name like CONCAT('%',:jobName,'%')) and (:hasReferee is null or (:hasReferee=true and ja.referee is not null) or (:hasReferee=false and ja.referee is null))"
             + "and (:candidate is null or ja.candidate.name = :candidate or ja.candidate.phone = :candidate) and (:referee is null or ja.referee = :referee or ja.refereePhone = :referee) and (:status is null or ja.status = :status)"
-            + "and (:createdBy = 'admin' or ja.creator = :createdBy) and (:fromTime is null or ja.applicationDate >= :fromTime) and (:toTime is null or ja.applicationDate <= :toTime)")
+            + "and (:createdBy = 'admin' or ja.creator = :createdBy) and (:fromTime is null or ja.applicationDate >= :fromTime) and (:toTime is null or ja.applicationDate <= :toTime) ORDER BY ja.id desc")
     Page<JobApplication> findJobApplications(
             @Param("company")String company,
             @Param("city")String city,
@@ -48,14 +48,14 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
     @Query("FROM JobApplication ja WHERE ja.onboardDate >= :fromTime and ja.onboardDate < :toTime")
     List<JobApplication> findNewlyOnboarded(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
 
-    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company, COUNT(ja)) FROM JobApplication ja WHERE ja.status in (com.jisiben.hrms.domain.entity.common.JobApplicationStatus.INTERVIEW_PASSED, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED,"
+    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company.name, COUNT(ja)) FROM JobApplication ja WHERE ja.status in (com.jisiben.hrms.domain.entity.common.JobApplicationStatus.INTERVIEW_PASSED, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED,"
         +" com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_ONE_MONTH, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_THREE_MONTHS, com.jisiben.hrms.domain.entity.common.JobApplicationStatus.ON_BOARDED_SIX_MONTHS,"
         +" com.jisiben.hrms.domain.entity.common.JobApplicationStatus.RESIGNED) and (:fromTime is null or ja.applicationDate >= :fromTime) and (:toTime is null or ja.applicationDate <= :toTime) GROUP BY ja.job.company")
     List<Pair> findSuccessApplicantsByCompany(@Param("fromTime") Date fromTime, @Param("toTime")Date toTime);
 
-    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company, COUNT(ja)) FROM JobApplication ja WHERE SUBSTRING(ja.onboardDate, 1, 7) = :month and (:company is null or ja.job.company = :company)")
+    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company.name, COUNT(ja)) FROM JobApplication ja WHERE SUBSTRING(ja.onboardDate, 1, 7) = :month and (:company is null or ja.job.company = :company)")
     List<Pair> findOnboardCountByCompany(@Param("company") String company, @Param("month") String month);
 
-    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company, COUNT(ja)) FROM JobApplication ja WHERE SUBSTRING(ja.resignDate, 1, 7) = :month and (:company is null or ja.job.company = :company)")
+    @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company.name, COUNT(ja)) FROM JobApplication ja WHERE SUBSTRING(ja.resignDate, 1, 7) = :month and (:company is null or ja.job.company = :company)")
     List<Pair> findResignCountByCompany(@Param("company") String company, @Param("month") String month);
 }

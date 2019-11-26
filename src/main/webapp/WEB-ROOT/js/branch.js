@@ -13,13 +13,13 @@
 	);
 
     function queryBranches(cp) {
-        name = $("#searchName").val();
-        manager = $("#searchManager").val();
+        company = $("#searchCompany").val();
+        branch = $("#searchBranch").val();
         $.ajax({
             url : "branches",
             type : "GET",
             async: true,
-            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&name=" +name+ "&manager="+manager,
+            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&company=" +company+ "&branch="+branch,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 initBranchTable(data, cp);

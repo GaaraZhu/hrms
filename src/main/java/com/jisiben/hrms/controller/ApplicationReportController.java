@@ -104,18 +104,20 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
             @RequestParam("fromDate") Date fromDate,
             @RequestParam("toDate") Date toDate) {
 
-        List<Pair> totalQuatoByCompany = jobService.findTotalQuotaByCompany(fromDate, toDate);
-        List<Pair> successApplicantsByCompany = jobApplicationService.findSuccessApplicantsByCompany(fromDate, toDate);
+//        List<Pair> totalQuatoByCompany = jobService.findTotalQuotaByCompany(fromDate, toDate);
+//        List<Pair> successApplicantsByCompany = jobApplicationService.findSuccessApplicantsByCompany(fromDate, toDate);
+//
+//        List<PairDTO> results = new ArrayList<>();
+//        totalQuatoByCompany.stream().forEach(p1-> {
+//            for(Pair p2 : successApplicantsByCompany) {
+//                if (p1.getKey().equals(p2.getKey())) {
+//                    results.add(new PairDTO(p1.getKey(), (double)p2.getValue()/p1.getValue()));
+//                }
+//            }
+//        });
+//        return results;
 
-        List<PairDTO> results = new ArrayList<>();
-        totalQuatoByCompany.stream().forEach(p1-> {
-            for(Pair p2 : successApplicantsByCompany) {
-                if (p1.getKey().equals(p2.getKey())) {
-                    results.add(new PairDTO(p1.getKey(), (double)p2.getValue()/p1.getValue()));
-                }
-            }
-        });
-        return results;
+        return new ArrayList<>();
     }
 
     @ResponseBody

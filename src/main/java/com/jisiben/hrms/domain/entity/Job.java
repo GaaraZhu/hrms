@@ -20,8 +20,6 @@ public class Job extends PersistentRoot<Job> {
     @Enumerated(EnumType.STRING)
     private JobType type;
 
-    private int quota;
-
     private boolean referralBonus;
 
     private int referralBonusAmount;
@@ -39,7 +37,6 @@ public class Job extends PersistentRoot<Job> {
         this.name=builder.name;
         this.salaryRange=builder.salaryRange;
         this.type=builder.type;
-        this.quota=builder.quota;
         this.referralBonus=builder.referralBonus;
         this.referralBonusAmount=builder.referralBonusAmount;
         this.note=builder.note;
@@ -60,10 +57,6 @@ public class Job extends PersistentRoot<Job> {
 
     public JobType getType() {
         return type;
-    }
-
-    public int getQuota() {
-        return quota;
     }
 
     public boolean isReferralBonus() {
@@ -102,11 +95,6 @@ public class Job extends PersistentRoot<Job> {
         return this;
     }
 
-    public Job quota(int quota) {
-        this.quota = quota;
-        return this;
-    }
-
     public Job referralBonus(boolean referralBonus) {
         this.referralBonus = referralBonus;
         return this;
@@ -132,7 +120,6 @@ public class Job extends PersistentRoot<Job> {
         private String name;
         private String salaryRange;
         private JobType type;
-        private int quota;
         private boolean referralBonus;
         private int referralBonusAmount;
         private String note;
@@ -155,11 +142,6 @@ public class Job extends PersistentRoot<Job> {
 
         public Builder type(JobType type) {
             this.type = type;
-            return this;
-        }
-
-        public Builder quota(int quota) {
-            this.quota = quota;
             return this;
         }
 

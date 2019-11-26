@@ -1,10 +1,10 @@
     var pageSize = 8;
     var jobsResultTable;
+    var companies;
 	$("#resetJobs").click(
         function() {
             $("#searchCompany").val("");
             $("#searchCity").val("");
-            $("#searchDistrict").val("");
             $("#searchName").val("");
             $("#searchActive").val("true");
         }
@@ -19,14 +19,13 @@
     function queryJobs(cp) {
         company = $("#searchCompany").val();
         city = $("#searchCity").val();
-        district = $("#searchDistrict").val();
         name = $("#searchName").val();
         active = $("#searchActive").val();
         $.ajax({
             url : "jobs",
             type : "GET",
             async: true,
-            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&company=" +company+ "&city="+city + "&district="+district + "&name="+name+ "&active="+active,
+            data : "currentPage=" + cp + "&pageSize=" + pageSize + "&company=" +company+ "&city="+city + "&name="+name+ "&active="+active,
             contentType : "application/json;charset=utf-8",
             success : function(data) {
                 initJobTable(data, cp);
@@ -48,19 +47,16 @@
                     "id",
                     "company",
                     "city",
-                    "district",
-                    "address",
                     "name",
                     "salaryRange",
                     "type",
-                    "quota",
                     "referralBonus",
                     "referralBonusAmount",
                     "creator",
                     "createdTime",
                     "active",
-                    "<button  class='btn btn-info btn-sm editDepa'  ID='editJob' onclick='updateJob(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='deleteJob' onclick='deleteJob(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
-            name : ["ID", "企业", "城市", "区域", "地址", "职位名称", "待遇", "工作性质", "招聘人数", "推荐有奖", "奖励金额", "发布人", "发布时间", "是否有效", "_opt" ],
+                    "<button class='btn btn-info btn-sm editDepa' ID='editJob' onclick='updateJob(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delDepa' ID='deleteJob' onclick='deleteJob(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
+            name : ["ID", "企业", "城市", "职位名称", "待遇", "工作性质", "推荐有奖", "奖励金额", "发布人", "发布时间", "是否有效", "_opt" ],
             tid : "id",
             checkBox : "id"
         });
@@ -90,16 +86,38 @@
                         $("#originalJobModal").modal({
                             keyboard : true
                         });
+                        if (!companies) {
+                            $.ajax({
+                                url : "companies",
+                                type : "GET",
+                                async: true,
+                                data : "currentPage=1&pageSize=500&name=&city=",
+                                contentType : "application/json;charset=utf-8",
+                                success : function(data) {
+                                    var companyDropdown = $("#companyId");
+                                    companies = data.results;
+                                    companies.forEach(function(c){
+                                        companyDropdown.append($("<option />").val(c.id).text(c.name));
+                                    });
+                                    companyDropdown.val(companies[0].id);
+                                    ("#city").val(companies[0].city);
+                                },
+                                error : function(e) {
+                                    if (e.status != 401) {
+                                        console.log(e);
+                                        alert("加载公司列表失败，请查看控制台日志");
+                                    }
+                                }
+                            });
+                        }
+
                         if (data != null) {
                             $("#id").val(data.id);
-                            $("#company").val(data.company);
+                            $("#companyId").val(data.companyId);
                             $("#city").val(data.city);
-                            $("#district").val(data.district);
-                            $("#address").val(data.address);
                             $("#name").val(data.name);
                             $("#salaryRange").val(data.salaryRange);
                             $("#type").val(data.type);
-                            $("#quota").val(data.quota);
                             $("#referralBonus").val(data.referralBonus);
                             $("#referralBonusAmount").val(data.referralBonusAmount);
                             $("#active").val(data.active);
@@ -143,13 +161,43 @@
 
     $("#addJob").click(
         function(){
-             $("#innerModal").load("WEB-ROOT/html/job.jsp", function(){
+            $("#innerModal").load("WEB-ROOT/html/job.jsp", function(){
                 $("#originalJobModal").modal({
                     keyboard: true
                 });
+                if(!companies) {
+                    $.ajax({
+                        url : "companies",
+                        type : "GET",
+                        async: true,
+                        data : "currentPage=1&pageSize=500&name=&city=",
+                        contentType : "application/json;charset=utf-8",
+                        success : function(data) {
+                            companies = data.results;
+                            var companyDropdown = $("#companyId");
+                            companies.forEach(function(c){
+                                companyDropdown.append($("<option />").val(c.id).text(c.name));
+                            });
+                            companyDropdown.val(companies[0].id);
+                            ("#city").val(companies[0].city);
+                        },
+                        error : function(e) {
+                            if (e.status != 401) {
+                                console.log(e);
+                                alert("加载公司列表失败，请查看控制台日志");
+                            }
+                        }
+                    });
+                }
             });
         }
     );
+
+    $("#companyId").change(function(){
+        var companyId = this.value;
+        var city = companies.filter(c=>c.id==companyId)[0].city;
+        $("#city").val(city);
+    });
 
     $("#addJobQuota").click(
         function(){
@@ -173,7 +221,7 @@
                             url : "company",
                             type : "GET",
                             async: true,
-                            data : "id=" + idsStr,
+                            data : "id=" + data.companyId,
                             contentType : "application/json;charset=utf-8",
                             success : function(data) {
                                 $("#innerModal").load("WEB-ROOT/html/jobQuota.jsp", function(){
@@ -236,21 +284,42 @@
                     async: true,
                     data : "id=" + idsStr,
                     contentType : "application/json;charset=utf-8",
-                    success : function(data) {
+                    success : function(jobData) {
                         $("#innerModal").load("WEB-ROOT/html/jobApplication.jsp", function(){
-                            if (data.referralBonus=='无') {
-                                $("#referee").attr("disabled","disabled")
-                                $("#refereePhone").attr("disabled","disabled")
-                            }
-                            $("#submitType").val("PUT");
-                            $("#jobId").val(data.id);
-                            $("#jobName").val(data.name);
-                            $("#company").val(data.company);
-                            $("#city").val(data.city);
-                            $("#district").val(data.district);
-                            $("#status").val("未处理").change();
-                            $("#originalJobApplicationModal").modal({
-                                keyboard: true
+                            $.ajax({
+                                url : "branches",
+                                type : "GET",
+                                async: true,
+                                data : "currentPage=1&pageSize=500&company=" +jobData.company+ "&branch=",
+                                contentType : "application/json;charset=utf-8",
+                                success : function(branchData) {
+                                    var branches = branchData.results;
+                                    var branchDropdown = $("#branchDropdown");
+                                    branches.forEach(function(c){
+                                        branchDropdown.append($("<option />").val(c.id).text(c.name));
+                                    });
+                                    branchDropdown.val(branches[0].id);
+
+                                    if (jobData.referralBonus=='无') {
+                                        $("#referee").attr("disabled","disabled")
+                                        $("#refereePhone").attr("disabled","disabled")
+                                    }
+                                    $("#submitType").val("PUT");
+                                    $("#jobId").val(jobData.id);
+                                    $("#jobName").val(jobData.name);
+                                    $("#company").val(jobData.company);
+                                    $("#city").val(jobData.city);
+                                    $("#status").val("未处理").change();
+                                    $("#originalJobApplicationModal").modal({
+                                        keyboard: true
+                                    });
+                                },
+                                error : function(e) {
+                                    if (e.status != 401) {
+                                        console.log(e);
+                                        alert("搜索失败，请查看控制台日志");
+                                    }
+                                }
                             });
                         });
                     },
@@ -294,7 +363,6 @@
                     notEmpty : {
                         message : '城市区域不能为空'
                     },
-
                 }
             },
             address : {

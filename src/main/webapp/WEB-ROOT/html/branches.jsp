@@ -12,13 +12,13 @@ HttpSession s = request.getSession();
 		<form class="form-inline" role="form" id="selectBranchVal">
 				<div class="row">
 					<div class="form-group inputselect col-lg-4">
-						<label for="searchName">门店名称</label> <input type="text"
-							class=" form-control" id="searchName" name="searchName"
-							placeholder="请输入名称">
+						<label for="searchCompany">公司名称</label> <input type="text"
+							class=" form-control" id="searchCompany" name="searchCompany"
+							placeholder="请输入公司名称">
 					</div>
 					<div class="form-group inputselect col-lg-4">
-                        <label for="searchManager">门店经理</label> <input type="text"
-                            class="form-control" id="searchManager" name="searchManager"
+                        <label for="searchBranch">门店名称</label> <input type="text"
+                            class="form-control" id="searchBranch" name="searchBranch"
                             placeholder="请输入经理">
                     </div>
 				</div>
