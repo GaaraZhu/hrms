@@ -216,23 +216,44 @@
                     async: true,
                     data : "id=" + idsStr,
                     contentType : "application/json;charset=utf-8",
-                    success : function(data) {
+                    success : function(jobData) {
                         $.ajax({
                             url : "company",
                             type : "GET",
                             async: true,
-                            data : "id=" + data.companyId,
+                            data : "id=" + jobData.companyId,
                             contentType : "application/json;charset=utf-8",
-                            success : function(data) {
+                            success : function(companyData) {
                                 $("#innerModal").load("WEB-ROOT/html/jobQuota.jsp", function(){
-                                    $("#submitType").val("PUT");
-                                    $("#jobId").val(data.id);
-                                    $("#jobName").val(data.name);
-                                    $("#company").val(data.company);
-                                    $("#city").val(data.city);
-                                    $("#district").val(data.district);
-                                    $("#originalJobQuotaModal").modal({
-                                        keyboard: true
+                                    $.ajax({
+                                        url : "branches",
+                                        type : "GET",
+                                        async: true,
+                                        data : "currentPage=1&pageSize=500&company=" +companyData.name+ "&branch=",
+                                        contentType : "application/json;charset=utf-8",
+                                        success : function(branchData) {
+                                            var branches = branchData.results;
+                                            var branchDropdown = $("#branchDropdown");
+                                            branches.forEach(function(c){
+                                                branchDropdown.append($("<option />").val(c.id).text(c.name));
+                                            });
+                                            branchDropdown.val(branches[0].id);
+                                            $("#jobId").val(jobData.id);
+                                            $("#jobName").val(jobData.name);
+                                            $("#company").val(companyData.name);
+                                            $("#city").val(companyData.city);
+
+                                            $("#submitType").val("PUT");
+                                            $("#originalJobQuotaModal").modal({
+                                                keyboard: true
+                                            });
+                                        },
+                                        error : function(e) {
+                                            if (e.status != 401) {
+                                                console.log(e);
+                                                alert("搜索失败，请查看控制台日志");
+                                            }
+                                        }
                                     });
                                 });
                             },
@@ -242,18 +263,6 @@
                                     alert("操作失败，请查看控制台日志");
                                 }
                             }
-                        });
-
-                        $("#innerModal").load("WEB-ROOT/html/jobQuota.jsp", function(){
-                            $("#submitType").val("PUT");
-                            $("#jobId").val(data.id);
-                            $("#jobName").val(data.name);
-                            $("#company").val(data.company);
-                            $("#city").val(data.city);
-                            $("#district").val(data.district);
-                            $("#originalJobQuotaModal").modal({
-                                keyboard: true
-                            });
                         });
                     },
                     error : function(e) {
@@ -301,8 +310,8 @@
                                     branchDropdown.val(branches[0].id);
 
                                     if (jobData.referralBonus=='无') {
-                                        $("#referee").attr("disabled","disabled")
-                                        $("#refereePhone").attr("disabled","disabled")
+                                        $("#referee").attr("disabled","disabled");
+                                        $("#refereePhone").attr("disabled","disabled");
                                     }
                                     $("#submitType").val("PUT");
                                     $("#jobId").val(jobData.id);

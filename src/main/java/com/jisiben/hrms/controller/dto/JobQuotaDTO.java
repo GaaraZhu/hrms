@@ -6,8 +6,10 @@ import com.jisiben.hrms.controller.dto.common.DTORoot;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JobQuotaDTO extends DTORoot<JobQuotaDTO> {
     private long jobId;
+    private long branchId;
     private String jobName;
     private String company;
+    private String branch;
     private String city;
     private String district;
     private String month;
@@ -19,8 +21,10 @@ public class JobQuotaDTO extends DTORoot<JobQuotaDTO> {
     private JobQuotaDTO(JobQuotaDTO.Builder builder) {
         super(builder);
         this.jobId=builder.jobId;
+        this.branchId=builder.branchId;
         this.jobName=builder.jobName;
         this.company=builder.company;
+        this.branch=builder.branch;
         this.city=builder.city;
         this.district=builder.district;
         this.month=builder.month;
@@ -55,10 +59,20 @@ public class JobQuotaDTO extends DTORoot<JobQuotaDTO> {
         return jobId;
     }
 
+    public long getBranchId() {
+        return branchId;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
     public static class Builder extends DTORoot.Builder<JobQuotaDTO.Builder, JobQuotaDTO> {
         private long jobId;
+        private long branchId;
         private String jobName;
         private String company;
+        private String branch;
         private String city;
         private String district;
         private String month;
@@ -77,6 +91,16 @@ public class JobQuotaDTO extends DTORoot<JobQuotaDTO> {
 
         public Builder company(String company) {
             this.company = company;
+            return this;
+        }
+
+        public Builder branchId(long branchId) {
+            this.branchId = branchId;
+            return this;
+        }
+
+        public Builder branch(String branch) {
+            this.branch = branch;
             return this;
         }
 

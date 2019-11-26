@@ -20,30 +20,38 @@
 					<div class="modal-body" style="height: 60%;">
 						<div class="col-lg-10 col-md-9 col-sm-9">
 							<div class="form-group " >
-								<label for="jobName" class="col-lg-2 control-label" style="padding-top: 30px;">职位名称</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="jobName" type="text" class="form-control" name="jobName" readonly="readonly">
+							    <div class="row">
+                                    <label for="jobName" class="col-lg-2 control-label" style="padding-top: 30px;">职位名称</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input id="jobName" type="text" class="form-control" name="jobName" readonly="readonly">
+                                    </div>
+                                    <label for="city" class="col-lg-2 control-label" style="padding-top: 30px;">所在城市</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input id="city" type="text" class="form-control col-lg-35" name="city" readonly="readonly">
+                                    </div>
                                 </div>
-                                <label for="company" class="col-lg-2 control-label" style="padding-top: 30px;">所属企业</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="company" type="text" class="form-control col-lg-35" name="company" readonly="readonly">
+
+                                <div class="row">
+                                    <label for="company" class="col-lg-2 control-label" style="padding-top: 30px;">所属企业</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input id="company" type="text" class="form-control col-lg-35" name="company" readonly="readonly">
+                                    </div>
+                                    <label for="branchDropdown" class="col-lg-2 control-label" style="padding-top: 30px;">指标门店</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <select id="branchDropdown" name="branchDropdown" style="width: 212px;height: 32px;"></select>
+                                    </div>
                                 </div>
-								<label for="city" class="col-lg-2 control-label" style="padding-top: 30px;">所在城市</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="city" type="text" class="form-control col-lg-35" name="city" readonly="readonly">
-								</div>
-								<label for="district" class="col-lg-2 control-label" style="padding-top: 30px;">所在区域</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-                                    <input id="district" type="text" class="form-control col-lg-35" name="district" readonly="readonly">
-								</div>
-                                <label for="month" class="col-lg-2 control-label" style="padding-top: 30px;">指标月份</label>
-                                <div class="col-lg-35" style="padding-top: 25px;">
-                                    <input type="text" class="form-control" id="month" name="month" placeholder="请选择月份" readonly="readonly">
-                                </div>
-                                <label for="quota" class=" col-lg-2 control-label" style="padding-top: 30px;">指标人数</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-                                <input
-                                    type="text" class="form-control col-lg-35" name="quota" id="quota" placeholder="请输入指标">
+
+                                <div class="row">
+                                    <label for="month" class="col-lg-2 control-label" style="padding-top: 30px;">指标月份</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                        <input type="text" class="form-control" id="month" name="month" placeholder="请选择月份" readonly="readonly">
+                                    </div>
+                                    <label for="quota" class=" col-lg-2 control-label" style="padding-top: 30px;">指标人数</label>
+                                    <div class="col-lg-35" style="padding-top: 25px;">
+                                    <input
+                                        type="text" class="form-control col-lg-35" name="quota" id="quota" placeholder="请输入指标">
+                                    </div>
                                 </div>
                                 <input type="hidden" id="id" value="">
                                 <input type="hidden" id="jobId" value="">

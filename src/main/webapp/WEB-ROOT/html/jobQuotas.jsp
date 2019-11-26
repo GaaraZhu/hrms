@@ -28,7 +28,7 @@
                             readonly="readonly">
                     </div>
 
-                    <div class="form-group inputselect" style="margin-left: 40px;">
+                    <div class="form-group inputselect" style="margin-left: 310px;">
                         <button type="button" class="btn btn-success btn-sm" style="margin-left: 130px;" id="searchJobQuotas">
                             <span class="glyphicon glyphicon-search"></span> 搜索
                         </button>

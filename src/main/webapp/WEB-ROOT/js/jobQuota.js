@@ -47,13 +47,13 @@
             title : [
                     "id",
                     "jobName",
-                    "company",
                     "city",
-                    "district",
+                    "company",
+                    "branch",
                     "month",
                     "quota",
                     "<button  class='btn btn-info btn-sm editUser'  ID='editUser' onclick='updateJobQuota(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delUser' ID='delJobQuota' onclick='deleteJobQuota(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
-            name : ["ID", "职位名称", "所属企业", "所在城市", "所在区域", "指标月份", "指标人数", "_opt" ],
+            name : ["ID", "职位", "城市", "企业", "门店", "指标月份", "指标人数", "_opt" ],
             tid : "id",
             checkBox : "id"
         });
@@ -188,6 +188,7 @@
         var data = $('form#jobQuotaForm').serializeObject();
         data.jobId = $('#jobId').val();
         data.month = $('#month').val();
+        data.branchId = $("#branchDropdown").val();
         var method = $("#submitType").val();
         var url = method=="POST"?"jobQuota?id="+$("#id").val():"jobQuota";
         $.ajax({
@@ -203,7 +204,9 @@
                         keyboard: true
                     });
                  });
-                 queryJobQuotas(1);
+                 if (method=="POST") {
+                     queryJobQuotas(1);
+                  }
             },
             error : function(msg) {
                 $("#jobQuotaAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
