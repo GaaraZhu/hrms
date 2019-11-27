@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface JobDao extends Dao<Job, Long> {
     @Query("FROM Job j WHERE (:company is null or j.company.name = :company) and (:city is null or j.company.city = :city) "
-            + " and (:name is null or j.name = :name) and (:active is null or j.active = :active)")
+            + " and (:name is null or j.name = :name) and (:active is null or j.active = :active) ORDER BY j.id DESC")
     Page<Job> findByCompanyAndCityAndNameAndActive(
             @Param("company")String company,
             @Param("city")String city,
