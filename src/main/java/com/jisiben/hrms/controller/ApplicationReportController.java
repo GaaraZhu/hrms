@@ -99,22 +99,35 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
 
     @ResponseBody
     @Produces("application/json")
+    @RequestMapping(value = "/applicationReports/abc", method = RequestMethod.GET)
+    public List<Pair> testReport(
+            @RequestParam("company") String company,
+            @RequestParam("jobName") String jobName,
+            @RequestParam("year") String year,
+            @RequestParam("month") String month) {
+        List<Pair> result = jobApplicationService.countOnboards(company, jobName, year, month);
+        result.addAll(jobApplicationService.countResigns(company, jobName, year, month));
+        return result;
+    }
+
+    @ResponseBody
+    @Produces("application/json")
     @RequestMapping(value = "/applicationReports/successApplicantsByCompany", method = RequestMethod.GET)
     public List<PairDTO> findSuccessApplicantsByCompany(
             @RequestParam("fromDate") Date fromDate,
             @RequestParam("toDate") Date toDate) {
 
 //        List<Pair> totalQuatoByCompany = jobService.findTotalQuotaByCompany(fromDate, toDate);
-//        List<Pair> successApplicantsByCompany = jobApplicationService.findSuccessApplicantsByCompany(fromDate, toDate);
-//
-//        List<PairDTO> results = new ArrayList<>();
-//        totalQuatoByCompany.stream().forEach(p1-> {
-//            for(Pair p2 : successApplicantsByCompany) {
-//                if (p1.getKey().equals(p2.getKey())) {
-//                    results.add(new PairDTO(p1.getKey(), (double)p2.getValue()/p1.getValue()));
-//                }
-//            }
-//        });
+////        List<Pair> successApplicantsByCompany = jobApplicationService.findSuccessApplicantsByCompany(fromDate, toDate);
+////
+////        List<PairDTO> results = new ArrayList<>();
+////        totalQuatoByCompany.stream().forEach(p1-> {
+////            for(Pair p2 : successApplicantsByCompany) {
+////                if (p1.getKey().equals(p2.getKey())) {
+////                    results.add(new PairDTO(p1.getKey(), (double)p2.getValue()/p1.getValue()));
+////                }
+////            }
+////        });
 //        return results;
 
         return new ArrayList<>();
