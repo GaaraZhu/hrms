@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface CandidateDao extends Dao<Candidate, Long> {
     @Query("FROM Candidate c WHERE (:name is null or c.name = :name) and (:phone is null"
-            + " or c.phone = :phone) and (:createdBy = 'admin' or c.creator = :createdBy) ")
+            + " or c.phone = :phone) and (:createdBy = 'admin' or c.creator = :createdBy) ORDER BY c.id DESC")
     Page<Candidate> findByNameAndPhone(
             @Param("name")String name, @Param("phone")String phone, @Param("createdBy")String createdBy, Pageable pageable);
 
