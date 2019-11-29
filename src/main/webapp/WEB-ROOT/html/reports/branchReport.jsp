@@ -20,7 +20,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group inputselect col-lg-4"></div>
+                    <div class="form-group inputselect col-lg-4">
+                        <button type="button" class="btn btn-success btn-sm " id="branchReportAnalysis">
+                            <span class="glyphicon glyphicon-search"></span> 门店分析
+                        </button>
+                    </div>
                     <div class="form-group inputselect">
                         <button type="button" class="btn btn-success btn-sm " id="searchBranchReport" style="margin-left: 192px;">
                             <span class="glyphicon glyphicon-search"></span> 搜索
@@ -36,7 +40,8 @@
 					<tbody id="branchReportTableList"/>
 				</table>
 				<div style="bottom: 10%">
-					<div id="paging" style="text-align: center; margin-left: 32%;">
+					<div id="branchReportAnalysisDiv" style="margin-left: 32%;">
+					    请输入条件查询门店数据，并选择门店数据进行图表分析
 					</div>
 				</div>
 			</div>
