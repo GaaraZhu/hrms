@@ -19,8 +19,8 @@
                             placeholder="请输入账号">
                     </div>
 					<div class="form-group inputselect col-lg-3">
-                        <label for="searchAuthority">用户权限</label><br/>
-                        <select id="searchAuthority" name="searchAuthority" style="width: 125px;height: 32px;">
+                        <label for="searchAuthority">用户权限</label>
+                        <select id="searchAuthority" name="searchAuthority" style="width: 170px;height: 32px;">
                             <option value="-1">所有用户</option>
                             <option value="0">普通用户</option>
                             <option value="1">管理员</option>
