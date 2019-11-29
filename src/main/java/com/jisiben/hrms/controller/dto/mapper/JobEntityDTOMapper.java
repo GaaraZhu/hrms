@@ -6,11 +6,20 @@ import com.jisiben.hrms.domain.entity.Company;
 import com.jisiben.hrms.domain.entity.Job;
 import com.jisiben.hrms.domain.entity.common.JobType;
 import com.jisiben.hrms.service.CompanyService;
+import com.jisiben.hrms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JobEntityDTOMapper extends AbstractMapper<Job, JobDTO> {
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    protected UserService getUserService() {
+        return userService;
+    }
 
     @Autowired
     private CompanyService companyService;

@@ -5,6 +5,7 @@ import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.Branch;
 import com.jisiben.hrms.domain.entity.Company;
 import com.jisiben.hrms.service.CompanyService;
+import com.jisiben.hrms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,14 @@ public class BranchEntityDTOMapper extends AbstractMapper<Branch, BranchDTO> {
 
     @Autowired
     private CompanyService companyService;
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    protected UserService getUserService() {
+        return userService;
+    }
 
     @Override
     public BranchDTO toDTO(Branch entity) {
@@ -41,4 +50,5 @@ public class BranchEntityDTOMapper extends AbstractMapper<Branch, BranchDTO> {
                 .district(dto.getDistrict())
                 .phone(dto.getPhone());
     }
+
 }

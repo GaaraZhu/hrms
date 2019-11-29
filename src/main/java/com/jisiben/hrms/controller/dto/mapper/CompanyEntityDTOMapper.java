@@ -3,10 +3,21 @@ package com.jisiben.hrms.controller.dto.mapper;
 import com.jisiben.hrms.controller.dto.CompanyDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.Company;
+import com.jisiben.hrms.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CompanyEntityDTOMapper extends AbstractMapper<Company, CompanyDTO> {
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    protected UserService getUserService() {
+        return userService;
+    }
+
     @Override
     public CompanyDTO toDTO(Company entity) {
         CompanyDTO.Builder builder = (CompanyDTO.Builder)super.entityToDTO(entity, new CompanyDTO.Builder());

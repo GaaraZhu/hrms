@@ -3,12 +3,22 @@ package com.jisiben.hrms.controller.dto.mapper;
 import com.jisiben.hrms.controller.dto.UserDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.User;
+import com.jisiben.hrms.service.UserService;
 import com.jisiben.hrms.util.EncryptUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserEntityDTOMapper extends AbstractMapper<User, UserDTO> {
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    protected UserService getUserService() {
+        return userService;
+    }
 
     @Override
     public UserDTO toDTO(User entity) {

@@ -10,6 +10,7 @@ import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
 import com.jisiben.hrms.service.BranchService;
 import com.jisiben.hrms.service.CandidateService;
 import com.jisiben.hrms.service.JobService;
+import com.jisiben.hrms.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,14 @@ import java.util.Date;
 
 @Component
 public class JobApplicationDTOMapper extends AbstractMapper<JobApplication, JobApplicationDTO> {
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    protected UserService getUserService() {
+        return userService;
+    }
 
     @Autowired
     private JobService jobService;

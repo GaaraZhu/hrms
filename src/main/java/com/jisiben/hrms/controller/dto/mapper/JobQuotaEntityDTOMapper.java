@@ -8,6 +8,7 @@ import com.jisiben.hrms.domain.entity.JobQuota;
 import com.jisiben.hrms.service.BranchService;
 import com.jisiben.hrms.service.JobQuotaService;
 import com.jisiben.hrms.service.JobService;
+import com.jisiben.hrms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,14 @@ public class JobQuotaEntityDTOMapper extends AbstractMapper<JobQuota, JobQuotaDT
 
     @Autowired
     private BranchService branchService;
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    protected UserService getUserService() {
+        return userService;
+    }
 
     @Override
     public JobQuotaDTO toDTO(JobQuota entity) {

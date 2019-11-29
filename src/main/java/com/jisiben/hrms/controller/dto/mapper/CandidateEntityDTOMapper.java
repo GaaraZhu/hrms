@@ -4,10 +4,21 @@ import com.jisiben.hrms.controller.dto.CandidateDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.impl.AbstractMapper;
 import com.jisiben.hrms.domain.entity.Candidate;
 import com.jisiben.hrms.domain.entity.common.Gender;
+import com.jisiben.hrms.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CandidateEntityDTOMapper extends AbstractMapper<Candidate, CandidateDTO> {
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    protected UserService getUserService() {
+        return userService;
+    }
+
     @Override
     public CandidateDTO toDTO(Candidate entity) {
         CandidateDTO.Builder builder = (CandidateDTO.Builder)super.entityToDTO(entity, new CandidateDTO.Builder());
