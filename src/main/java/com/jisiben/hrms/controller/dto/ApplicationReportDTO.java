@@ -1,10 +1,16 @@
 package com.jisiben.hrms.controller.dto;
 
+import com.jisiben.hrms.domain.entity.Branch;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class ApplicationReportDTO {
     private String company;
     private String city;
     private String district;
     private String branch;
+    private String month;
     private int onboard1st10Ds;
     private int resign1st10Ds;
     private int onboardD1;
@@ -83,6 +89,7 @@ public class ApplicationReportDTO {
         this.city=builder.city;
         this.district=builder.district;
         this.branch=builder.branch;
+        this.month=builder.month;
         this.onboard1st10Ds=builder.onboard1st10Ds;
         this.resign1st10Ds=builder.resign1st10Ds;
         this.onboardD1=builder.onboardD1;
@@ -456,6 +463,7 @@ public class ApplicationReportDTO {
         private String city;
         private String district;
         private String branch;
+        private String month;
         private int onboard1st10Ds;
         private int resign1st10Ds;
         private int onboardD1;
@@ -527,378 +535,110 @@ public class ApplicationReportDTO {
         private int onboard;
         private int resign;
 
-        public Builder setCompany(String company) {
-            this.company = company;
-            return this;
-        }
-
-        public Builder setCity(String city) {
-            this.city = city;
-            return this;
-        }
-
-        public Builder setDistrict(String district) {
-            this.district = district;
-            return this;
-        }
-
-        public Builder setBranch(String branch) {
-            this.branch = branch;
-            return this;
-        }
-
-        public Builder setOnboard1st10Ds(int onboard1st10Ds) {
-            this.onboard1st10Ds = onboard1st10Ds;
-            return this;
-        }
-
-        public Builder setResign1st10Ds(int resign1st10Ds) {
-            this.resign1st10Ds = resign1st10Ds;
-            return this;
-        }
-
-        public Builder setOnboardD1(int onboardD1) {
-            this.onboardD1 = onboardD1;
-            return this;
-        }
-
-        public Builder setResignD1(int resignD1) {
-            this.resignD1 = resignD1;
-            return this;
-        }
-
-        public Builder setOnboardD2(int onboardD2) {
-            this.onboardD2 = onboardD2;
-            return this;
-        }
-
-        public Builder setResignD2(int resignD2) {
-            this.resignD2 = resignD2;
-            return this;
-        }
-
-        public Builder setOnboardD3(int onboardD3) {
-            this.onboardD3 = onboardD3;
-            return this;
-        }
-
-        public Builder setResignD3(int resignD3) {
-            this.resignD3 = resignD3;
-            return this;
-        }
-
-        public Builder setOnboardD4(int onboardD4) {
-            this.onboardD4 = onboardD4;
-            return this;
-        }
-
-        public Builder setResignD4(int resignD4) {
-            this.resignD4 = resignD4;
-            return this;
-        }
-
-        public Builder setOnboardD5(int onboardD5) {
-            this.onboardD5 = onboardD5;
-            return this;
-        }
-
-        public Builder setResignD5(int resignD5) {
-            this.resignD5 = resignD5;
-            return this;
-        }
-
-        public Builder setOnboardD6(int onboardD6) {
-            this.onboardD6 = onboardD6;
-            return this;
-        }
-
-        public Builder setResignD6(int resignD6) {
-            this.resignD6 = resignD6;
-            return this;
-        }
-
-        public Builder setOnboardD7(int onboardD7) {
-            this.onboardD7 = onboardD7;
-            return this;
-        }
-
-        public Builder setResignD7(int resignD7) {
-            this.resignD7 = resignD7;
-            return this;
-        }
-
-        public Builder setOnboardD8(int onboardD8) {
-            this.onboardD8 = onboardD8;
-            return this;
-        }
-
-        public Builder setResignD8(int resignD8) {
-            this.resignD8 = resignD8;
-            return this;
-        }
-
-        public Builder setOnboardD9(int onboardD9) {
-            this.onboardD9 = onboardD9;
-            return this;
-        }
-
-        public Builder setResignD9(int resignD9) {
-            this.resignD9 = resignD9;
-            return this;
-        }
-
-        public Builder setOnboardD10(int onboardD10) {
-            this.onboardD10 = onboardD10;
-            return this;
-        }
-
-        public Builder setResignD10(int resignD10) {
-            this.resignD10 = resignD10;
-            return this;
-        }
-
-        public Builder setOnboard2nd10Ds(int onboard2nd10Ds) {
-            this.onboard2nd10Ds = onboard2nd10Ds;
-            return this;
-        }
-
-        public Builder setResign2nd10Ds(int resign2nd10Ds) {
-            this.resign2nd10Ds = resign2nd10Ds;
-            return this;
-        }
-
-        public Builder setOnboardD11(int onboardD11) {
-            this.onboardD11 = onboardD11;
-            return this;
-        }
-
-        public Builder setResignD11(int resignD11) {
-            this.resignD11 = resignD11;
-            return this;
-        }
-
-        public Builder setOnboardD12(int onboardD12) {
-            this.onboardD12 = onboardD12;
-            return this;
-        }
-
-        public Builder setResignD12(int resignD12) {
-            this.resignD12 = resignD12;
-            return this;
-        }
-
-        public Builder setOnboardD13(int onboardD13) {
-            this.onboardD13 = onboardD13;
-            return this;
-        }
-
-        public Builder setResignD13(int resignD13) {
-            this.resignD13 = resignD13;
-            return this;
-        }
-
-        public Builder setOnboardD14(int onboardD14) {
-            this.onboardD14 = onboardD14;
-            return this;
-        }
-
-        public Builder setResignD14(int resignD14) {
-            this.resignD14 = resignD14;
-            return this;
-        }
-
-        public Builder setOnboardD15(int onboardD15) {
-            this.onboardD15 = onboardD15;
-            return this;
-        }
-
-        public Builder setResignD15(int resignD15) {
-            this.resignD15 = resignD15;
-            return this;
-        }
-
-        public Builder setOnboardD16(int onboardD16) {
-            this.onboardD16 = onboardD16;
-            return this;
-        }
-
-        public Builder setResignD16(int resignD16) {
-            this.resignD16 = resignD16;
-            return this;
-        }
-
-        public Builder setOnboardD17(int onboardD17) {
-            this.onboardD17 = onboardD17;
-            return this;
-        }
-
-        public Builder setResignD17(int resignD17) {
-            this.resignD17 = resignD17;
-            return this;
-        }
-
-        public Builder setOnboardD18(int onboardD18) {
-            this.onboardD18 = onboardD18;
-            return this;
-        }
-
-        public Builder setResignD18(int resignD18) {
-            this.resignD18 = resignD18;
-            return this;
-        }
-
-        public Builder setOnboardD19(int onboardD19) {
-            this.onboardD19 = onboardD19;
-            return this;
-        }
-
-        public Builder setResignD19(int resignD19) {
-            this.resignD19 = resignD19;
-            return this;
-        }
-
-        public Builder setOnboardD20(int onboardD20) {
-            this.onboardD20 = onboardD20;
-            return this;
-        }
-
-        public Builder setResignD20(int resignD20) {
-            this.resignD20 = resignD20;
-            return this;
-        }
-
-        public Builder setOnboard3rd10Ds(int onboard3rd10Ds) {
-            this.onboard3rd10Ds = onboard3rd10Ds;
-            return this;
-        }
-
-        public Builder setResign3rd10Ds(int resign3rd10Ds) {
-            this.resign3rd10Ds = resign3rd10Ds;
-            return this;
-        }
-
-        public Builder setOnboardD21(int onboardD21) {
-            this.onboardD21 = onboardD21;
-            return this;
-        }
-
-        public Builder setResignD21(int resignD21) {
-            this.resignD21 = resignD21;
-            return this;
-        }
-
-        public Builder setOnboardD22(int onboardD22) {
-            this.onboardD22 = onboardD22;
-            return this;
-        }
-
-        public Builder setResignD22(int resignD22) {
-            this.resignD22 = resignD22;
-            return this;
-        }
-
-        public Builder setOnboardD23(int onboardD23) {
-            this.onboardD23 = onboardD23;
-            return this;
-        }
-
-        public Builder setResignD23(int resignD23) {
-            this.resignD23 = resignD23;
-            return this;
-        }
-
-        public Builder setOnboardD24(int onboardD24) {
-            this.onboardD24 = onboardD24;
-            return this;
-        }
-
-        public Builder setResignD24(int resignD24) {
-            this.resignD24 = resignD24;
-            return this;
-        }
-
-        public Builder setOnboardD25(int onboardD25) {
-            this.onboardD25 = onboardD25;
-            return this;
-        }
-
-        public Builder setResignD25(int resignD25) {
-            this.resignD25 = resignD25;
-            return this;
-        }
-
-        public Builder setOnboardD26(int onboardD26) {
-            this.onboardD26 = onboardD26;
-            return this;
-        }
-
-        public Builder setResignD26(int resignD26) {
-            this.resignD26 = resignD26;
-            return this;
-        }
-
-        public Builder setOnboardD27(int onboardD27) {
-            this.onboardD27 = onboardD27;
-            return this;
-        }
-
-        public Builder setResignD27(int resignD27) {
-            this.resignD27 = resignD27;
-            return this;
-        }
-
-        public Builder setOnboardD28(int onboardD28) {
-            this.onboardD28 = onboardD28;
-            return this;
-        }
-
-        public Builder setResignD28(int resignD28) {
-            this.resignD28 = resignD28;
-            return this;
-        }
-
-        public Builder setOnboardD29(int onboardD29) {
-            this.onboardD29 = onboardD29;
-            return this;
-        }
-
-        public Builder setResignD29(int resignD29) {
-            this.resignD29 = resignD29;
-            return this;
-        }
-
-        public Builder setOnboardD30(int onboardD30) {
-            this.onboardD30 = onboardD30;
-            return this;
-        }
-
-        public Builder setResignD30(int resignD30) {
-            this.resignD30 = resignD30;
-            return this;
-        }
-
-        public Builder setOnboardD31(int onboardD31) {
-            this.onboardD31 = onboardD31;
-            return this;
-        }
-
-        public Builder setResignD31(int resignD31) {
-            this.resignD31 = resignD31;
-            return this;
-        }
-
-        public Builder setOnboard(int onboard) {
-            this.onboard = onboard;
-            return this;
-        }
-
-        public Builder setResign(int resign) {
-            this.resign = resign;
-            return this;
+        public Builder() {}
+
+        public Builder(Branch branch, Object[][] onboardCounts, Object[][] resignCounts, String yearAndMonth) {
+            this.company=branch.getCompany().getName();
+            this.city=branch.getCompany().getCity();
+            this.district=branch.getDistrict();
+            this.branch=branch.getName();
+            this.month=yearAndMonth;
+
+            Map<String, Integer> onboards = new HashMap<>();
+            for (Object[] count : onboardCounts) {
+                onboards.put((String)count[0], ((Long)count[1]).intValue());
+            }
+            Map<String, Integer> resigns = new HashMap<>();
+            for (Object[] count : resignCounts) {
+                resigns.put((String)count[0], ((Long)count[1]).intValue());
+            }
+            this.onboardD1 = getCount(onboards, yearAndMonth, "01");
+            this.onboardD2 = getCount(onboards, yearAndMonth, "02");
+            this.onboardD3 = getCount(onboards, yearAndMonth, "03");
+            this.onboardD4 = getCount(onboards, yearAndMonth, "04");
+            this.onboardD5 = getCount(onboards, yearAndMonth, "05");
+            this.onboardD6 = getCount(onboards, yearAndMonth, "06");
+            this.onboardD7 = getCount(onboards, yearAndMonth, "07");
+            this.onboardD8 = getCount(onboards, yearAndMonth, "08");
+            this.onboardD9 = getCount(onboards, yearAndMonth, "09");
+            this.onboardD10 = getCount(onboards, yearAndMonth, "10");
+            this.onboard1st10Ds = onboardD1 + onboardD2 + onboardD3 + onboardD4 + onboardD5 + onboardD6 + onboardD7 + onboardD8 + onboardD9 + onboardD10;
+
+            this.onboardD11 = getCount(onboards, yearAndMonth, "11");
+            this.onboardD12 = getCount(onboards, yearAndMonth, "12");
+            this.onboardD13 = getCount(onboards, yearAndMonth, "13");
+            this.onboardD14 = getCount(onboards, yearAndMonth, "14");
+            this.onboardD15 = getCount(onboards, yearAndMonth, "15");
+            this.onboardD16 = getCount(onboards, yearAndMonth, "16");
+            this.onboardD17 = getCount(onboards, yearAndMonth, "17");
+            this.onboardD18 = getCount(onboards, yearAndMonth, "18");
+            this.onboardD19 = getCount(onboards, yearAndMonth, "19");
+            this.onboardD20 = getCount(onboards, yearAndMonth, "20");
+            this.onboard2nd10Ds = onboardD11 + onboardD12 + onboardD13 + onboardD14 + onboardD15 + onboardD16 + onboardD17 + onboardD18 + onboardD19 + onboardD20;
+
+            this.onboardD21 = getCount(onboards, yearAndMonth, "21");
+            this.onboardD22 = getCount(onboards, yearAndMonth, "22");
+            this.onboardD23 = getCount(onboards, yearAndMonth, "23");
+            this.onboardD24 = getCount(onboards, yearAndMonth, "24");
+            this.onboardD25 = getCount(onboards, yearAndMonth, "25");
+            this.onboardD26 = getCount(onboards, yearAndMonth, "26");
+            this.onboardD27 = getCount(onboards, yearAndMonth, "27");
+            this.onboardD28 = getCount(onboards, yearAndMonth, "28");
+            this.onboardD29 = getCount(onboards, yearAndMonth, "29");
+            this.onboardD30 = getCount(onboards, yearAndMonth, "30");
+            this.onboardD31 = getCount(onboards, yearAndMonth, "31");
+            this.onboard3rd10Ds = onboardD21 + onboardD22 + onboardD23 + onboardD24 + onboardD25 + onboardD26 + onboardD27 + onboardD28 + onboardD29 + onboardD30 + onboardD31;
+
+            this.onboard = onboard1st10Ds + onboard2nd10Ds + onboard3rd10Ds;
+
+            this.resignD1 = getCount(resigns, yearAndMonth, "01");
+            this.resignD2 = getCount(resigns, yearAndMonth, "02");
+            this.resignD3 = getCount(resigns, yearAndMonth, "03");
+            this.resignD4 = getCount(resigns, yearAndMonth, "04");
+            this.resignD5 = getCount(resigns, yearAndMonth, "05");
+            this.resignD6 = getCount(resigns, yearAndMonth, "06");
+            this.resignD7 = getCount(resigns, yearAndMonth, "07");
+            this.resignD8 = getCount(resigns, yearAndMonth, "08");
+            this.resignD9 = getCount(resigns, yearAndMonth, "09");
+            this.resignD10 = getCount(resigns, yearAndMonth, "10");
+            this.resign1st10Ds = resignD1 + resignD2 + resignD3 + resignD4 + resignD5 + resignD6 + resignD7 + resignD8 + resignD9 + resignD10;
+
+            this.resignD11 = getCount(resigns, yearAndMonth, "11");
+            this.resignD12 = getCount(resigns, yearAndMonth, "12");
+            this.resignD13 = getCount(resigns, yearAndMonth, "13");
+            this.resignD14 = getCount(resigns, yearAndMonth, "14");
+            this.resignD15 = getCount(resigns, yearAndMonth, "15");
+            this.resignD16 = getCount(resigns, yearAndMonth, "16");
+            this.resignD17 = getCount(resigns, yearAndMonth, "17");
+            this.resignD18 = getCount(resigns, yearAndMonth, "18");
+            this.resignD19 = getCount(resigns, yearAndMonth, "19");
+            this.resignD20 = getCount(resigns, yearAndMonth, "20");
+            this.resign2nd10Ds = resignD11 + resignD12 + resignD13 + resignD14 + resignD15 + resignD16 + resignD17 + resignD18 + resignD19 + resignD20;
+
+            this.resignD21 = getCount(resigns, yearAndMonth, "21");
+            this.resignD22 = getCount(resigns, yearAndMonth, "22");
+            this.resignD23 = getCount(resigns, yearAndMonth, "23");
+            this.resignD24 = getCount(resigns, yearAndMonth, "24");
+            this.resignD25 = getCount(resigns, yearAndMonth, "25");
+            this.resignD26 = getCount(resigns, yearAndMonth, "26");
+            this.resignD27 = getCount(resigns, yearAndMonth, "27");
+            this.resignD28 = getCount(resigns, yearAndMonth, "28");
+            this.resignD29 = getCount(resigns, yearAndMonth, "29");
+            this.resignD30 = getCount(resigns, yearAndMonth, "30");
+            this.resignD31 = getCount(resigns, yearAndMonth, "31");
+            this.resign3rd10Ds = resignD21 + resignD22 + resignD23 + resignD24 + resignD25 + resignD26 + resignD27 + resignD28 + resignD29 + resignD30 + resignD31;
+
+            this.resign = resign1st10Ds + resign2nd10Ds + resign3rd10Ds;
+        }
+
+        private int getCount(Map<String, Integer> counts, String month, String day) {
+            String dateString = month + "-" + day;
+            return counts.get(dateString) == null? 0 : counts.get(dateString);
         }
 
         public ApplicationReportDTO build() {
             return new ApplicationReportDTO(this);
         }
     }
+
 }

@@ -85,12 +85,12 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
     }
 
     @Override
-    public List<Pair> countOnboards(String company, String jobName, String year, String month) {
-        return dao.countOnboards(company, jobName, year, month);
+    public Object[][] countOnboards(String company, String jobName, long branchId, int year, int month) {
+        return dao.countOnboards(company, jobName, branchId, year, month);
     }
 
     @Override
-    public List<Pair> countResigns(String company, String jobName, String year, String month) {
-        return dao.countResigns(company, jobName, year, month);
+    public Object[][] countResigns(String company, String jobName, long branchId, int year, int month) {
+        return dao.countResigns(company, jobName, branchId, year, month);
     }
 }

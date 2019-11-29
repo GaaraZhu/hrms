@@ -2,20 +2,17 @@ package com.jisiben.hrms.controller;
 
 import com.google.common.collect.ImmutableMap;
 import com.jisiben.hrms.controller.common.AbstractController;
-import com.jisiben.hrms.controller.dto.CompanyReportDTO;
-import com.jisiben.hrms.controller.dto.PersonalReportDTO;
-import com.jisiben.hrms.controller.dto.PageableSearchResultDTO;
+import com.jisiben.hrms.controller.dto.*;
 import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
-import com.jisiben.hrms.controller.dto.PairDTO;
 import com.jisiben.hrms.domain.dao.bean.Pair;
+import com.jisiben.hrms.domain.entity.Branch;
 import com.jisiben.hrms.domain.entity.PersonalReport;
-import com.jisiben.hrms.service.JobQuotaService;
-import com.jisiben.hrms.service.PersonalReportService;
-import com.jisiben.hrms.service.JobService;
+import com.jisiben.hrms.service.*;
 import com.jisiben.hrms.service.common.Service;
-import com.jisiben.hrms.service.JobApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,6 +34,9 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
 
     @Autowired
     private JobQuotaService jobQuotaService;
+
+    @Autowired
+    private BranchService branchService;
 
     @Autowired
     private JobApplicationService jobApplicationService;
@@ -99,15 +99,24 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
 
     @ResponseBody
     @Produces("application/json")
-    @RequestMapping(value = "/applicationReports/abc", method = RequestMethod.GET)
-    public List<Pair> testReport(
+    @RequestMapping(value = "/applicationReports/branch", method = RequestMethod.GET)
+    public List<ApplicationReportDTO> testReport(
             @RequestParam("company") String company,
             @RequestParam("jobName") String jobName,
-            @RequestParam("year") String year,
-            @RequestParam("month") String month) {
-        List<Pair> result = jobApplicationService.countOnboards(company, jobName, year, month);
-        result.addAll(jobApplicationService.countResigns(company, jobName, year, month));
-        return result;
+            @RequestParam("month") String yearAndMonth) {
+        String[] yearMonthArray = yearAndMonth.split("-");
+        int year = Integer.valueOf(yearMonthArray[0]);
+        int month = Integer.valueOf(yearMonthArray[1]);
+        Page<Branch> branches = branchService.search(ImmutableMap.of(
+                "company", Optional.ofNullable(company), "branch", Optional.empty()),1, 500);
+
+        List<ApplicationReportDTO> results = new ArrayList<>();
+        for(Branch branch: branches) {
+            Object[][] onboardCounts = jobApplicationService.countOnboards(company, jobName, branch.getId(), year, month);
+            Object[][] resignCounts = jobApplicationService.countResigns(company, jobName, branch.getId(), year, month);
+            results.add(new ApplicationReportDTO.Builder(branch, onboardCounts, resignCounts, yearAndMonth).build());
+        }
+        return results;
     }
 
     @ResponseBody

@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public interface JobApplicationDao extends Dao<JobApplication, Long> {
     @Query("FROM JobApplication ja WHERE (:company is null or ja.job.company = :company) and (:city is null or ja.job.company.city = :city)"
@@ -60,9 +59,9 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
     @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(ja.job.company.name, COUNT(ja)) FROM JobApplication ja WHERE SUBSTRING(ja.resignDate, 1, 7) = :month and (:company is null or ja.job.company = :company)")
     List<Pair> findResignCountByCompany(@Param("company") String company, @Param("month") String month);
 
-    @Query(value = "select DATE_FORMAT(ja.onboardDate, \"%Y-%m-%d\"), count(1) from jobApplication ja, job j, company c where c.name like CONCAT('%',?1,'%') and c.id=j.companyId and j.name like CONCAT('%',?2,'%') and j.id=ja.jobId and year(ja.onboardDate)=?3 and month(ja.onboardDate)=?4 group by DATE_FORMAT(ja.onboardDate, \"%Y-%m-%d\")", nativeQuery = true)
-    List<Pair> countOnboards(String company, String jobName, String year, String month);
+    @Query(value = "select DATE_FORMAT(ja.onboardDate, \"%Y-%m-%d\") as `key`, count(1) as `value` from jobApplication ja, job j, company c where c.name like CONCAT('%',?1,'%') and c.id=j.companyId and j.name like CONCAT('%',?2,'%') and ja.branchId = ?3 and j.id=ja.jobId and year(ja.onboardDate)=?4 and month(ja.onboardDate)=?5 group by `key`", nativeQuery = true)
+    Object[][] countOnboards(String company, String jobName, long branchId, int year, int month);
 
-    @Query(value = "select DATE_FORMAT(ja.resignDate, \"%Y-%m-%d\"), count(1) from jobApplication ja, job j, company c where c.name like CONCAT('%',?1,'%') and c.id=j.companyId and j.name like CONCAT('%',?2,'%') and j.id=ja.jobId and year(ja.resignDate)=?3 and month(ja.resignDate)=?4 group by DATE_FORMAT(ja.resignDate, \"%Y-%m-%d\")", nativeQuery = true)
-    List<Pair> countResigns(String company, String jobName, String year, String month);
+    @Query(value = "select DATE_FORMAT(ja.resignDate, \"%Y-%m-%d\") as `key`, count(1) as `value` from jobApplication ja, job j, company c where c.name like CONCAT('%',?1,'%') and c.id=j.companyId and j.name like CONCAT('%',?2,'%') and ja.branchId = ?3 and j.id=ja.jobId and year(ja.resignDate)=?4 and month(ja.resignDate)=?5 group by `key`", nativeQuery = true)
+    Object[][] countResigns(String company, String jobName, long branchId, int year, int month);
 }

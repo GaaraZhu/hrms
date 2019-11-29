@@ -6,7 +6,6 @@ import com.jisiben.hrms.service.common.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public interface JobApplicationService extends Service<JobApplication> {
     Long findActiveJobApplicationCount(String candidateIdNumber, Long jobId);
@@ -19,7 +18,7 @@ public interface JobApplicationService extends Service<JobApplication> {
 
     List<Pair> findResignCountByCompany(String company, String month);
 
-    List<Pair> countOnboards(String company, String jobName, String year, String month);
+    Object[][] countOnboards(String company, String jobName, long branchId,  int year, int month);
 
-    List<Pair> countResigns(String company, String jobName, String year, String month);
+    Object[][] countResigns(String company, String jobName, long branchId, int year, int month);
 }
