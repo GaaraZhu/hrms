@@ -233,6 +233,15 @@
                                         contentType : "application/json;charset=utf-8",
                                         success : function(branchData) {
                                             var branches = branchData.results;
+                                            if (branches.length == 0) {
+                                                $("#innerModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                                                    $("#alertText").text("请先创建门店再进行操作");
+                                                    $("#alertModel").modal({
+                                                        keyboard: true
+                                                    });
+                                                 });
+                                                 return;
+                                            }
                                             var branchDropdown = $("#branchDropdown");
                                             branches.forEach(function(c){
                                                 branchDropdown.append($("<option />").val(c.id).text(c.name));
