@@ -80,6 +80,23 @@
 
     $("#searchBranchReport").click(
         function() {
+            var errorMessage='';
+            if($("#month").val()==''){
+                errorMessage="请选择报表月份";
+            } else if($("#company").val()==''){
+                errorMessage="请输入公司名称";
+            } else if($("#jobName").val()==''){
+                errorMessage="请输入职位名称";
+            }
+            if(errorMessage!='') {
+                $("#innerModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                    $("#alertText").text(errorMessage);
+                    $("#alertModel").modal({
+                        keyboard: true
+                    });
+                 });
+                 return;
+            }
             queryBranchReport(1);
         }
     );
