@@ -93,6 +93,11 @@
                             </a>
                             <ul>
                                 <li>
+                                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/reports/branchReport.jsp',' 首页/ 数据报表/ 门店业绩报表','门店业绩报表')">
+                                        门店业绩报表
+                                    </span>
+                                </li>
+                                <li>
                                     <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/reports/personalReport.jsp',' 首页/ 数据报表/ 个人业绩报表','个人业绩报表')">
                                         个人业绩报表
                                     </span>
