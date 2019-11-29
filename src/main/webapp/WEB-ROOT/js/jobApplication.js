@@ -121,9 +121,10 @@
                     "interviewDate",
                     "onboardDate",
                     "resignDate",
+                    "creator",
                     "updatedTime",
                     "<button  class='btn btn-info btn-sm editJobA'  ID='editJobA' onclick='updateJobApplication(id)'><span class='glyphicon glyphicon-pencil'></span> 编辑</button> <button  class='btn btn-info btn-sm delJobA' ID='delJobA' onclick='deleteJobApplication(id)'><span class='glyphicon glyphicon-remove'></span>删除</button>" ] ,
-            name : ["ID", "姓名", "电话", "身份证号", "应聘企业", "应聘门店", "应聘职位", "推荐人", "推荐人电话", "求职/推荐时间", "最新状态", "面试时间", "入职时间", "离职时间", "处理时间", "_opt" ],
+            name : ["ID", "姓名", "电话", "身份证号", "应聘企业", "应聘门店", "应聘职位", "推荐人", "推荐人电话", "求职/推荐时间", "最新状态", "面试时间", "入职时间", "离职时间", "业务员", "处理时间", "_opt" ],
             tid : "id",
             checkBox : "id"
         });
