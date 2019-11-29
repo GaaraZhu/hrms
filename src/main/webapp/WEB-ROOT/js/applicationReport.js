@@ -274,7 +274,7 @@
             success : function(data) {
                 var chart = new CanvasJS.Chart("chartContainer", {
                 	theme: "light2",
-                	exportEnabled: true,
+                    exportEnabled: false,
                 	animationEnabled: true,
                 	title: {
                 		text: "成功求职分布"
