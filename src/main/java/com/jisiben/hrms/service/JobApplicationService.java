@@ -21,4 +21,8 @@ public interface JobApplicationService extends Service<JobApplication> {
     Object[][] countOnboards(String company, String jobName, long branchId,  int year, int month);
 
     Object[][] countResigns(String company, String jobName, long branchId, int year, int month);
+
+    Object[][] countOnboardsByCreator(String company, String jobName, String creator,  int year, int month);
+
+    Object[][] countResignsByCreator(String company, String jobName, String creator, int year, int month);
 }

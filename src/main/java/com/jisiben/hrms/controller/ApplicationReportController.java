@@ -7,11 +7,13 @@ import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.dao.bean.Pair;
 import com.jisiben.hrms.domain.entity.Branch;
 import com.jisiben.hrms.domain.entity.PersonalReport;
+import com.jisiben.hrms.domain.entity.User;
 import com.jisiben.hrms.service.*;
 import com.jisiben.hrms.service.common.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,9 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
 
     @Autowired
     private BranchService branchService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private JobApplicationService jobApplicationService;
@@ -100,7 +105,7 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
     @ResponseBody
     @Produces("application/json")
     @RequestMapping(value = "/applicationReports/branch", method = RequestMethod.GET)
-    public List<ApplicationReportDTO> testReport(
+    public List<ApplicationReportDTO> branchReport(
             @RequestParam("company") String company,
             @RequestParam("jobName") String jobName,
             @RequestParam("month") String yearAndMonth) {
@@ -115,6 +120,33 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
             Object[][] onboardCounts = jobApplicationService.countOnboards(company, jobName, branch.getId(), year, month);
             Object[][] resignCounts = jobApplicationService.countResigns(company, jobName, branch.getId(), year, month);
             results.add(new ApplicationReportDTO.Builder(branch, onboardCounts, resignCounts, yearAndMonth).build());
+        }
+        return results;
+    }
+
+    @ResponseBody
+    @Produces("application/json")
+    @RequestMapping(value = "/applicationReports/personal", method = RequestMethod.GET)
+    public List<ApplicationReportDTO> personalReport(
+            @RequestParam("company") String company,
+            @RequestParam("jobName") String jobName,
+            @RequestParam("month") String yearAndMonth) {
+        String[] yearMonthArray = yearAndMonth.split("-");
+        int year = Integer.valueOf(yearMonthArray[0]);
+        int month = Integer.valueOf(yearMonthArray[1]);
+        List<User> users = userService.findByAuthority(0);
+
+        List<ApplicationReportDTO> results = new ArrayList<>();
+        for(User user: users) {
+            Object[][] onboardCounts = jobApplicationService.countOnboardsByCreator(company, jobName, user.getAccount(), year, month);
+
+            Object[][] resignCounts = jobApplicationService.countResignsByCreator(company, jobName, user.getAccount(), year, month);
+
+            System.out.println("1111111111");
+            System.out.println(user.getName());
+            System.out.println(onboardCounts.length);
+            System.out.println(resignCounts.length);
+            results.add(new ApplicationReportDTO.Builder(user.getAccount(), onboardCounts, resignCounts, yearAndMonth).build());
         }
         return results;
     }

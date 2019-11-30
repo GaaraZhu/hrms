@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="form-group inputselect col-lg-4">
                         <button type="button" class="btn btn-success btn-sm " id="branchReportAnalysis">
-                            <span class="glyphicon glyphicon-search"></span> 门店分析
+                            <span class="glyphicon glyphicon-signal"></span> 门店数据分析
                         </button>
                     </div>
                     <div class="form-group inputselect">

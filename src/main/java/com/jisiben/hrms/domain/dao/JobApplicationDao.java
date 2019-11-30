@@ -64,4 +64,10 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
 
     @Query(value = "select DATE_FORMAT(ja.resignDate, \"%Y-%m-%d\") as `key`, count(1) as `value` from jobApplication ja, job j, company c where c.name like CONCAT('%',?1,'%') and c.id=j.companyId and j.name like CONCAT('%',?2,'%') and ja.branchId = ?3 and j.id=ja.jobId and year(ja.resignDate)=?4 and month(ja.resignDate)=?5 group by `key`", nativeQuery = true)
     Object[][] countResigns(String company, String jobName, long branchId, int year, int month);
+
+    @Query(value = "select DATE_FORMAT(ja.onboardDate, \"%Y-%m-%d\") as `key`, count(1) as `value` from jobApplication ja, job j, company c where c.name like CONCAT('%',?1,'%') and c.id=j.companyId and j.name like CONCAT('%',?2,'%') and ja.creator = ?3 and j.id=ja.jobId and year(ja.onboardDate)=?4 and month(ja.onboardDate)=?5 group by `key`", nativeQuery = true)
+    Object[][] countOnboardsByCreator(String company, String jobName, String creator, int year, int month);
+
+    @Query(value = "select DATE_FORMAT(ja.resignDate, \"%Y-%m-%d\") as `key`, count(1) as `value` from jobApplication ja, job j, company c where c.name like CONCAT('%',?1,'%') and c.id=j.companyId and j.name like CONCAT('%',?2,'%') and ja.creator = ?3 and j.id=ja.jobId and year(ja.resignDate)=?4 and month(ja.resignDate)=?5 group by `key`", nativeQuery = true)
+    Object[][] countResignsByCreator(String company, String jobName, String creator, int year, int month);
 }

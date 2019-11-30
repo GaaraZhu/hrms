@@ -10,6 +10,7 @@ public class ApplicationReportDTO {
     private String city;
     private String district;
     private String branch;
+    private String creatorName;
     private String month;
     private int onboard1st10Ds;
     private int resign1st10Ds;
@@ -89,6 +90,7 @@ public class ApplicationReportDTO {
         this.city=builder.city;
         this.district=builder.district;
         this.branch=builder.branch;
+        this.creatorName=builder.creatorName;
         this.month=builder.month;
         this.onboard1st10Ds=builder.onboard1st10Ds;
         this.resign1st10Ds=builder.resign1st10Ds;
@@ -176,6 +178,14 @@ public class ApplicationReportDTO {
 
     public String getBranch() {
         return branch;
+    }
+
+    public String getCreatorName() {
+        return creatorName;
+    }
+
+    public String getMonth() {
+        return month;
     }
 
     public int getOnboard1st10Ds() {
@@ -463,6 +473,7 @@ public class ApplicationReportDTO {
         private String city;
         private String district;
         private String branch;
+        private String creatorName;
         private String month;
         private int onboard1st10Ds;
         private int resign1st10Ds;
@@ -537,13 +548,22 @@ public class ApplicationReportDTO {
 
         public Builder() {}
 
+        public Builder(String creatorName, Object[][] onboardCounts, Object[][] resignCounts, String yearAndMonth) {
+            this.creatorName=creatorName;
+            this.month=yearAndMonth;
+            initCounts(onboardCounts, resignCounts, yearAndMonth);
+        }
+
         public Builder(Branch branch, Object[][] onboardCounts, Object[][] resignCounts, String yearAndMonth) {
             this.company=branch.getCompany().getName();
             this.city=branch.getCompany().getCity();
             this.district=branch.getDistrict();
             this.branch=branch.getName();
             this.month=yearAndMonth;
+            initCounts(onboardCounts, resignCounts, yearAndMonth);
+        }
 
+        private void initCounts(Object[][] onboardCounts, Object[][] resignCounts, String yearAndMonth) {
             Map<String, Integer> onboards = new HashMap<>();
             for (Object[] count : onboardCounts) {
                 onboards.put((String)count[0], ((Long)count[1]).intValue());

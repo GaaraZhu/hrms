@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface UserDao extends Dao<User, Long> {
 
     User save(User user);
@@ -28,4 +30,7 @@ public interface UserDao extends Dao<User, Long> {
             @Param("name")String name,
             @Param("authority")Integer authority,
             Pageable pageable);
+
+    @Query("FROM User u WHERE (:authority is null or u.authority = :authority)")
+    List<User> findByAuthority(@Param("authority")Integer authority);
 }

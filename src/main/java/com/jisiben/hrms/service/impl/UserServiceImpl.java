@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -50,5 +51,10 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Override
     public User findByAccount(String account) {
         return userDao.findByAccount(account);
+    }
+
+    @Override
+    public List<User> findByAuthority(int authority) {
+        return userDao.findByAuthority(authority);
     }
 }
