@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <body class="full" id="content">
-    <script src="<%=request.getContextPath()%>/WEB-ROOT/js/applicationReport.js"></script>
+    <script src="<%=request.getContextPath()%>/WEB-ROOT/js/branchReport.js"></script>
+    <script src="<%=request.getContextPath()%>/WEB-ROOT/bootstrap/js/jquery.canvasjs.min.js"></script>
 	<div id="innerModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12">
@@ -39,12 +40,11 @@
 				<table class="table table-hover tablefont">
 					<tbody id="branchReportTableList"/>
 				</table>
-				<div style="bottom: 10%">
-					<div id="branchReportAnalysisDiv" style="margin-left: 32%;">
-					    请输入条件查询门店数据，并选择门店数据进行图表分析
-					</div>
-				</div>
+                <div id="branchReportAnalysisDiv" style="bottom: 10%; margin-left: 32%;">
+                    请输入条件查询门店数据，并选择门店数据进行图表分析
+                </div>
 			</div>
+			<div id="chartContainer" style="height: 300px; width: 100%; margin-top: 5%;"></div>
 		</div>
 	</div>
 
