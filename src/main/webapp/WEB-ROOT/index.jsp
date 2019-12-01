@@ -102,16 +102,6 @@
                                         个人业绩报表
                                     </span>
                                 </li>
-                                <li>
-                                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/reports/companyReport.jsp',' 首页/ 数据报表/ 公司业绩报表','公司业绩报表')">
-                                        公司业绩报表
-                                    </span>
-                                </li>
-                                <li>
-                                    <span class="spliter" href="javascript:void(0)" onclick="htmlDispatcher('WEB-ROOT/html/reports/successApplicants.jsp',' 首页/ 数据报表/ 求职分布','求职分布')">
-                                        求职分布
-                                    </span>
-                                </li>
                             </ul>
                         </li>
                     </sec:authorize>

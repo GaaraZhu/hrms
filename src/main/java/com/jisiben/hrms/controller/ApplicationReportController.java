@@ -1,20 +1,13 @@
 package com.jisiben.hrms.controller;
 
 import com.google.common.collect.ImmutableMap;
-import com.jisiben.hrms.controller.common.AbstractController;
 import com.jisiben.hrms.controller.dto.*;
-import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.dao.bean.Pair;
 import com.jisiben.hrms.domain.entity.Branch;
-import com.jisiben.hrms.domain.entity.PersonalReport;
 import com.jisiben.hrms.domain.entity.User;
 import com.jisiben.hrms.service.*;
-import com.jisiben.hrms.service.common.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
-public class ApplicationReportController extends AbstractController<PersonalReport, PersonalReportDTO, PersonalReport.Builder> {
-
-    @Autowired
-    private PersonalReportService service;
+public class ApplicationReportController {
 
     @Autowired
     private JobService jobService;
@@ -45,28 +35,6 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
 
     @Autowired
     private JobApplicationService jobApplicationService;
-
-    @Autowired
-    @Qualifier("personalReportEntityDTOMapper")
-    private Mapper<PersonalReport, PersonalReportDTO> mapper;
-
-    @ResponseBody
-    @Produces("application/json")
-    @RequestMapping(value = "/applicationReports/personalReport", method = RequestMethod.GET)
-    public PageableSearchResultDTO<PersonalReportDTO> findPersonalReports(
-            @RequestParam("fromDate") Date fromDate,
-            @RequestParam("toDate") Date toDate,
-            @RequestParam("name") String name,
-            @RequestParam("type") String type,
-            @RequestParam("currentPage") int currentPage,
-            @RequestParam("pageSize") int pageSize) {
-        return doFindAll(
-                ImmutableMap.of(
-                        "fromDate", Optional.ofNullable(fromDate),
-                        "toDate", Optional.ofNullable(toDate),
-                        "name", Optional.ofNullable(name),
-                        "type", Optional.ofNullable(type)), currentPage, pageSize);
-    }
 
     @ResponseBody
     @Produces("application/json")
@@ -115,11 +83,15 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
         Page<Branch> branches = branchService.search(ImmutableMap.of(
                 "company", Optional.ofNullable(company), "branch", Optional.empty()),1, 500);
 
+        List<Pair> quotas = jobQuotaService.getMonthlyQuota(company, yearAndMonth);
+        Map<String, Long> branchToQuota = new HashMap<>();
+        quotas.forEach(p->branchToQuota.put(p.getKey(), p.getValue()));
         List<ApplicationReportDTO> results = new ArrayList<>();
         for(Branch branch: branches) {
             Object[][] onboardCounts = jobApplicationService.countOnboards(company, jobName, branch.getId(), year, month);
             Object[][] resignCounts = jobApplicationService.countResigns(company, jobName, branch.getId(), year, month);
-            results.add(new ApplicationReportDTO.Builder(branch, onboardCounts, resignCounts, yearAndMonth).build());
+            int quota = branchToQuota.get(branch.getName())==null?0:branchToQuota.get(branch.getName()).intValue();
+            results.add(new ApplicationReportDTO.Builder(branch, quota, onboardCounts, resignCounts, yearAndMonth).build());
         }
         return results;
     }
@@ -136,42 +108,16 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
         int month = Integer.valueOf(yearMonthArray[1]);
         List<User> users = userService.findByAuthority(0);
 
+        List<Pair> quotas = jobQuotaService.getMonthlyQuota(company, yearAndMonth);
+        Map<String, Long> branchToQuota = new HashMap<>();
+        quotas.forEach(p->branchToQuota.put(p.getKey(), p.getValue()));
         List<ApplicationReportDTO> results = new ArrayList<>();
         for(User user: users) {
             Object[][] onboardCounts = jobApplicationService.countOnboardsByCreator(company, jobName, user.getAccount(), year, month);
-
             Object[][] resignCounts = jobApplicationService.countResignsByCreator(company, jobName, user.getAccount(), year, month);
-
-            System.out.println("1111111111");
-            System.out.println(user.getName());
-            System.out.println(onboardCounts.length);
-            System.out.println(resignCounts.length);
             results.add(new ApplicationReportDTO.Builder(user.getAccount(), onboardCounts, resignCounts, yearAndMonth).build());
         }
         return results;
-    }
-
-    @ResponseBody
-    @Produces("application/json")
-    @RequestMapping(value = "/applicationReports/successApplicantsByCompany", method = RequestMethod.GET)
-    public List<PairDTO> findSuccessApplicantsByCompany(
-            @RequestParam("fromDate") Date fromDate,
-            @RequestParam("toDate") Date toDate) {
-
-//        List<Pair> totalQuatoByCompany = jobService.findTotalQuotaByCompany(fromDate, toDate);
-////        List<Pair> successApplicantsByCompany = jobApplicationService.findSuccessApplicantsByCompany(fromDate, toDate);
-////
-////        List<PairDTO> results = new ArrayList<>();
-////        totalQuatoByCompany.stream().forEach(p1-> {
-////            for(Pair p2 : successApplicantsByCompany) {
-////                if (p1.getKey().equals(p2.getKey())) {
-////                    results.add(new PairDTO(p1.getKey(), (double)p2.getValue()/p1.getValue()));
-////                }
-////            }
-////        });
-//        return results;
-
-        return new ArrayList<>();
     }
 
     @ResponseBody
@@ -185,20 +131,5 @@ public class ApplicationReportController extends AbstractController<PersonalRepo
                 .collect(Collectors.groupingBy(Pair::getKey, Collectors.counting()))
                 .entrySet().stream().map(entry->new PairDTO(entry.getKey(), (double) Math.round((double)entry.getValue()/result.size() * 100) / 100))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    protected Service<PersonalReport> getService() {
-        return service;
-    }
-
-    @Override
-    protected Mapper<PersonalReport, PersonalReportDTO> getMapper() {
-        return mapper;
-    }
-
-    @Override
-    protected PersonalReport.Builder getEntityBuilder() {
-        return new PersonalReport.Builder();
     }
 }

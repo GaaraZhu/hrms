@@ -82,6 +82,10 @@ public class ApplicationReportDTO {
     private int resignD31;
     private int onboard;
     private int resign;
+    private int monthlyQuota;
+    private String monthlyCompletePercentage;
+    private int dailyQuota;
+    private String dailyCompletePercentage;
 
     ApplicationReportDTO() {}
 
@@ -162,6 +166,10 @@ public class ApplicationReportDTO {
         this.resignD31=builder.resignD31;
         this.onboard=builder.onboard;
         this.resign=builder.resign;
+        this.monthlyQuota = builder.monthlyQuota;
+        this.dailyQuota = builder.dailyQuota;
+        this.monthlyCompletePercentage = builder.monthlyCompletePercentage;
+        this.dailyCompletePercentage = builder.dailyCompletePercentage;
     }
 
     public String getCompany() {
@@ -468,6 +476,22 @@ public class ApplicationReportDTO {
         return resign;
     }
 
+    public int getMonthlyQuota() {
+        return monthlyQuota;
+    }
+
+    public String getMonthlyCompletePercentage() {
+        return monthlyCompletePercentage;
+    }
+
+    public int getDailyQuota() {
+        return dailyQuota;
+    }
+
+    public String getDailyCompletePercentage() {
+        return dailyCompletePercentage;
+    }
+
     public static class Builder {
         private String company;
         private String city;
@@ -545,25 +569,29 @@ public class ApplicationReportDTO {
         private int resignD31;
         private int onboard;
         private int resign;
+        private int monthlyQuota;
+        private String monthlyCompletePercentage;
+        private int dailyQuota;
+        private String dailyCompletePercentage;
 
         public Builder() {}
 
         public Builder(String creatorName, Object[][] onboardCounts, Object[][] resignCounts, String yearAndMonth) {
             this.creatorName=creatorName;
             this.month=yearAndMonth;
-            initCounts(onboardCounts, resignCounts, yearAndMonth);
+            initCounts(onboardCounts, resignCounts, monthlyQuota, yearAndMonth);
         }
 
-        public Builder(Branch branch, Object[][] onboardCounts, Object[][] resignCounts, String yearAndMonth) {
+        public Builder(Branch branch, int monthlyQuota, Object[][] onboardCounts, Object[][] resignCounts, String yearAndMonth) {
             this.company=branch.getCompany().getName();
             this.city=branch.getCompany().getCity();
             this.district=branch.getDistrict();
             this.branch=branch.getName();
             this.month=yearAndMonth;
-            initCounts(onboardCounts, resignCounts, yearAndMonth);
+            initCounts(onboardCounts, resignCounts, monthlyQuota, yearAndMonth);
         }
 
-        private void initCounts(Object[][] onboardCounts, Object[][] resignCounts, String yearAndMonth) {
+        private void initCounts(Object[][] onboardCounts, Object[][] resignCounts, int monthlyQuota, String yearAndMonth) {
             Map<String, Integer> onboards = new HashMap<>();
             for (Object[] count : onboardCounts) {
                 onboards.put((String)count[0], ((Long)count[1]).intValue());
@@ -649,6 +677,16 @@ public class ApplicationReportDTO {
             this.resign3rd10Ds = resignD21 + resignD22 + resignD23 + resignD24 + resignD25 + resignD26 + resignD27 + resignD28 + resignD29 + resignD30 + resignD31;
 
             this.resign = resign1st10Ds + resign2nd10Ds + resign3rd10Ds;
+
+            this.monthlyQuota = monthlyQuota;
+            this.dailyQuota = monthlyQuota/30;//FIXME: no roundings at all
+            if(monthlyQuota==0) {
+                this.monthlyCompletePercentage = "0";
+                this.dailyCompletePercentage = "0";
+            } else {
+                this.monthlyCompletePercentage = String.format("%.2f", (double)onboard/monthlyQuota*100)+"%";
+                this.dailyCompletePercentage = this.monthlyCompletePercentage;
+            }
         }
 
         private int getCount(Map<String, Integer> counts, String month, String day) {

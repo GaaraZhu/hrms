@@ -13,7 +13,7 @@ public class JobQuotaDTO extends DTORoot<JobQuotaDTO> {
     private String city;
     private String district;
     private String month;
-    private int quota;
+    private long quota;
 
     public JobQuotaDTO() {
     }
@@ -51,7 +51,7 @@ public class JobQuotaDTO extends DTORoot<JobQuotaDTO> {
         return month;
     }
 
-    public int getQuota() {
+    public long getQuota() {
         return quota;
     }
 
@@ -76,7 +76,7 @@ public class JobQuotaDTO extends DTORoot<JobQuotaDTO> {
         private String city;
         private String district;
         private String month;
-        private int quota;
+        private long quota;
 
         public Builder jobId(long jobId) {
             this.jobId = jobId;
@@ -119,7 +119,7 @@ public class JobQuotaDTO extends DTORoot<JobQuotaDTO> {
             return this;
         }
 
-        public Builder quota(int quota) {
+        public Builder quota(long quota) {
             this.quota = quota;
             return this;
         }

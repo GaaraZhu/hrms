@@ -44,7 +44,6 @@ public class JobQuotaServiceImpl extends AbstractService<JobQuota> implements Jo
 
     @Override
     public List<Pair> getMonthlyQuota(String company, String month) {
-//        return jobQuotaDao.getMonthlyQuota(company, month);
-        return new ArrayList<>();
+        return jobQuotaDao.getMonthlyQuota(company, month);
     }
 }

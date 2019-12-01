@@ -21,7 +21,7 @@ public class JobQuota extends PersistentRoot<JobQuota> {
 
     private String month;
 
-    private int quota;
+    private Long quota;
 
     public JobQuota() {
     }
@@ -45,7 +45,7 @@ public class JobQuota extends PersistentRoot<JobQuota> {
         return month;
     }
 
-    public int getQuota() {
+    public Long getQuota() {
         return quota;
     }
 
@@ -59,7 +59,7 @@ public class JobQuota extends PersistentRoot<JobQuota> {
         return this;
     }
 
-    public JobQuota quota(int quota) {
+    public JobQuota quota(Long quota) {
         this.quota = quota;
         return this;
     }
@@ -73,7 +73,7 @@ public class JobQuota extends PersistentRoot<JobQuota> {
 
         private Job job;
         private String month;
-        private int quota;
+        private Long quota;
         private Branch branch;
 
         public Builder job(Job job) {
@@ -86,7 +86,7 @@ public class JobQuota extends PersistentRoot<JobQuota> {
             return this;
         }
 
-        public Builder quota(int quota) {
+        public Builder quota(Long quota) {
             this.quota = quota;
             return this;
         }
