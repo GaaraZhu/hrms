@@ -146,12 +146,6 @@
                         </ul>
                     </li>
                     <li>
-                        <span class="spliter">
-                            <i class="fas fa-bell"></i>
-                            系统通知
-                        </span>
-                    </li>
-                    <li>
                         <span class="spliter" id="logout">
                             <i class="fas fa-power-off"></i>
                             退出系统
