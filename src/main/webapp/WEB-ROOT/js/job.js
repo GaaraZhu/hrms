@@ -86,6 +86,7 @@
                         $("#originalJobModal").modal({
                             keyboard : true
                         });
+
                         if (!companies) {
                             $.ajax({
                                 url : "companies",
@@ -94,13 +95,9 @@
                                 data : "currentPage=1&pageSize=500&name=&city=",
                                 contentType : "application/json;charset=utf-8",
                                 success : function(data) {
-                                    var companyDropdown = $("#companyId");
                                     companies = data.results;
-                                    companies.forEach(function(c){
-                                        companyDropdown.append($("<option />").val(c.id).text(c.name));
-                                    });
-                                    companyDropdown.val(companies[0].id);
-                                    ("#city").val(companies[0].city);
+                                    initCompanyDropdown(companies, companies[0].id);
+                                    $("#city").val(companies[0].city);
                                 },
                                 error : function(e) {
                                     if (e.status != 401) {
@@ -109,6 +106,9 @@
                                     }
                                 }
                             });
+                        } else {
+                            initCompanyDropdown(companies, data.companyId);
+                            $("#city").val(companies.filter(c=>c.id==data.companyId)[0].city);
                         }
 
                         if (data != null) {
@@ -132,6 +132,14 @@
                 }
             }
         });
+    }
+
+    function initCompanyDropdown(companies, companyId) {
+        var companyDropdown = $("#companyId");
+        companies.forEach(function(c){
+            companyDropdown.append($("<option />").val(c.id).text(c.name));
+        });
+        companyDropdown.val(companyId);
     }
 
     function deleteJob(id) {
@@ -165,6 +173,7 @@
                 $("#originalJobModal").modal({
                     keyboard: true
                 });
+
                 if(!companies) {
                     $.ajax({
                         url : "companies",
@@ -174,30 +183,21 @@
                         contentType : "application/json;charset=utf-8",
                         success : function(data) {
                             companies = data.results;
-                            var companyDropdown = $("#companyId");
-                            companies.forEach(function(c){
-                                companyDropdown.append($("<option />").val(c.id).text(c.name));
-                            });
-                            companyDropdown.val(companies[0].id);
-                            ("#city").val(companies[0].city);
+                            initCompanyDropdown(companies, companies[0].id);
                         },
                         error : function(e) {
+                            console.log(e);
                             if (e.status != 401) {
-                                console.log(e);
                                 alert("加载公司列表失败，请查看控制台日志");
                             }
                         }
                     });
+                } else {
+                    initCompanyDropdown(companies, companies[0].id);
                 }
             });
         }
     );
-
-    $("#companyId").change(function(){
-        var companyId = this.value;
-        var city = companies.filter(c=>c.id==companyId)[0].city;
-        $("#city").val(city);
-    });
 
     $("#addJobQuota").click(
         function(){
@@ -312,6 +312,15 @@
                                 contentType : "application/json;charset=utf-8",
                                 success : function(branchData) {
                                     var branches = branchData.results;
+                                    if (branches.length == 0) {
+                                        $("#innerModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                                            $("#alertText").text("请先创建门店再进行操作");
+                                            $("#alertModel").modal({
+                                                keyboard: true
+                                            });
+                                         });
+                                         return;
+                                    }
                                     var branchDropdown = $("#branchDropdown");
                                     branches.forEach(function(c){
                                         branchDropdown.append($("<option />").val(c.id).text(c.name));

@@ -25,12 +25,6 @@
                                      <select id="companyId" name="companyId" style="width: 202px;height: 32px;">
                                      </select>
 								</div>
-								<label for="city" class="col-lg-2 control-label" style="padding-top: 30px;">所在城市</label>
-								<div class="col-lg-35" style="padding-top: 25px;">
-								 <input
-									type="text" class="form-control col-lg-35" name="city"
-									id="city" placeholder="请输入所在城市">
-								</div>
 								<label for="name" class="col-lg-2 control-label" style="padding-top: 30px;">职位名称</label>
 								<div class="col-lg-35" style="padding-top: 25px;">
 								 <input

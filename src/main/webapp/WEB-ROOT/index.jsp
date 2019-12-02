@@ -17,15 +17,21 @@
             href="<%=request.getContextPath() %>/WEB-ROOT/rvnm/assets/css/all.min.css" />
         <link type="text/css" rel="stylesheet"
             href="<%=request.getContextPath() %>/WEB-ROOT/rvnm/src/jquery-rvnm.css" />
+        <link type="text/css" rel="stylesheet"
+            href="<%=request.getContextPath() %>/WEB-ROOT/rvnm/assets/css/all.min.css" />
+        <link type="text/css" rel="stylesheet"
+            href="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/css/MonthPicker.min.css" />
         <script src="<%=request.getContextPath() %>/WEB-ROOT/rvnm/jquery.min.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/rvnm/src/jquery-rvnm.js"></script>
-        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/jquery-ui.min.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/jquery-ui-1.11.4.min.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/datepicker-zh-CN.min.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/jquery.serializeObject.min.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/bootstrap.min.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/treeview.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/lTable.js"></script>
         <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/bootstrapValidator.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/jquery.maskedinput.min.js"></script>
+        <script src="<%=request.getContextPath() %>/WEB-ROOT/bootstrap/js/MonthPicker.min.js"></script>
         <script type="text/javascript">
             $(function () {
                 var rvnMenu = $("#navbar").rvnm({

@@ -70,8 +70,22 @@
 	</div>
     <script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobQuota.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $('#month').datepicker({dateFormat: 'yy-mm', changeYear: true, changeMonth: true});
+        $('#month').MonthPicker({
+            Button: false,
+            MonthFormat: 'yy-mm',
+            i18n: {
+                year: '年份: ',
+                prevYear: '前一年',
+                nextYear: '后一年',
+                next12Years: '往后12年',
+                prev12Years: '往前12年',
+                nextLabel: '后',
+                prevLabel: '前',
+                buttonText: '打开月份选择器',
+                jumpYears: '挑选年份',
+                backTo: '回到',
+                months: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+            }
         });
     </script>
 

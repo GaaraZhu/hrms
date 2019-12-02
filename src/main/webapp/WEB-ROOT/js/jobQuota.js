@@ -90,7 +90,7 @@
                             $("#company").val(data.company);
                             $("#city").val(data.city);
                             $("#district").val(data.district);
-                            $("#month").datepicker("setDate", new Date(data.month+'-01')).datepicker('disable');
+                            $('#month').MonthPicker({SelectedMonth: data.month});
                             $("#quota").val(data.quota);
                             $("#submitType").val("POST");
                         }
