@@ -92,7 +92,7 @@
                                 url : "companies",
                                 type : "GET",
                                 async: true,
-                                data : "currentPage=1&pageSize=500&name=&city=",
+                                data : "currentPage=1&pageSize=5000&name=&city=",
                                 contentType : "application/json;charset=utf-8",
                                 success : function(data) {
                                     companies = data.results;
@@ -179,7 +179,7 @@
                         url : "companies",
                         type : "GET",
                         async: true,
-                        data : "currentPage=1&pageSize=500&name=&city=",
+                        data : "currentPage=1&pageSize=5000&name=&city=",
                         contentType : "application/json;charset=utf-8",
                         success : function(data) {
                             companies = data.results;
@@ -308,7 +308,7 @@
                                 url : "branches",
                                 type : "GET",
                                 async: true,
-                                data : "currentPage=1&pageSize=500&company=" +jobData.company+ "&branch=",
+                                data : "currentPage=1&pageSize=5000&company=" +jobData.company+ "&branch=",
                                 contentType : "application/json;charset=utf-8",
                                 success : function(branchData) {
                                     var branches = branchData.results;
