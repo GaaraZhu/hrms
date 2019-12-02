@@ -229,7 +229,7 @@
                                         url : "branches",
                                         type : "GET",
                                         async: true,
-                                        data : "currentPage=1&pageSize=500&company=" +companyData.name+ "&branch=",
+                                        data : "currentPage=1&pageSize=5000&company=" +companyData.name+ "&branch=",
                                         contentType : "application/json;charset=utf-8",
                                         success : function(branchData) {
                                             var branches = branchData.results;

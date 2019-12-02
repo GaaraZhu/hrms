@@ -80,19 +80,50 @@
                 $("#innerModal").load(
                     "WEB-ROOT/html/jobQuota.jsp",
                     function() {
-                        $("#originalJobQuotaModal").modal({
-                            keyboard : true
-                        });
                         if (data != null) {
-                            $("#id").val(data.id);
-                            $("#jobId").val(data.jobId);
-                            $("#jobName").val(data.jobName);
-                            $("#company").val(data.company);
-                            $("#city").val(data.city);
-                            $("#district").val(data.district);
-                            $('#month').MonthPicker({SelectedMonth: data.month});
-                            $("#quota").val(data.quota);
-                            $("#submitType").val("POST");
+                            $.ajax({
+                                url : "branches",
+                                type : "GET",
+                                async: true,
+                                data : "currentPage=1&pageSize=5000&company=" +data.company+ "&branch=",
+                                contentType : "application/json;charset=utf-8",
+                                success : function(branchData) {
+                                    var branches = branchData.results;
+                                    if (branches.length == 0) {
+                                        $("#innerModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                                            $("#alertText").text("请先创建门店再进行操作");
+                                            $("#alertModel").modal({
+                                                keyboard: true
+                                            });
+                                         });
+                                        return;
+                                    }
+                                    var branchDropdown = $("#branchDropdown");
+                                    branches.forEach(function(c){
+                                        branchDropdown.append($("<option />").val(c.id).text(c.name));
+                                    });
+                                    branchDropdown.val(branches[0].id);
+
+                                    $("#id").val(data.id);
+                                    $("#jobId").val(data.jobId);
+                                    $("#jobName").val(data.jobName);
+                                    $("#company").val(data.company);
+                                    $("#city").val(data.city);
+                                    $("#district").val(data.district);
+                                    $('#month').MonthPicker({SelectedMonth: data.month});
+                                    $("#quota").val(data.quota);
+                                    $("#submitType").val("POST");
+                                    $("#originalJobQuotaModal").modal({
+                                        keyboard: true
+                                    });
+                                },
+                                error : function(e) {
+                                    if (e.status != 401) {
+                                        console.log(e);
+                                        alert("搜索失败，请查看控制台日志");
+                                    }
+                                }
+                            });
                         }
                     });
             },
