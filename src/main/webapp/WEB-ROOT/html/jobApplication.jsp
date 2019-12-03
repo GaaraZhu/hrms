@@ -43,9 +43,9 @@
                                     <div class="col-lg-35" style="padding-top: 25px;">
                                         <input id="idNumber" type="text" class="form-control col-lg-35" name="idNumber" placeholder="申请人身份证号">
                                     </div>
-                                    <label for="candidateName" class="col-lg-2 control-label" style="padding-top: 30px;">姓名</label>
+                                    <label for="candidateName" class="col-lg-2 control-label" style="padding-top: 30px;">申请人姓名</label>
                                     <div class="col-lg-35" style="padding-top: 25px;">
-                                        <input id="candidateName" type="text" class="form-control col-lg-35" name="candidateName" readonly="readonly">
+                                        <input id="candidateName" type="text" class="form-control col-lg-35" name="candidateName" placeholder="申请人姓名" readonly="readonly">
                                     </div>
                                 </div>
 
