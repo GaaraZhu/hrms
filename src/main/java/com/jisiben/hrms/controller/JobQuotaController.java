@@ -47,8 +47,8 @@ public class JobQuotaController extends AbstractController<JobQuota, JobQuotaDTO
 
     @ResponseBody
     @RequestMapping(value = "/jobQuotaCount", method = RequestMethod.GET)
-    public Long findJobQuotaCount(@RequestParam("jobId") Long jobId, @RequestParam("month") String month) {
-        return jobQuotaService.countJobQuota(jobId, month);
+    public Long findJobQuotaCount(@RequestParam("jobId") Long jobId, @RequestParam("month") String month, @RequestParam("branchId") Long branchId) {
+        return jobQuotaService.countJobQuota(jobId, month, branchId);
     }
 
     @ResponseBody

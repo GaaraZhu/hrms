@@ -20,8 +20,8 @@ public interface JobQuotaDao extends Dao<JobQuota, Long> {
             @Param("month")String month,
             Pageable pageable);
 
-    @Query("SELECT COUNT(jq) FROM JobQuota jq WHERE jq.job.id = :jobId and jq.month = :month")
-    Long countByJobIdAndMonth(@Param("jobId")Long jobId, @Param("month")String month);
+    @Query("SELECT COUNT(jq) FROM JobQuota jq WHERE jq.job.id = :jobId and jq.month = :month and jq.branch.id = :branchId")
+    Long countByJobIdAndMonth(@Param("jobId")Long jobId, @Param("month")String month, @Param("branchId")Long branchId);
 
     @Query("SELECT new com.jisiben.hrms.domain.dao.bean.Pair(jq.branch.name, jq.quota) FROM JobQuota jq where jq.month = :month and (:company is null or jq.job.company.name like CONCAT('%',:company,'%'))")
     List<Pair> getMonthlyQuota(@Param("company")String company, @Param("month")String month);

@@ -38,8 +38,8 @@ public class JobQuotaServiceImpl extends AbstractService<JobQuota> implements Jo
     }
 
     @Override
-    public Long countJobQuota(Long jobId, String month) {
-        return jobQuotaDao.countByJobIdAndMonth(jobId, month);
+    public Long countJobQuota(Long jobId, String month, Long branchId) {
+        return jobQuotaDao.countByJobIdAndMonth(jobId, month, branchId);
     }
 
     @Override
