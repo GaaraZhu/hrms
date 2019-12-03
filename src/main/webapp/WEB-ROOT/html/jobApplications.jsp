@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <body class="full" id="content">
-    <script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobApplication.js"></script>
+    <script src="<%=request.getContextPath()%>/WEB-ROOT/js/jobApplications.js"></script>
 	<div id="innerModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">

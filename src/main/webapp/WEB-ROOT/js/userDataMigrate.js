@@ -1,5 +1,5 @@
 
-    $('#jobApplicationForm').bootstrapValidator({
+    $('#userDataMigrateForm').bootstrapValidator({
         message : 'This value is not valid',
         feedbackIcons : {
             valid : 'glyphicon glyphicon-ok',
@@ -7,47 +7,42 @@
             validating : 'glyphicon glyphicon-refresh'
         },
         fields : {
-            idNumber : {
+            originalUserAccount : {
                 validators : {
                     notEmpty : {
-                        message : '申请人身份证账号不能为空'
-                    },
-
+                        message : '归属用户信息不能为空'
+                    }
                 }
-            },
+            }
         }
     }).on(
         'success.form.bv',
-        onCreateOrUpdateJobApplication
+        onMigrateUserData
     );
 
-    function onCreateOrUpdateJobApplication(e){
+    function onMigrateUserData(e){
         e.preventDefault();
-        var data = $('form#jobApplicationForm').serializeObject();
-        data.jobId = $("#jobId").val();
-        data.candidateId = $("#candidateId").val();
-        data.branchId = $("#branchDropdown").val();
-        var method = $("#submitType").val();
-        var url = method=="POST"?"jobApplication?id="+$("#id").val():"jobApplication";
+        originalUserId = $("#originalUserId").val();
+        targetUserId = $("#targetUserId").val();
+        var url = "migrateData?originalUserId="+originalUserId+"&targetUserId="+targetUserId;
         $.ajax({
-            type : method,
+            type : "POST",
             url : url,
-            data: JSON.stringify(data),
+            data: {},
             async: true,
             contentType: 'application/json;charset=utf-8',
             success : function() {
-                 $("#jobApplicationAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                 $("#userDataMigrateAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
                     $("#alertText").text("操作成功");
                     $("#alertModel").modal({
                         keyboard: true
                     });
                  });
-                 if (method=="POST") {
-                    queryJobApplications(1);
-                 }
+                 queryUsers(1);
             },
             error : function(msg) {
-                $("#jobApplicationAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                $("#userDataMigrateAlertModal").load( "WEB-ROOT/html/common/alert.jsp", function( response, status, xhr ) {
+                    console.log(msg);
                     $("#alertText").text("操作失败");
                     $("#alertModel").modal({
                         keyboard: true

@@ -58,6 +58,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="<%=request.getContextPath()%>/WEB-ROOT/js/user.js"></script>
+	<script src="<%=request.getContextPath()%>/WEB-ROOT/js/userDataMigrate.js"></script>
 
 </body>

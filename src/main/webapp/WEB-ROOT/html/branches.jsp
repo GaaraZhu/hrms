@@ -5,7 +5,7 @@
 HttpSession s = request.getSession(); 
 %>
 <body class="full" id="content">
-    <script src="<%=request.getContextPath()%>/WEB-ROOT/js/branch.js"></script>
+    <script src="<%=request.getContextPath()%>/WEB-ROOT/js/branches.js"></script>
 	<div id="innerModal"></div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 ">
