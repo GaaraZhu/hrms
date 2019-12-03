@@ -94,10 +94,9 @@
                                 async: true,
                                 data : "currentPage=1&pageSize=5000&name=&city=",
                                 contentType : "application/json;charset=utf-8",
-                                success : function(data) {
-                                    companies = data.results;
-                                    initCompanyDropdown(companies, companies[0].id);
-                                    $("#city").val(companies[0].city);
+                                success : function(companyData) {
+                                    companies = companyData.results;
+                                    initCompanyDropdown(companies, data.companyId);
                                 },
                                 error : function(e) {
                                     if (e.status != 401) {
@@ -108,7 +107,6 @@
                             });
                         } else {
                             initCompanyDropdown(companies, data.companyId);
-                            $("#city").val(companies.filter(c=>c.id==data.companyId)[0].city);
                         }
 
                         if (data != null) {
