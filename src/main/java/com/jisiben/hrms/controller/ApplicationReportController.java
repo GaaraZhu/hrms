@@ -24,9 +24,6 @@ import java.util.stream.Collectors;
 public class ApplicationReportController {
 
     @Autowired
-    private JobService jobService;
-
-    @Autowired
     private JobQuotaService jobQuotaService;
 
     @Autowired

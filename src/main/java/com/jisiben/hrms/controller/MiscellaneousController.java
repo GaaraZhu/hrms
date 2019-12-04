@@ -3,7 +3,6 @@ package com.jisiben.hrms.controller;
 import com.jisiben.hrms.controller.dto.CandidateDTO;
 import com.jisiben.hrms.controller.dto.mapper.common.Mapper;
 import com.jisiben.hrms.domain.entity.Candidate;
-import com.jisiben.hrms.domain.entity.common.JobApplicationStatus;
 import com.jisiben.hrms.service.CandidateService;
 import com.jisiben.hrms.service.JobApplicationService;
 import com.poiji.bind.Poiji;

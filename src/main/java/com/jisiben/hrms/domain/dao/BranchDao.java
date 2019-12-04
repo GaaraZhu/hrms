@@ -7,8 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
-
 public interface BranchDao extends Dao<Branch, Long> {
     @Query("FROM Branch c WHERE (:company is null or c.company.name like CONCAT('%',:company,'%')) and (:branch is null"
             + " or c.name like CONCAT('%',:branch,'%'))")
