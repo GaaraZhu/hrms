@@ -2,7 +2,7 @@ package com.jisiben.hrms.controller.dto;
 
 import com.jisiben.hrms.controller.dto.common.DTORoot;
 
-public class PageableSearchResultDTO<T extends DTORoot> extends SearchResultDTO<T>{
+public class PageableSearchResultDTO<T extends DTORoot<T>> extends SearchResultDTO<T>{
     private int totalPages;
     private long totalElements;
 
@@ -20,7 +20,7 @@ public class PageableSearchResultDTO<T extends DTORoot> extends SearchResultDTO<
         return totalElements;
     }
 
-    public static class Builder<T extends DTORoot> extends SearchResultDTO.Builder<T, PageableSearchResultDTO.Builder>{
+    public static class Builder<T extends DTORoot<T>> extends SearchResultDTO.Builder<T, PageableSearchResultDTO.Builder<T>>{
         private int totalPages;
         private long totalElements;
 
@@ -34,6 +34,6 @@ public class PageableSearchResultDTO<T extends DTORoot> extends SearchResultDTO<
             return this;
         }
 
-        public PageableSearchResultDTO build() { return new PageableSearchResultDTO(this); }
+        public PageableSearchResultDTO<T> build() { return new PageableSearchResultDTO<T>(this); }
     }
 }
