@@ -103,4 +103,9 @@ public class JobApplicationServiceImpl extends AbstractService<JobApplication> i
     public Object[][] countResignsByCreator(String company, String jobName, String creator, int year, int month) {
         return dao.countResignsByCreator(company, jobName, creator, year, month);
     }
+
+    @Override
+    public Object[][] countStaffByBranch(String company, String jobName, Date date) {
+        return dao.countStaffByBranch(company, jobName, date);
+    }
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.ws.rs.Produces;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -35,6 +37,8 @@ public class ApplicationReportController {
 
     @Autowired
     private JobApplicationService jobApplicationService;
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @ResponseBody
     @Produces("application/json")
@@ -67,6 +71,47 @@ public class ApplicationReportController {
                 .netOnboarded(16L)
                 .build();
         results.add(dto);
+        return results;
+    }
+
+    @ResponseBody
+    @Produces("application/json")
+    @RequestMapping(value = "/applicationReports/branch/stuff", method = RequestMethod.GET)
+    public List<MonthlyStuffReportDTO> branchStuffReport(
+            @RequestParam("company") String company,
+            @RequestParam("jobName") String jobName,
+            @RequestParam("month") String yearAndMonth) throws ParseException {
+        Date startDate = dateFormat.parse(yearAndMonth + "-01");
+        Date endDate = dateFormat.parse(yearAndMonth + "-31");
+
+        Object[][] startCounts = jobApplicationService.countStaffByBranch(company, jobName, startDate);
+        Map<Long, Long> startCountMap = new HashMap<>();
+        for(Object[] keyValue : startCounts) {
+            startCountMap.put(Long.valueOf((int)keyValue[0]), (Long)keyValue[1]);
+        }
+
+        Object[][] endCounts = jobApplicationService.countStaffByBranch(company, jobName, startDate);
+        Map<Long, Long> endCountMap = new HashMap<>();
+        for(Object[] keyValue : endCounts) {
+            endCountMap.put(Long.valueOf((int)keyValue[0]), (Long)keyValue[1]);
+        }
+
+        Page<Branch> branches = branchService.search(ImmutableMap.of(
+                "company", Optional.ofNullable(company), "branch", Optional.empty()),1, 500);
+        List<MonthlyStuffReportDTO> results = new ArrayList<>();
+        for(Branch branch: branches) {
+            Long startCount = startCountMap.get(branch.getId()) == null ? 0l : startCountMap.get(branch.getId());
+            Long endCount = endCountMap.get(branch.getId()) == null ? 0l : endCountMap.get(branch.getId());
+            results.add(new MonthlyStuffReportDTO.Builder().branch(branch.getName())
+                    .company(branch.getCompany().getName())
+                    .city(branch.getCompany().getCity())
+                    .district(branch.getDistrict())
+                    .month(yearAndMonth)
+                    .firstDayCount(startCount)
+                    .lastDayCount(endCount)
+                    .build()
+            );
+        }
         return results;
     }
 

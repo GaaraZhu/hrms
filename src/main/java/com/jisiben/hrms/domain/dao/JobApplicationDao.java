@@ -70,4 +70,7 @@ public interface JobApplicationDao extends Dao<JobApplication, Long> {
 
     @Query(value = "select DATE_FORMAT(ja.resignDate, \"%Y-%m-%d\") as `key`, count(1) as `value` from jobApplication ja, job j, company c where c.name like CONCAT('%',?1,'%') and c.id=j.companyId and j.name like CONCAT('%',?2,'%') and ja.creator = ?3 and j.id=ja.jobId and year(ja.resignDate)=?4 and month(ja.resignDate)=?5 group by `key`", nativeQuery = true)
     Object[][] countResignsByCreator(String company, String jobName, String creator, int year, int month);
+
+    @Query(value = "select ja.branchId as `key`, count(1) as `value` from jobApplication ja, job j, company c where c.name like CONCAT('%',?1,'%') and c.id=j.companyId and j.id=ja.jobId and j.name like CONCAT('%',?2,'%') and ja.onBoardDate <= ?3 and (ja.resignDate is null or ja.resignDate > ?3) group by `key`", nativeQuery = true)
+    Object[][] countStaffByBranch(String company, String jobName, Date date);
 }

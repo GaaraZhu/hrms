@@ -4,7 +4,7 @@
     // branch Report
     $("#resetBranchReport").click(
         function() {
-            $('#month').datepicker("setDate", new Date());
+            $('#month').MonthPicker({SelectedMonth: new Date()});
             $("#company").val("");
             $("#jobName").val("");
         }
